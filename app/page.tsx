@@ -1,25 +1,31 @@
-import Navigation from "@/components/Navigation";
 import ParticleBackground from "@/components/ParticleBackground";
+import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import MissionSection from "@/components/MissionSection";
-import CapabilitiesSection from "@/components/CapabilitiesSection";
+import AboutSection from "@/components/AboutSection";
+import SkillsSection from "@/components/SkillsSection";
+import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ResearchLabSection from "@/components/ResearchLabSection";
-import PublicationsSection from "@/components/PublicationsSection";
+import TimelineSection from "@/components/TimelineSection";
+import CertificationsSection from "@/components/CertificationsSection";
+import CurrentWorkSection from "@/components/CurrentWorkSection";
+import GitHubSection from "@/components/GitHubSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main style={{ position: "relative" }}>
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <MissionSection />
-      <CapabilitiesSection />
+      <AboutSection />
+      <SkillsSection />
+      <ResearchSection />
       <ProjectsSection />
-      <ResearchLabSection />
-      <PublicationsSection />
+      <TimelineSection />
+      <CertificationsSection />
+      <CurrentWorkSection />
+      <GitHubSection />
       <ContactSection />
       <Footer />
     </main>

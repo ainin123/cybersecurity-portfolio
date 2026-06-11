@@ -1,216 +1,543 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Key, MessageSquare, Send, Terminal, Shield, Copy, CheckCheck, AtSign, GitBranch, Briefcase } from "lucide-react";
+import { AtSign, GitBranch, Mail, Download, ArrowRight, CircleCheck, Send } from "lucide-react";
 
-const channels = [
-  { icon: Mail, label: "ENCRYPTED EMAIL", value: "aniqa@ares-intel.io", note: "PGP preferred", href: "mailto:aniqa@ares-intel.io" },
-  { icon: Key, label: "PGP FINGERPRINT", value: "A4F2 1D3E 8B7C 0E52 F8A1", note: "Keys.openpgp.org", href: "#", copyable: true },
-  { icon: MessageSquare, label: "SIGNAL", value: "+1 (555) 0-ARES-INT", note: "Encrypted messaging", href: "#" },
+const CONTACT_METHODS = [
+  {
+    icon: AtSign,
+    label: "LinkedIn",
+    value: "linkedin.com/in/aniqa-ayub",
+    href: "https://linkedin.com/in/aniqa-ayub",
+    color: "#0ea5e9",
+  },
+  {
+    icon: GitBranch,
+    label: "GitHub",
+    value: "github.com/aniqa-ayub",
+    href: "https://github.com/aniqa-ayub",
+    color: "#06b6d4",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "aniqa.ayub@email.com",
+    href: "mailto:aniqa.ayub@email.com",
+    color: "#7c3aed",
+  },
+  {
+    icon: Download,
+    label: "Resume",
+    value: "Download PDF Resume",
+    href: "/resume.pdf",
+    color: "#0ea5e9",
+    download: true,
+  },
 ];
 
-const socials = [
-  { icon: AtSign, label: "@ares_intel", href: "#" },
-  { icon: GitBranch, label: "github/aniqa-ayub", href: "#" },
-  { icon: Briefcase, label: "Aniqa Ayub", href: "#" },
+const SUBJECTS = [
+  "Collaboration",
+  "Job Opportunity",
+  "Research",
+  "Consulting",
+  "Other",
 ];
+
+interface FormState {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export default function ContactSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const [copied, setCopied] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSent(true); };
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    email: "",
+    subject: "Collaboration",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleCopy = (value: string) => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 1200));
+    setLoading(false);
+    setSubmitted(true);
   };
 
   return (
-    <section id="contact" ref={ref} className="relative py-28 overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+    <section
+      id="contact"
+      ref={ref}
+      style={{
+        position: "relative",
+        padding: "100px 0",
+        backgroundColor: "#060b18",
+      }}
+    >
+      <div
+        className="grid-overlay"
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.3,
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(14,165,233,0.05) 0%, transparent 60%)",
+        }}
+      />
+
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 24px",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: "16px" }}
         >
-          <p className="text-cyber-accent font-mono text-xs tracking-widest mb-4">06 // CONTACT</p>
-          <h2 className="text-4xl lg:text-5xl font-bold font-mono text-cyber-text mb-4">
-            ESTABLISH
-            <br />
-            <span className="text-cyber-accent">CONTACT</span>
-          </h2>
-          <p className="text-cyber-muted max-w-xl text-sm leading-relaxed">
-            For security research collaborations, responsible disclosure, incident response
-            retainers, or speaking engagements. Encrypted communications preferred.
-          </p>
+          <span
+            style={{
+              fontFamily: "var(--font-geist-mono), monospace",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "#0ea5e9",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+            }}
+          >
+            09 // CONTACT
+          </span>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-6">
-          {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-2 space-y-4"
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            fontSize: "clamp(32px, 5vw, 52px)",
+            fontWeight: 800,
+            lineHeight: 1.15,
+            marginBottom: "16px",
+            color: "#e2e8f0",
+          }}
+        >
+          Let&apos;s{" "}
+          <span
+            style={{
+              background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
           >
-            {channels.map((ch) => (
-              <div key={ch.label} className="glass-panel border border-white/5 hover:border-cyber-accent/20 p-5 transition-colors">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 border border-cyber-accent/20 rounded-sm bg-cyber-accent/5 shrink-0">
-                    <ch.icon className="w-4 h-4 text-cyber-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-cyber-muted font-mono text-xs tracking-widest mb-1">{ch.label}</p>
-                    <p className="font-mono text-sm text-cyber-text truncate">{ch.value}</p>
-                    <p className="text-cyber-muted font-mono text-xs mt-0.5">{ch.note}</p>
-                  </div>
-                  {ch.copyable && (
-                    <button
-                      onClick={() => handleCopy(ch.value)}
-                      className="p-1.5 border border-white/10 rounded-sm text-cyber-muted hover:text-cyber-accent hover:border-cyber-accent/25 transition-colors"
-                    >
-                      {copied ? <CheckCheck className="w-3.5 h-3.5 text-cyber-accent" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
+            Connect
+          </span>
+        </motion.h2>
 
-            <div className="glass-panel border border-cyber-danger/20 bg-cyber-danger/3 p-5">
-              <div className="flex items-center gap-2 mb-2.5">
-                <Shield className="w-3.5 h-3.5 text-cyber-danger" />
-                <span className="font-mono text-xs font-bold text-cyber-danger tracking-widest">OPSEC NOTICE</span>
-              </div>
-              <p className="text-cyber-muted text-xs leading-relaxed">
-                For sensitive disclosures, always use PGP-encrypted email. Avoid sharing
-                classified information via unencrypted channels. Signal preferred for real-time coordination.
-              </p>
-            </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          style={{
+            fontSize: "16px",
+            color: "#94a3b8",
+            marginBottom: "60px",
+            maxWidth: "560px",
+            lineHeight: 1.6,
+          }}
+        >
+          Open to cybersecurity research collaborations, SIEM engineering roles,
+          AI security projects, and consulting engagements.
+        </motion.p>
 
-            <div className="glass-panel border border-white/5 p-5">
-              <p className="text-xs font-mono text-cyber-muted tracking-widest mb-4">SOCIAL PROFILES</p>
-              <div className="space-y-3">
-                {socials.map((s) => (
-                  <a key={s.label} href={s.href} className="flex items-center gap-3 text-sm font-mono text-cyber-muted hover:text-cyber-accent transition-colors">
-                    <s.icon className="w-4 h-4" />
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Form */}
+        <div
+          style={{
+            display: "grid",
+            gap: "40px",
+            gridTemplateColumns: "1fr",
+          }}
+          className="lg:grid-cols-2"
+        >
+          {/* LEFT: Contact methods */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "14px",
+            }}
           >
-            <div className="glass-panel border border-white/5 h-full">
-              <div className="flex items-center gap-2.5 px-6 py-4 border-b border-white/5">
-                <Terminal className="w-3.5 h-3.5 text-cyber-accent" />
-                <span className="font-mono text-xs tracking-widest text-cyber-accent">SECURE MESSAGE TRANSMISSION</span>
-              </div>
-
-              {sent ? (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="p-10 flex flex-col items-center justify-center gap-4 text-center min-h-80"
+            {CONTACT_METHODS.map((method, i) => (
+              <motion.a
+                key={method.label}
+                href={method.href}
+                target={method.download ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                download={method.download}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.25 + i * 0.08 }}
+                whileHover={{ borderColor: method.color, x: 4 }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "18px 20px",
+                  borderRadius: "12px",
+                  background: "rgba(13,20,36,0.7)",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid rgba(14,165,233,0.15)",
+                  textDecoration: "none",
+                  transition: "border-color 0.2s, box-shadow 0.2s",
+                  cursor: "pointer",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "14px",
+                  }}
                 >
-                  <div className="p-4 rounded-full border border-cyber-accent/30 bg-cyber-accent/8">
-                    <CheckCheck className="w-7 h-7 text-cyber-accent" />
-                  </div>
-                  <h3 className="font-mono font-bold text-cyber-accent">MESSAGE TRANSMITTED</h3>
-                  <p className="text-cyber-muted text-xs max-w-xs font-mono leading-relaxed">
-                    Secure transmission acknowledged. Expected response time: 24–48h.
-                  </p>
-                  <button
-                    onClick={() => setSent(false)}
-                    className="mt-2 px-6 py-2 text-xs font-mono border border-cyber-accent/25 text-cyber-accent hover:bg-cyber-accent/8 rounded-sm transition-colors"
+                  <div
+                    style={{
+                      width: "38px",
+                      height: "38px",
+                      borderRadius: "9px",
+                      background: `${method.color}15`,
+                      border: `1px solid ${method.color}25`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
                   >
-                    NEW TRANSMISSION
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {[
-                      { label: "CALLSIGN / NAME", key: "name", type: "text", placeholder: "John Doe" },
-                      { label: "CONTACT EMAIL", key: "email", type: "email", placeholder: "you@company.com" },
-                    ].map((f) => (
-                      <div key={f.key}>
-                        <label className="block text-xs font-mono text-cyber-muted tracking-widest mb-2">{f.label}</label>
-                        <input
-                          type={f.type}
-                          required
-                          value={form[f.key as keyof typeof form]}
-                          onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
-                          placeholder={f.placeholder}
-                          className="w-full bg-cyber-bg border border-white/10 rounded-sm px-4 py-2.5 text-sm font-mono text-cyber-text placeholder-cyber-muted/40 focus:outline-none focus:border-cyber-accent/40 transition-colors"
-                        />
-                      </div>
+                    <method.icon size={17} color={method.color} />
+                  </div>
+                  <div>
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        color: "#64748b",
+                        marginBottom: "2px",
+                        letterSpacing: "0.06em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {method.label}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        color: "#e2e8f0",
+                      }}
+                    >
+                      {method.value}
+                    </div>
+                  </div>
+                </div>
+                <ArrowRight size={15} color="#64748b" />
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* RIGHT: Contact form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            style={{
+              background: "rgba(13,20,36,0.7)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              border: "1px solid rgba(14,165,233,0.15)",
+              borderRadius: "16px",
+              padding: "32px",
+            }}
+          >
+            {submitted ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%",
+                  minHeight: "360px",
+                  gap: "16px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "64px",
+                    height: "64px",
+                    borderRadius: "50%",
+                    background: "rgba(14,165,233,0.12)",
+                    border: "1px solid rgba(14,165,233,0.3)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <CircleCheck size={32} color="#0ea5e9" />
+                </div>
+                <h3
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "#e2e8f0",
+                  }}
+                >
+                  Message Sent!
+                </h3>
+                <p style={{ fontSize: "14px", color: "#94a3b8", maxWidth: "280px", lineHeight: 1.6 }}>
+                  Thank you for reaching out. I&apos;ll get back to you as soon as possible.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    style={{
+                      display: "block",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      marginBottom: "6px",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Your name"
+                    style={{
+                      width: "100%",
+                      padding: "11px 14px",
+                      borderRadius: "8px",
+                      background: "rgba(6,11,24,0.8)",
+                      border: "1px solid rgba(14,165,233,0.15)",
+                      color: "#e2e8f0",
+                      fontSize: "14px",
+                      outline: "none",
+                    }}
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    style={{
+                      display: "block",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      marginBottom: "6px",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="your@email.com"
+                    style={{
+                      width: "100%",
+                      padding: "11px 14px",
+                      borderRadius: "8px",
+                      background: "rgba(6,11,24,0.8)",
+                      border: "1px solid rgba(14,165,233,0.15)",
+                      color: "#e2e8f0",
+                      fontSize: "14px",
+                      outline: "none",
+                    }}
+                  />
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label
+                    htmlFor="subject"
+                    style={{
+                      display: "block",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      marginBottom: "6px",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Subject
+                  </label>
+                  <select
+                    id="subject"
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    style={{
+                      width: "100%",
+                      padding: "11px 14px",
+                      borderRadius: "8px",
+                      background: "rgba(6,11,24,0.8)",
+                      border: "1px solid rgba(14,165,233,0.15)",
+                      color: "#e2e8f0",
+                      fontSize: "14px",
+                      outline: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {SUBJECTS.map((s) => (
+                      <option key={s} value={s} style={{ backgroundColor: "#0d1424" }}>
+                        {s}
+                      </option>
                     ))}
-                  </div>
+                  </select>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-cyber-muted tracking-widest mb-2">MISSION TYPE</label>
-                    <select
-                      value={form.subject}
-                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className="w-full bg-cyber-bg border border-white/10 rounded-sm px-4 py-2.5 text-sm font-mono text-cyber-text focus:outline-none focus:border-cyber-accent/40 transition-colors"
-                    >
-                      <option value="">Select…</option>
-                      <option>Vulnerability Disclosure</option>
-                      <option>Red Team Engagement</option>
-                      <option>Threat Intelligence Retainer</option>
-                      <option>Speaking Engagement</option>
-                      <option>Research Collaboration</option>
-                      <option>Incident Response</option>
-                    </select>
-                  </div>
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    style={{
+                      display: "block",
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      marginBottom: "6px",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    required
+                    rows={4}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Your message..."
+                    style={{
+                      width: "100%",
+                      padding: "11px 14px",
+                      borderRadius: "8px",
+                      background: "rgba(6,11,24,0.8)",
+                      border: "1px solid rgba(14,165,233,0.15)",
+                      color: "#e2e8f0",
+                      fontSize: "14px",
+                      outline: "none",
+                      resize: "vertical",
+                      fontFamily: "inherit",
+                    }}
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-cyber-muted tracking-widest mb-2">MESSAGE</label>
-                    <textarea
-                      required
-                      rows={6}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Describe your mission objectives, threat scenario, or collaboration proposal…"
-                      className="w-full bg-cyber-bg border border-white/10 rounded-sm px-4 py-2.5 text-sm font-mono text-cyber-text placeholder-cyber-muted/40 focus:outline-none focus:border-cyber-accent/40 transition-colors resize-none"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between pt-1">
-                    <p className="text-cyber-muted text-xs font-mono">
-                      End-to-end <span className="text-cyber-accent">encrypted</span>
-                    </p>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="submit"
-                      className="flex items-center gap-2 px-6 py-2.5 bg-cyber-accent text-cyber-bg font-mono font-bold text-xs tracking-widest rounded-sm hover:bg-cyber-accent-dim transition-colors"
-                      style={{ boxShadow: "0 0 20px rgba(0,255,136,0.2)" }}
-                    >
-                      <Send className="w-3.5 h-3.5" /> TRANSMIT
-                    </motion.button>
-                  </div>
-                </form>
-              )}
-            </div>
+                {/* Submit */}
+                <motion.button
+                  type="submit"
+                  disabled={loading}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    padding: "13px 24px",
+                    borderRadius: "8px",
+                    background: loading
+                      ? "rgba(14,165,233,0.5)"
+                      : "linear-gradient(135deg, #0ea5e9, #06b6d4)",
+                    border: "none",
+                    color: "#fff",
+                    fontWeight: 600,
+                    fontSize: "15px",
+                    cursor: loading ? "not-allowed" : "pointer",
+                    boxShadow: "0 0 24px rgba(14,165,233,0.25)",
+                    transition: "opacity 0.2s",
+                  }}
+                >
+                  {loading ? (
+                    <>
+                      <span
+                        style={{
+                          width: "14px",
+                          height: "14px",
+                          border: "2px solid rgba(255,255,255,0.4)",
+                          borderTopColor: "#fff",
+                          borderRadius: "50%",
+                          display: "inline-block",
+                          animation: "spin 0.7s linear infinite",
+                        }}
+                      />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={15} />
+                      Send Message
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        input::placeholder, textarea::placeholder {
+          color: #475569;
+        }
+        input:focus, textarea:focus, select:focus {
+          border-color: rgba(14,165,233,0.4) !important;
+          box-shadow: 0 0 0 3px rgba(14,165,233,0.08);
+        }
+      `}</style>
     </section>
   );
 }

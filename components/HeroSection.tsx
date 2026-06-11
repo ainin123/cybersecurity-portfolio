@@ -1,337 +1,638 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Terminal, ChevronDown, Activity, Globe, AlertTriangle, Lock } from "lucide-react";
+import { Download, GitBranch, AtSign, ChevronDown, Activity, Shield, Cpu, Target } from "lucide-react";
 
-const roles = [
-  "THREAT INTELLIGENCE ANALYST",
-  "ADVERSARY SIMULATION ENGINEER",
-  "MALWARE REVERSE ENGINEER",
-  "RED TEAM OPERATOR",
-  "VULNERABILITY RESEARCHER",
+const STATS = [
+  { label: "Security Projects", value: "25+", icon: Shield },
+  { label: "Security Integrations", value: "5+", icon: Target },
+  { label: "ML Model Accuracy", value: "98%", icon: Cpu },
+  { label: "AI-Powered DLP Research", value: "Active", icon: Activity },
 ];
-
-const metrics = [
-  { label: "CVEs Disclosed", value: 47, suffix: "", icon: AlertTriangle },
-  { label: "Countries Monitored", value: 89, suffix: "", icon: Globe },
-  { label: "Threat Actors Tracked", value: 312, suffix: "", icon: Activity },
-  { label: "Systems Hardened", value: 1200, suffix: "+", icon: Lock },
-];
-
-function useCounter(target: number, active: boolean, duration = 1800) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    let start = 0;
-    const steps = 60;
-    const inc = target / steps;
-    const id = setInterval(() => {
-      start += inc;
-      if (start >= target) { setCount(target); clearInterval(id); }
-      else setCount(Math.floor(start));
-    }, duration / steps);
-    return () => clearInterval(id);
-  }, [active, target, duration]);
-  return count;
-}
-
-function MetricCard({ m, index, active }: { m: typeof metrics[0]; index: number; active: boolean }) {
-  const count = useCounter(m.value, active, 1600 + index * 200);
-  const display = m.value >= 1000 ? `${(count / 1000).toFixed(1)}K${m.suffix}` : `${count}${m.suffix}`;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-      className="bg-cyber-bg p-6 flex items-center gap-4 group hover:bg-cyber-surface transition-colors cursor-default"
-    >
-      <m.icon className="w-5 h-5 text-cyber-accent shrink-0 group-hover:scale-110 transition-transform" />
-      <div>
-        <div
-          className="text-2xl font-mono font-bold text-cyber-accent tabular-nums"
-          style={{ textShadow: "0 0 12px rgba(0,255,136,0.4)" }}
-        >
-          {display}
-        </div>
-        <div className="text-cyber-muted text-xs font-mono tracking-wider mt-0.5">{m.label}</div>
-      </div>
-    </motion.div>
-  );
-}
 
 export default function HeroSection() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [typing, setTyping] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const timeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
-    const current = roles[roleIndex];
-    if (typing) {
-      if (displayed.length < current.length) {
-        timeRef.current = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 55);
-      } else {
-        timeRef.current = setTimeout(() => setTyping(false), 2400);
-      }
-    } else {
-      if (displayed.length > 0) {
-        timeRef.current = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 28);
-      } else {
-        setRoleIndex((i) => (i + 1) % roles.length);
-        setTyping(true);
-      }
-    }
-    return () => { if (timeRef.current) clearTimeout(timeRef.current); };
-  }, [displayed, typing, roleIndex]);
+    setMounted(true);
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      <div className="absolute inset-0 grid-bg pointer-events-none" />
+    <section
+      id="hero"
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        overflow: "hidden",
+        paddingTop: "80px",
+      }}
+    >
+      {/* Background grid overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 70% 50% at 50% -10%, rgba(0,255,136,0.06) 0%, transparent 65%)" }}
+        className="grid-overlay"
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+      {/* Radial glow */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 1,
+          background:
+            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(14,165,233,0.06) 0%, transparent 65%)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 1,
+          background:
+            "radial-gradient(ellipse 60% 50% at 80% 50%, rgba(124,58,237,0.04) 0%, transparent 65%)",
+        }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "40px 24px 60px",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "48px",
+            alignItems: "center",
+          }}
+          className="lg:grid-cols-2"
+        >
+          {/* LEFT COLUMN */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="flex items-center gap-3 mb-10"
+            {/* Badge */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 14px",
+                borderRadius: "100px",
+                border: "1px solid rgba(14,165,233,0.25)",
+                backgroundColor: "rgba(14,165,233,0.08)",
+                marginBottom: "32px",
+              }}
             >
               <span
-                className="w-1.5 h-1.5 rounded-full bg-cyber-accent shrink-0"
-                style={{ animation: "pulse-glow 2s infinite" }}
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  backgroundColor: "#0ea5e9",
+                  animation: "pulse-dot 2s ease-in-out infinite",
+                  flexShrink: 0,
+                }}
               />
-              <span className="text-xs font-mono text-cyber-muted tracking-widest">
-                CLEARANCE: TS/SCI — OPERATIVE ONLINE
-              </span>
-            </motion.div>
-
-            {/* Glitch name */}
-            <div className="mb-6 select-none">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-6xl lg:text-8xl font-bold font-mono tracking-tight leading-none"
+              <span
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  color: "#0ea5e9",
+                  letterSpacing: "0.04em",
+                }}
               >
-                <span className="text-cyber-text">ANIQA</span>
-                <br />
-                {/* Glitch layers */}
-                <span className="relative inline-block">
-                  <span
-                    className="text-cyber-accent"
-                    style={{ textShadow: "0 0 40px rgba(0,255,136,0.4)" }}
-                  >
-                    AYUB
-                  </span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 text-cyber-accent opacity-80"
-                    style={{ animation: "glitch-1 7s infinite", color: "#00ff88" }}
-                  >
-                    AYUB
-                  </span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 opacity-60"
-                    style={{ animation: "glitch-2 7s infinite 0.05s", color: "#ef4444" }}
-                  >
-                    AYUB
-                  </span>
-                </span>
-              </motion.h1>
+                Available for Security Consulting &amp; Research
+              </span>
             </div>
 
-            {/* Typewriter */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="h-6 mb-8"
+            {/* Name */}
+            <h1
+              style={{
+                fontFamily: "var(--font-geist-mono), monospace",
+                fontWeight: 800,
+                lineHeight: 1.0,
+                marginBottom: "16px",
+                letterSpacing: "-0.02em",
+              }}
             >
-              <span className="text-cyber-muted font-mono text-sm tracking-widest">
-                {displayed}
-                <span
-                  className="inline-block w-px h-3.5 bg-cyber-accent ml-0.5 align-middle"
-                  style={{ animation: "blink 1s step-end infinite" }}
-                />
+              <span
+                style={{
+                  display: "block",
+                  color: "#e2e8f0",
+                  fontSize: "clamp(52px, 8vw, 88px)",
+                }}
+              >
+                ANIQA
               </span>
-            </motion.div>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55, duration: 0.5 }}
-              className="text-cyber-muted text-base leading-relaxed max-w-lg mb-10"
-            >
-              Weaponizing data to defend the digital frontier. Specializing in
-              advanced persistent threat analysis, offensive security research,
-              and enterprise threat intelligence platform development.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.65, duration: 0.5 }}
-              className="flex flex-wrap gap-3"
-            >
-              <motion.button
-                whileHover={{ scale: 1.04, boxShadow: "0 0 32px rgba(0,255,136,0.4)" }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-7 py-3 bg-cyber-accent text-cyber-bg font-mono font-bold text-xs tracking-widest rounded-sm hover:bg-cyber-accent-dim transition-colors"
-                style={{ boxShadow: "0 0 20px rgba(0,255,136,0.25)" }}
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "clamp(52px, 8vw, 88px)",
+                  background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
               >
-                VIEW INTEL
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.04, backgroundColor: "rgba(0,255,136,0.07)" }}
+                AYUB
+              </span>
+            </h1>
+
+            {/* Title */}
+            <p
+              style={{
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#64748b",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: "24px",
+              }}
+            >
+              Cybersecurity Researcher &nbsp;|&nbsp; SIEM Engineer &nbsp;|&nbsp; AI Security Solutions Developer
+            </p>
+
+            {/* Tagline */}
+            <p
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.7,
+                color: "#94a3b8",
+                maxWidth: "520px",
+                marginBottom: "40px",
+              }}
+            >
+              Bridging AI and cybersecurity — building intelligent SIEM systems,
+              AI-powered DLP frameworks, and threat intelligence engines that
+              detect what traditional tools miss.
+            </p>
+
+            {/* Stats row */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "1px",
+                border: "1px solid rgba(14,165,233,0.15)",
+                borderRadius: "10px",
+                overflow: "hidden",
+                marginBottom: "36px",
+                backgroundColor: "rgba(14,165,233,0.08)",
+              }}
+              className="sm:grid-cols-4"
+            >
+              {STATS.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  style={{
+                    padding: "16px 14px",
+                    backgroundColor: "rgba(13,20,36,0.8)",
+                    textAlign: "center",
+                    borderRight:
+                      i < STATS.length - 1
+                        ? "1px solid rgba(14,165,233,0.1)"
+                        : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: 700,
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      color: "#0ea5e9",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "10px",
+                      color: "#64748b",
+                      letterSpacing: "0.06em",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "12px",
+              }}
+            >
+              <motion.a
+                href="/resume.pdf"
+                download
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-7 py-3 border border-cyber-accent/30 text-cyber-accent font-mono font-bold text-xs tracking-widest rounded-sm transition-colors"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "11px 22px",
+                  borderRadius: "8px",
+                  background: "linear-gradient(135deg, #0ea5e9, #06b6d4)",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  boxShadow: "0 0 24px rgba(14,165,233,0.3)",
+                }}
               >
-                ESTABLISH CONTACT
+                <Download size={15} />
+                Download Resume
+              </motion.a>
+
+              <motion.a
+                href="https://github.com/aniqa-ayub"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "11px 22px",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(14,165,233,0.3)",
+                  color: "#94a3b8",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                }}
+              >
+                <GitBranch size={15} />
+                GitHub
+              </motion.a>
+
+              <motion.a
+                href="https://linkedin.com/in/aniqa-ayub"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "11px 22px",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(14,165,233,0.3)",
+                  color: "#94a3b8",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                }}
+              >
+                <AtSign size={15} />
+                LinkedIn
+              </motion.a>
+
+              <motion.button
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "11px 22px",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(14,165,233,0.3)",
+                  color: "#94a3b8",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  background: "none",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                }}
+              >
+                <AtSign size={15} />
+                Contact Me
               </motion.button>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right — Radar */}
+          {/* RIGHT COLUMN — Threat Intelligence Dashboard */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="flex justify-center"
+            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
-            <RadarDisplay />
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              style={{
+                width: "100%",
+                maxWidth: "420px",
+                background: "rgba(13,20,36,0.7)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                border: "1px solid rgba(14,165,233,0.2)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                boxShadow:
+                  "0 0 60px rgba(14,165,233,0.08), 0 24px 48px rgba(0,0,0,0.4)",
+              }}
+            >
+              {/* Dashboard Header */}
+              <div
+                style={{
+                  padding: "14px 18px",
+                  borderBottom: "1px solid rgba(14,165,233,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  backgroundColor: "rgba(14,165,233,0.04)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      backgroundColor: "#0ea5e9",
+                      animation: "pulse-dot 1.5s ease-in-out infinite",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      color: "#0ea5e9",
+                      letterSpacing: "0.1em",
+                    }}
+                  >
+                    THREAT INTELLIGENCE DASHBOARD
+                  </span>
+                </div>
+                <div style={{ display: "flex", gap: "6px" }}>
+                  {["#ef4444", "#f59e0b", "#0ea5e9"].map((c, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "50%",
+                        backgroundColor: c,
+                        opacity: 0.7,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Metrics */}
+              <div style={{ padding: "16px 18px" }}>
+                {[
+                  {
+                    label: "Threats Detected",
+                    value: "1,247",
+                    delta: "+12%",
+                    color: "#0ea5e9",
+                  },
+                  {
+                    label: "ML Accuracy",
+                    value: "98.3%",
+                    delta: "↑ 0.4%",
+                    color: "#06b6d4",
+                  },
+                  {
+                    label: "False Positives",
+                    value: "1.7%",
+                    delta: "↓ 62%",
+                    color: "#7c3aed",
+                  },
+                  {
+                    label: "SIEM Events/hr",
+                    value: "84.2K",
+                    delta: "Live",
+                    color: "#0ea5e9",
+                  },
+                ].map((metric) => (
+                  <div
+                    key={metric.label}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "10px 0",
+                      borderBottom: "1px solid rgba(14,165,233,0.07)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "12px",
+                        color: "#64748b",
+                        fontFamily: "var(--font-geist-mono), monospace",
+                      }}
+                    >
+                      {metric.label}
+                    </span>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: 700,
+                          fontFamily: "var(--font-geist-mono), monospace",
+                          color: metric.color,
+                        }}
+                      >
+                        {metric.value}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "10px",
+                          color: "#64748b",
+                          backgroundColor: "rgba(14,165,233,0.08)",
+                          padding: "2px 6px",
+                          borderRadius: "4px",
+                        }}
+                      >
+                        {metric.delta}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mini Bar Chart */}
+              <div style={{ padding: "4px 18px 16px" }}>
+                <div
+                  style={{
+                    fontSize: "10px",
+                    color: "#64748b",
+                    fontFamily: "var(--font-geist-mono), monospace",
+                    marginBottom: "8px",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  THREAT ACTIVITY — LAST 7 DAYS
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-end",
+                    gap: "4px",
+                    height: "48px",
+                  }}
+                >
+                  {[35, 60, 45, 80, 55, 90, 72].map((h, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${h}%` }}
+                      transition={{ delay: 0.5 + i * 0.1, duration: 0.6, ease: "easeOut" }}
+                      style={{
+                        flex: 1,
+                        borderRadius: "3px 3px 0 0",
+                        background:
+                          i === 5
+                            ? "linear-gradient(to top, #0ea5e9, #06b6d4)"
+                            : "rgba(14,165,233,0.25)",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Status Row */}
+              <div
+                style={{
+                  padding: "12px 18px",
+                  borderTop: "1px solid rgba(14,165,233,0.1)",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  backgroundColor: "rgba(14,165,233,0.03)",
+                }}
+              >
+                {[
+                  { label: "AI Models Active", ok: true },
+                  { label: "SIEM Connected", ok: true },
+                  { label: "Threat Feeds: 47", ok: true },
+                ].map((s) => (
+                  <div
+                    key={s.label}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "5px",
+                        height: "5px",
+                        borderRadius: "50%",
+                        backgroundColor: "#0ea5e9",
+                        animation: "pulse-dot 2s ease-in-out infinite",
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: "10px",
+                        color: "#64748b",
+                        fontFamily: "var(--font-geist-mono), monospace",
+                      }}
+                    >
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
-
-        {/* Metrics */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-cyber-accent/10 border border-cyber-accent/10 rounded-sm overflow-hidden"
-        >
-          {metrics.map((m, i) => (
-            <MetricCard key={m.label} m={m} index={i} active={mounted} />
-          ))}
-        </motion.div>
       </div>
 
       {/* Scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs font-mono text-cyber-muted flex items-center gap-2">
-          <Terminal size={11} /> scroll to navigate
-        </span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}>
-          <ChevronDown size={14} className="text-cyber-accent/40" />
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
-
-function RadarDisplay() {
-  const threats = [
-    { angle: 35, ring: 0.3, critical: true, label: "APT-29" },
-    { angle: 120, ring: 0.6, critical: false, label: "C2" },
-    { angle: 210, ring: 0.45, critical: true, label: "0-day" },
-    { angle: 290, ring: 0.7, critical: false, label: "Recon" },
-    { angle: 165, ring: 0.85, critical: false, label: "Patched" },
-    { angle: 310, ring: 0.35, critical: true, label: "Pivot" },
-  ];
-
-  return (
-    <motion.div
-      animate={{ y: [0, -8, 0] }}
-      transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-      className="relative w-72 h-72 lg:w-80 lg:h-80"
-    >
-      <svg viewBox="0 0 320 320" className="w-full h-full">
-        {[1, 0.75, 0.5, 0.25].map((r, i) => (
-          <circle key={i} cx="160" cy="160" r={r * 140} fill="none" stroke="rgba(0,255,136,0.1)" strokeWidth="1" />
-        ))}
-        <line x1="160" y1="20" x2="160" y2="300" stroke="rgba(0,255,136,0.07)" strokeWidth="1" />
-        <line x1="20" y1="160" x2="300" y2="160" stroke="rgba(0,255,136,0.07)" strokeWidth="1" />
-
-        <g style={{ transformOrigin: "160px 160px", animation: "radar-sweep 4s linear infinite" }}>
-          <path
-            d={`M160,160 L${160 + 140 * Math.sin(0)},${160 - 140 * Math.cos(0)} A140,140 0 0,1 ${160 + 140 * Math.sin(Math.PI / 5)},${160 - 140 * Math.cos(Math.PI / 5)} Z`}
-            fill="url(#sweepGrad)"
-            opacity="0.5"
-          />
-        </g>
-
-        <defs>
-          <radialGradient id="sweepGrad" cx="0%" cy="100%" r="100%">
-            <stop offset="0%" stopColor="#00ff88" stopOpacity="0" />
-            <stop offset="100%" stopColor="#00ff88" stopOpacity="0.25" />
-          </radialGradient>
-        </defs>
-
-        {threats.map((t, i) => {
-          const rad = (t.angle * Math.PI) / 180;
-          const x = 160 + t.ring * 140 * Math.sin(rad);
-          const y = 160 - t.ring * 140 * Math.cos(rad);
-          const color = t.critical ? "#ef4444" : "#00ff88";
-          return (
-            <g key={i}>
-              <circle cx={x} cy={y} r="2.5" fill={color} opacity="0.9" />
-              <circle cx={x} cy={y} r="6" fill={color} opacity="0">
-                <animate attributeName="r" values="2.5;10;2.5" dur={`${2.5 + i * 0.3}s`} repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.4;0;0.4" dur={`${2.5 + i * 0.3}s`} repeatCount="indefinite" />
-              </circle>
-              <text x={x + 5} y={y - 4} fill={color} fontSize="6.5" fontFamily="monospace" opacity="0.7">{t.label}</text>
-            </g>
-          );
-        })}
-
-        <circle cx="160" cy="160" r="3.5" fill="#00ff88" />
-        <circle cx="160" cy="160" r="10" fill="none" stroke="#00ff88" strokeWidth="0.8" opacity="0.3" />
-      </svg>
-
-      {/* Animated corner brackets */}
-      {[
-        "top-0 left-0 border-t border-l",
-        "top-0 right-0 border-t border-r",
-        "bottom-0 left-0 border-b border-l",
-        "bottom-0 right-0 border-b border-r",
-      ].map((cls, i) => (
+      {mounted && (
         <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
-          className={`absolute w-6 h-6 border-cyber-accent/40 ${cls}`}
-        />
-      ))}
-
-      <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs font-mono text-cyber-muted/50 tracking-widest whitespace-nowrap">
-        THREAT RADAR — LIVE
-      </div>
-    </motion.div>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4 }}
+          style={{
+            position: "absolute",
+            bottom: "32px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "11px",
+              fontFamily: "var(--font-geist-mono), monospace",
+              color: "#475569",
+              letterSpacing: "0.08em",
+            }}
+          >
+            SCROLL TO EXPLORE
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          >
+            <ChevronDown size={16} color="#475569" />
+          </motion.div>
+        </motion.div>
+      )}
+    </section>
   );
 }

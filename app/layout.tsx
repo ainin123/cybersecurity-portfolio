@@ -13,16 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARES | Threat Intelligence Platform",
+  title: "Aniqa Ayub | Cybersecurity Researcher & AI Security Engineer",
   description:
-    "Elite cybersecurity researcher specializing in threat intelligence, adversary simulation, and advanced persistent threat analysis.",
+    "AI-driven cybersecurity, SIEM engineering, threat intelligence, NLP security. Building intelligent security systems that detect what traditional tools miss.",
   keywords: [
     "cybersecurity",
+    "AI security",
+    "SIEM engineer",
     "threat intelligence",
-    "penetration testing",
-    "red team",
-    "malware analysis",
-    "SOC",
+    "NLP security",
+    "DLP",
+    "Wazuh",
+    "machine learning security",
+    "explainable AI",
   ],
 };
 
@@ -33,7 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-cyber-bg text-cyber-text min-h-screen antialiased">
+      <body
+        className="min-h-screen antialiased"
+        style={{ backgroundColor: "#060b18", color: "#e2e8f0" }}
+      >
         {children}
       </body>
     </html>

@@ -1,228 +1,585 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, GitBranch, Lock, Star, CheckCircle2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ExternalLink, ArrowRight, ShieldCheck, Server, Target, Network, Database, Eye } from "lucide-react";
 
-const projects = [
+const PROJECTS = [
   {
-    codename: "OPERATION SHADOWNET",
-    title: "APT Campaign Tracker",
-    classification: "UNCLASSIFIED",
-    status: "ACTIVE",
-    critical: false,
-    description:
-      "Real-time tracking platform for 40+ APT groups. Correlates TTPs across MITRE ATT&CK, visualizes kill chains, and generates automated threat intelligence reports.",
-    tags: ["Python", "Elastic", "MITRE ATT&CK", "STIX 2.1", "Neo4j"],
-    stars: 847,
-    forks: 124,
-    links: { github: "#", demo: "#" },
+    num: "01",
+    icon: ShieldCheck,
+    iconColor: "#0ea5e9",
+    title: "AI-Powered DLP System",
+    problem: "Traditional DLP tools miss context-sensitive data leaks",
+    solution:
+      "Built a transformer-based NLP pipeline using BERT and RoBERTa that classifies sensitive documents with 98% accuracy — far outperforming regex-based alternatives.",
+    tech: ["Python", "BERT", "RoBERTa", "TensorFlow", "NLP", "DLP"],
+    result: "98% Classification Accuracy",
     featured: true,
   },
   {
-    codename: "PROJECT GHOST-WRITE",
-    title: "C2 Framework",
-    classification: "RESTRICTED",
-    status: "CLASSIFIED",
-    critical: true,
-    description:
-      "Custom command-and-control framework built for authorized red team operations. Features malleable profiles, encrypted channels, and OPSEC-safe beacon behavior.",
-    tags: ["C++", "Go", "Cryptography", "Red Team"],
-    stars: 1203,
-    forks: 287,
-    links: { github: "#" },
-    featured: false,
+    num: "02",
+    icon: Server,
+    iconColor: "#06b6d4",
+    title: "Wazuh SIEM Customization",
+    problem: "High false-positive rates in open-source SIEM environments",
+    solution:
+      "Developed custom Wazuh detection rules, decoders, and integrated ML-based alert scoring to dramatically reduce noise while improving threat detection coverage.",
+    tech: ["Wazuh", "Python", "SIGMA", "ML", "JSON"],
+    result: "62% Reduction in False Positives",
   },
   {
-    codename: "SENTINEL-EYE",
-    title: "YARA Rule Engine",
-    classification: "UNCLASSIFIED",
-    status: "STABLE",
-    critical: false,
-    description:
-      "High-performance YARA rule engine with ML-assisted signature generation. Automatically clusters malware families and generates detection rules from behavioral data.",
-    tags: ["Python", "YARA", "ML", "VirusTotal API"],
-    stars: 523,
-    forks: 89,
-    links: { github: "#", demo: "#" },
-    featured: false,
+    num: "03",
+    icon: Target,
+    iconColor: "#7c3aed",
+    title: "Threat Intelligence Engine",
+    problem: "Manual IOC collection is slow and error-prone",
+    solution:
+      "Automated IOC aggregation pipeline integrating MISP, VirusTotal, and custom YARA rules with enrichment and correlation capabilities.",
+    tech: ["Python", "MISP", "VirusTotal API", "YARA", "Redis"],
+    result: "47 Threat Feeds Integrated",
   },
   {
-    codename: "ZERO-PULSE",
-    title: "Exploit PoC Database",
-    classification: "RESTRICTED",
-    status: "ACTIVE",
-    critical: true,
-    description:
-      "Curated collection of 200+ documented proof-of-concept exploits for CVE research. Includes detailed analysis, patch diffing, and remediation guidance.",
-    tags: ["C", "Python", "Pwn", "CVE Research"],
-    stars: 2100,
-    forks: 445,
-    links: { github: "#" },
-    featured: false,
+    num: "04",
+    icon: Network,
+    iconColor: "#0ea5e9",
+    title: "Network Traffic Analyzer",
+    problem: "Unknown threat patterns evade signature-based IDS",
+    solution:
+      "Combined Suricata IDS with ML anomaly detection models trained on behavioral baselines to identify zero-day and insider threat activity.",
+    tech: ["Suricata", "Python", "ML", "ELK", "Zeek"],
+    result: "Real-time Anomaly Detection",
   },
   {
-    codename: "BLOODHOUND++",
-    title: "AD Attack Path Analyzer",
-    classification: "UNCLASSIFIED",
-    status: "BETA",
-    critical: false,
-    description:
-      "Extended BloodHound module with custom attack paths for Azure AD, O365, and hybrid environments. Includes automated attack path exploitation chains.",
-    tags: ["Python", "Neo4j", "BloodHound", "Azure AD"],
-    stars: 671,
-    forks: 102,
-    links: { github: "#", demo: "#" },
-    featured: false,
+    num: "05",
+    icon: Database,
+    iconColor: "#06b6d4",
+    title: "Security Log Analytics Platform",
+    problem: "Security logs lack intelligent correlation and insight",
+    solution:
+      "Built an ELK-based analytics platform enhanced with AI correlation layers to surface high-fidelity alerts from millions of daily log events.",
+    tech: ["ELK Stack", "Python", "AI", "Kafka", "Kibana"],
+    result: "10M+ Events Processed Daily",
   },
   {
-    codename: "DECEPTION-NET",
-    title: "Honeypot Intelligence Platform",
-    classification: "UNCLASSIFIED",
-    status: "ACTIVE",
-    critical: false,
-    description:
-      "Distributed honeypot network with 80+ global sensors. Captures attacker TTPs, extracts IOCs, and feeds intelligence into MISP for community sharing.",
-    tags: ["Docker", "Python", "MISP", "ELK Stack"],
-    stars: 389,
-    forks: 67,
-    links: { github: "#", demo: "#" },
-    featured: false,
+    num: "06",
+    icon: Eye,
+    iconColor: "#7c3aed",
+    title: "Malware Classification System",
+    problem: "Manual malware triage is slow and inconsistent",
+    solution:
+      "Developed an ML-based static analysis classifier that extracts features from PE headers, strings, and imports to categorize malware families automatically.",
+    tech: ["Python", "Scikit-learn", "PE Analysis", "YARA", "Sandbox"],
+    result: "94% Classification Accuracy",
   },
 ];
+
+function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inView: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7 }}
+      style={{
+        background: "rgba(13,20,36,0.7)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: "1px solid rgba(14,165,233,0.2)",
+        borderRadius: "16px",
+        padding: "32px",
+        marginBottom: "28px",
+        boxShadow: "0 0 40px rgba(14,165,233,0.06)",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gap: "32px",
+          gridTemplateColumns: "1fr",
+        }}
+        className="lg:grid-cols-2"
+      >
+        {/* Left: Info */}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "20px",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-geist-mono), monospace",
+                fontSize: "11px",
+                fontWeight: 700,
+                color: "#0ea5e9",
+                letterSpacing: "0.15em",
+              }}
+            >
+              {project.num}
+            </span>
+            <span
+              style={{
+                fontSize: "10px",
+                fontWeight: 600,
+                color: "#0ea5e9",
+                backgroundColor: "rgba(14,165,233,0.12)",
+                border: "1px solid rgba(14,165,233,0.25)",
+                padding: "3px 10px",
+                borderRadius: "100px",
+                letterSpacing: "0.08em",
+              }}
+            >
+              FEATURED PROJECT
+            </span>
+          </div>
+          <h3
+            style={{
+              fontSize: "24px",
+              fontWeight: 800,
+              color: "#e2e8f0",
+              marginBottom: "12px",
+            }}
+          >
+            {project.title}
+          </h3>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#64748b",
+              marginBottom: "12px",
+              fontStyle: "italic",
+            }}
+          >
+            Problem: {project.problem}
+          </p>
+          <p
+            style={{
+              fontSize: "15px",
+              lineHeight: 1.7,
+              color: "#94a3b8",
+              marginBottom: "24px",
+            }}
+          >
+            {project.solution}
+          </p>
+
+          {/* Impact metric */}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "8px 16px",
+              borderRadius: "8px",
+              backgroundColor: "rgba(14,165,233,0.1)",
+              border: "1px solid rgba(14,165,233,0.2)",
+              marginBottom: "20px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                color: "#0ea5e9",
+                fontFamily: "var(--font-geist-mono), monospace",
+              }}
+            >
+              {project.result}
+            </span>
+          </div>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                style={{
+                  padding: "4px 10px",
+                  borderRadius: "6px",
+                  fontSize: "11px",
+                  fontWeight: 500,
+                  fontFamily: "var(--font-geist-mono), monospace",
+                  color: "#0ea5e9",
+                  backgroundColor: "rgba(14,165,233,0.08)",
+                  border: "1px solid rgba(14,165,233,0.15)",
+                }}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Architecture diagram */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <svg
+            viewBox="0 0 380 200"
+            style={{ width: "100%", maxWidth: "380px" }}
+            aria-label="DLP Architecture Diagram"
+          >
+            {/* Nodes */}
+            {[
+              { x: 20, y: 80, w: 70, label: "Data Sources", color: "#64748b" },
+              { x: 110, y: 80, w: 70, label: "NLP Engine", color: "#0ea5e9" },
+              { x: 200, y: 80, w: 70, label: "Classifier", color: "#06b6d4" },
+              { x: 290, y: 80, w: 70, label: "Policy Engine", color: "#7c3aed" },
+            ].map((node) => (
+              <g key={node.label}>
+                <rect
+                  x={node.x}
+                  y={node.y}
+                  width={node.w}
+                  height={36}
+                  rx={6}
+                  fill={`${node.color}18`}
+                  stroke={node.color}
+                  strokeWidth={1}
+                  strokeOpacity={0.5}
+                />
+                <text
+                  x={node.x + node.w / 2}
+                  y={node.y + 22}
+                  textAnchor="middle"
+                  fill={node.color}
+                  fontSize={9}
+                  fontFamily="monospace"
+                >
+                  {node.label}
+                </text>
+              </g>
+            ))}
+
+            {/* Arrows */}
+            {[90, 180, 270].map((x) => (
+              <g key={x}>
+                <line
+                  x1={x}
+                  y1={98}
+                  x2={x + 20}
+                  y2={98}
+                  stroke="rgba(14,165,233,0.4)"
+                  strokeWidth={1.5}
+                  markerEnd="url(#arrow)"
+                />
+              </g>
+            ))}
+
+            {/* Alert / Block outputs */}
+            <g>
+              <line
+                x1={360}
+                y1={88}
+                x2={360}
+                y2={138}
+                stroke="rgba(239,68,68,0.4)"
+                strokeWidth={1.5}
+              />
+              <rect
+                x={325}
+                y={138}
+                width={70}
+                height={28}
+                rx={5}
+                fill="rgba(239,68,68,0.1)"
+                stroke="rgba(239,68,68,0.4)"
+                strokeWidth={1}
+              />
+              <text
+                x={360}
+                y={156}
+                textAnchor="middle"
+                fill="#ef4444"
+                fontSize={9}
+                fontFamily="monospace"
+              >
+                Alert / Block
+              </text>
+            </g>
+
+            <defs>
+              <marker
+                id="arrow"
+                markerWidth="6"
+                markerHeight="6"
+                refX="3"
+                refY="3"
+                orient="auto"
+              >
+                <path d="M0,0 L0,6 L6,3 z" fill="rgba(14,165,233,0.6)" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" ref={ref} className="relative py-28 overflow-hidden">
-      <div className="absolute inset-0 grid-bg pointer-events-none" />
+    <section
+      id="projects"
+      ref={ref}
+      style={{
+        position: "relative",
+        padding: "100px 0",
+        backgroundColor: "#0d1424",
+      }}
+    >
+      <div
+        className="grid-overlay"
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.3,
+          pointerEvents: "none",
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p className="text-cyber-accent font-mono text-xs tracking-widest mb-4">03 // PROJECTS</p>
-          <h2 className="text-4xl lg:text-5xl font-bold font-mono text-cyber-text mb-4">
-            SECURITY
-            <br />
-            <span className="text-cyber-accent">PROJECTS</span>
-          </h2>
-          <p className="text-cyber-muted max-w-xl text-sm leading-relaxed">
-            Open-source tools, research artifacts, and intelligence platforms built to advance the security community.
-          </p>
-        </motion.div>
-
-        {/* Featured */}
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 24px",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-4"
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: "16px" }}
         >
-          <ProjectCard p={projects[0]} index={0} inView={inView} />
+          <span
+            style={{
+              fontFamily: "var(--font-geist-mono), monospace",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "#0ea5e9",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+            }}
+          >
+            04 // PROJECTS
+          </span>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.slice(1).map((p, i) => (
-            <ProjectCard key={p.codename} p={p} index={i + 1} inView={inView} />
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            fontSize: "clamp(32px, 5vw, 52px)",
+            fontWeight: 800,
+            lineHeight: 1.15,
+            marginBottom: "60px",
+            color: "#e2e8f0",
+          }}
+        >
+          Security{" "}
+          <span
+            style={{
+              background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Case Studies
+          </span>
+        </motion.h2>
+
+        {/* Featured project */}
+        <FeaturedProject project={PROJECTS[0]} inView={inView} />
+
+        {/* 2-col grid for remaining */}
+        <div
+          style={{
+            display: "grid",
+            gap: "20px",
+            gridTemplateColumns: "1fr",
+          }}
+          className="sm:grid-cols-2"
+        >
+          {PROJECTS.slice(1).map((project, i) => (
+            <motion.div
+              key={project.num}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
+              whileHover={{ y: -4 }}
+              style={{
+                background: "rgba(13,20,36,0.7)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                border: "1px solid rgba(14,165,233,0.15)",
+                borderRadius: "14px",
+                padding: "24px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "14px",
+                transition: "box-shadow 0.3s",
+                cursor: "default",
+              }}
+            >
+              {/* Header */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                  gap: "12px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "8px",
+                      background: `${project.iconColor}18`,
+                      border: `1px solid ${project.iconColor}30`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <project.icon size={18} color={project.iconColor} />
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      color: "#64748b",
+                    }}
+                  >
+                    {project.num}
+                  </span>
+                </div>
+                <ExternalLink size={15} color="#475569" />
+              </div>
+
+              <h3
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "#e2e8f0",
+                }}
+              >
+                {project.title}
+              </h3>
+
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#64748b",
+                  fontStyle: "italic",
+                }}
+              >
+                {project.problem}
+              </p>
+
+              <p
+                style={{
+                  fontSize: "13px",
+                  lineHeight: 1.6,
+                  color: "#94a3b8",
+                  flex: 1,
+                }}
+              >
+                {project.solution}
+              </p>
+
+              {/* Impact metric */}
+              <div
+                style={{
+                  padding: "6px 12px",
+                  borderRadius: "7px",
+                  backgroundColor: `${project.iconColor}10`,
+                  border: `1px solid ${project.iconColor}20`,
+                  display: "inline-block",
+                  alignSelf: "flex-start",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    fontFamily: "var(--font-geist-mono), monospace",
+                    color: project.iconColor,
+                  }}
+                >
+                  {project.result}
+                </span>
+              </div>
+
+              {/* Tech pills */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    style={{
+                      padding: "3px 8px",
+                      borderRadius: "5px",
+                      fontSize: "10px",
+                      fontWeight: 500,
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      color: "#64748b",
+                      backgroundColor: "rgba(14,165,233,0.06)",
+                      border: "1px solid rgba(14,165,233,0.1)",
+                    }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {/* View details */}
+              <button
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  color: "#0ea5e9",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                  marginTop: "4px",
+                  alignSelf: "flex-start",
+                }}
+              >
+                View Details
+                <ArrowRight size={13} />
+              </button>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function ProjectCard({
-  p,
-  index,
-  inView,
-}: {
-  p: (typeof projects)[0];
-  index: number;
-  inView: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.08 * index }}
-      whileHover={{ y: -4, boxShadow: "0 8px 32px rgba(0,255,136,0.08)", borderColor: "rgba(0,255,136,0.25)" }}
-      className={`glass-panel border border-white/5 transition-colors group ${
-        p.featured ? "lg:flex gap-8 p-8" : "p-6"
-      }`}
-    >
-      <div className={p.featured ? "flex-1" : ""}>
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <div>
-            <p className="text-cyber-accent font-mono text-xs tracking-widest mb-1">{p.codename}</p>
-            <h3 className={`font-mono font-bold text-cyber-text ${p.featured ? "text-xl" : "text-base"}`}>
-              {p.title}
-            </h3>
-          </div>
-          <div className="flex flex-col items-end gap-1.5 shrink-0">
-            {p.status === "CLASSIFIED" ? (
-              <span className="flex items-center gap-1 text-xs font-mono text-cyber-danger">
-                <Lock className="w-3 h-3" /> {p.status}
-              </span>
-            ) : (
-              <span className="text-xs font-mono text-cyber-accent">{p.status}</span>
-            )}
-            <span className="text-xs font-mono text-cyber-muted border border-white/10 px-2 py-0.5 rounded-sm">
-              {p.classification}
-            </span>
-          </div>
-        </div>
-
-        <p className={`text-cyber-muted text-sm leading-relaxed mb-4 ${!p.featured ? "line-clamp-3" : ""}`}>
-          {p.description}
-        </p>
-
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {p.tags.map((tag) => (
-            <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded-sm bg-white/4 text-cyber-muted border border-white/8">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className={`flex items-center justify-between ${p.featured ? "flex-col items-start justify-center gap-5 min-w-40" : ""}`}>
-        <div className={`flex items-center gap-4 text-xs font-mono text-cyber-muted ${p.featured ? "flex-col items-start gap-2 w-full" : ""}`}>
-          <span className="flex items-center gap-1.5">
-            <Star className="w-3 h-3 text-cyber-accent" />
-            {p.stars.toLocaleString()}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-3 h-3 text-cyber-accent" />
-            {p.forks} forks
-          </span>
-        </div>
-
-        <div className={`flex items-center gap-2 ${p.featured ? "w-full" : ""}`}>
-          {p.links.github && (
-            <a
-              href={p.links.github}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm border border-white/15 text-cyber-muted hover:text-cyber-text hover:border-white/30 transition-colors ${p.featured ? "flex-1 justify-center" : ""}`}
-            >
-              <GitBranch className="w-3 h-3" /> GITHUB
-            </a>
-          )}
-          {p.links.demo && (
-            <a
-              href={p.links.demo}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm border border-cyber-accent/25 text-cyber-accent hover:bg-cyber-accent/8 transition-colors ${p.featured ? "flex-1 justify-center" : ""}`}
-            >
-              <ExternalLink className="w-3 h-3" /> DEMO
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
   );
 }

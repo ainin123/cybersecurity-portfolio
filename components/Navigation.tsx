@@ -1,139 +1,258 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Lock, Menu, X } from "lucide-react";
+import ScrollProgress from "./ScrollProgress";
 
-const navLinks = [
-  { href: "#mission", label: "MISSION" },
-  { href: "#capabilities", label: "CAPABILITIES" },
-  { href: "#projects", label: "PROJECTS" },
-  { href: "#research", label: "RESEARCH LAB" },
-  { href: "#publications", label: "PUBLICATIONS" },
-  { href: "#contact", label: "CONTACT" },
+const NAV_LINKS = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Research", href: "#research" },
+  { label: "Projects", href: "#projects" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const sections = NAV_LINKS.map((l) => l.href.slice(1));
+      let current = "";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          current = id;
+        }
+      }
+      setActive(current);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { threshold: 0.4 }
-    );
-    document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
-
   const handleNav = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const id = href.slice(1);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-cyber-bg/95 backdrop-blur-xl border-b border-cyber-accent/10"
-            : "bg-transparent"
-        }`}
+      <ScrollProgress />
+      <header
+        style={{
+          position: "fixed",
+          top: "2px",
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          transition: "all 0.3s ease",
+          background: scrolled ? "rgba(6,11,24,0.95)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled
+            ? "1px solid rgba(14,165,233,0.12)"
+            : "1px solid transparent",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <nav
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "0 24px",
+            height: "64px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
           >
-            <Shield className="w-5 h-5 text-cyber-accent" />
-            <span className="font-mono font-bold text-sm tracking-widest text-cyber-accent">
-              ARES<span className="text-cyber-muted mx-1.5">//</span>
-              <span className="text-cyber-text">INTEL</span>
+            <div
+              style={{
+                width: "30px",
+                height: "30px",
+                borderRadius: "7px",
+                background: "linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              <Lock size={14} color="#fff" />
+            </div>
+            <span
+              style={{
+                fontFamily: "var(--font-geist-mono), monospace",
+                fontWeight: 700,
+                fontSize: "14px",
+                letterSpacing: "0.12em",
+                color: "#e2e8f0",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ANIQA{" "}
+              <span
+                style={{
+                  background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                AYUB
+              </span>
             </span>
           </button>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.slice(1);
+          {/* Desktop Links */}
+          <ul
+            style={{
+              display: "flex",
+              gap: "2px",
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+            }}
+            className="hidden md:flex"
+          >
+            {NAV_LINKS.map((link) => {
+              const id = link.href.slice(1);
+              const isActive = active === id;
               return (
-                <button
-                  key={link.href}
-                  onClick={() => handleNav(link.href)}
-                  className={`relative px-4 py-2 text-xs font-mono tracking-widest transition-all duration-200 ${
-                    isActive ? "text-cyber-accent" : "text-cyber-muted hover:text-cyber-text"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 border border-cyber-accent/25 bg-cyber-accent/5 rounded"
-                    />
-                  )}
-                  {link.label}
-                </button>
+                <li key={link.label}>
+                  <button
+                    onClick={() => handleNav(link.href)}
+                    style={{
+                      background: isActive
+                        ? "rgba(14,165,233,0.1)"
+                        : "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: "6px 14px",
+                      borderRadius: "6px",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      letterSpacing: "0.03em",
+                      color: isActive ? "#0ea5e9" : "#94a3b8",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        (e.currentTarget as HTMLButtonElement).style.color =
+                          "#e2e8f0";
+                        (
+                          e.currentTarget as HTMLButtonElement
+                        ).style.backgroundColor = "rgba(14,165,233,0.06)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        (e.currentTarget as HTMLButtonElement).style.color =
+                          "#94a3b8";
+                        (
+                          e.currentTarget as HTMLButtonElement
+                        ).style.backgroundColor = "transparent";
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                </li>
               );
             })}
-          </div>
+          </ul>
 
-          {/* Status dot + burger */}
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2">
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-cyber-accent"
-                style={{ animation: "pulse-glow 2s infinite" }}
-              />
-              <span className="text-xs font-mono text-cyber-muted tracking-widest">
-                ONLINE
-              </span>
-            </div>
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden text-cyber-muted p-1"
-            >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed top-16 inset-x-0 z-40 bg-cyber-bg/98 backdrop-blur-xl border-b border-cyber-accent/10 lg:hidden"
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#e2e8f0",
+              padding: "6px",
+              display: "flex",
+              alignItems: "center",
+            }}
+            aria-label="Toggle menu"
           >
-            <div className="max-w-7xl mx-auto px-6 py-3 flex flex-col">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNav(link.href)}
-                  className="text-left px-3 py-3 text-xs font-mono tracking-widest text-cyber-muted hover:text-cyber-accent transition-colors"
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </nav>
+
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div
+            className="md:hidden"
+            style={{
+              background: "rgba(6,11,24,0.98)",
+              backdropFilter: "blur(20px)",
+              borderTop: "1px solid rgba(14,165,233,0.12)",
+              padding: "12px 24px 20px",
+            }}
+          >
+            <ul
+              style={{
+                listStyle: "none",
+                display: "flex",
+                flexDirection: "column",
+                gap: "2px",
+                margin: 0,
+                padding: 0,
+              }}
+            >
+              {NAV_LINKS.map((link) => {
+                const id = link.href.slice(1);
+                const isActive = active === id;
+                return (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => handleNav(link.href)}
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        background: isActive
+                          ? "rgba(14,165,233,0.1)"
+                          : "transparent",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: "10px 14px",
+                        borderRadius: "8px",
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        color: isActive ? "#0ea5e9" : "#94a3b8",
+                      }}
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         )}
-      </AnimatePresence>
+      </header>
     </>
   );
 }
