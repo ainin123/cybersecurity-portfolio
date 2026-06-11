@@ -21,10 +21,10 @@ const channels = [
   {
     icon: Mail,
     label: "ENCRYPTED EMAIL",
-    value: "mercer@ares-intel.io",
+    value: "aniqa@ares-intel.io",
     note: "PGP preferred",
     color: "#00d4ff",
-    href: "mailto:mercer@ares-intel.io",
+    href: "mailto:aniqa@ares-intel.io",
   },
   {
     icon: Key,
@@ -47,8 +47,8 @@ const channels = [
 
 const socials = [
   { icon: AtSign, label: "@ares_intel", href: "#" },
-  { icon: GitBranch, label: "github/ares-mercer", href: "#" },
-  { icon: Briefcase, label: "Alex Mercer", href: "#" },
+  { icon: GitBranch, label: "github/aniqa-ayub", href: "#" },
+  { icon: Briefcase, label: "Aniqa Ayub", href: "#" },
 ];
 
 export default function ContactSection() {

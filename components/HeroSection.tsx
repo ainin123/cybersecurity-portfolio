@@ -98,7 +98,7 @@ export default function HeroSection() {
             {/* Name */}
             <div className="mb-4">
               <h1 className="text-5xl lg:text-7xl font-bold font-mono tracking-tight leading-none">
-                <span className="text-cyber-text">ALEX</span>
+                <span className="text-cyber-text">ANIQA</span>
                 <br />
                 <span
                   className="text-cyber-primary"
@@ -107,7 +107,7 @@ export default function HeroSection() {
                       "0 0 30px rgba(0,212,255,0.5), 0 0 60px rgba(0,212,255,0.2)",
                   }}
                 >
-                  MERCER
+                  AYUB
                 </span>
               </h1>
             </div>
