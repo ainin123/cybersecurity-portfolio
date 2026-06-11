@@ -73,7 +73,8 @@ export default function PublicationsSection() {
                 initial={{ opacity: 0, x: -16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.45, delay: 0.08 * i }}
-                className="glass-panel border border-white/5 hover:border-cyber-accent/20 p-5 group transition-colors"
+                whileHover={{ x: 6, boxShadow: "0 4px 24px rgba(0,255,136,0.07)", borderColor: "rgba(0,255,136,0.25)" }}
+                className="glass-panel border border-white/5 p-5 group transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <div className="p-2 border border-white/10 rounded-sm bg-white/3 shrink-0 mt-0.5">

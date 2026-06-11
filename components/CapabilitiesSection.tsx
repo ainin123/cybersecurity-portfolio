@@ -49,7 +49,8 @@ export default function CapabilitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.45, delay: 0.04 * i }}
-              className="glass-panel border border-white/5 hover:border-cyber-accent/20 p-5 group transition-colors"
+              whileHover={{ y: -4, boxShadow: "0 8px 32px rgba(0,255,136,0.08)", borderColor: "rgba(0,255,136,0.25)" }}
+              className="glass-panel border border-white/5 p-5 group transition-colors"
             >
               <div className="flex items-center justify-between mb-4">
                 <cap.icon className="w-4 h-4 text-cyber-accent" />
@@ -83,24 +84,38 @@ export default function CapabilitiesSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 glass-panel border border-white/5 p-6"
+          className="mt-8 glass-panel border border-white/5 overflow-hidden"
         >
-          <h3 className="font-mono text-xs text-cyber-accent tracking-widest mb-5">ARSENAL // TOOL STACK</h3>
-          <div className="flex flex-wrap gap-2">
-            {[
-              "Cobalt Strike", "Metasploit", "Burp Suite Pro", "IDA Pro", "Ghidra",
-              "Volatility", "Wireshark", "Nmap", "BloodHound", "Mimikatz", "Empire",
-              "Sliver", "Frida", "Radare2", "YARA", "Elastic SIEM", "Splunk",
-              "OpenCTI", "MISP", "Velociraptor",
-            ].map((tool) => (
-              <span
-                key={tool}
-                className="px-3 py-1.5 text-xs font-mono rounded-sm border border-white/8 text-cyber-muted hover:text-cyber-accent hover:border-cyber-accent/25 transition-colors cursor-default"
-              >
-                {tool}
-              </span>
-            ))}
+          <div className="px-6 pt-5 pb-3">
+            <h3 className="font-mono text-xs text-cyber-accent tracking-widest">ARSENAL // TOOL STACK</h3>
           </div>
+          {/* Marquee */}
+          <div className="relative overflow-hidden py-3">
+            {/* fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, #030303, transparent)" }} />
+            <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, #030303, transparent)" }} />
+            <div className="marquee-track gap-3 px-3">
+              {[
+                "Cobalt Strike", "Metasploit", "Burp Suite Pro", "IDA Pro", "Ghidra",
+                "Volatility", "Wireshark", "Nmap", "BloodHound", "Mimikatz", "Empire",
+                "Sliver", "Frida", "Radare2", "YARA", "Elastic SIEM", "Splunk",
+                "OpenCTI", "MISP", "Velociraptor",
+                /* duplicate for seamless loop */
+                "Cobalt Strike", "Metasploit", "Burp Suite Pro", "IDA Pro", "Ghidra",
+                "Volatility", "Wireshark", "Nmap", "BloodHound", "Mimikatz", "Empire",
+                "Sliver", "Frida", "Radare2", "YARA", "Elastic SIEM", "Splunk",
+                "OpenCTI", "MISP", "Velociraptor",
+              ].map((tool, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1.5 text-xs font-mono rounded-sm border border-white/8 text-cyber-muted whitespace-nowrap shrink-0 hover:text-cyber-accent hover:border-cyber-accent/25 transition-colors cursor-default"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="h-3" />
         </motion.div>
       </div>
     </section>

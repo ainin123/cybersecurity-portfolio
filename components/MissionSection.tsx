@@ -61,7 +61,8 @@ export default function MissionSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className="glass-panel border border-white/5 hover:border-cyber-accent/20 p-7 transition-colors group"
+              whileHover={{ y: -4, boxShadow: "0 8px 32px rgba(0,255,136,0.07)", borderColor: "rgba(0,255,136,0.25)" }}
+              className="glass-panel border border-white/5 p-7 transition-colors group"
             >
               <div className="flex items-start gap-4">
                 <div className="p-2.5 border border-cyber-accent/20 rounded-sm bg-cyber-accent/5 shrink-0">

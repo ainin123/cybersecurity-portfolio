@@ -151,7 +151,8 @@ function ProjectCard({
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.08 * index }}
-      className={`glass-panel border border-white/5 hover:border-cyber-accent/20 transition-colors group ${
+      whileHover={{ y: -4, boxShadow: "0 8px 32px rgba(0,255,136,0.08)", borderColor: "rgba(0,255,136,0.25)" }}
+      className={`glass-panel border border-white/5 transition-colors group ${
         p.featured ? "lg:flex gap-8 p-8" : "p-6"
       }`}
     >
