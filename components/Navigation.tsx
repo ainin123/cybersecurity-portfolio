@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Menu, X, Radio } from "lucide-react";
+import { Shield, Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#mission", label: "MISSION" },
@@ -39,19 +39,18 @@ export default function Navigation() {
 
   const handleNav = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-cyber-bg/90 backdrop-blur-xl border-b border-cyber-primary/20 shadow-lg shadow-cyber-primary/5"
+            ? "bg-cyber-bg/95 backdrop-blur-xl border-b border-cyber-accent/10"
             : "bg-transparent"
         }`}
       >
@@ -59,17 +58,11 @@ export default function Navigation() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3"
           >
-            <div className="relative">
-              <Shield className="w-7 h-7 text-cyber-primary" />
-              <span className="absolute inset-0 animate-ping opacity-20">
-                <Shield className="w-7 h-7 text-cyber-primary" />
-              </span>
-            </div>
-            <span className="font-mono font-bold text-lg tracking-widest text-cyber-primary">
-              ARES
-              <span className="text-cyber-muted mx-1">//</span>
+            <Shield className="w-5 h-5 text-cyber-accent" />
+            <span className="font-mono font-bold text-sm tracking-widest text-cyber-accent">
+              ARES<span className="text-cyber-muted mx-1.5">//</span>
               <span className="text-cyber-text">INTEL</span>
             </span>
           </button>
@@ -82,16 +75,14 @@ export default function Navigation() {
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className={`relative px-4 py-2 text-xs font-mono font-semibold tracking-widest transition-all duration-200 ${
-                    isActive
-                      ? "text-cyber-primary"
-                      : "text-cyber-muted hover:text-cyber-text"
+                  className={`relative px-4 py-2 text-xs font-mono tracking-widest transition-all duration-200 ${
+                    isActive ? "text-cyber-accent" : "text-cyber-muted hover:text-cyber-text"
                   }`}
                 >
                   {isActive && (
                     <motion.span
-                      layoutId="nav-indicator"
-                      className="absolute inset-0 bg-cyber-primary/10 border border-cyber-primary/30 rounded"
+                      layoutId="nav-pill"
+                      className="absolute inset-0 border border-cyber-accent/25 bg-cyber-accent/5 rounded"
                     />
                   )}
                   {link.label}
@@ -100,43 +91,41 @@ export default function Navigation() {
             })}
           </div>
 
-          {/* Status + hamburger */}
+          {/* Status dot + burger */}
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded border border-cyber-green/30 bg-cyber-green/5">
-              <Radio className="w-3 h-3 text-cyber-green" />
-              <span className="text-xs font-mono text-cyber-green tracking-wider">
-                SYS:ONLINE
-              </span>
+            <div className="hidden md:flex items-center gap-2">
               <span
-                className="w-1.5 h-1.5 rounded-full bg-cyber-green"
+                className="w-1.5 h-1.5 rounded-full bg-cyber-accent"
                 style={{ animation: "pulse-glow 2s infinite" }}
               />
+              <span className="text-xs font-mono text-cyber-muted tracking-widest">
+                ONLINE
+              </span>
             </div>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden text-cyber-text p-1"
+              className="lg:hidden text-cyber-muted p-1"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-16 inset-x-0 z-40 bg-cyber-bg/95 backdrop-blur-xl border-b border-cyber-primary/20 lg:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed top-16 inset-x-0 z-40 bg-cyber-bg/98 backdrop-blur-xl border-b border-cyber-accent/10 lg:hidden"
           >
-            <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
+            <div className="max-w-7xl mx-auto px-6 py-3 flex flex-col">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className="text-left px-4 py-3 text-sm font-mono font-semibold tracking-widest text-cyber-muted hover:text-cyber-primary hover:bg-cyber-primary/5 rounded transition-all"
+                  className="text-left px-3 py-3 text-xs font-mono tracking-widest text-cyber-muted hover:text-cyber-accent transition-colors"
                 >
                   {link.label}
                 </button>
