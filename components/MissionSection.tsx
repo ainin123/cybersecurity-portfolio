@@ -32,7 +32,9 @@ export default function MissionSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="mission" ref={ref} className="relative py-28 overflow-hidden" style={{ backgroundColor: "#d1d5db" }}>
+    <section id="mission" ref={ref} className="relative py-28 overflow-hidden">
+      <div className="absolute inset-0 grid-bg pointer-events-none" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -41,12 +43,12 @@ export default function MissionSection() {
           className="mb-14"
         >
           <p className="text-cyber-accent font-mono text-xs tracking-widest mb-4">01 // MISSION</p>
-          <h2 className="text-4xl lg:text-5xl font-bold font-mono mb-4" style={{ color: "#111111" }}>
+          <h2 className="text-4xl lg:text-5xl font-bold font-mono text-cyber-text mb-4">
             THREAT INTELLIGENCE
             <br />
             <span className="text-cyber-accent">MANDATE</span>
           </h2>
-          <p className="max-w-xl text-sm leading-relaxed" style={{ color: "#374151" }}>
+          <p className="text-cyber-muted max-w-xl text-sm leading-relaxed">
             Operating at the intersection of offensive security and defensive intelligence.
             Every engagement is a mission to understand the adversary better than they understand themselves.
           </p>
@@ -59,27 +61,17 @@ export default function MissionSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className="p-7 rounded-sm transition-colors group hover:shadow-md"
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
+              className="glass-panel border border-white/5 hover:border-cyber-accent/20 p-7 transition-colors group"
             >
               <div className="flex items-start gap-4">
-                <div
-                  className="p-2.5 rounded-sm shrink-0"
-                  style={{
-                    backgroundColor: "rgba(0,255,136,0.1)",
-                    border: "1px solid rgba(0,255,136,0.3)",
-                  }}
-                >
+                <div className="p-2.5 border border-cyber-accent/20 rounded-sm bg-cyber-accent/5 shrink-0">
                   <p.icon className="w-4 h-4 text-cyber-accent" />
                 </div>
                 <div>
                   <h3 className="font-mono font-bold text-xs tracking-widest text-cyber-accent mb-3">
                     {p.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#374151" }}>{p.desc}</p>
+                  <p className="text-cyber-muted text-sm leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             </motion.div>
@@ -90,15 +82,14 @@ export default function MissionSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="mt-6 p-8 rounded-sm"
-          style={{ backgroundColor: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
+          className="mt-8 glass-panel border border-white/5 p-8"
         >
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2">
               <h3 className="font-mono font-bold text-xs tracking-widest text-cyber-accent mb-4">
                 OPERATIVE PROFILE
               </h3>
-              <p className="leading-relaxed text-sm" style={{ color: "#374151" }}>
+              <p className="text-cyber-muted leading-relaxed text-sm">
                 10+ years operating in adversarial environments across critical infrastructure,
                 financial sector, and government networks. Former NSA/CISA contractor turned
                 independent security researcher. Published vulnerabilities in Fortune 500 vendor
@@ -112,12 +103,8 @@ export default function MissionSection() {
                 { label: "Status", value: "INDEPENDENT" },
                 { label: "TLP", value: "WHITE" },
               ].map((item) => (
-                <div
-                  key={item.label}
-                  className="flex justify-between items-center py-2"
-                  style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
-                >
-                  <span className="font-mono text-xs tracking-wider" style={{ color: "#6b7280" }}>{item.label}</span>
+                <div key={item.label} className="flex justify-between items-center py-2 border-b border-white/5">
+                  <span className="text-cyber-muted font-mono text-xs tracking-wider">{item.label}</span>
                   <span className="text-cyber-accent font-mono text-xs font-bold">{item.value}</span>
                 </div>
               ))}

@@ -96,7 +96,9 @@ export default function ProjectsSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" ref={ref} className="relative py-28 overflow-hidden" style={{ backgroundColor: "#d1d5db" }}>
+    <section id="projects" ref={ref} className="relative py-28 overflow-hidden">
+      <div className="absolute inset-0 grid-bg pointer-events-none" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -105,12 +107,12 @@ export default function ProjectsSection() {
           className="mb-14"
         >
           <p className="text-cyber-accent font-mono text-xs tracking-widest mb-4">03 // PROJECTS</p>
-          <h2 className="text-4xl lg:text-5xl font-bold font-mono mb-4" style={{ color: "#111111" }}>
+          <h2 className="text-4xl lg:text-5xl font-bold font-mono text-cyber-text mb-4">
             SECURITY
             <br />
             <span className="text-cyber-accent">PROJECTS</span>
           </h2>
-          <p className="max-w-xl text-sm leading-relaxed" style={{ color: "#374151" }}>
+          <p className="text-cyber-muted max-w-xl text-sm leading-relaxed">
             Open-source tools, research artifacts, and intelligence platforms built to advance the security community.
           </p>
         </motion.div>
@@ -149,14 +151,16 @@ function ProjectCard({
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.08 * index }}
-      className={`rounded-sm transition-all group hover:shadow-md ${p.featured ? "lg:flex gap-8 p-8" : "p-6"}`}
-      style={{ backgroundColor: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
+      className={`glass-panel border border-white/5 hover:border-cyber-accent/20 transition-colors group ${
+        p.featured ? "lg:flex gap-8 p-8" : "p-6"
+      }`}
     >
       <div className={p.featured ? "flex-1" : ""}>
+        {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-3">
           <div>
             <p className="text-cyber-accent font-mono text-xs tracking-widest mb-1">{p.codename}</p>
-            <h3 className={`font-mono font-bold ${p.featured ? "text-xl" : "text-base"}`} style={{ color: "#111111" }}>
+            <h3 className={`font-mono font-bold text-cyber-text ${p.featured ? "text-xl" : "text-base"}`}>
               {p.title}
             </h3>
           </div>
@@ -168,19 +172,19 @@ function ProjectCard({
             ) : (
               <span className="text-xs font-mono text-cyber-accent">{p.status}</span>
             )}
-            <span className="text-xs font-mono px-2 py-0.5 rounded-sm" style={{ color: "#6b7280", border: "1px solid rgba(0,0,0,0.12)" }}>
+            <span className="text-xs font-mono text-cyber-muted border border-white/10 px-2 py-0.5 rounded-sm">
               {p.classification}
             </span>
           </div>
         </div>
 
-        <p className={`text-sm leading-relaxed mb-4 ${!p.featured ? "line-clamp-3" : ""}`} style={{ color: "#374151" }}>
+        <p className={`text-cyber-muted text-sm leading-relaxed mb-4 ${!p.featured ? "line-clamp-3" : ""}`}>
           {p.description}
         </p>
 
         <div className="flex flex-wrap gap-1.5 mb-5">
           {p.tags.map((tag) => (
-            <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded-sm" style={{ color: "#4b5563", backgroundColor: "#f3f4f6", border: "1px solid rgba(0,0,0,0.1)" }}>
+            <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded-sm bg-white/4 text-cyber-muted border border-white/8">
               {tag}
             </span>
           ))}
@@ -188,7 +192,7 @@ function ProjectCard({
       </div>
 
       <div className={`flex items-center justify-between ${p.featured ? "flex-col items-start justify-center gap-5 min-w-40" : ""}`}>
-        <div className={`flex items-center gap-4 text-xs font-mono ${p.featured ? "flex-col items-start gap-2 w-full" : ""}`} style={{ color: "#6b7280" }}>
+        <div className={`flex items-center gap-4 text-xs font-mono text-cyber-muted ${p.featured ? "flex-col items-start gap-2 w-full" : ""}`}>
           <span className="flex items-center gap-1.5">
             <Star className="w-3 h-3 text-cyber-accent" />
             {p.stars.toLocaleString()}
@@ -203,8 +207,7 @@ function ProjectCard({
           {p.links.github && (
             <a
               href={p.links.github}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm transition-colors hover:border-gray-400 ${p.featured ? "flex-1 justify-center" : ""}`}
-              style={{ color: "#4b5563", border: "1px solid rgba(0,0,0,0.15)" }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm border border-white/15 text-cyber-muted hover:text-cyber-text hover:border-white/30 transition-colors ${p.featured ? "flex-1 justify-center" : ""}`}
             >
               <GitBranch className="w-3 h-3" /> GITHUB
             </a>
@@ -212,8 +215,7 @@ function ProjectCard({
           {p.links.demo && (
             <a
               href={p.links.demo}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm transition-colors ${p.featured ? "flex-1 justify-center" : ""}`}
-              style={{ color: "#00ff88", border: "1px solid rgba(0,255,136,0.35)", backgroundColor: "rgba(0,255,136,0.06)" }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-sm border border-cyber-accent/25 text-cyber-accent hover:bg-cyber-accent/8 transition-colors ${p.featured ? "flex-1 justify-center" : ""}`}
             >
               <ExternalLink className="w-3 h-3" /> DEMO
             </a>

@@ -6,9 +6,9 @@ import { useRef } from "react";
 import { Mail, Key, MessageSquare, Send, Terminal, Shield, Copy, CheckCheck, AtSign, GitBranch, Briefcase } from "lucide-react";
 
 const channels = [
-  { icon: Mail, label: "ENCRYPTED EMAIL", value: "aniqa@aniqa-intel.io", note: "PGP preferred", href: "mailto:aniqa@aniqa-intel.io" },
+  { icon: Mail, label: "ENCRYPTED EMAIL", value: "aniqa@ares-intel.io", note: "PGP preferred", href: "mailto:aniqa@ares-intel.io" },
   { icon: Key, label: "PGP FINGERPRINT", value: "A4F2 1D3E 8B7C 0E52 F8A1", note: "Keys.openpgp.org", href: "#", copyable: true },
-  { icon: MessageSquare, label: "SIGNAL", value: "+1 (555) 0-ANIQA-INT", note: "Encrypted messaging", href: "#" },
+  { icon: MessageSquare, label: "SIGNAL", value: "+1 (555) 0-ARES-INT", note: "Encrypted messaging", href: "#" },
 ];
 
 const socials = [

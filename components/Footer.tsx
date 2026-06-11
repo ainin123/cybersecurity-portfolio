@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <Shield className="w-4 h-4 text-cyber-accent" />
             <span className="font-mono font-bold text-sm text-cyber-accent tracking-widest">
-              ANIQA<span className="text-cyber-muted mx-1.5">//</span>
+              ARES<span className="text-cyber-muted mx-1.5">//</span>
               <span className="text-cyber-text">INTEL</span>
             </span>
           </div>
