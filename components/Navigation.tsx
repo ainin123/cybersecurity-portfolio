@@ -62,7 +62,7 @@ export default function Navigation() {
           >
             <Shield className="w-5 h-5 text-cyber-accent" />
             <span className="font-mono font-bold text-sm tracking-widest text-cyber-accent">
-              ARES<span className="text-cyber-muted mx-1.5">//</span>
+              ANIQA<span className="text-cyber-muted mx-1.5">//</span>
               <span className="text-cyber-text">INTEL</span>
             </span>
           </button>
