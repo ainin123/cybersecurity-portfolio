@@ -1,15 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Download, GitBranch, AtSign, ChevronDown, Activity, Shield, Cpu, Target } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Download, ChevronDown, AtSign, Shield, Activity, Target, Cpu, BookOpen } from "lucide-react";
 
-const STATS = [
-  { label: "Security Projects", value: "25+", icon: Shield },
-  { label: "Security Integrations", value: "5+", icon: Target },
-  { label: "ML Model Accuracy", value: "98%", icon: Cpu },
-  { label: "AI-Powered DLP Research", value: "Active", icon: Activity },
+const METRICS = [
+  { label: "Threats Monitored", value: 10000, suffix: "+", display: "10,000+" },
+  { label: "Security Labs", value: 50, suffix: "+", display: "50+" },
+  { label: "CTF Challenges", value: 25, suffix: "+", display: "25+" },
+  { label: "Projects Delivered", value: 25, suffix: "+", display: "25+" },
+  { label: "Research Publications", value: 3, suffix: "+", display: "3+" },
 ];
+
+function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    const steps = 60;
+    const increment = target / steps;
+    const interval = duration / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, interval);
+    return () => clearInterval(timer);
+  }, [inView, target, duration]);
+
+  const display = target >= 1000
+    ? count >= 1000 ? `${(count / 1000).toFixed(0)},${String(count % 1000).padStart(3, "0")}` : count.toLocaleString()
+    : count;
+
+  return <span ref={ref}>{display}{suffix}</span>;
+}
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -17,6 +48,8 @@ export default function HeroSection() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const barData = [35, 60, 45, 80, 55, 90, 72];
 
   return (
     <section
@@ -49,17 +82,7 @@ export default function HeroSection() {
           pointerEvents: "none",
           zIndex: 1,
           background:
-            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(14,165,233,0.06) 0%, transparent 65%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 1,
-          background:
-            "radial-gradient(ellipse 60% 50% at 80% 50%, rgba(124,58,237,0.04) 0%, transparent 65%)",
+            "radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0,229,255,0.06) 0%, transparent 65%)",
         }}
       />
 
@@ -88,38 +111,40 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Badge */}
+            {/* Platform label */}
             <div
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
                 padding: "6px 14px",
-                borderRadius: "100px",
-                border: "1px solid rgba(14,165,233,0.25)",
-                backgroundColor: "rgba(14,165,233,0.08)",
-                marginBottom: "32px",
+                borderRadius: "4px",
+                border: "1px solid rgba(0,229,255,0.25)",
+                backgroundColor: "rgba(0,229,255,0.06)",
+                marginBottom: "28px",
+                fontFamily: "var(--font-geist-mono), monospace",
               }}
             >
               <span
                 style={{
-                  width: "7px",
-                  height: "7px",
+                  width: "6px",
+                  height: "6px",
                   borderRadius: "50%",
-                  backgroundColor: "#0ea5e9",
+                  backgroundColor: "#00E5FF",
                   animation: "pulse-dot 2s ease-in-out infinite",
                   flexShrink: 0,
                 }}
               />
               <span
                 style={{
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#0ea5e9",
-                  letterSpacing: "0.04em",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  color: "#00E5FF",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
                 }}
               >
-                Available for Security Consulting &amp; Research
+                [ THREAT INTELLIGENCE PLATFORM ]
               </span>
             </div>
 
@@ -129,14 +154,14 @@ export default function HeroSection() {
                 fontFamily: "var(--font-geist-mono), monospace",
                 fontWeight: 800,
                 lineHeight: 1.0,
-                marginBottom: "16px",
+                marginBottom: "20px",
                 letterSpacing: "-0.02em",
               }}
             >
               <span
                 style={{
                   display: "block",
-                  color: "#e2e8f0",
+                  color: "#CCD6F6",
                   fontSize: "clamp(52px, 8vw, 88px)",
                 }}
               >
@@ -146,7 +171,7 @@ export default function HeroSection() {
                 style={{
                   display: "block",
                   fontSize: "clamp(52px, 8vw, 88px)",
-                  background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+                  background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -156,85 +181,83 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            {/* Title */}
-            <p
+            {/* Role badges */}
+            <div
               style={{
-                fontSize: "13px",
-                fontWeight: 500,
-                color: "#64748b",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "8px",
                 marginBottom: "24px",
               }}
             >
-              Cybersecurity Researcher &nbsp;|&nbsp; SIEM Engineer &nbsp;|&nbsp; AI Security Solutions Developer
-            </p>
+              {["Cybersecurity Researcher", "SIEM Engineer", "AI Security"].map((role) => (
+                <span
+                  key={role}
+                  style={{
+                    padding: "4px 12px",
+                    borderRadius: "100px",
+                    border: "1px solid rgba(0,229,255,0.2)",
+                    backgroundColor: "rgba(0,229,255,0.06)",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    color: "#8892B0",
+                    fontFamily: "var(--font-geist-mono), monospace",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {role}
+                </span>
+              ))}
+            </div>
 
-            {/* Tagline */}
+            {/* Bio */}
             <p
               style={{
                 fontSize: "16px",
                 lineHeight: 1.7,
-                color: "#94a3b8",
+                color: "#8892B0",
                 maxWidth: "520px",
-                marginBottom: "40px",
+                marginBottom: "28px",
               }}
             >
-              Bridging AI and cybersecurity — building intelligent SIEM systems,
-              AI-powered DLP frameworks, and threat intelligence engines that
-              detect what traditional tools miss.
+              Building enterprise-grade security systems that detect what traditional tools miss.
             </p>
 
-            {/* Stats row */}
+            {/* Live status bar */}
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: "1px",
-                border: "1px solid rgba(14,165,233,0.15)",
-                borderRadius: "10px",
-                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
                 marginBottom: "36px",
-                backgroundColor: "rgba(14,165,233,0.08)",
+                padding: "8px 14px",
+                borderRadius: "6px",
+                backgroundColor: "rgba(0,229,255,0.04)",
+                border: "1px solid rgba(0,229,255,0.12)",
+                width: "fit-content",
               }}
-              className="sm:grid-cols-4"
             >
-              {STATS.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  style={{
-                    padding: "16px 14px",
-                    backgroundColor: "rgba(13,20,36,0.8)",
-                    textAlign: "center",
-                    borderRight:
-                      i < STATS.length - 1
-                        ? "1px solid rgba(14,165,233,0.1)"
-                        : "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: 700,
-                      fontFamily: "var(--font-geist-mono), monospace",
-                      color: "#0ea5e9",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      color: "#64748b",
-                      letterSpacing: "0.06em",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+              <span
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  backgroundColor: "#00E5FF",
+                  animation: "pulse-dot 1.5s ease-in-out infinite",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "var(--font-geist-mono), monospace",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  color: "#00E5FF",
+                  letterSpacing: "0.1em",
+                }}
+              >
+                STATUS: MONITORING GLOBAL THREAT LANDSCAPE
+              </span>
             </div>
 
             {/* CTA Buttons */}
@@ -256,64 +279,16 @@ export default function HeroSection() {
                   gap: "8px",
                   padding: "11px 22px",
                   borderRadius: "8px",
-                  background: "linear-gradient(135deg, #0ea5e9, #06b6d4)",
-                  color: "#fff",
-                  fontWeight: 600,
+                  background: "linear-gradient(135deg, #00E5FF, rgba(0,229,255,0.7))",
+                  color: "#0A192F",
+                  fontWeight: 700,
                   fontSize: "14px",
                   textDecoration: "none",
-                  boxShadow: "0 0 24px rgba(14,165,233,0.3)",
+                  boxShadow: "0 0 24px rgba(0,229,255,0.25)",
                 }}
               >
                 <Download size={15} />
                 Download Resume
-              </motion.a>
-
-              <motion.a
-                href="https://github.com/aniqa-ayub"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "11px 22px",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(14,165,233,0.3)",
-                  color: "#94a3b8",
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  textDecoration: "none",
-                  transition: "all 0.2s",
-                }}
-              >
-                <GitBranch size={15} />
-                GitHub
-              </motion.a>
-
-              <motion.a
-                href="https://linkedin.com/in/aniqa-ayub"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "11px 22px",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(14,165,233,0.3)",
-                  color: "#94a3b8",
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  textDecoration: "none",
-                  transition: "all 0.2s",
-                }}
-              >
-                <AtSign size={15} />
-                LinkedIn
               </motion.a>
 
               <motion.button
@@ -322,7 +297,7 @@ export default function HeroSection() {
                     .getElementById("contact")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                whileHover={{ scale: 1.03, borderColor: "#0ea5e9" }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 style={{
                   display: "inline-flex",
@@ -330,11 +305,11 @@ export default function HeroSection() {
                   gap: "8px",
                   padding: "11px 22px",
                   borderRadius: "8px",
-                  border: "1px solid rgba(14,165,233,0.3)",
-                  color: "#94a3b8",
-                  fontWeight: 500,
+                  border: "1px solid rgba(0,229,255,0.4)",
+                  color: "#00E5FF",
+                  fontWeight: 600,
                   fontSize: "14px",
-                  background: "none",
+                  background: "transparent",
                   cursor: "pointer",
                   transition: "all 0.2s",
                 }}
@@ -345,7 +320,7 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN — Threat Intelligence Dashboard */}
+          {/* RIGHT COLUMN — Security Overview Dashboard */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -360,41 +335,34 @@ export default function HeroSection() {
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               style={{
                 width: "100%",
-                maxWidth: "420px",
-                background: "rgba(13,20,36,0.7)",
+                maxWidth: "440px",
+                background: "rgba(17,34,64,0.8)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(14,165,233,0.2)",
+                border: "1px solid rgba(0,229,255,0.2)",
                 borderRadius: "16px",
                 overflow: "hidden",
-                boxShadow:
-                  "0 0 60px rgba(14,165,233,0.08), 0 24px 48px rgba(0,0,0,0.4)",
+                boxShadow: "0 0 60px rgba(0,229,255,0.08), 0 24px 48px rgba(0,0,0,0.4)",
               }}
             >
               {/* Dashboard Header */}
               <div
                 style={{
                   padding: "14px 18px",
-                  borderBottom: "1px solid rgba(14,165,233,0.12)",
+                  borderBottom: "1px solid rgba(0,229,255,0.12)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  backgroundColor: "rgba(14,165,233,0.04)",
+                  backgroundColor: "rgba(0,229,255,0.04)",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                >
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <span
                     style={{
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: "#0ea5e9",
+                      backgroundColor: "#00E5FF",
                       animation: "pulse-dot 1.5s ease-in-out infinite",
                       flexShrink: 0,
                     }}
@@ -404,107 +372,115 @@ export default function HeroSection() {
                       fontFamily: "var(--font-geist-mono), monospace",
                       fontSize: "11px",
                       fontWeight: 600,
-                      color: "#0ea5e9",
+                      color: "#00E5FF",
                       letterSpacing: "0.1em",
                     }}
                   >
-                    THREAT INTELLIGENCE DASHBOARD
+                    SECURITY OVERVIEW
                   </span>
                 </div>
-                <div style={{ display: "flex", gap: "6px" }}>
-                  {["#ef4444", "#f59e0b", "#0ea5e9"].map((c, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: "8px",
-                        height: "8px",
-                        borderRadius: "50%",
-                        backgroundColor: c,
-                        opacity: 0.7,
-                      }}
-                    />
-                  ))}
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      backgroundColor: "#00E5FF",
+                      animation: "pulse-dot 2s ease-in-out infinite",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      color: "#00E5FF",
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    LIVE
+                  </span>
                 </div>
               </div>
 
-              {/* Metrics */}
-              <div style={{ padding: "16px 18px" }}>
-                {[
-                  {
-                    label: "Threats Detected",
-                    value: "1,247",
-                    delta: "+12%",
-                    color: "#0ea5e9",
-                  },
-                  {
-                    label: "ML Accuracy",
-                    value: "98.3%",
-                    delta: "↑ 0.4%",
-                    color: "#06b6d4",
-                  },
-                  {
-                    label: "False Positives",
-                    value: "1.7%",
-                    delta: "↓ 62%",
-                    color: "#7c3aed",
-                  },
-                  {
-                    label: "SIEM Events/hr",
-                    value: "84.2K",
-                    delta: "Live",
-                    color: "#0ea5e9",
-                  },
-                ].map((metric) => (
+              {/* Metrics Grid */}
+              <div
+                style={{
+                  padding: "20px 18px 16px",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "12px",
+                }}
+              >
+                {METRICS.slice(0, 4).map((metric) => (
                   <div
                     key={metric.label}
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "10px 0",
-                      borderBottom: "1px solid rgba(14,165,233,0.07)",
+                      padding: "14px 12px",
+                      borderRadius: "10px",
+                      backgroundColor: "rgba(0,229,255,0.04)",
+                      border: "1px solid rgba(0,229,255,0.1)",
+                      textAlign: "center",
                     }}
                   >
-                    <span
+                    <div
                       style={{
-                        fontSize: "12px",
-                        color: "#64748b",
+                        fontSize: "22px",
+                        fontWeight: 800,
                         fontFamily: "var(--font-geist-mono), monospace",
+                        color: "#00E5FF",
+                        marginBottom: "4px",
+                        lineHeight: 1,
+                      }}
+                    >
+                      <CountUp target={metric.value} suffix={metric.suffix} />
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "10px",
+                        color: "#8892B0",
+                        letterSpacing: "0.06em",
+                        lineHeight: 1.3,
                       }}
                     >
                       {metric.label}
-                    </span>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: 700,
-                          fontFamily: "var(--font-geist-mono), monospace",
-                          color: metric.color,
-                        }}
-                      >
-                        {metric.value}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: "10px",
-                          color: "#64748b",
-                          backgroundColor: "rgba(14,165,233,0.08)",
-                          padding: "2px 6px",
-                          borderRadius: "4px",
-                        }}
-                      >
-                        {metric.delta}
-                      </span>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* 5th metric full width */}
+              <div style={{ padding: "0 18px 16px" }}>
+                <div
+                  style={{
+                    padding: "14px 12px",
+                    borderRadius: "10px",
+                    backgroundColor: "rgba(0,229,255,0.04)",
+                    border: "1px solid rgba(0,229,255,0.1)",
+                    textAlign: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: 800,
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      color: "#00E5FF",
+                      marginBottom: "4px",
+                      lineHeight: 1,
+                    }}
+                  >
+                    <CountUp target={METRICS[4].value} suffix={METRICS[4].suffix} />
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "10px",
+                      color: "#8892B0",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    {METRICS[4].label}
+                  </div>
+                </div>
               </div>
 
               {/* Mini Bar Chart */}
@@ -512,7 +488,7 @@ export default function HeroSection() {
                 <div
                   style={{
                     fontSize: "10px",
-                    color: "#64748b",
+                    color: "#8892B0",
                     fontFamily: "var(--font-geist-mono), monospace",
                     marginBottom: "8px",
                     letterSpacing: "0.08em",
@@ -528,7 +504,7 @@ export default function HeroSection() {
                     height: "48px",
                   }}
                 >
-                  {[35, 60, 45, 80, 55, 90, 72].map((h, i) => (
+                  {barData.map((h, i) => (
                     <motion.div
                       key={i}
                       initial={{ height: 0 }}
@@ -539,8 +515,8 @@ export default function HeroSection() {
                         borderRadius: "3px 3px 0 0",
                         background:
                           i === 5
-                            ? "linear-gradient(to top, #0ea5e9, #06b6d4)"
-                            : "rgba(14,165,233,0.25)",
+                            ? "linear-gradient(to top, #00E5FF, rgba(0,229,255,0.5))"
+                            : "rgba(0,229,255,0.2)",
                       }}
                     />
                   ))}
@@ -551,32 +527,25 @@ export default function HeroSection() {
               <div
                 style={{
                   padding: "12px 18px",
-                  borderTop: "1px solid rgba(14,165,233,0.1)",
+                  borderTop: "1px solid rgba(0,229,255,0.1)",
                   display: "flex",
                   flexWrap: "wrap",
                   gap: "10px",
-                  backgroundColor: "rgba(14,165,233,0.03)",
+                  backgroundColor: "rgba(0,229,255,0.03)",
                 }}
               >
                 {[
-                  { label: "AI Models Active", ok: true },
-                  { label: "SIEM Connected", ok: true },
-                  { label: "Threat Feeds: 47", ok: true },
+                  "AI Models Active",
+                  "SIEM Connected",
+                  "Threat Feeds: 47",
                 ].map((s) => (
-                  <div
-                    key={s.label}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "5px",
-                    }}
-                  >
+                  <div key={s} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                     <span
                       style={{
                         width: "5px",
                         height: "5px",
                         borderRadius: "50%",
-                        backgroundColor: "#0ea5e9",
+                        backgroundColor: "#00E5FF",
                         animation: "pulse-dot 2s ease-in-out infinite",
                         flexShrink: 0,
                       }}
@@ -584,11 +553,11 @@ export default function HeroSection() {
                     <span
                       style={{
                         fontSize: "10px",
-                        color: "#64748b",
+                        color: "#8892B0",
                         fontFamily: "var(--font-geist-mono), monospace",
                       }}
                     >
-                      {s.label}
+                      {s}
                     </span>
                   </div>
                 ))}

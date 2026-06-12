@@ -27,14 +27,14 @@ export default function ScrollProgress() {
         width: "100%",
         height: "2px",
         zIndex: 9999,
-        backgroundColor: "rgba(14,165,233,0.1)",
+        backgroundColor: "rgba(0,229,255,0.08)",
       }}
     >
       <div
         style={{
           height: "100%",
           width: `${progress}%`,
-          background: "linear-gradient(to right, #0ea5e9, #06b6d4, #7c3aed)",
+          background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
           transition: "width 0.1s linear",
         }}
       />

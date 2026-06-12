@@ -12,7 +12,7 @@ interface Particle {
   colorIndex: number;
 }
 
-const COLORS = ["#0ea5e9", "#06b6d4", "#7c3aed"];
+const COLORS = ["#00E5FF", "rgba(0,229,255,0.6)", "rgba(0,229,255,0.3)"];
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -37,19 +37,12 @@ export default function ParticleBackground() {
       vx: (Math.random() - 0.5) * 0.25,
       vy: (Math.random() - 0.5) * 0.25,
       size: Math.random() * 1.5 + 0.4,
-      opacity: Math.random() * 0.3 + 0.05,
+      opacity: Math.random() * 0.16 + 0.04,
       colorIndex: Math.floor(Math.random() * COLORS.length),
     });
 
     resize();
     for (let i = 0; i < 80; i++) particles.push(createParticle());
-
-    const hexToRgb = (hex: string) => {
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-      return { r, g, b };
-    };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -63,10 +56,9 @@ export default function ParticleBackground() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        const color = hexToRgb(COLORS[p.colorIndex]);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color.r},${color.g},${color.b},${p.opacity})`;
+        ctx.fillStyle = `rgba(0,229,255,${p.opacity})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -79,7 +71,7 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(14,165,233,${alpha})`;
+            ctx.strokeStyle = `rgba(0,229,255,${alpha * 0.8})`;
             ctx.lineWidth = 0.4;
             ctx.stroke();
           }

@@ -7,10 +7,10 @@ import { ShieldCheck, Server, Eye, CircleCheck } from "lucide-react";
 const RESEARCH = [
   {
     badge: "Primary Research",
-    badgeColor: "#0ea5e9",
+    badgeColor: "#00E5FF",
     icon: ShieldCheck,
-    iconColor: "#0ea5e9",
-    iconBg: "rgba(14,165,233,0.1)",
+    iconColor: "#00E5FF",
+    iconBg: "rgba(0,229,255,0.1)",
     title: "AI-Powered Data Loss Prevention Framework",
     description:
       "Developed a novel DLP framework using transformer-based NLP (BERT, RoBERTa) to classify sensitive data with 98% accuracy. Outperforms traditional regex-based approaches by detecting context-aware sensitivity across document types.",
@@ -26,10 +26,10 @@ const RESEARCH = [
   },
   {
     badge: "Engineering Research",
-    badgeColor: "#06b6d4",
+    badgeColor: "#00E5FF",
     icon: Server,
-    iconColor: "#06b6d4",
-    iconBg: "rgba(6,182,212,0.1)",
+    iconColor: "#00E5FF",
+    iconBg: "rgba(0,229,255,0.1)",
     title: "AI-Driven SIEM Enhancement",
     description:
       "Integrating ML models into open-source SIEM (Wazuh) to reduce false positives through intelligent alert correlation and anomaly detection using behavioral baselines. Building adaptive threat scoring systems.",
@@ -41,15 +41,15 @@ const RESEARCH = [
     ],
     tech: ["Wazuh", "Python", "ML", "Suricata", "SIGMA", "Threat Intel"],
     status: "Active",
-    statusColor: "#0ea5e9",
-    statusBg: "rgba(14,165,233,0.1)",
+    statusColor: "#00E5FF",
+    statusBg: "rgba(0,229,255,0.1)",
   },
   {
     badge: "Academic Research",
-    badgeColor: "#7c3aed",
+    badgeColor: "rgba(0,229,255,0.6)",
     icon: Eye,
-    iconColor: "#7c3aed",
-    iconBg: "rgba(124,58,237,0.1)",
+    iconColor: "rgba(0,229,255,0.7)",
+    iconBg: "rgba(0,229,255,0.08)",
     title: "Explainable AI for Cybersecurity",
     description:
       "Investigating XAI techniques to make AI security decisions interpretable for security analysts, addressing the black-box problem in ML-based threat detection and enabling trust calibration in automated systems.",
@@ -60,8 +60,8 @@ const RESEARCH = [
     ],
     tech: ["XAI", "SHAP", "LIME", "Python", "Security ML"],
     status: "Research Phase",
-    statusColor: "#7c3aed",
-    statusBg: "rgba(124,58,237,0.1)",
+    statusColor: "rgba(0,229,255,0.6)",
+    statusBg: "rgba(0,229,255,0.08)",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function ResearchSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#060b18",
+        backgroundColor: "#0A192F",
       }}
     >
       <div
@@ -94,7 +94,7 @@ export default function ResearchSection() {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(124,58,237,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(0,229,255,0.03) 0%, transparent 70%)",
         }}
       />
 
@@ -119,7 +119,7 @@ export default function ResearchSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#0ea5e9",
+              color: "#00E5FF",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -138,13 +138,13 @@ export default function ResearchSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#e2e8f0",
+            color: "#CCD6F6",
           }}
         >
           Research &amp;{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #0ea5e9, #06b6d4)",
+              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -171,10 +171,10 @@ export default function ResearchSection() {
               transition={{ duration: 0.6, delay: 0.15 + i * 0.15 }}
               whileHover={{ y: -6 }}
               style={{
-                background: "rgba(13,20,36,0.7)",
+                background: "rgba(17,34,64,0.7)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(14,165,233,0.15)",
+                border: "1px solid rgba(0,229,255,0.12)",
                 borderRadius: "16px",
                 padding: "28px",
                 display: "flex",
@@ -198,7 +198,7 @@ export default function ResearchSection() {
                     height: "48px",
                     borderRadius: "12px",
                     background: r.iconBg,
-                    border: `1px solid ${r.iconColor}30`,
+                    border: `1px solid rgba(0,229,255,0.2)`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -213,8 +213,8 @@ export default function ResearchSection() {
                       fontSize: "10px",
                       fontWeight: 600,
                       color: r.badgeColor,
-                      backgroundColor: `${r.badgeColor}15`,
-                      border: `1px solid ${r.badgeColor}30`,
+                      backgroundColor: `rgba(0,229,255,0.08)`,
+                      border: `1px solid rgba(0,229,255,0.2)`,
                       padding: "3px 8px",
                       borderRadius: "100px",
                       letterSpacing: "0.06em",
@@ -227,9 +227,9 @@ export default function ResearchSection() {
                     style={{
                       fontSize: "10px",
                       fontWeight: 600,
-                      color: r.status === "Active" ? "#0ea5e9" : r.statusColor,
+                      color: r.statusColor,
                       backgroundColor: r.statusBg,
-                      border: `1px solid ${r.statusColor}30`,
+                      border: `1px solid rgba(0,229,255,0.2)`,
                       padding: "3px 8px",
                       borderRadius: "100px",
                     }}
@@ -244,7 +244,7 @@ export default function ResearchSection() {
                 style={{
                   fontSize: "17px",
                   fontWeight: 700,
-                  color: "#e2e8f0",
+                  color: "#CCD6F6",
                   lineHeight: 1.35,
                 }}
               >
@@ -256,7 +256,7 @@ export default function ResearchSection() {
                 style={{
                   fontSize: "14px",
                   lineHeight: 1.7,
-                  color: "#94a3b8",
+                  color: "#8892B0",
                 }}
               >
                 {r.description}
@@ -268,7 +268,7 @@ export default function ResearchSection() {
                   style={{
                     fontSize: "11px",
                     fontWeight: 600,
-                    color: "#64748b",
+                    color: "#8892B0",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     marginBottom: "10px",
@@ -285,10 +285,10 @@ export default function ResearchSection() {
                         alignItems: "flex-start",
                         gap: "8px",
                         fontSize: "13px",
-                        color: "#94a3b8",
+                        color: "#8892B0",
                       }}
                     >
-                      <CircleCheck size={13} color="#0ea5e9" style={{ flexShrink: 0, marginTop: "2px" }} />
+                      <CircleCheck size={13} color="#00E5FF" style={{ flexShrink: 0, marginTop: "2px" }} />
                       {c}
                     </li>
                   ))}
@@ -302,7 +302,7 @@ export default function ResearchSection() {
                   flexWrap: "wrap",
                   gap: "6px",
                   paddingTop: "4px",
-                  borderTop: "1px solid rgba(14,165,233,0.1)",
+                  borderTop: "1px solid rgba(0,229,255,0.08)",
                 }}
               >
                 {r.tech.map((t) => (
@@ -314,9 +314,9 @@ export default function ResearchSection() {
                       fontSize: "10px",
                       fontWeight: 500,
                       fontFamily: "var(--font-geist-mono), monospace",
-                      color: "#64748b",
-                      backgroundColor: "rgba(14,165,233,0.06)",
-                      border: "1px solid rgba(14,165,233,0.12)",
+                      color: "#8892B0",
+                      backgroundColor: "rgba(0,229,255,0.06)",
+                      border: "1px solid rgba(0,229,255,0.1)",
                     }}
                   >
                     {t}
