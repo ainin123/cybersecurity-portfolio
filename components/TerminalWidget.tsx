@@ -43,19 +43,19 @@ export default function TerminalWidget() {
         setCurrentLineIndex((i) => i + 1);
         setCurrentCharIndex(0);
         setCurrentText("");
-      }, 120);
+      }, 60);
       return () => clearTimeout(timeout);
     }
 
     if (currentCharIndex < line.text.length) {
-      const speed = line.type === "cmd" ? 45 : 18;
+      const speed = 20;
       const timeout = setTimeout(() => {
         setCurrentText(line.text.slice(0, currentCharIndex + 1));
         setCurrentCharIndex((c) => c + 1);
       }, speed);
       return () => clearTimeout(timeout);
     } else {
-      const pause = line.type === "cmd" ? 400 : 100;
+      const pause = line.type === "cmd" ? 300 : 60;
       const timeout = setTimeout(() => {
         setDisplayedLines((prev) => [...prev, { text: line.text, type: line.type }]);
         setCurrentLineIndex((i) => i + 1);
