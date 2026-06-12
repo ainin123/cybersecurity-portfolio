@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useInView } from "framer-motion";
 
 const TACTICS = [
   {
@@ -77,10 +78,35 @@ const TACTICS = [
 
 export default function MitreAttack() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [scanIndex, setScanIndex] = useState<number>(-1);
+  const [scanDone, setScanDone] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const scanStarted = useRef(false);
+
+  // Sequential scan animation when section enters view
+  useEffect(() => {
+    if (!inView || scanStarted.current) return;
+    scanStarted.current = true;
+    let idx = 0;
+    const interval = setInterval(() => {
+      setScanIndex(idx);
+      idx++;
+      if (idx >= TACTICS.length) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setScanIndex(-1);
+          setScanDone(true);
+        }, 300);
+      }
+    }, 120);
+    return () => clearInterval(interval);
+  }, [inView]);
 
   return (
     <section
       id="mitre"
+      ref={ref}
       style={{
         position: "relative",
         padding: "100px 0",
@@ -238,24 +264,28 @@ export default function MitreAttack() {
             gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
           }}
         >
-          {TACTICS.map((tactic) => {
+          {TACTICS.map((tactic, i) => {
             const isHovered = hoveredId === tactic.id;
+            const isScanning = scanIndex === i;
+            const highlight = isScanning || isHovered;
             return (
               <div
                 key={tactic.id}
                 onMouseEnter={() => setHoveredId(tactic.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 style={{
-                  background: "rgba(17,34,64,0.7)",
+                  background: isScanning
+                    ? "rgba(0,229,255,0.08)"
+                    : "rgba(17,34,64,0.7)",
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
-                  border: isHovered ? "1px solid rgba(0,229,255,0.4)" : "1px solid rgba(0,229,255,0.12)",
+                  border: highlight ? "1px solid rgba(0,229,255,0.4)" : "1px solid rgba(0,229,255,0.12)",
                   borderRadius: "12px",
                   padding: "20px",
                   cursor: "default",
                   transition: "all 0.2s ease",
                   transform: isHovered ? "translateY(-4px)" : "none",
-                  boxShadow: isHovered ? "0 8px 32px rgba(0,229,255,0.1)" : "none",
+                  boxShadow: highlight ? "0 8px 32px rgba(0,229,255,0.1)" : "none",
                 }}
               >
                 {/* Header */}
@@ -357,9 +387,10 @@ export default function MitreAttack() {
                     <div
                       style={{
                         height: "100%",
-                        width: `${tactic.proficiency}%`,
+                        width: scanDone || isHovered ? `${tactic.proficiency}%` : isScanning ? "100%" : "0%",
                         borderRadius: "100px",
                         background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.5))",
+                        transition: scanDone ? `width 0.8s ease-out ${i * 0.05}s` : "width 0.15s ease-out",
                       }}
                     />
                   </div>

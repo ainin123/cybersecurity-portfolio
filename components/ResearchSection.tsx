@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, Server, Eye, CircleCheck } from "lucide-react";
 
@@ -64,6 +64,180 @@ const RESEARCH = [
     statusBg: "rgba(0,229,255,0.08)",
   },
 ];
+
+type ResearchItem = typeof RESEARCH[0];
+
+function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: boolean }) {
+  const [cardHovered, setCardHovered] = useState(false);
+
+  return (
+    <motion.div
+      key={r.title}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.15 + i * 0.15 }}
+      onMouseEnter={() => setCardHovered(true)}
+      onMouseLeave={() => setCardHovered(false)}
+      style={{
+        background: "rgba(17,34,64,0.7)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: cardHovered ? "1px solid rgba(0,229,255,0.35)" : "1px solid rgba(0,229,255,0.12)",
+        borderRadius: "16px",
+        padding: "28px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        transition: "box-shadow 0.3s ease, border-color 0.3s, transform 0.3s",
+        transform: cardHovered ? "translateY(-6px)" : "none",
+        boxShadow: cardHovered ? "0 12px 40px rgba(0,229,255,0.1)" : "none",
+      }}
+    >
+      {/* Header row */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          gap: "12px",
+        }}
+      >
+        <div
+          style={{
+            width: "48px",
+            height: "48px",
+            borderRadius: "12px",
+            background: r.iconBg,
+            border: "1px solid rgba(0,229,255,0.2)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <r.icon size={24} color={r.iconColor} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignItems: "flex-end" }}>
+          <span
+            style={{
+              fontSize: "10px",
+              fontWeight: 600,
+              color: r.badgeColor,
+              backgroundColor: "rgba(0,229,255,0.08)",
+              border: "1px solid rgba(0,229,255,0.2)",
+              padding: "3px 8px",
+              borderRadius: "100px",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+            }}
+          >
+            {r.badge}
+          </span>
+          <span
+            style={{
+              fontSize: "10px",
+              fontWeight: 600,
+              color: r.statusColor,
+              backgroundColor: r.statusBg,
+              border: "1px solid rgba(0,229,255,0.2)",
+              padding: "3px 8px",
+              borderRadius: "100px",
+            }}
+          >
+            {r.status}
+          </span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3
+        style={{
+          fontSize: "17px",
+          fontWeight: 700,
+          color: "#CCD6F6",
+          lineHeight: 1.35,
+        }}
+      >
+        {r.title}
+      </h3>
+
+      {/* Description */}
+      <p
+        style={{
+          fontSize: "14px",
+          lineHeight: 1.7,
+          color: "#8892B0",
+        }}
+      >
+        {r.description}
+      </p>
+
+      {/* Key Contributions */}
+      <div>
+        <div
+          style={{
+            fontSize: "11px",
+            fontWeight: 600,
+            color: "#8892B0",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            marginBottom: "10px",
+          }}
+        >
+          Key Contributions
+        </div>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
+          {r.contributions.map((c) => (
+            <li
+              key={c}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "8px",
+                fontSize: "13px",
+                color: "#8892B0",
+              }}
+            >
+              <CircleCheck size={13} color="#00E5FF" style={{ flexShrink: 0, marginTop: "2px" }} />
+              {c}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Tech stack — tags pulse on hover */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "6px",
+          paddingTop: "4px",
+          borderTop: "1px solid rgba(0,229,255,0.08)",
+        }}
+      >
+        {r.tech.map((t) => (
+          <span
+            key={t}
+            style={{
+              padding: "3px 8px",
+              borderRadius: "5px",
+              fontSize: "10px",
+              fontWeight: 500,
+              fontFamily: "var(--font-geist-mono), monospace",
+              color: cardHovered ? "#00E5FF" : "#8892B0",
+              backgroundColor: cardHovered ? "rgba(0,229,255,0.12)" : "rgba(0,229,255,0.06)",
+              border: cardHovered ? "1px solid rgba(0,229,255,0.3)" : "1px solid rgba(0,229,255,0.1)",
+              animation: cardHovered ? "glow-pulse 2s ease-in-out infinite" : "none",
+              transition: "color 0.3s, background-color 0.3s, border-color 0.3s",
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ResearchSection() {
   const ref = useRef<HTMLElement>(null);
@@ -164,166 +338,7 @@ export default function ResearchSection() {
           className="lg:grid-cols-3"
         >
           {RESEARCH.map((r, i) => (
-            <motion.div
-              key={r.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 + i * 0.15 }}
-              whileHover={{ y: -6 }}
-              style={{
-                background: "rgba(17,34,64,0.7)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,229,255,0.12)",
-                borderRadius: "16px",
-                padding: "28px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-                transition: "box-shadow 0.3s ease",
-              }}
-            >
-              {/* Header row */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  gap: "12px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    background: r.iconBg,
-                    border: `1px solid rgba(0,229,255,0.2)`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <r.icon size={24} color={r.iconColor} />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignItems: "flex-end" }}>
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      fontWeight: 600,
-                      color: r.badgeColor,
-                      backgroundColor: `rgba(0,229,255,0.08)`,
-                      border: `1px solid rgba(0,229,255,0.2)`,
-                      padding: "3px 8px",
-                      borderRadius: "100px",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {r.badge}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      fontWeight: 600,
-                      color: r.statusColor,
-                      backgroundColor: r.statusBg,
-                      border: `1px solid rgba(0,229,255,0.2)`,
-                      padding: "3px 8px",
-                      borderRadius: "100px",
-                    }}
-                  >
-                    {r.status}
-                  </span>
-                </div>
-              </div>
-
-              {/* Title */}
-              <h3
-                style={{
-                  fontSize: "17px",
-                  fontWeight: 700,
-                  color: "#CCD6F6",
-                  lineHeight: 1.35,
-                }}
-              >
-                {r.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "14px",
-                  lineHeight: 1.7,
-                  color: "#8892B0",
-                }}
-              >
-                {r.description}
-              </p>
-
-              {/* Key Contributions */}
-              <div>
-                <div
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 600,
-                    color: "#8892B0",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Key Contributions
-                </div>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
-                  {r.contributions.map((c) => (
-                    <li
-                      key={c}
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "8px",
-                        fontSize: "13px",
-                        color: "#8892B0",
-                      }}
-                    >
-                      <CircleCheck size={13} color="#00E5FF" style={{ flexShrink: 0, marginTop: "2px" }} />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Tech stack */}
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "6px",
-                  paddingTop: "4px",
-                  borderTop: "1px solid rgba(0,229,255,0.08)",
-                }}
-              >
-                {r.tech.map((t) => (
-                  <span
-                    key={t}
-                    style={{
-                      padding: "3px 8px",
-                      borderRadius: "5px",
-                      fontSize: "10px",
-                      fontWeight: 500,
-                      fontFamily: "var(--font-geist-mono), monospace",
-                      color: "#8892B0",
-                      backgroundColor: "rgba(0,229,255,0.06)",
-                      border: "1px solid rgba(0,229,255,0.1)",
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+            <ResearchCard key={r.title} r={r} i={i} inView={inView} />
           ))}
         </div>
       </div>

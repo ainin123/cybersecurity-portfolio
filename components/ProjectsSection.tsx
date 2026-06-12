@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink, ArrowRight, ShieldCheck, Server, Target, Network, Database, Eye } from "lucide-react";
 
@@ -352,6 +352,266 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
   );
 }
 
+function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; index: number; inView: boolean }) {
+  const [hovered, setHovered] = useState(false);
+  const [scanState, setScanState] = useState<"idle" | "scanning" | "loaded">("idle");
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    setScanState("scanning");
+    setTimeout(() => setScanState("loaded"), 900);
+  };
+  const handleMouseLeave = () => {
+    setHovered(false);
+    setScanState("idle");
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        background: "rgba(17,34,64,0.7)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: hovered ? "1px solid rgba(0,229,255,0.5)" : "1px solid rgba(0,229,255,0.12)",
+        borderRadius: "14px",
+        padding: "24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s",
+        cursor: "default",
+        transform: hovered ? "translateY(-6px)" : "translateY(0)",
+        boxShadow: hovered ? "0 12px 40px rgba(0,229,255,0.12)" : "none",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Scan status badge */}
+      {scanState !== "idle" && (
+        <div
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "12px",
+            fontSize: "9px",
+            fontFamily: "var(--font-geist-mono), monospace",
+            color: scanState === "scanning" ? "#f59e0b" : "#00E5FF",
+            backgroundColor:
+              scanState === "scanning" ? "rgba(245,158,11,0.1)" : "rgba(0,229,255,0.1)",
+            border:
+              scanState === "scanning"
+                ? "1px solid rgba(245,158,11,0.3)"
+                : "1px solid rgba(0,229,255,0.3)",
+            padding: "2px 7px",
+            borderRadius: "4px",
+            letterSpacing: "0.1em",
+            zIndex: 5,
+          }}
+        >
+          {scanState === "scanning" ? "SCANNING..." : "CASE STUDY LOADED"}
+        </div>
+      )}
+
+      {/* Domain badge */}
+      <div>
+        <span
+          style={{
+            fontSize: "9px",
+            fontWeight: 700,
+            color: "rgba(0,229,255,0.7)",
+            backgroundColor: "rgba(0,229,255,0.08)",
+            border: "1px solid rgba(0,229,255,0.15)",
+            padding: "2px 8px",
+            borderRadius: "4px",
+            letterSpacing: "0.1em",
+            fontFamily: "var(--font-geist-mono), monospace",
+          }}
+        >
+          {project.domain}
+        </span>
+      </div>
+
+      {/* Header */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          gap: "12px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <div
+            style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "8px",
+              background: "rgba(0,229,255,0.1)",
+              border: "1px solid rgba(0,229,255,0.2)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <project.icon size={18} color="#00E5FF" />
+          </div>
+          <span
+            style={{
+              fontFamily: "var(--font-geist-mono), monospace",
+              fontSize: "11px",
+              fontWeight: 700,
+              color: "#8892B0",
+            }}
+          >
+            {project.num}
+          </span>
+        </div>
+        <ExternalLink size={15} color="#475569" />
+      </div>
+
+      <h3
+        style={{
+          fontSize: "16px",
+          fontWeight: 700,
+          color: "#CCD6F6",
+        }}
+      >
+        {project.title}
+      </h3>
+
+      <p
+        style={{
+          fontSize: "12px",
+          color: "#8892B0",
+          fontStyle: "italic",
+        }}
+      >
+        {project.problem}
+      </p>
+
+      <p
+        style={{
+          fontSize: "13px",
+          lineHeight: 1.6,
+          color: "#8892B0",
+          flex: 1,
+        }}
+      >
+        {project.solution}
+      </p>
+
+      {/* Methodology (compact) */}
+      <div>
+        <div
+          style={{
+            fontSize: "10px",
+            color: "#8892B0",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            fontFamily: "var(--font-geist-mono), monospace",
+            marginBottom: "6px",
+          }}
+        >
+          Key Findings
+        </div>
+        {project.findings?.slice(0, 2).map((f) => (
+          <div
+            key={f}
+            style={{
+              fontSize: "11px",
+              color: "#8892B0",
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "6px",
+              marginBottom: "3px",
+            }}
+          >
+            <span style={{ color: "rgba(0,229,255,0.5)", flexShrink: 0 }}>✓</span>
+            {f}
+          </div>
+        ))}
+      </div>
+
+      {/* Impact metric */}
+      <div
+        style={{
+          padding: "6px 12px",
+          borderRadius: "7px",
+          backgroundColor: "rgba(0,229,255,0.08)",
+          border: "1px solid rgba(0,229,255,0.15)",
+          display: "inline-block",
+          alignSelf: "flex-start",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "12px",
+            fontWeight: 600,
+            fontFamily: "var(--font-geist-mono), monospace",
+            color: "#00E5FF",
+          }}
+        >
+          {project.result}
+        </span>
+      </div>
+
+      {/* Tech pills */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            style={{
+              padding: "3px 8px",
+              borderRadius: "5px",
+              fontSize: "10px",
+              fontWeight: 500,
+              fontFamily: "var(--font-geist-mono), monospace",
+              color: "#8892B0",
+              backgroundColor: "rgba(0,229,255,0.06)",
+              border: "1px solid rgba(0,229,255,0.1)",
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {/* View details */}
+      <button
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          fontSize: "12px",
+          fontWeight: 500,
+          color: "#00E5FF",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          padding: 0,
+          marginTop: "4px",
+          alignSelf: "flex-start",
+        }}
+      >
+        View Details
+        <ArrowRight size={13} />
+      </button>
+    </motion.div>
+  );
+}
+
 export default function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -445,218 +705,7 @@ export default function ProjectsSection() {
           className="sm:grid-cols-2"
         >
           {PROJECTS.slice(1).map((project, i) => (
-            <motion.div
-              key={project.num}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              whileHover={{ y: -4 }}
-              style={{
-                background: "rgba(17,34,64,0.7)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,229,255,0.12)",
-                borderRadius: "14px",
-                padding: "24px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                transition: "box-shadow 0.3s",
-                cursor: "default",
-              }}
-            >
-              {/* Domain badge */}
-              <div>
-                <span
-                  style={{
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    color: "rgba(0,229,255,0.7)",
-                    backgroundColor: "rgba(0,229,255,0.08)",
-                    border: "1px solid rgba(0,229,255,0.15)",
-                    padding: "2px 8px",
-                    borderRadius: "4px",
-                    letterSpacing: "0.1em",
-                    fontFamily: "var(--font-geist-mono), monospace",
-                  }}
-                >
-                  {project.domain}
-                </span>
-              </div>
-
-              {/* Header */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "space-between",
-                  gap: "12px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "8px",
-                      background: "rgba(0,229,255,0.1)",
-                      border: "1px solid rgba(0,229,255,0.2)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <project.icon size={18} color="#00E5FF" />
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-geist-mono), monospace",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      color: "#8892B0",
-                    }}
-                  >
-                    {project.num}
-                  </span>
-                </div>
-                <ExternalLink size={15} color="#475569" />
-              </div>
-
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 700,
-                  color: "#CCD6F6",
-                }}
-              >
-                {project.title}
-              </h3>
-
-              <p
-                style={{
-                  fontSize: "12px",
-                  color: "#8892B0",
-                  fontStyle: "italic",
-                }}
-              >
-                {project.problem}
-              </p>
-
-              <p
-                style={{
-                  fontSize: "13px",
-                  lineHeight: 1.6,
-                  color: "#8892B0",
-                  flex: 1,
-                }}
-              >
-                {project.solution}
-              </p>
-
-              {/* Methodology (compact) */}
-              <div>
-                <div
-                  style={{
-                    fontSize: "10px",
-                    color: "#8892B0",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontFamily: "var(--font-geist-mono), monospace",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Key Findings
-                </div>
-                {project.findings?.slice(0, 2).map((f) => (
-                  <div
-                    key={f}
-                    style={{
-                      fontSize: "11px",
-                      color: "#8892B0",
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "6px",
-                      marginBottom: "3px",
-                    }}
-                  >
-                    <span style={{ color: "rgba(0,229,255,0.5)", flexShrink: 0 }}>✓</span>
-                    {f}
-                  </div>
-                ))}
-              </div>
-
-              {/* Impact metric */}
-              <div
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: "7px",
-                  backgroundColor: "rgba(0,229,255,0.08)",
-                  border: "1px solid rgba(0,229,255,0.15)",
-                  display: "inline-block",
-                  alignSelf: "flex-start",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    fontFamily: "var(--font-geist-mono), monospace",
-                    color: "#00E5FF",
-                  }}
-                >
-                  {project.result}
-                </span>
-              </div>
-
-              {/* Tech pills */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    style={{
-                      padding: "3px 8px",
-                      borderRadius: "5px",
-                      fontSize: "10px",
-                      fontWeight: 500,
-                      fontFamily: "var(--font-geist-mono), monospace",
-                      color: "#8892B0",
-                      backgroundColor: "rgba(0,229,255,0.06)",
-                      border: "1px solid rgba(0,229,255,0.1)",
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* View details */}
-              <button
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  fontSize: "12px",
-                  fontWeight: 500,
-                  color: "#00E5FF",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  marginTop: "4px",
-                  alignSelf: "flex-start",
-                }}
-              >
-                View Details
-                <ArrowRight size={13} />
-              </button>
-            </motion.div>
+            <ProjectCard key={project.num} project={project} index={i} inView={inView} />
           ))}
         </div>
       </div>

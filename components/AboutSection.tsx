@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Shield, Server, Target, MapPin, BookOpen, Briefcase, CircleCheck } from "lucide-react";
 
@@ -15,6 +15,7 @@ const CORE_VALUES = ["Precision", "Innovation", "Impact", "Transparency"];
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [profileHovered, setProfileHovered] = useState(false);
 
   return (
     <section
@@ -203,15 +204,35 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25 }}
+            onMouseEnter={() => setProfileHovered(true)}
+            onMouseLeave={() => setProfileHovered(false)}
             style={{
               background: "rgba(17,34,64,0.7)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              border: profileHovered ? "1px solid rgba(0,229,255,0.35)" : "1px solid rgba(0,229,255,0.12)",
               borderRadius: "16px",
               padding: "32px",
+              position: "relative",
+              overflow: "hidden",
+              transition: "border-color 0.3s",
             }}
           >
+            {/* Scanning line effect on hover */}
+            {profileHovered && (
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background: "linear-gradient(to right, transparent, rgba(0,229,255,0.5), transparent)",
+                  animation: "scan-sweep 1.2s linear infinite",
+                  zIndex: 10,
+                  pointerEvents: "none",
+                }}
+              />
+            )}
             <h3
               style={{
                 fontSize: "14px",
