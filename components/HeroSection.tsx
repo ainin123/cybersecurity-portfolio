@@ -738,6 +738,40 @@ export default function HeroSection() {
           transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
         >
           <HoloScene />
+
+          {/* Terminal prompt label */}
+          <div
+            style={{
+              marginTop: "14px",
+              padding: "8px 16px",
+              background: "rgba(10,25,47,0.9)",
+              border: "1px solid rgba(0,229,255,0.2)",
+              borderRadius: "6px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontFamily: "var(--font-geist-mono), monospace",
+            }}
+          >
+            <div style={{ display: "flex", gap: "6px" }}>
+              <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FF5F57", display: "inline-block" }} />
+              <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FFBD2E", display: "inline-block" }} />
+              <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#28C840", display: "inline-block" }} />
+            </div>
+            <span style={{ fontSize: "13px", color: "#00E5FF", letterSpacing: "0.06em" }}>
+              aniqa@cyber-lab:~$
+            </span>
+            <span
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "14px",
+                backgroundColor: "#00E5FF",
+                animation: "blink 1s step-end infinite",
+                opacity: 0.8,
+              }}
+            />
+          </div>
         </motion.div>
       </div>
 
