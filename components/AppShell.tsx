@@ -7,7 +7,6 @@ import FloatingTerminalNav from "./FloatingTerminalNav";
 import ParticleBackground from "./ParticleBackground";
 import Navigation from "./Navigation";
 import HeroSection from "./HeroSection";
-import TerminalWidget from "./TerminalWidget";
 import ThreatRadar from "./ThreatRadar";
 import AttackMap from "./AttackMap";
 import MetricsDashboard from "./MetricsDashboard";
@@ -59,7 +58,6 @@ export default function AppShell() {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <TerminalWidget />
       <ThreatRadar />
       <AttackMap />
       <MetricsDashboard />
