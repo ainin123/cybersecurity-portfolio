@@ -134,38 +134,25 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
   const [phase, setPhase] = useState<"boot" | "menu">("boot");
   const [bootLines, setBootLines] = useState<string[]>([]);
   const [currentBootLine, setCurrentBootLine] = useState(0);
-  const [currentBootChar, setCurrentBootChar] = useState(0);
-  const [currentTyping, setCurrentTyping] = useState("");
   const [outputLines, setOutputLines] = useState<{ text: string; type: "input" | "output" | "error" | "nav" }[]>([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
   const pendingNavRef = useRef<string | null>(null);
 
-  // Boot sequence typing
+  // Boot sequence — each line shown instantly, ~100ms apart → total ~2s
   useEffect(() => {
     if (phase !== "boot") return;
     if (currentBootLine >= BOOT_LINES.length) {
-      const timer = setTimeout(() => setPhase("menu"), 800);
+      const timer = setTimeout(() => setPhase("menu"), 500);
       return () => clearTimeout(timer);
     }
-    const line = BOOT_LINES[currentBootLine];
-    if (currentBootChar < line.length) {
-      const timer = setTimeout(() => {
-        setCurrentTyping(line.slice(0, currentBootChar + 1));
-        setCurrentBootChar((c) => c + 1);
-      }, 40);
-      return () => clearTimeout(timer);
-    } else {
-      const timer = setTimeout(() => {
-        setBootLines((prev) => [...prev, line]);
-        setCurrentBootLine((l) => l + 1);
-        setCurrentBootChar(0);
-        setCurrentTyping("");
-      }, 350);
-      return () => clearTimeout(timer);
-    }
-  }, [phase, currentBootLine, currentBootChar]);
+    const timer = setTimeout(() => {
+      setBootLines((prev) => [...prev, BOOT_LINES[currentBootLine]]);
+      setCurrentBootLine((l) => l + 1);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [phase, currentBootLine]);
 
   // Escape key to skip boot
   useEffect(() => {
@@ -356,19 +343,15 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
               );
             })}
             {currentBootLine < BOOT_LINES.length && (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span>{currentTyping}</span>
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "8px",
-                    height: "14px",
-                    backgroundColor: "#00E5FF",
-                    marginLeft: "1px",
-                    animation: "blink 1s step-end infinite",
-                  }}
-                />
-              </div>
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "8px",
+                  height: "14px",
+                  backgroundColor: "#00E5FF",
+                  animation: "blink 1s step-end infinite",
+                }}
+              />
             )}
           </div>
         </div>

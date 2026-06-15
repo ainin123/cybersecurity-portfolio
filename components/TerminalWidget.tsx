@@ -121,7 +121,7 @@ export default function TerminalWidget() {
                 letterSpacing: "0.06em",
               }}
             >
-              aniqa@ctf-lab:~$
+              aniqa@cyber-lab:~$
             </span>
             <div style={{ width: "50px" }} />
           </div>
