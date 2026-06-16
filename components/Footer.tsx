@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Lock, GitBranch, AtSign, Download } from "lucide-react";
 
@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(0,229,255,0.1)",
-        backgroundColor: "#0A192F",
+        borderTop: "1px solid rgba(37,150,190,0.1)",
+        backgroundColor: "#020810",
         padding: "48px 0 32px",
       }}
     >
@@ -41,13 +41,13 @@ export default function Footer() {
                 width: "28px",
                 height: "28px",
                 borderRadius: "6px",
-                background: "linear-gradient(135deg, #00E5FF, rgba(0,229,255,0.5))",
+                background: "linear-gradient(135deg, #2596be, rgba(37,150,190,0.5))",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Lock size={13} color="#0A192F" />
+              <Lock size={13} color="#020810" />
             </div>
             <div>
               <div
@@ -56,13 +56,13 @@ export default function Footer() {
                   fontWeight: 700,
                   fontSize: "13px",
                   letterSpacing: "0.1em",
-                  color: "#CCD6F6",
+                  color: "#FFFFFF",
                 }}
               >
                 ANIQA{" "}
                 <span
                   style={{
-                    background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+                    background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -74,7 +74,7 @@ export default function Footer() {
               <div
                 style={{
                   fontSize: "11px",
-                  color: "#8892B0",
+                  color: "rgba(255,255,255,0.65)",
                   letterSpacing: "0.04em",
                   marginTop: "2px",
                 }}
@@ -101,17 +101,17 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontWeight: 500,
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#00E5FF")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#8892B0")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
               }
             >
               <GitBranch size={14} />
@@ -125,17 +125,17 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontWeight: 500,
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#00E5FF")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#8892B0")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
               }
             >
               <AtSign size={14} />
@@ -148,17 +148,17 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontWeight: 500,
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#00E5FF")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#8892B0")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
               }
             >
               <Download size={14} />
@@ -171,7 +171,7 @@ export default function Footer() {
         <div
           style={{
             paddingTop: "24px",
-            borderTop: "1px solid rgba(0,229,255,0.06)",
+            borderTop: "1px solid rgba(37,150,190,0.06)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
@@ -182,7 +182,7 @@ export default function Footer() {
           <p
             style={{
               fontSize: "12px",
-              color: "#475569",
+              color: "rgba(255,255,255,0.4)",
               fontFamily: "var(--font-geist-mono), monospace",
             }}
           >

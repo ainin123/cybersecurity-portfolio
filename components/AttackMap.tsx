@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -67,7 +67,7 @@ export default function AttackMap() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0D2137",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -91,7 +91,7 @@ export default function AttackMap() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -104,14 +104,14 @@ export default function AttackMap() {
           style={{
             fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 800,
-            color: "#CCD6F6",
+            color: "#FFFFFF",
             marginBottom: "8px",
           }}
         >
           Global{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -124,7 +124,7 @@ export default function AttackMap() {
         <p
           style={{
             fontSize: "14px",
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             marginBottom: "40px",
             fontFamily: "var(--font-geist-mono), monospace",
           }}
@@ -135,9 +135,9 @@ export default function AttackMap() {
         {/* Map container */}
         <div
           style={{
-            background: "rgba(17,34,64,0.7)",
+            background: "rgba(2,8,16,0.7)",
             backdropFilter: "blur(16px)",
-            border: "1px solid rgba(0,229,255,0.12)",
+            border: "1px solid rgba(37,150,190,0.12)",
             borderRadius: "16px",
             overflow: "hidden",
             marginBottom: "32px",
@@ -149,57 +149,57 @@ export default function AttackMap() {
             aria-label="Global Cyber Attack Map"
           >
             {/* Ocean background */}
-            <rect x="0" y="0" width="1000" height="500" fill="#0A192F" />
+            <rect x="0" y="0" width="1000" height="500" fill="#020810" />
 
             {/* Grid lines */}
             {[100, 200, 300, 400].map((y) => (
-              <line key={`h${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="rgba(0,229,255,0.04)" strokeWidth="1" />
+              <line key={`h${y}`} x1="0" y1={y} x2="1000" y2={y} stroke="rgba(37,150,190,0.04)" strokeWidth="1" />
             ))}
             {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((x) => (
-              <line key={`v${x}`} x1={x} y1="0" x2={x} y2="500" stroke="rgba(0,229,255,0.04)" strokeWidth="1" />
+              <line key={`v${x}`} x1={x} y1="0" x2={x} y2="500" stroke="rgba(37,150,190,0.04)" strokeWidth="1" />
             ))}
 
             {/* Continents */}
             {/* North America */}
             <path
               d="M 100,90 L 240,82 L 280,110 L 265,185 L 220,240 L 158,230 L 100,185 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
             {/* South America */}
             <path
               d="M 190,245 L 305,243 L 330,350 L 275,400 L 225,375 L 190,300 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
             {/* Europe */}
             <path
               d="M 440,82 L 575,76 L 588,152 L 515,168 L 440,150 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
             {/* Africa */}
             <path
               d="M 450,160 L 600,158 L 615,305 L 548,382 L 462,348 L 428,248 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
             {/* Asia */}
             <path
               d="M 575,72 L 900,64 L 930,192 L 862,272 L 752,252 L 640,215 L 578,170 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
             {/* Australia */}
             <path
               d="M 782,302 L 892,293 L 908,390 L 820,402 L 775,368 Z"
-              fill="rgba(0,229,255,0.06)"
-              stroke="rgba(0,229,255,0.2)"
+              fill="rgba(37,150,190,0.06)"
+              stroke="rgba(37,150,190,0.2)"
               strokeWidth="1"
             />
 
@@ -250,16 +250,16 @@ export default function AttackMap() {
                   cx={city.x}
                   cy={city.y}
                   r={5}
-                  fill="rgba(0,229,255,0.15)"
-                  stroke="rgba(0,229,255,0.6)"
+                  fill="rgba(37,150,190,0.15)"
+                  stroke="rgba(37,150,190,0.6)"
                   strokeWidth="1"
                   style={{ animation: "attack-pulse 3s ease-in-out infinite" }}
                 />
-                <circle cx={city.x} cy={city.y} r={2} fill="#00E5FF" />
+                <circle cx={city.x} cy={city.y} r={2} fill="#2596be" />
                 <text
                   x={city.x + 8}
                   y={city.y + 3}
-                  fill="#8892B0"
+                  fill="rgba(255,255,255,0.65)"
                   fontSize="7"
                   fontFamily="monospace"
                 >
@@ -281,8 +281,8 @@ export default function AttackMap() {
           <div
             style={{
               padding: "20px 24px",
-              background: "rgba(17,34,64,0.7)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              background: "rgba(2,8,16,0.7)",
+              border: "1px solid rgba(37,150,190,0.12)",
               borderRadius: "12px",
               textAlign: "center",
             }}
@@ -298,7 +298,7 @@ export default function AttackMap() {
             >
               {attackCount.toLocaleString()}
             </div>
-            <div style={{ fontSize: "11px", color: "#8892B0", letterSpacing: "0.1em" }}>
+            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.65)", letterSpacing: "0.1em" }}>
               ACTIVE THREATS
             </div>
           </div>
@@ -306,8 +306,8 @@ export default function AttackMap() {
           <div
             style={{
               padding: "20px 24px",
-              background: "rgba(17,34,64,0.7)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              background: "rgba(2,8,16,0.7)",
+              border: "1px solid rgba(37,150,190,0.12)",
               borderRadius: "12px",
               textAlign: "center",
             }}
@@ -317,13 +317,13 @@ export default function AttackMap() {
                 fontSize: "32px",
                 fontWeight: 800,
                 fontFamily: "var(--font-geist-mono), monospace",
-                color: "#00E5FF",
+                color: "#2596be",
                 marginBottom: "6px",
               }}
             >
               47
             </div>
-            <div style={{ fontSize: "11px", color: "#8892B0", letterSpacing: "0.1em" }}>
+            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.65)", letterSpacing: "0.1em" }}>
               COUNTRIES TARGETED
             </div>
           </div>
@@ -331,15 +331,15 @@ export default function AttackMap() {
           <div
             style={{
               padding: "20px 24px",
-              background: "rgba(17,34,64,0.7)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              background: "rgba(2,8,16,0.7)",
+              border: "1px solid rgba(37,150,190,0.12)",
               borderRadius: "12px",
             }}
           >
             <div
               style={{
                 fontSize: "11px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.1em",
                 marginBottom: "12px",
               }}
@@ -361,14 +361,14 @@ export default function AttackMap() {
                     width: "5px",
                     height: "5px",
                     borderRadius: "50%",
-                    backgroundColor: "#00E5FF",
+                    backgroundColor: "#2596be",
                     flexShrink: 0,
                   }}
                 />
                 <span
                   style={{
                     fontSize: "12px",
-                    color: "#CCD6F6",
+                    color: "#FFFFFF",
                     fontFamily: "var(--font-geist-mono), monospace",
                   }}
                 >

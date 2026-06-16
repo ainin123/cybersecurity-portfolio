@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -256,9 +256,9 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
   const containerStyle: React.CSSProperties = {
     position: "fixed",
     inset: 0,
-    backgroundColor: "#0A192F",
+    backgroundColor: "#020810",
     fontFamily: "var(--font-geist-mono), monospace",
-    color: "#CCD6F6",
+    color: "#FFFFFF",
     overflow: "hidden",
     zIndex: 100,
   };
@@ -268,7 +268,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
     left: 0,
     right: 0,
     height: "2px",
-    background: "linear-gradient(to right, transparent, rgba(0,229,255,0.4), transparent)",
+    background: "linear-gradient(to right, transparent, rgba(37,150,190,0.4), transparent)",
     animation: "scan-sweep 4s linear infinite",
     pointerEvents: "none",
     zIndex: 10,
@@ -286,9 +286,9 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
             position: "absolute",
             top: "20px",
             right: "24px",
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             background: "none",
-            border: "1px solid rgba(0,229,255,0.2)",
+            border: "1px solid rgba(37,150,190,0.2)",
             padding: "6px 14px",
             borderRadius: "4px",
             fontFamily: "var(--font-geist-mono), monospace",
@@ -316,7 +316,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
             style={{
               fontSize: "12px",
               lineHeight: "1.9",
-              color: "#CCD6F6",
+              color: "#FFFFFF",
             }}
           >
             {bootLines.map((line, i) => {
@@ -327,14 +327,14 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                 <div
                   key={i}
                   style={{
-                    color: isGranted ? "#00E5FF" : isHeader ? "rgba(0,229,255,0.9)" : "#CCD6F6",
+                    color: isGranted ? "#2596be" : isHeader ? "rgba(37,150,190,0.9)" : "#FFFFFF",
                     fontWeight: isGranted || isHeader ? 700 : 400,
                   }}
                 >
                   {isOk ? (
                     <>
                       <span>{line.slice(0, line.lastIndexOf("[OK]"))}</span>
-                      <span style={{ color: "rgba(0,229,255,0.9)" }}>[OK]</span>
+                      <span style={{ color: "rgba(37,150,190,0.9)" }}>[OK]</span>
                     </>
                   ) : (
                     line
@@ -348,7 +348,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                   display: "inline-block",
                   width: "8px",
                   height: "14px",
-                  backgroundColor: "#00E5FF",
+                  backgroundColor: "#2596be",
                   animation: "blink 1s step-end infinite",
                 }}
               />
@@ -391,20 +391,20 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
           style={{
             width: "100%",
             maxWidth: "760px",
-            border: "1px solid rgba(0,229,255,0.3)",
+            border: "1px solid rgba(37,150,190,0.3)",
             borderRadius: "4px",
-            backgroundColor: "rgba(10,25,47,0.97)",
-            boxShadow: "0 0 60px rgba(0,229,255,0.08), 0 0 120px rgba(0,0,0,0.6)",
+            backgroundColor: "rgba(2,8,16,0.97)",
+            boxShadow: "0 0 60px rgba(37,150,190,0.08), 0 0 120px rgba(0,0,0,0.6)",
           }}
         >
           {/* Top bar */}
           <div
             style={{
               padding: "12px 20px",
-              borderBottom: "1px solid rgba(0,229,255,0.2)",
-              backgroundColor: "rgba(0,229,255,0.04)",
+              borderBottom: "1px solid rgba(37,150,190,0.2)",
+              backgroundColor: "rgba(37,150,190,0.04)",
               fontSize: "12px",
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.06em",
               fontWeight: 700,
               display: "flex",
@@ -417,7 +417,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                backgroundColor: "#00E5FF",
+                backgroundColor: "#2596be",
                 animation: "pulse-dot 2s ease-in-out infinite",
                 flexShrink: 0,
               }}
@@ -432,16 +432,16 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
               style={{
                 marginBottom: "20px",
                 fontSize: "12px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 lineHeight: "1.7",
               }}
             >
               <div>
-                <span style={{ color: "#00E5FF" }}>ANALYST:</span> ANIQA AYUB
+                <span style={{ color: "#2596be" }}>ANALYST:</span> ANIQA AYUB
               </div>
               <div>
-                <span style={{ color: "#00E5FF" }}>STATUS:</span> ACTIVE |{" "}
-                <span style={{ color: "#00E5FF" }}>CLEARANCE:</span> LEVEL-5 |{" "}
+                <span style={{ color: "#2596be" }}>STATUS:</span> ACTIVE |{" "}
+                <span style={{ color: "#2596be" }}>CLEARANCE:</span> LEVEL-5 |{" "}
                 <span style={{ color: "#f59e0b" }}>THREAT LEVEL: ELEVATED</span>
               </div>
             </div>
@@ -449,11 +449,11 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
             {/* Divider */}
             <div
               style={{
-                borderTop: "1px solid rgba(0,229,255,0.15)",
+                borderTop: "1px solid rgba(37,150,190,0.15)",
                 marginBottom: "16px",
                 paddingTop: "16px",
                 fontSize: "11px",
-                color: "rgba(0,229,255,0.6)",
+                color: "rgba(37,150,190,0.6)",
                 letterSpacing: "0.12em",
                 textAlign: "center",
               }}
@@ -478,7 +478,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                     fontSize: "12px",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(0,229,255,0.06)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(37,150,190,0.06)";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.background = "transparent";
@@ -486,8 +486,8 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                 >
                   <span
                     style={{
-                      color: "#0A192F",
-                      backgroundColor: "#00E5FF",
+                      color: "#020810",
+                      backgroundColor: "#2596be",
                       fontWeight: 700,
                       width: "20px",
                       height: "20px",
@@ -501,9 +501,9 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                   >
                     {item.key}
                   </span>
-                  <span style={{ color: "#CCD6F6", fontWeight: 600, minWidth: "160px" }}>{item.label}</span>
-                  <span style={{ color: "#475569" }}>→</span>
-                  <span style={{ color: "#8892B0" }}>{item.desc}</span>
+                  <span style={{ color: "#FFFFFF", fontWeight: 600, minWidth: "160px" }}>{item.label}</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>→</span>
+                  <span style={{ color: "rgba(255,255,255,0.65)" }}>{item.desc}</span>
                 </div>
               ))}
             </div>
@@ -511,11 +511,11 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
             {/* Divider */}
             <div
               style={{
-                borderTop: "1px solid rgba(0,229,255,0.15)",
+                borderTop: "1px solid rgba(37,150,190,0.15)",
                 marginBottom: "12px",
                 paddingTop: "14px",
                 fontSize: "11px",
-                color: "rgba(0,229,255,0.6)",
+                color: "rgba(37,150,190,0.6)",
                 letterSpacing: "0.12em",
                 textAlign: "center",
               }}
@@ -532,7 +532,7 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                   overflowY: "auto",
                   marginBottom: "8px",
                   padding: "8px 0",
-                  borderTop: "1px solid rgba(0,229,255,0.08)",
+                  borderTop: "1px solid rgba(37,150,190,0.08)",
                 }}
               >
                 {outputLines.map((line, i) => (
@@ -543,12 +543,12 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                       lineHeight: "1.6",
                       color:
                         line.type === "input"
-                          ? "#00E5FF"
+                          ? "#2596be"
                           : line.type === "error"
                           ? "#FF4444"
                           : line.type === "nav"
-                          ? "rgba(0,229,255,0.8)"
-                          : "#8892B0",
+                          ? "rgba(37,150,190,0.8)"
+                          : "rgba(255,255,255,0.65)",
                       whiteSpace: "pre-wrap",
                     }}
                   >
@@ -566,10 +566,10 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                 gap: "8px",
                 marginTop: "8px",
                 padding: "8px 0",
-                borderTop: "1px solid rgba(0,229,255,0.1)",
+                borderTop: "1px solid rgba(37,150,190,0.1)",
               }}
             >
-              <span style={{ color: "#00E5FF", fontSize: "13px" }}>&gt;</span>
+              <span style={{ color: "#2596be", fontSize: "13px" }}>&gt;</span>
               <input
                 ref={inputRef}
                 autoFocus
@@ -580,17 +580,17 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
                   background: "transparent",
                   border: "none",
                   outline: "none",
-                  color: "#00E5FF",
+                  color: "#2596be",
                   fontFamily: "var(--font-geist-mono), monospace",
                   fontSize: "13px",
                   flex: 1,
-                  caretColor: "#00E5FF",
+                  caretColor: "#2596be",
                 }}
                 placeholder="Enter command..."
               />
               <span
                 style={{
-                  color: "#00E5FF",
+                  color: "#2596be",
                   animation: "blink 1s step-end infinite",
                   fontSize: "14px",
                 }}
@@ -604,10 +604,10 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
           <div
             style={{
               padding: "8px 20px",
-              borderTop: "1px solid rgba(0,229,255,0.15)",
-              backgroundColor: "rgba(0,229,255,0.02)",
+              borderTop: "1px solid rgba(37,150,190,0.15)",
+              backgroundColor: "rgba(37,150,190,0.02)",
               fontSize: "10px",
-              color: "#475569",
+              color: "rgba(255,255,255,0.4)",
               letterSpacing: "0.06em",
               display: "flex",
               justifyContent: "space-between",

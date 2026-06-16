@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Lock, Menu, X } from "lucide-react";
@@ -54,11 +54,11 @@ export default function Navigation() {
           right: 0,
           zIndex: 1000,
           transition: "all 0.3s ease",
-          background: scrolled ? "rgba(10,25,47,0.95)" : "transparent",
+          background: scrolled ? "rgba(2,8,16,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
           borderBottom: scrolled
-            ? "1px solid rgba(0,229,255,0.12)"
+            ? "1px solid rgba(37,150,190,0.12)"
             : "1px solid transparent",
         }}
       >
@@ -91,14 +91,14 @@ export default function Navigation() {
                 width: "30px",
                 height: "30px",
                 borderRadius: "7px",
-                background: "linear-gradient(135deg, #00E5FF 0%, rgba(0,229,255,0.5) 100%)",
+                background: "linear-gradient(135deg, #2596be 0%, rgba(37,150,190,0.5) 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 flexShrink: 0,
               }}
             >
-              <Lock size={14} color="#0A192F" />
+              <Lock size={14} color="#020810" />
             </div>
             <span
               style={{
@@ -106,14 +106,14 @@ export default function Navigation() {
                 fontWeight: 700,
                 fontSize: "14px",
                 letterSpacing: "0.12em",
-                color: "#CCD6F6",
+                color: "#FFFFFF",
                 whiteSpace: "nowrap",
               }}
             >
               ANIQA{" "}
               <span
                 style={{
-                  background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+                  background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -144,7 +144,7 @@ export default function Navigation() {
                     onClick={() => handleNav(link.href)}
                     style={{
                       background: isActive
-                        ? "rgba(0,229,255,0.1)"
+                        ? "rgba(37,150,190,0.1)"
                         : "transparent",
                       border: "none",
                       cursor: "pointer",
@@ -153,22 +153,22 @@ export default function Navigation() {
                       fontSize: "13px",
                       fontWeight: 500,
                       letterSpacing: "0.03em",
-                      color: isActive ? "#00E5FF" : "#8892B0",
+                      color: isActive ? "#2596be" : "rgba(255,255,255,0.65)",
                       transition: "all 0.2s ease",
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
                         (e.currentTarget as HTMLButtonElement).style.color =
-                          "#CCD6F6";
+                          "#FFFFFF";
                         (
                           e.currentTarget as HTMLButtonElement
-                        ).style.backgroundColor = "rgba(0,229,255,0.06)";
+                        ).style.backgroundColor = "rgba(37,150,190,0.06)";
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
                         (e.currentTarget as HTMLButtonElement).style.color =
-                          "#8892B0";
+                          "rgba(255,255,255,0.65)";
                         (
                           e.currentTarget as HTMLButtonElement
                         ).style.backgroundColor = "transparent";
@@ -190,7 +190,7 @@ export default function Navigation() {
               background: "none",
               border: "none",
               cursor: "pointer",
-              color: "#CCD6F6",
+              color: "#FFFFFF",
               padding: "6px",
               display: "flex",
               alignItems: "center",
@@ -206,9 +206,9 @@ export default function Navigation() {
           <div
             className="md:hidden"
             style={{
-              background: "rgba(10,25,47,0.98)",
+              background: "rgba(2,8,16,0.98)",
               backdropFilter: "blur(20px)",
-              borderTop: "1px solid rgba(0,229,255,0.12)",
+              borderTop: "1px solid rgba(37,150,190,0.12)",
               padding: "12px 24px 20px",
             }}
           >
@@ -233,7 +233,7 @@ export default function Navigation() {
                         width: "100%",
                         textAlign: "left",
                         background: isActive
-                          ? "rgba(0,229,255,0.1)"
+                          ? "rgba(37,150,190,0.1)"
                           : "transparent",
                         border: "none",
                         cursor: "pointer",
@@ -241,7 +241,7 @@ export default function Navigation() {
                         borderRadius: "8px",
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: isActive ? "#00E5FF" : "#8892B0",
+                        color: isActive ? "#2596be" : "rgba(255,255,255,0.65)",
                       }}
                     >
                       {link.label}

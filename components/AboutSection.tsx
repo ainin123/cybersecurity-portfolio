@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -24,7 +24,7 @@ export default function AboutSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -58,7 +58,7 @@ export default function AboutSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -77,13 +77,13 @@ export default function AboutSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Engineering the Future of{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -111,7 +111,7 @@ export default function AboutSection() {
               style={{
                 fontSize: "16px",
                 lineHeight: 1.8,
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 marginBottom: "24px",
               }}
             >
@@ -127,7 +127,7 @@ export default function AboutSection() {
               style={{
                 fontSize: "16px",
                 lineHeight: 1.8,
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 marginBottom: "40px",
               }}
             >
@@ -154,9 +154,9 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                   style={{
                     padding: "18px 14px",
-                    background: "rgba(17,34,64,0.7)",
+                    background: "rgba(2,8,16,0.7)",
                     backdropFilter: "blur(16px)",
-                    border: "1px solid rgba(0,229,255,0.12)",
+                    border: "1px solid rgba(37,150,190,0.12)",
                     borderRadius: "12px",
                     textAlign: "center",
                   }}
@@ -166,20 +166,20 @@ export default function AboutSection() {
                       width: "36px",
                       height: "36px",
                       borderRadius: "8px",
-                      background: "rgba(0,229,255,0.1)",
+                      background: "rgba(37,150,190,0.1)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       margin: "0 auto 12px",
                     }}
                   >
-                    <area.icon size={18} color="#00E5FF" />
+                    <area.icon size={18} color="#2596be" />
                   </div>
                   <div
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#CCD6F6",
+                      color: "#FFFFFF",
                       marginBottom: "4px",
                     }}
                   >
@@ -188,7 +188,7 @@ export default function AboutSection() {
                   <div
                     style={{
                       fontSize: "11px",
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       lineHeight: 1.4,
                     }}
                   >
@@ -207,10 +207,10 @@ export default function AboutSection() {
             onMouseEnter={() => setProfileHovered(true)}
             onMouseLeave={() => setProfileHovered(false)}
             style={{
-              background: "rgba(17,34,64,0.7)",
+              background: "rgba(2,8,16,0.7)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: profileHovered ? "1px solid rgba(0,229,255,0.35)" : "1px solid rgba(0,229,255,0.12)",
+              border: profileHovered ? "1px solid rgba(37,150,190,0.35)" : "1px solid rgba(37,150,190,0.12)",
               borderRadius: "16px",
               padding: "32px",
               position: "relative",
@@ -226,7 +226,7 @@ export default function AboutSection() {
                   left: 0,
                   right: 0,
                   height: "2px",
-                  background: "linear-gradient(to right, transparent, rgba(0,229,255,0.5), transparent)",
+                  background: "linear-gradient(to right, transparent, rgba(37,150,190,0.5), transparent)",
                   animation: "scan-sweep 1.2s linear infinite",
                   zIndex: 10,
                   pointerEvents: "none",
@@ -237,7 +237,7 @@ export default function AboutSection() {
               style={{
                 fontSize: "14px",
                 fontWeight: 600,
-                color: "#00E5FF",
+                color: "#2596be",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-geist-mono), monospace",
@@ -289,7 +289,7 @@ export default function AboutSection() {
                       width: "32px",
                       height: "32px",
                       borderRadius: "8px",
-                      background: "rgba(0,229,255,0.1)",
+                      background: "rgba(37,150,190,0.1)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -297,13 +297,13 @@ export default function AboutSection() {
                       marginTop: "2px",
                     }}
                   >
-                    <item.icon size={15} color="#00E5FF" />
+                    <item.icon size={15} color="#2596be" />
                   </div>
                   <div>
                     <div
                       style={{
                         fontSize: "11px",
-                        color: "#8892B0",
+                        color: "rgba(255,255,255,0.65)",
                         marginBottom: "2px",
                         letterSpacing: "0.06em",
                         textTransform: "uppercase",
@@ -315,7 +315,7 @@ export default function AboutSection() {
                       style={{
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: item.highlight ? "#00E5FF" : "#CCD6F6",
+                        color: item.highlight ? "#2596be" : "#FFFFFF",
                       }}
                     >
                       {item.value}
@@ -328,14 +328,14 @@ export default function AboutSection() {
             {/* Core Values */}
             <div
               style={{
-                borderTop: "1px solid rgba(0,229,255,0.1)",
+                borderTop: "1px solid rgba(37,150,190,0.1)",
                 paddingTop: "24px",
               }}
             >
               <div
                 style={{
                   fontSize: "11px",
-                  color: "#8892B0",
+                  color: "rgba(255,255,255,0.65)",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   marginBottom: "12px",
@@ -350,8 +350,8 @@ export default function AboutSection() {
                     style={{
                       padding: "5px 12px",
                       borderRadius: "100px",
-                      border: "1px solid rgba(0,229,255,0.2)",
-                      color: "#8892B0",
+                      border: "1px solid rgba(37,150,190,0.2)",
+                      color: "rgba(255,255,255,0.65)",
                       fontSize: "12px",
                       fontWeight: 500,
                     }}

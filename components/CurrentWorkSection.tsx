@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -7,32 +7,32 @@ import { ShieldCheck, Eye, Cloud, Target, Activity } from "lucide-react";
 const CURRENT_WORK = [
   {
     icon: ShieldCheck,
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.1)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.1)",
     title: "AI-Powered DLP",
     description:
       "Finalizing transformer model fine-tuning for production-ready DLP with BERT and RoBERTa on domain-specific security datasets.",
     status: "ACTIVE",
-    statusColor: "#00E5FF",
-    statusBg: "rgba(0,229,255,0.12)",
+    statusColor: "#2596be",
+    statusBg: "rgba(37,150,190,0.12)",
     progress: 75,
   },
   {
     icon: Eye,
-    iconColor: "rgba(0,229,255,0.7)",
-    iconBg: "rgba(0,229,255,0.08)",
+    iconColor: "rgba(37,150,190,0.7)",
+    iconBg: "rgba(37,150,190,0.08)",
     title: "Explainable AI Security",
     description:
       "Implementing SHAP explainability layers for ML threat detection models to surface interpretable decision rationale for analysts.",
     status: "ACTIVE",
-    statusColor: "#00E5FF",
-    statusBg: "rgba(0,229,255,0.12)",
+    statusColor: "#2596be",
+    statusBg: "rgba(37,150,190,0.12)",
     progress: 60,
   },
   {
     icon: Cloud,
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.08)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.08)",
     title: "Cloud-Based SIEM",
     description:
       "Architecting cloud-native SIEM infrastructure with auto-scaling threat detection capabilities and containerized deployment.",
@@ -43,8 +43,8 @@ const CURRENT_WORK = [
   },
   {
     icon: Target,
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.1)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.1)",
     title: "Threat Intelligence Automation",
     description:
       "Building an automated IOC enrichment and cross-feed correlation pipeline with deduplication and priority scoring.",
@@ -55,14 +55,14 @@ const CURRENT_WORK = [
   },
   {
     icon: Activity,
-    iconColor: "rgba(0,229,255,0.5)",
-    iconBg: "rgba(0,229,255,0.06)",
+    iconColor: "rgba(37,150,190,0.5)",
+    iconBg: "rgba(37,150,190,0.06)",
     title: "UEBA Research",
     description:
       "Researching User Entity Behavior Analytics models for insider threat detection, focusing on temporal behavioral patterns.",
     status: "PLANNING",
-    statusColor: "#8892B0",
-    statusBg: "rgba(136,146,176,0.1)",
+    statusColor: "rgba(255,255,255,0.65)",
+    statusBg: "rgba(255,255,255,0.1)",
     progress: 20,
   },
 ];
@@ -78,7 +78,7 @@ export default function CurrentWorkSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -96,7 +96,7 @@ export default function CurrentWorkSection() {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,229,255,0.03) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,150,190,0.03) 0%, transparent 60%)",
         }}
       />
 
@@ -121,7 +121,7 @@ export default function CurrentWorkSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -140,13 +140,13 @@ export default function CurrentWorkSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           What I&apos;m{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -172,10 +172,10 @@ export default function CurrentWorkSection() {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
               whileHover={{ y: -4 }}
               style={{
-                background: "rgba(17,34,64,0.7)",
+                background: "rgba(2,8,16,0.7)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,229,255,0.12)",
+                border: "1px solid rgba(37,150,190,0.12)",
                 borderRadius: "14px",
                 padding: "24px",
                 display: "flex",
@@ -199,7 +199,7 @@ export default function CurrentWorkSection() {
                     height: "44px",
                     borderRadius: "10px",
                     background: item.iconBg,
-                    border: `1px solid rgba(0,229,255,0.2)`,
+                    border: `1px solid rgba(37,150,190,0.2)`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -217,7 +217,7 @@ export default function CurrentWorkSection() {
                     padding: "4px 10px",
                     borderRadius: "100px",
                     backgroundColor: item.statusBg,
-                    border: `1px solid rgba(0,229,255,0.15)`,
+                    border: `1px solid rgba(37,150,190,0.15)`,
                   }}
                 >
                   <span
@@ -252,7 +252,7 @@ export default function CurrentWorkSection() {
                 style={{
                   fontSize: "16px",
                   fontWeight: 700,
-                  color: "#CCD6F6",
+                  color: "#FFFFFF",
                 }}
               >
                 {item.title}
@@ -263,7 +263,7 @@ export default function CurrentWorkSection() {
                 style={{
                   fontSize: "13px",
                   lineHeight: 1.6,
-                  color: "#8892B0",
+                  color: "rgba(255,255,255,0.65)",
                   flex: 1,
                 }}
               >
@@ -282,7 +282,7 @@ export default function CurrentWorkSection() {
                   <span
                     style={{
                       fontSize: "10px",
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       fontFamily: "var(--font-geist-mono), monospace",
                     }}
                   >
@@ -302,7 +302,7 @@ export default function CurrentWorkSection() {
                 <div
                   style={{
                     height: "4px",
-                    backgroundColor: "rgba(0,229,255,0.08)",
+                    backgroundColor: "rgba(37,150,190,0.08)",
                     borderRadius: "100px",
                     overflow: "hidden",
                   }}
@@ -314,7 +314,7 @@ export default function CurrentWorkSection() {
                     style={{
                       height: "100%",
                       borderRadius: "100px",
-                      background: `linear-gradient(to right, #00E5FF, rgba(0,229,255,0.5))`,
+                      background: `linear-gradient(to right, #2596be, rgba(37,150,190,0.5))`,
                     }}
                   />
                 </div>

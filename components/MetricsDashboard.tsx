@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
@@ -25,7 +25,7 @@ function useBreakpoint() {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const SKILLS = [
-  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#00E5FF", desc: "Wazuh, Splunk, ELK" },
+  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#2596be", desc: "Wazuh, Splunk, ELK" },
   { label: "Threat Intelligence",    pct: 88, years: "2+ yrs", color: "#A855F7", desc: "MISP, YARA, IOCs" },
   { label: "AI Security",            pct: 94, years: "2+ yrs", color: "#EC4899", desc: "BERT, RoBERTa, XAI" },
   { label: "Digital Forensics",      pct: 78, years: "2+ yrs", color: "#F59E0B", desc: "Memory, Disk Analysis" },
@@ -36,7 +36,7 @@ const SKILLS = [
 ];
 
 const IMPACT_STATS = [
-  { label: "Research Papers",  value: 3,   suffix: "+", color: "#00E5FF" },
+  { label: "Research Papers",  value: 3,   suffix: "+", color: "#2596be" },
   { label: "CVEs Analyzed",    value: 100, suffix: "+", color: "#A855F7" },
   { label: "Detection Rules",  value: 50,  suffix: "+", color: "#EC4899" },
   { label: "ML Models Built",  value: 8,   suffix: "+", color: "#10B981" },
@@ -71,7 +71,7 @@ function DonutCard({ skill, index, animated }: { skill: (typeof SKILLS)[number];
   return (
     <div
       style={{
-        background: "rgba(26,10,55,0.85)",
+        background: "rgba(2,8,16,0.85)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         border: `1px solid ${skill.color}28`,
@@ -121,17 +121,17 @@ function DonutCard({ skill, index, animated }: { skill: (typeof SKILLS)[number];
         />
         {/* Center percentage */}
         <text x="60" y="56" textAnchor="middle" dominantBaseline="middle"
-          fontSize="20" fontWeight="700" fontFamily="var(--font-geist-mono), monospace" fill="#E2E8F0">
+          fontSize="20" fontWeight="700" fontFamily="var(--font-geist-mono), monospace" fill="#FFFFFF">
           {skill.pct}
         </text>
         <text x="60" y="72" textAnchor="middle" dominantBaseline="middle"
-          fontSize="11" fontFamily="var(--font-geist-mono), monospace" fill="#94A3B8">
+          fontSize="11" fontFamily="var(--font-geist-mono), monospace" fill="rgba(255,255,255,0.65)">
           %
         </text>
       </svg>
 
       <div style={{
-        fontSize: "12px", fontWeight: 700, color: "#E2E8F0",
+        fontSize: "12px", fontWeight: 700, color: "#FFFFFF",
         fontFamily: "var(--font-geist-mono), monospace",
         letterSpacing: "0.06em", lineHeight: 1.3,
       }}>
@@ -149,7 +149,7 @@ function DonutCard({ skill, index, animated }: { skill: (typeof SKILLS)[number];
         {skill.years}
       </span>
 
-      <div style={{ fontSize: "11px", color: "#94A3B8", letterSpacing: "0.03em" }}>
+      <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.65)", letterSpacing: "0.03em" }}>
         {skill.desc}
       </div>
     </div>
@@ -175,7 +175,7 @@ export default function MetricsDashboard() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#12082A",
+        backgroundColor: "#020810",
       }}
     >
       {/* Subtle grid overlay */}
@@ -191,7 +191,7 @@ export default function MetricsDashboard() {
       }} />
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 40% 40% at 80% 60%, rgba(0,229,255,0.04), transparent)",
+        background: "radial-gradient(ellipse 40% 40% at 80% 60%, rgba(37,150,190,0.04), transparent)",
       }} />
 
       <div style={{
@@ -211,11 +211,11 @@ export default function MetricsDashboard() {
 
         <h2 style={{
           fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800,
-          color: "#E2E8F0", marginBottom: "8px",
+          color: "#FFFFFF", marginBottom: "8px",
         }}>
           SECURITY INTELLIGENCE{" "}
           <span style={{
-            background: "linear-gradient(to right, #A855F7, #EC4899, #00E5FF)",
+            background: "linear-gradient(to right, #A855F7, #EC4899, #2596be)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
           }}>
             DASHBOARD
@@ -223,7 +223,7 @@ export default function MetricsDashboard() {
         </h2>
 
         <p style={{
-          fontSize: "14px", color: "#94A3B8",
+          fontSize: "14px", color: "rgba(255,255,255,0.65)",
           fontFamily: "var(--font-geist-mono), monospace",
           marginBottom: "56px", letterSpacing: "0.04em",
         }}>
@@ -261,7 +261,7 @@ export default function MetricsDashboard() {
             <div
               key={stat.label}
               style={{
-                background: "rgba(26,10,55,0.85)",
+                background: "rgba(2,8,16,0.85)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
                 border: `1px solid ${stat.color}28`,
@@ -286,7 +286,7 @@ export default function MetricsDashboard() {
               }}>
                 <CountUp target={stat.value} suffix={stat.suffix} triggered={animated} />
               </div>
-              <div style={{ fontSize: "12px", color: "#94A3B8", letterSpacing: "0.06em", lineHeight: 1.4 }}>
+              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.65)", letterSpacing: "0.06em", lineHeight: 1.4 }}>
                 {stat.label}
               </div>
             </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -13,8 +13,8 @@ const CERTS = [
     statusColor: "#f59e0b",
     statusBg: "rgba(245,158,11,0.1)",
     statusBorder: "rgba(245,158,11,0.2)",
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.1)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.1)",
     desc: "Foundational cybersecurity certification covering network security, threats, and risk management.",
   },
   {
@@ -22,11 +22,11 @@ const CERTS = [
     name: "ISO 27001",
     issuer: "Information Security Management",
     status: "Familiar",
-    statusColor: "#00E5FF",
-    statusBg: "rgba(0,229,255,0.1)",
-    statusBorder: "rgba(0,229,255,0.2)",
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.08)",
+    statusColor: "#2596be",
+    statusBg: "rgba(37,150,190,0.1)",
+    statusBorder: "rgba(37,150,190,0.2)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.08)",
     desc: "International standard for information security management systems (ISMS) and best practices.",
   },
   {
@@ -34,11 +34,11 @@ const CERTS = [
     name: "Common Criteria",
     issuer: "Security Evaluation Standard",
     status: "Researching",
-    statusColor: "rgba(0,229,255,0.6)",
-    statusBg: "rgba(0,229,255,0.06)",
-    statusBorder: "rgba(0,229,255,0.15)",
-    iconColor: "rgba(0,229,255,0.7)",
-    iconBg: "rgba(0,229,255,0.08)",
+    statusColor: "rgba(37,150,190,0.6)",
+    statusBg: "rgba(37,150,190,0.06)",
+    statusBorder: "rgba(37,150,190,0.15)",
+    iconColor: "rgba(37,150,190,0.7)",
+    iconBg: "rgba(37,150,190,0.08)",
     desc: "International standard for evaluating security properties of IT products and systems.",
   },
   {
@@ -46,11 +46,11 @@ const CERTS = [
     name: "ISO 17025",
     issuer: "Testing and Calibration",
     status: "Familiar",
-    statusColor: "#00E5FF",
-    statusBg: "rgba(0,229,255,0.1)",
-    statusBorder: "rgba(0,229,255,0.2)",
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.08)",
+    statusColor: "#2596be",
+    statusBg: "rgba(37,150,190,0.1)",
+    statusBorder: "rgba(37,150,190,0.2)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.08)",
     desc: "General requirements for the competence of testing and calibration laboratories.",
   },
   {
@@ -58,11 +58,11 @@ const CERTS = [
     name: "ISO 19790",
     issuer: "Cryptographic Module Security",
     status: "Researching",
-    statusColor: "rgba(0,229,255,0.6)",
-    statusBg: "rgba(0,229,255,0.06)",
-    statusBorder: "rgba(0,229,255,0.15)",
-    iconColor: "rgba(0,229,255,0.7)",
-    iconBg: "rgba(0,229,255,0.08)",
+    statusColor: "rgba(37,150,190,0.6)",
+    statusBg: "rgba(37,150,190,0.06)",
+    statusBorder: "rgba(37,150,190,0.15)",
+    iconColor: "rgba(37,150,190,0.7)",
+    iconBg: "rgba(37,150,190,0.08)",
     desc: "Security requirements for cryptographic modules used in security systems.",
   },
 ];
@@ -78,7 +78,7 @@ export default function CertificationsSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#112240",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -112,7 +112,7 @@ export default function CertificationsSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -131,13 +131,13 @@ export default function CertificationsSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Certifications &amp;{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -161,12 +161,12 @@ export default function CertificationsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-              whileHover={{ y: -5, boxShadow: "0 8px 32px rgba(0,229,255,0.08)" }}
+              whileHover={{ y: -5, boxShadow: "0 8px 32px rgba(37,150,190,0.08)" }}
               style={{
-                background: "rgba(17,34,64,0.7)",
+                background: "rgba(2,8,16,0.7)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,229,255,0.12)",
+                border: "1px solid rgba(37,150,190,0.12)",
                 borderRadius: "14px",
                 padding: "28px",
                 display: "flex",
@@ -190,7 +190,7 @@ export default function CertificationsSection() {
                     height: "48px",
                     borderRadius: "12px",
                     background: cert.iconBg,
-                    border: `1px solid rgba(0,229,255,0.2)`,
+                    border: `1px solid rgba(37,150,190,0.2)`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -220,7 +220,7 @@ export default function CertificationsSection() {
                   style={{
                     fontSize: "17px",
                     fontWeight: 700,
-                    color: "#CCD6F6",
+                    color: "#FFFFFF",
                     marginBottom: "4px",
                   }}
                 >
@@ -229,7 +229,7 @@ export default function CertificationsSection() {
                 <p
                   style={{
                     fontSize: "12px",
-                    color: "#8892B0",
+                    color: "rgba(255,255,255,0.65)",
                     letterSpacing: "0.03em",
                   }}
                 >
@@ -242,7 +242,7 @@ export default function CertificationsSection() {
                 style={{
                   fontSize: "13px",
                   lineHeight: 1.6,
-                  color: "#8892B0",
+                  color: "rgba(255,255,255,0.65)",
                 }}
               >
                 {cert.desc}

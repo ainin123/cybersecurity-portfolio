@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -10,28 +10,28 @@ const CONTACT_METHODS = [
     label: "LinkedIn",
     value: "linkedin.com/in/aniqa-ayub",
     href: "https://linkedin.com/in/aniqa-ayub",
-    color: "#00E5FF",
+    color: "#2596be",
   },
   {
     icon: GitBranch,
     label: "GitHub",
     value: "github.com/aniqa-ayub",
     href: "https://github.com/aniqa-ayub",
-    color: "rgba(0,229,255,0.7)",
+    color: "rgba(37,150,190,0.7)",
   },
   {
     icon: Mail,
     label: "Email",
     value: "aniqa.ayub@email.com",
     href: "mailto:aniqa.ayub@email.com",
-    color: "rgba(0,229,255,0.5)",
+    color: "rgba(37,150,190,0.5)",
   },
   {
     icon: Download,
     label: "Resume",
     value: "Download PDF Resume",
     href: "/resume.pdf",
-    color: "#00E5FF",
+    color: "#2596be",
     download: true,
   },
 ];
@@ -79,7 +79,7 @@ export default function ContactSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -97,7 +97,7 @@ export default function ContactSection() {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(0,229,255,0.04) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(37,150,190,0.04) 0%, transparent 60%)",
         }}
       />
 
@@ -122,7 +122,7 @@ export default function ContactSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -141,13 +141,13 @@ export default function ContactSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "16px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Let&apos;s{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -163,7 +163,7 @@ export default function ContactSection() {
           transition={{ duration: 0.5, delay: 0.15 }}
           style={{
             fontSize: "16px",
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             marginBottom: "60px",
             maxWidth: "560px",
             lineHeight: 1.6,
@@ -209,9 +209,9 @@ export default function ContactSection() {
                   justifyContent: "space-between",
                   padding: "18px 20px",
                   borderRadius: "12px",
-                  background: "rgba(17,34,64,0.7)",
+                  background: "rgba(2,8,16,0.7)",
                   backdropFilter: "blur(16px)",
-                  border: "1px solid rgba(0,229,255,0.12)",
+                  border: "1px solid rgba(37,150,190,0.12)",
                   textDecoration: "none",
                   transition: "border-color 0.2s, box-shadow 0.2s",
                   cursor: "pointer",
@@ -229,8 +229,8 @@ export default function ContactSection() {
                       width: "38px",
                       height: "38px",
                       borderRadius: "9px",
-                      background: `rgba(0,229,255,0.1)`,
-                      border: `1px solid rgba(0,229,255,0.2)`,
+                      background: `rgba(37,150,190,0.1)`,
+                      border: `1px solid rgba(37,150,190,0.2)`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -243,7 +243,7 @@ export default function ContactSection() {
                     <div
                       style={{
                         fontSize: "11px",
-                        color: "#8892B0",
+                        color: "rgba(255,255,255,0.65)",
                         marginBottom: "2px",
                         letterSpacing: "0.06em",
                         textTransform: "uppercase",
@@ -255,14 +255,14 @@ export default function ContactSection() {
                       style={{
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: "#CCD6F6",
+                        color: "#FFFFFF",
                       }}
                     >
                       {method.value}
                     </div>
                   </div>
                 </div>
-                <ArrowRight size={15} color="#8892B0" />
+                <ArrowRight size={15} color="rgba(255,255,255,0.65)" />
               </motion.a>
             ))}
           </motion.div>
@@ -273,10 +273,10 @@ export default function ContactSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25 }}
             style={{
-              background: "rgba(17,34,64,0.7)",
+              background: "rgba(2,8,16,0.7)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              border: "1px solid rgba(37,150,190,0.12)",
               borderRadius: "16px",
               padding: "32px",
             }}
@@ -299,25 +299,25 @@ export default function ContactSection() {
                     width: "64px",
                     height: "64px",
                     borderRadius: "50%",
-                    background: "rgba(0,229,255,0.1)",
-                    border: "1px solid rgba(0,229,255,0.3)",
+                    background: "rgba(37,150,190,0.1)",
+                    border: "1px solid rgba(37,150,190,0.3)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <CircleCheck size={32} color="#00E5FF" />
+                  <CircleCheck size={32} color="#2596be" />
                 </div>
                 <h3
                   style={{
                     fontSize: "20px",
                     fontWeight: 700,
-                    color: "#CCD6F6",
+                    color: "#FFFFFF",
                   }}
                 >
                   Message Sent!
                 </h3>
-                <p style={{ fontSize: "14px", color: "#8892B0", maxWidth: "280px", lineHeight: 1.6 }}>
+                <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.65)", maxWidth: "280px", lineHeight: 1.6 }}>
                   Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                 </p>
               </div>
@@ -331,7 +331,7 @@ export default function ContactSection() {
                       display: "block",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       marginBottom: "6px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -350,9 +350,9 @@ export default function ContactSection() {
                       width: "100%",
                       padding: "11px 14px",
                       borderRadius: "8px",
-                      background: "rgba(10,25,47,0.8)",
-                      border: "1px solid rgba(0,229,255,0.15)",
-                      color: "#CCD6F6",
+                      background: "rgba(2,8,16,0.8)",
+                      border: "1px solid rgba(37,150,190,0.15)",
+                      color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
                     }}
@@ -367,7 +367,7 @@ export default function ContactSection() {
                       display: "block",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       marginBottom: "6px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -386,9 +386,9 @@ export default function ContactSection() {
                       width: "100%",
                       padding: "11px 14px",
                       borderRadius: "8px",
-                      background: "rgba(10,25,47,0.8)",
-                      border: "1px solid rgba(0,229,255,0.15)",
-                      color: "#CCD6F6",
+                      background: "rgba(2,8,16,0.8)",
+                      border: "1px solid rgba(37,150,190,0.15)",
+                      color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
                     }}
@@ -403,7 +403,7 @@ export default function ContactSection() {
                       display: "block",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       marginBottom: "6px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -419,16 +419,16 @@ export default function ContactSection() {
                       width: "100%",
                       padding: "11px 14px",
                       borderRadius: "8px",
-                      background: "rgba(10,25,47,0.8)",
-                      border: "1px solid rgba(0,229,255,0.15)",
-                      color: "#CCD6F6",
+                      background: "rgba(2,8,16,0.8)",
+                      border: "1px solid rgba(37,150,190,0.15)",
+                      color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
                       cursor: "pointer",
                     }}
                   >
                     {SUBJECTS.map((s) => (
-                      <option key={s} value={s} style={{ backgroundColor: "#0D2137" }}>
+                      <option key={s} value={s} style={{ backgroundColor: "#020810" }}>
                         {s}
                       </option>
                     ))}
@@ -443,7 +443,7 @@ export default function ContactSection() {
                       display: "block",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       marginBottom: "6px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -462,9 +462,9 @@ export default function ContactSection() {
                       width: "100%",
                       padding: "11px 14px",
                       borderRadius: "8px",
-                      background: "rgba(10,25,47,0.8)",
-                      border: "1px solid rgba(0,229,255,0.15)",
-                      color: "#CCD6F6",
+                      background: "rgba(2,8,16,0.8)",
+                      border: "1px solid rgba(37,150,190,0.15)",
+                      color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
                       resize: "vertical",
@@ -487,14 +487,14 @@ export default function ContactSection() {
                     padding: "13px 24px",
                     borderRadius: "8px",
                     background: loading
-                      ? "rgba(0,229,255,0.4)"
-                      : "linear-gradient(135deg, #00E5FF, rgba(0,229,255,0.7))",
+                      ? "rgba(37,150,190,0.4)"
+                      : "linear-gradient(135deg, #2596be, rgba(37,150,190,0.7))",
                     border: "none",
-                    color: "#0A192F",
+                    color: "#020810",
                     fontWeight: 700,
                     fontSize: "15px",
                     cursor: loading ? "not-allowed" : "pointer",
-                    boxShadow: "0 0 24px rgba(0,229,255,0.2)",
+                    boxShadow: "0 0 24px rgba(37,150,190,0.2)",
                     transition: "opacity 0.2s",
                   }}
                 >
@@ -504,8 +504,8 @@ export default function ContactSection() {
                         style={{
                           width: "14px",
                           height: "14px",
-                          border: "2px solid rgba(10,25,47,0.4)",
-                          borderTopColor: "#0A192F",
+                          border: "2px solid rgba(2,8,16,0.4)",
+                          borderTopColor: "#020810",
                           borderRadius: "50%",
                           display: "inline-block",
                           animation: "spin 0.7s linear infinite",
@@ -534,8 +534,8 @@ export default function ContactSection() {
           color: #475569;
         }
         input:focus, textarea:focus, select:focus {
-          border-color: rgba(0,229,255,0.4) !important;
-          box-shadow: 0 0 0 3px rgba(0,229,255,0.06);
+          border-color: rgba(37,150,190,0.4) !important;
+          box-shadow: 0 0 0 3px rgba(37,150,190,0.06);
         }
       `}</style>
     </section>

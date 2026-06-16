@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0A192F;
-  --color-surface: #0D2137;
-  --color-surface2: #112240;
-  --color-accent: #00E5FF;
-  --color-text: #CCD6F6;
-  --color-muted: #8892B0;
+  --color-bg: #020810;
+  --color-surface: #020810;
+  --color-surface2: #020810;
+  --color-accent: #2596be;
+  --color-text: #FFFFFF;
+  --color-muted: rgba(255,255,255,0.65);
   --color-danger: #FF4444;
   --font-mono: var(--font-geist-mono);
   --font-sans: var(--font-geist-sans);
@@ -24,15 +24,15 @@
   }
 
   body {
-    background-color: #0A192F;
-    color: #CCD6F6;
+    background-color: #020810;
+    color: #FFFFFF;
     font-family: var(--font-geist-sans), system-ui, sans-serif;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: rgba(0, 229, 255, 0.3);
-    color: #CCD6F6;
+    background-color: rgba(37, 150, 190, 0.3);
+    color: #FFFFFF;
   }
 
   ::-webkit-scrollbar {
@@ -40,16 +40,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0A192F;
+    background: #020810;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(0, 229, 255, 0.4);
+    background: rgba(37, 150, 190, 0.4);
     border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 229, 255, 0.7);
+    background: rgba(37, 150, 190, 0.7);
   }
 }
 
@@ -137,10 +137,10 @@
 }
 
 @utility glass-card {
-  background: rgba(17,34,64,0.7);
+  background: rgba(2,8,16,0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0,229,255,0.12);
+  border: 1px solid rgba(37,150,190,0.12);
   border-radius: 12px;
 }
 
@@ -151,23 +151,18 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6));
+  background: linear-gradient(to right, #2596be, rgba(37,150,190,0.6));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 @utility section-bg {
-  background: linear-gradient(
-    180deg,
-    #0A192F 0%,
-    #0D2137 50%,
-    #0A192F 100%
-  );
+  background: #020810;
 }
 
 @utility grid-overlay {
-  background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(37,150,190,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,150,190,0.03) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -188,8 +183,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(0,229,255,0.2); }
-  50% { box-shadow: 0 0 24px rgba(0,229,255,0.5); }
+  0%, 100% { box-shadow: 0 0 8px rgba(37,150,190,0.2); }
+  50% { box-shadow: 0 0 24px rgba(37,150,190,0.5); }
 }
 
 @keyframes donut-fill {
@@ -213,4 +208,3 @@
   90% { opacity: 1; }
   100% { transform: translateY(100vh); opacity: 0; }
 }
-

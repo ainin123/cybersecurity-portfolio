@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -78,10 +78,10 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
       style={{
-        background: "rgba(17,34,64,0.7)",
+        background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(0,229,255,0.12)",
+        border: "1px solid rgba(37,150,190,0.12)",
         borderRadius: "16px",
         padding: "28px",
         transition: "box-shadow 0.3s ease",
@@ -102,21 +102,21 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
             width: "44px",
             height: "44px",
             borderRadius: "10px",
-            background: "rgba(0,229,255,0.1)",
-            border: "1px solid rgba(0,229,255,0.2)",
+            background: "rgba(37,150,190,0.1)",
+            border: "1px solid rgba(37,150,190,0.2)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
           }}
         >
-          <category.icon size={22} color="#00E5FF" />
+          <category.icon size={22} color="#2596be" />
         </div>
         <h3
           style={{
             fontSize: "15px",
             fontWeight: 700,
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           {category.title}
@@ -144,7 +144,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
                 style={{
                   fontSize: "12px",
                   fontWeight: 500,
-                  color: "#CCD6F6",
+                  color: "#FFFFFF",
                   fontFamily: "var(--font-geist-mono), monospace",
                 }}
               >
@@ -154,7 +154,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
                 style={{
                   fontSize: "11px",
                   fontWeight: 700,
-                  color: "#00E5FF",
+                  color: "#2596be",
                   fontFamily: "var(--font-geist-mono), monospace",
                 }}
               >
@@ -164,7 +164,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
             <div
               style={{
                 height: "4px",
-                backgroundColor: "rgba(0,229,255,0.08)",
+                backgroundColor: "rgba(37,150,190,0.08)",
                 borderRadius: "100px",
                 overflow: "hidden",
               }}
@@ -173,7 +173,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
                 style={{
                   height: "100%",
                   borderRadius: "100px",
-                  background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.5))",
+                  background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.5))",
                   width: inView ? `${skill.pct}%` : "0%",
                   transition: `width 1s ease-out ${0.3 + index * 0.1 + i * 0.06}s`,
                 }}
@@ -197,7 +197,7 @@ export default function SkillsSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0D2137",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -231,7 +231,7 @@ export default function SkillsSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -250,13 +250,13 @@ export default function SkillsSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Technical{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

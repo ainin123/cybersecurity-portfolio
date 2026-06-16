@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 
@@ -190,8 +190,8 @@ const DATA: Record<string, ThreatItem[]> = {
 
 const SEVERITY_STYLE: Record<Severity, { color: string; bg: string; border: string }> = {
   CRITICAL: { color: "#FF4444", bg: "rgba(255,68,68,0.12)", border: "rgba(255,68,68,0.3)" },
-  HIGH: { color: "#00E5FF", bg: "rgba(0,229,255,0.1)", border: "rgba(0,229,255,0.25)" },
-  MEDIUM: { color: "rgba(0,229,255,0.6)", bg: "rgba(0,229,255,0.06)", border: "rgba(0,229,255,0.15)" },
+  HIGH: { color: "#2596be", bg: "rgba(37,150,190,0.1)", border: "rgba(37,150,190,0.25)" },
+  MEDIUM: { color: "rgba(37,150,190,0.6)", bg: "rgba(37,150,190,0.06)", border: "rgba(37,150,190,0.15)" },
 };
 
 export default function ThreatLandscape() {
@@ -203,7 +203,7 @@ export default function ThreatLandscape() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -227,7 +227,7 @@ export default function ThreatLandscape() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -240,14 +240,14 @@ export default function ThreatLandscape() {
           style={{
             fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 800,
-            color: "#CCD6F6",
+            color: "#FFFFFF",
             marginBottom: "8px",
           }}
         >
           Intelligence{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -260,7 +260,7 @@ export default function ThreatLandscape() {
         <p
           style={{
             fontSize: "14px",
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             marginBottom: "40px",
             fontFamily: "var(--font-geist-mono), monospace",
           }}
@@ -276,9 +276,9 @@ export default function ThreatLandscape() {
             gap: "4px",
             marginBottom: "36px",
             padding: "4px",
-            background: "rgba(17,34,64,0.5)",
+            background: "rgba(2,8,16,0.5)",
             borderRadius: "10px",
-            border: "1px solid rgba(0,229,255,0.1)",
+            border: "1px solid rgba(37,150,190,0.1)",
             width: "fit-content",
           }}
         >
@@ -296,9 +296,9 @@ export default function ThreatLandscape() {
                 fontFamily: "var(--font-geist-mono), monospace",
                 letterSpacing: "0.04em",
                 transition: "all 0.2s",
-                backgroundColor: activeTab === tab ? "rgba(0,229,255,0.15)" : "transparent",
-                color: activeTab === tab ? "#00E5FF" : "#8892B0",
-                borderBottom: activeTab === tab ? "1px solid rgba(0,229,255,0.4)" : "1px solid transparent",
+                backgroundColor: activeTab === tab ? "rgba(37,150,190,0.15)" : "transparent",
+                color: activeTab === tab ? "#2596be" : "rgba(255,255,255,0.65)",
+                borderBottom: activeTab === tab ? "1px solid rgba(37,150,190,0.4)" : "1px solid transparent",
               }}
             >
               {tab}
@@ -320,10 +320,10 @@ export default function ThreatLandscape() {
               <div
                 key={item.id}
                 style={{
-                  background: "rgba(17,34,64,0.7)",
+                  background: "rgba(2,8,16,0.7)",
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(0,229,255,0.12)",
+                  border: "1px solid rgba(37,150,190,0.12)",
                   borderRadius: "12px",
                   padding: "24px",
                   display: "flex",
@@ -339,7 +339,7 @@ export default function ThreatLandscape() {
                       fontFamily: "var(--font-geist-mono), monospace",
                       fontSize: "11px",
                       fontWeight: 700,
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       letterSpacing: "0.06em",
                     }}
                   >
@@ -367,7 +367,7 @@ export default function ThreatLandscape() {
                   style={{
                     fontSize: "15px",
                     fontWeight: 700,
-                    color: "#CCD6F6",
+                    color: "#FFFFFF",
                     lineHeight: 1.3,
                   }}
                 >
@@ -378,7 +378,7 @@ export default function ThreatLandscape() {
                   style={{
                     fontSize: "13px",
                     lineHeight: 1.6,
-                    color: "#8892B0",
+                    color: "rgba(255,255,255,0.65)",
                     flex: 1,
                   }}
                 >
@@ -395,9 +395,9 @@ export default function ThreatLandscape() {
                         borderRadius: "4px",
                         fontSize: "10px",
                         fontWeight: 500,
-                        color: "#8892B0",
-                        backgroundColor: "rgba(0,229,255,0.06)",
-                        border: "1px solid rgba(0,229,255,0.1)",
+                        color: "rgba(255,255,255,0.65)",
+                        backgroundColor: "rgba(37,150,190,0.06)",
+                        border: "1px solid rgba(37,150,190,0.1)",
                         fontFamily: "var(--font-geist-mono), monospace",
                       }}
                     >
@@ -410,9 +410,9 @@ export default function ThreatLandscape() {
                 <div
                   style={{
                     fontSize: "11px",
-                    color: "#8892B0",
+                    color: "rgba(255,255,255,0.65)",
                     fontFamily: "var(--font-geist-mono), monospace",
-                    borderTop: "1px solid rgba(0,229,255,0.08)",
+                    borderTop: "1px solid rgba(37,150,190,0.08)",
                     paddingTop: "10px",
                   }}
                 >

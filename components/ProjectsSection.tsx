@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -8,7 +8,7 @@ const PROJECTS = [
   {
     num: "01",
     icon: ShieldCheck,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "DATA SECURITY",
     title: "AI-Powered DLP System",
     problem: "Traditional DLP tools miss context-sensitive data leaks",
@@ -31,7 +31,7 @@ const PROJECTS = [
   {
     num: "02",
     icon: Server,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "SOC OPERATIONS",
     title: "Wazuh SIEM Customization",
     problem: "High false-positive rates in open-source SIEM environments",
@@ -53,7 +53,7 @@ const PROJECTS = [
   {
     num: "03",
     icon: Target,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "THREAT INTELLIGENCE",
     title: "Threat Intelligence Engine",
     problem: "Manual IOC collection is slow and error-prone",
@@ -75,7 +75,7 @@ const PROJECTS = [
   {
     num: "04",
     icon: Network,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "NETWORK SECURITY",
     title: "Network Traffic Analyzer",
     problem: "Unknown threat patterns evade signature-based IDS",
@@ -97,7 +97,7 @@ const PROJECTS = [
   {
     num: "05",
     icon: Database,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "SECURITY ANALYTICS",
     title: "Security Log Analytics Platform",
     problem: "Security logs lack intelligent correlation and insight",
@@ -119,7 +119,7 @@ const PROJECTS = [
   {
     num: "06",
     icon: Eye,
-    iconColor: "#00E5FF",
+    iconColor: "#2596be",
     domain: "MALWARE ANALYSIS",
     title: "Malware Classification System",
     problem: "Manual malware triage is slow and inconsistent",
@@ -147,14 +147,14 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7 }}
       style={{
-        background: "rgba(17,34,64,0.7)",
+        background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(0,229,255,0.2)",
+        border: "1px solid rgba(37,150,190,0.2)",
         borderRadius: "16px",
         padding: "32px",
         marginBottom: "28px",
-        boxShadow: "0 0 40px rgba(0,229,255,0.06)",
+        boxShadow: "0 0 40px rgba(37,150,190,0.06)",
       }}
     >
       {/* Domain badge */}
@@ -163,9 +163,9 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           style={{
             fontSize: "10px",
             fontWeight: 700,
-            color: "#00E5FF",
-            backgroundColor: "rgba(0,229,255,0.1)",
-            border: "1px solid rgba(0,229,255,0.25)",
+            color: "#2596be",
+            backgroundColor: "rgba(37,150,190,0.1)",
+            border: "1px solid rgba(37,150,190,0.25)",
             padding: "3px 10px",
             borderRadius: "4px",
             letterSpacing: "0.1em",
@@ -199,7 +199,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
                 fontFamily: "var(--font-geist-mono), monospace",
                 fontSize: "11px",
                 fontWeight: 700,
-                color: "#00E5FF",
+                color: "#2596be",
                 letterSpacing: "0.15em",
               }}
             >
@@ -209,9 +209,9 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
               style={{
                 fontSize: "10px",
                 fontWeight: 600,
-                color: "#00E5FF",
-                backgroundColor: "rgba(0,229,255,0.12)",
-                border: "1px solid rgba(0,229,255,0.25)",
+                color: "#2596be",
+                backgroundColor: "rgba(37,150,190,0.12)",
+                border: "1px solid rgba(37,150,190,0.25)",
                 padding: "3px 10px",
                 borderRadius: "100px",
                 letterSpacing: "0.08em",
@@ -224,7 +224,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
             style={{
               fontSize: "24px",
               fontWeight: 800,
-              color: "#CCD6F6",
+              color: "#FFFFFF",
               marginBottom: "10px",
             }}
           >
@@ -233,7 +233,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           <p
             style={{
               fontSize: "13px",
-              color: "#8892B0",
+              color: "rgba(255,255,255,0.65)",
               marginBottom: "12px",
               fontStyle: "italic",
             }}
@@ -244,7 +244,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
             style={{
               fontSize: "15px",
               lineHeight: 1.7,
-              color: "#8892B0",
+              color: "rgba(255,255,255,0.65)",
               marginBottom: "20px",
             }}
           >
@@ -259,8 +259,8 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
               gap: "8px",
               padding: "8px 16px",
               borderRadius: "8px",
-              backgroundColor: "rgba(0,229,255,0.1)",
-              border: "1px solid rgba(0,229,255,0.2)",
+              backgroundColor: "rgba(37,150,190,0.1)",
+              border: "1px solid rgba(37,150,190,0.2)",
               marginBottom: "20px",
             }}
           >
@@ -268,7 +268,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
               style={{
                 fontSize: "13px",
                 fontWeight: 700,
-                color: "#00E5FF",
+                color: "#2596be",
                 fontFamily: "var(--font-geist-mono), monospace",
               }}
             >
@@ -286,9 +286,9 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
                   fontSize: "11px",
                   fontWeight: 500,
                   fontFamily: "var(--font-geist-mono), monospace",
-                  color: "#00E5FF",
-                  backgroundColor: "rgba(0,229,255,0.08)",
-                  border: "1px solid rgba(0,229,255,0.15)",
+                  color: "#2596be",
+                  backgroundColor: "rgba(37,150,190,0.08)",
+                  border: "1px solid rgba(37,150,190,0.15)",
                 }}
               >
                 {t}
@@ -304,7 +304,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
               style={{
                 fontSize: "11px",
                 fontWeight: 600,
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-geist-mono), monospace",
@@ -315,8 +315,8 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
               {project.methodology?.map((m) => (
-                <li key={m} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "#8892B0" }}>
-                  <span style={{ color: "#00E5FF", flexShrink: 0, marginTop: "2px" }}>→</span>
+                <li key={m} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,0.65)" }}>
+                  <span style={{ color: "#2596be", flexShrink: 0, marginTop: "2px" }}>→</span>
                   {m}
                 </li>
               ))}
@@ -328,7 +328,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
               style={{
                 fontSize: "11px",
                 fontWeight: 600,
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-geist-mono), monospace",
@@ -339,8 +339,8 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
               {project.findings?.map((f) => (
-                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "#8892B0" }}>
-                  <span style={{ color: "rgba(0,229,255,0.6)", flexShrink: 0, marginTop: "2px" }}>✓</span>
+                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,0.65)" }}>
+                  <span style={{ color: "rgba(37,150,190,0.6)", flexShrink: 0, marginTop: "2px" }}>✓</span>
                   {f}
                 </li>
               ))}
@@ -374,10 +374,10 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        background: "rgba(17,34,64,0.7)",
+        background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: hovered ? "1px solid rgba(0,229,255,0.5)" : "1px solid rgba(0,229,255,0.12)",
+        border: hovered ? "1px solid rgba(37,150,190,0.5)" : "1px solid rgba(37,150,190,0.12)",
         borderRadius: "14px",
         padding: "24px",
         display: "flex",
@@ -386,7 +386,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s",
         cursor: "default",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
-        boxShadow: hovered ? "0 12px 40px rgba(0,229,255,0.12)" : "none",
+        boxShadow: hovered ? "0 12px 40px rgba(37,150,190,0.12)" : "none",
         position: "relative",
         overflow: "hidden",
       }}
@@ -400,13 +400,13 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
             right: "12px",
             fontSize: "9px",
             fontFamily: "var(--font-geist-mono), monospace",
-            color: scanState === "scanning" ? "#f59e0b" : "#00E5FF",
+            color: scanState === "scanning" ? "#f59e0b" : "#2596be",
             backgroundColor:
-              scanState === "scanning" ? "rgba(245,158,11,0.1)" : "rgba(0,229,255,0.1)",
+              scanState === "scanning" ? "rgba(245,158,11,0.1)" : "rgba(37,150,190,0.1)",
             border:
               scanState === "scanning"
                 ? "1px solid rgba(245,158,11,0.3)"
-                : "1px solid rgba(0,229,255,0.3)",
+                : "1px solid rgba(37,150,190,0.3)",
             padding: "2px 7px",
             borderRadius: "4px",
             letterSpacing: "0.1em",
@@ -423,9 +423,9 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
           style={{
             fontSize: "9px",
             fontWeight: 700,
-            color: "rgba(0,229,255,0.7)",
-            backgroundColor: "rgba(0,229,255,0.08)",
-            border: "1px solid rgba(0,229,255,0.15)",
+            color: "rgba(37,150,190,0.7)",
+            backgroundColor: "rgba(37,150,190,0.08)",
+            border: "1px solid rgba(37,150,190,0.15)",
             padding: "2px 8px",
             borderRadius: "4px",
             letterSpacing: "0.1em",
@@ -457,35 +457,35 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
               width: "36px",
               height: "36px",
               borderRadius: "8px",
-              background: "rgba(0,229,255,0.1)",
-              border: "1px solid rgba(0,229,255,0.2)",
+              background: "rgba(37,150,190,0.1)",
+              border: "1px solid rgba(37,150,190,0.2)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
             }}
           >
-            <project.icon size={18} color="#00E5FF" />
+            <project.icon size={18} color="#2596be" />
           </div>
           <span
             style={{
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "11px",
               fontWeight: 700,
-              color: "#8892B0",
+              color: "rgba(255,255,255,0.65)",
             }}
           >
             {project.num}
           </span>
         </div>
-        <ExternalLink size={15} color="#475569" />
+        <ExternalLink size={15} color="rgba(255,255,255,0.4)" />
       </div>
 
       <h3
         style={{
           fontSize: "16px",
           fontWeight: 700,
-          color: "#CCD6F6",
+          color: "#FFFFFF",
         }}
       >
         {project.title}
@@ -494,7 +494,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
       <p
         style={{
           fontSize: "12px",
-          color: "#8892B0",
+          color: "rgba(255,255,255,0.65)",
           fontStyle: "italic",
         }}
       >
@@ -505,7 +505,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         style={{
           fontSize: "13px",
           lineHeight: 1.6,
-          color: "#8892B0",
+          color: "rgba(255,255,255,0.65)",
           flex: 1,
         }}
       >
@@ -517,7 +517,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         <div
           style={{
             fontSize: "10px",
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             fontFamily: "var(--font-geist-mono), monospace",
@@ -531,14 +531,14 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
             key={f}
             style={{
               fontSize: "11px",
-              color: "#8892B0",
+              color: "rgba(255,255,255,0.65)",
               display: "flex",
               alignItems: "flex-start",
               gap: "6px",
               marginBottom: "3px",
             }}
           >
-            <span style={{ color: "rgba(0,229,255,0.5)", flexShrink: 0 }}>✓</span>
+            <span style={{ color: "rgba(37,150,190,0.5)", flexShrink: 0 }}>✓</span>
             {f}
           </div>
         ))}
@@ -549,8 +549,8 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         style={{
           padding: "6px 12px",
           borderRadius: "7px",
-          backgroundColor: "rgba(0,229,255,0.08)",
-          border: "1px solid rgba(0,229,255,0.15)",
+          backgroundColor: "rgba(37,150,190,0.08)",
+          border: "1px solid rgba(37,150,190,0.15)",
           display: "inline-block",
           alignSelf: "flex-start",
         }}
@@ -560,7 +560,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
             fontSize: "12px",
             fontWeight: 600,
             fontFamily: "var(--font-geist-mono), monospace",
-            color: "#00E5FF",
+            color: "#2596be",
           }}
         >
           {project.result}
@@ -578,9 +578,9 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
               fontSize: "10px",
               fontWeight: 500,
               fontFamily: "var(--font-geist-mono), monospace",
-              color: "#8892B0",
-              backgroundColor: "rgba(0,229,255,0.06)",
-              border: "1px solid rgba(0,229,255,0.1)",
+              color: "rgba(255,255,255,0.65)",
+              backgroundColor: "rgba(37,150,190,0.06)",
+              border: "1px solid rgba(37,150,190,0.1)",
             }}
           >
             {t}
@@ -596,7 +596,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
           gap: "6px",
           fontSize: "12px",
           fontWeight: 500,
-          color: "#00E5FF",
+          color: "#2596be",
           background: "none",
           border: "none",
           cursor: "pointer",
@@ -623,7 +623,7 @@ export default function ProjectsSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0D2137",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -657,7 +657,7 @@ export default function ProjectsSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -676,13 +676,13 @@ export default function ProjectsSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Security{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

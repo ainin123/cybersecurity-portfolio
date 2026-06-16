@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -10,7 +10,7 @@ const TIMELINE = [
     description:
       "Began deep research into transformer-based DLP frameworks using BERT and RoBERTa models. Achieved 98% classification accuracy on sensitive document categorization, outperforming traditional regex-based approaches.",
     tech: ["BERT", "RoBERTa", "TensorFlow", "DLP", "NLP"],
-    color: "#00E5FF",
+    color: "#2596be",
   },
   {
     period: "2024",
@@ -18,7 +18,7 @@ const TIMELINE = [
     description:
       "Built automated threat intel pipelines integrating MISP, VirusTotal, and custom YARA rules. Developed enrichment workflows that correlate IOCs across multiple feed sources for comprehensive threat coverage.",
     tech: ["MISP", "VirusTotal", "YARA", "Python", "Redis"],
-    color: "rgba(0,229,255,0.7)",
+    color: "rgba(37,150,190,0.7)",
   },
   {
     period: "2023 — 2024",
@@ -26,7 +26,7 @@ const TIMELINE = [
     description:
       "Deployed Wazuh with ML-powered alert scoring and anomaly detection, reducing false positives significantly. Developed custom decoders, rules, and a behavioral baseline system for user entity analytics.",
     tech: ["Wazuh", "Suricata", "SIGMA", "ML", "ELK"],
-    color: "rgba(0,229,255,0.5)",
+    color: "rgba(37,150,190,0.5)",
   },
   {
     period: "2023",
@@ -34,7 +34,7 @@ const TIMELINE = [
     description:
       "Explored cloud-native security architectures, container security with Docker, and SOAR automation workflows. Investigated zero-trust network models and their application to hybrid cloud environments.",
     tech: ["Docker", "Cloud Security", "SOAR", "Zero Trust", "CI/CD"],
-    color: "#00E5FF",
+    color: "#2596be",
   },
   {
     period: "2022 — Present",
@@ -42,7 +42,7 @@ const TIMELINE = [
     description:
       "Pursuing explainable AI for cybersecurity, UEBA (User Entity Behavior Analytics) research, and advanced ML security models. Focus on making AI-driven security decisions interpretable and trustworthy for analysts.",
     tech: ["XAI", "SHAP", "LIME", "UEBA", "Security ML"],
-    color: "rgba(0,229,255,0.7)",
+    color: "rgba(37,150,190,0.7)",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function TimelineSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -91,7 +91,7 @@ export default function TimelineSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -110,13 +110,13 @@ export default function TimelineSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "70px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Professional{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -138,7 +138,7 @@ export default function TimelineSection() {
               bottom: 0,
               width: "1px",
               background:
-                "linear-gradient(to bottom, transparent, rgba(0,229,255,0.3) 10%, rgba(0,229,255,0.3) 90%, transparent)",
+                "linear-gradient(to bottom, transparent, rgba(37,150,190,0.3) 10%, rgba(37,150,190,0.3) 90%, transparent)",
               transform: "translateX(-50%)",
             }}
           />
@@ -153,7 +153,7 @@ export default function TimelineSection() {
               bottom: 0,
               width: "1px",
               background:
-                "linear-gradient(to bottom, transparent, rgba(0,229,255,0.3) 10%, rgba(0,229,255,0.3) 90%, transparent)",
+                "linear-gradient(to bottom, transparent, rgba(37,150,190,0.3) 10%, rgba(37,150,190,0.3) 90%, transparent)",
             }}
           />
 
@@ -243,10 +243,10 @@ export default function TimelineSection() {
                       whileHover={{ y: -3 }}
                       className="lg:col-span-1"
                       style={{
-                        background: "rgba(17,34,64,0.7)",
+                        background: "rgba(2,8,16,0.7)",
                         backdropFilter: "blur(16px)",
                         WebkitBackdropFilter: "blur(16px)",
-                        border: `1px solid rgba(0,229,255,0.12)`,
+                        border: `1px solid rgba(37,150,190,0.12)`,
                         borderRadius: "14px",
                         padding: "24px",
                         transition: "box-shadow 0.3s ease",
@@ -258,8 +258,8 @@ export default function TimelineSection() {
                           display: "inline-block",
                           padding: "3px 10px",
                           borderRadius: "100px",
-                          backgroundColor: `rgba(0,229,255,0.1)`,
-                          border: `1px solid rgba(0,229,255,0.2)`,
+                          backgroundColor: `rgba(37,150,190,0.1)`,
+                          border: `1px solid rgba(37,150,190,0.2)`,
                           fontSize: "11px",
                           fontWeight: 600,
                           fontFamily: "var(--font-geist-mono), monospace",
@@ -275,7 +275,7 @@ export default function TimelineSection() {
                         style={{
                           fontSize: "18px",
                           fontWeight: 700,
-                          color: "#CCD6F6",
+                          color: "#FFFFFF",
                           marginBottom: "10px",
                         }}
                       >
@@ -286,7 +286,7 @@ export default function TimelineSection() {
                         style={{
                           fontSize: "14px",
                           lineHeight: 1.7,
-                          color: "#8892B0",
+                          color: "rgba(255,255,255,0.65)",
                           marginBottom: "16px",
                         }}
                       >
@@ -304,8 +304,8 @@ export default function TimelineSection() {
                               fontWeight: 500,
                               fontFamily: "var(--font-geist-mono), monospace",
                               color: item.color,
-                              backgroundColor: `rgba(0,229,255,0.08)`,
-                              border: `1px solid rgba(0,229,255,0.15)`,
+                              backgroundColor: `rgba(37,150,190,0.08)`,
+                              border: `1px solid rgba(37,150,190,0.15)`,
                             }}
                           >
                             {t}

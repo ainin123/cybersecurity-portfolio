@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -7,10 +7,10 @@ import { ShieldCheck, Server, Eye, CircleCheck } from "lucide-react";
 const RESEARCH = [
   {
     badge: "Primary Research",
-    badgeColor: "#00E5FF",
+    badgeColor: "#2596be",
     icon: ShieldCheck,
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.1)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.1)",
     title: "AI-Powered Data Loss Prevention Framework",
     description:
       "Developed a novel DLP framework using transformer-based NLP (BERT, RoBERTa) to classify sensitive data with 98% accuracy. Outperforms traditional regex-based approaches by detecting context-aware sensitivity across document types.",
@@ -26,10 +26,10 @@ const RESEARCH = [
   },
   {
     badge: "Engineering Research",
-    badgeColor: "#00E5FF",
+    badgeColor: "#2596be",
     icon: Server,
-    iconColor: "#00E5FF",
-    iconBg: "rgba(0,229,255,0.1)",
+    iconColor: "#2596be",
+    iconBg: "rgba(37,150,190,0.1)",
     title: "AI-Driven SIEM Enhancement",
     description:
       "Integrating ML models into open-source SIEM (Wazuh) to reduce false positives through intelligent alert correlation and anomaly detection using behavioral baselines. Building adaptive threat scoring systems.",
@@ -41,15 +41,15 @@ const RESEARCH = [
     ],
     tech: ["Wazuh", "Python", "ML", "Suricata", "SIGMA", "Threat Intel"],
     status: "Active",
-    statusColor: "#00E5FF",
-    statusBg: "rgba(0,229,255,0.1)",
+    statusColor: "#2596be",
+    statusBg: "rgba(37,150,190,0.1)",
   },
   {
     badge: "Academic Research",
-    badgeColor: "rgba(0,229,255,0.6)",
+    badgeColor: "rgba(37,150,190,0.6)",
     icon: Eye,
-    iconColor: "rgba(0,229,255,0.7)",
-    iconBg: "rgba(0,229,255,0.08)",
+    iconColor: "rgba(37,150,190,0.7)",
+    iconBg: "rgba(37,150,190,0.08)",
     title: "Explainable AI for Cybersecurity",
     description:
       "Investigating XAI techniques to make AI security decisions interpretable for security analysts, addressing the black-box problem in ML-based threat detection and enabling trust calibration in automated systems.",
@@ -60,8 +60,8 @@ const RESEARCH = [
     ],
     tech: ["XAI", "SHAP", "LIME", "Python", "Security ML"],
     status: "Research Phase",
-    statusColor: "rgba(0,229,255,0.6)",
-    statusBg: "rgba(0,229,255,0.08)",
+    statusColor: "rgba(37,150,190,0.6)",
+    statusBg: "rgba(37,150,190,0.08)",
   },
 ];
 
@@ -79,10 +79,10 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
       onMouseEnter={() => setCardHovered(true)}
       onMouseLeave={() => setCardHovered(false)}
       style={{
-        background: "rgba(17,34,64,0.7)",
+        background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: cardHovered ? "1px solid rgba(0,229,255,0.35)" : "1px solid rgba(0,229,255,0.12)",
+        border: cardHovered ? "1px solid rgba(37,150,190,0.35)" : "1px solid rgba(37,150,190,0.12)",
         borderRadius: "16px",
         padding: "28px",
         display: "flex",
@@ -90,7 +90,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
         gap: "20px",
         transition: "box-shadow 0.3s ease, border-color 0.3s, transform 0.3s",
         transform: cardHovered ? "translateY(-6px)" : "none",
-        boxShadow: cardHovered ? "0 12px 40px rgba(0,229,255,0.1)" : "none",
+        boxShadow: cardHovered ? "0 12px 40px rgba(37,150,190,0.1)" : "none",
       }}
     >
       {/* Header row */}
@@ -108,7 +108,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
             height: "48px",
             borderRadius: "12px",
             background: r.iconBg,
-            border: "1px solid rgba(0,229,255,0.2)",
+            border: "1px solid rgba(37,150,190,0.2)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -123,8 +123,8 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
               fontSize: "10px",
               fontWeight: 600,
               color: r.badgeColor,
-              backgroundColor: "rgba(0,229,255,0.08)",
-              border: "1px solid rgba(0,229,255,0.2)",
+              backgroundColor: "rgba(37,150,190,0.08)",
+              border: "1px solid rgba(37,150,190,0.2)",
               padding: "3px 8px",
               borderRadius: "100px",
               letterSpacing: "0.06em",
@@ -139,7 +139,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
               fontWeight: 600,
               color: r.statusColor,
               backgroundColor: r.statusBg,
-              border: "1px solid rgba(0,229,255,0.2)",
+              border: "1px solid rgba(37,150,190,0.2)",
               padding: "3px 8px",
               borderRadius: "100px",
             }}
@@ -154,7 +154,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
         style={{
           fontSize: "17px",
           fontWeight: 700,
-          color: "#CCD6F6",
+          color: "#FFFFFF",
           lineHeight: 1.35,
         }}
       >
@@ -166,7 +166,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
         style={{
           fontSize: "14px",
           lineHeight: 1.7,
-          color: "#8892B0",
+          color: "rgba(255,255,255,0.65)",
         }}
       >
         {r.description}
@@ -178,7 +178,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
           style={{
             fontSize: "11px",
             fontWeight: 600,
-            color: "#8892B0",
+            color: "rgba(255,255,255,0.65)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
             marginBottom: "10px",
@@ -195,10 +195,10 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
                 alignItems: "flex-start",
                 gap: "8px",
                 fontSize: "13px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
               }}
             >
-              <CircleCheck size={13} color="#00E5FF" style={{ flexShrink: 0, marginTop: "2px" }} />
+              <CircleCheck size={13} color="#2596be" style={{ flexShrink: 0, marginTop: "2px" }} />
               {c}
             </li>
           ))}
@@ -212,7 +212,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
           flexWrap: "wrap",
           gap: "6px",
           paddingTop: "4px",
-          borderTop: "1px solid rgba(0,229,255,0.08)",
+          borderTop: "1px solid rgba(37,150,190,0.08)",
         }}
       >
         {r.tech.map((t) => (
@@ -224,9 +224,9 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
               fontSize: "10px",
               fontWeight: 500,
               fontFamily: "var(--font-geist-mono), monospace",
-              color: cardHovered ? "#00E5FF" : "#8892B0",
-              backgroundColor: cardHovered ? "rgba(0,229,255,0.12)" : "rgba(0,229,255,0.06)",
-              border: cardHovered ? "1px solid rgba(0,229,255,0.3)" : "1px solid rgba(0,229,255,0.1)",
+              color: cardHovered ? "#2596be" : "rgba(255,255,255,0.65)",
+              backgroundColor: cardHovered ? "rgba(37,150,190,0.12)" : "rgba(37,150,190,0.06)",
+              border: cardHovered ? "1px solid rgba(37,150,190,0.3)" : "1px solid rgba(37,150,190,0.1)",
               animation: cardHovered ? "glow-pulse 2s ease-in-out infinite" : "none",
               transition: "color 0.3s, background-color 0.3s, border-color 0.3s",
             }}
@@ -250,7 +250,7 @@ export default function ResearchSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -268,7 +268,7 @@ export default function ResearchSection() {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(0,229,255,0.03) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(37,150,190,0.03) 0%, transparent 70%)",
         }}
       />
 
@@ -293,7 +293,7 @@ export default function ResearchSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -312,13 +312,13 @@ export default function ResearchSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Research &amp;{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

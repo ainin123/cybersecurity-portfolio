@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 
@@ -74,7 +74,7 @@ export default function TerminalWidget() {
       style={{
         position: "relative",
         padding: "80px 0",
-        backgroundColor: "#0A192F",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -88,24 +88,24 @@ export default function TerminalWidget() {
       >
         <div
           style={{
-            background: "rgba(10,25,47,0.95)",
+            background: "rgba(2,8,16,0.95)",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(0,229,255,0.15)",
+            border: "1px solid rgba(37,150,190,0.15)",
             borderRadius: "12px",
             overflow: "hidden",
-            boxShadow: "0 0 40px rgba(0,229,255,0.06), 0 16px 32px rgba(0,0,0,0.4)",
+            boxShadow: "0 0 40px rgba(37,150,190,0.06), 0 16px 32px rgba(0,0,0,0.4)",
           }}
         >
           {/* Terminal chrome */}
           <div
             style={{
               padding: "12px 16px",
-              borderBottom: "1px solid rgba(0,229,255,0.1)",
+              borderBottom: "1px solid rgba(37,150,190,0.1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              backgroundColor: "rgba(17,34,64,0.8)",
+              backgroundColor: "rgba(2,8,16,0.8)",
             }}
           >
             <div style={{ display: "flex", gap: "7px" }}>
@@ -117,7 +117,7 @@ export default function TerminalWidget() {
               style={{
                 fontFamily: "var(--font-geist-mono), monospace",
                 fontSize: "11px",
-                color: "#8892B0",
+                color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.06em",
               }}
             >
@@ -140,7 +140,7 @@ export default function TerminalWidget() {
               <div
                 key={i}
                 style={{
-                  color: line.type === "cmd" ? "#00E5FF" : line.type === "blank" ? "transparent" : "#8892B0",
+                  color: line.type === "cmd" ? "#2596be" : line.type === "blank" ? "transparent" : "rgba(255,255,255,0.65)",
                   marginBottom: "1px",
                 }}
               >
@@ -152,7 +152,7 @@ export default function TerminalWidget() {
             {isTyping && currentLineIndex < TERMINAL_LINES.length && (
               <div
                 style={{
-                  color: TERMINAL_LINES[currentLineIndex].type === "cmd" ? "#00E5FF" : "#8892B0",
+                  color: TERMINAL_LINES[currentLineIndex].type === "cmd" ? "#2596be" : "rgba(255,255,255,0.65)",
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -163,7 +163,7 @@ export default function TerminalWidget() {
                     display: "inline-block",
                     width: "8px",
                     height: "14px",
-                    backgroundColor: "#00E5FF",
+                    backgroundColor: "#2596be",
                     marginLeft: "1px",
                     animation: "blink 1s step-end infinite",
                   }}
@@ -173,14 +173,14 @@ export default function TerminalWidget() {
 
             {/* Done — show blinking cursor */}
             {done && (
-              <div style={{ color: "#00E5FF", display: "flex", alignItems: "center" }}>
+              <div style={{ color: "#2596be", display: "flex", alignItems: "center" }}>
                 ${" "}
                 <span
                   style={{
                     display: "inline-block",
                     width: "8px",
                     height: "14px",
-                    backgroundColor: "#00E5FF",
+                    backgroundColor: "#2596be",
                     marginLeft: "4px",
                     animation: "blink 1s step-end infinite",
                   }}

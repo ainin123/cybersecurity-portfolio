@@ -1,21 +1,21 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GitBranch, Star, Activity, Code, ArrowRight } from "lucide-react";
 
 const STATS = [
-  { icon: GitBranch, label: "Repositories", value: "30+", color: "#00E5FF" },
+  { icon: GitBranch, label: "Repositories", value: "30+", color: "#2596be" },
   { icon: Star, label: "Stars", value: "Growing", color: "#f59e0b" },
-  { icon: Activity, label: "Contributions", value: "Active", color: "#00E5FF" },
-  { icon: Code, label: "Primary Language", value: "Python", color: "rgba(0,229,255,0.6)" },
+  { icon: Activity, label: "Contributions", value: "Active", color: "#2596be" },
+  { icon: Code, label: "Primary Language", value: "Python", color: "rgba(37,150,190,0.6)" },
 ];
 
 const LANGUAGES = [
-  { lang: "Python", pct: 65, color: "#00E5FF" },
-  { lang: "JavaScript", pct: 15, color: "rgba(0,229,255,0.7)" },
-  { lang: "Bash", pct: 12, color: "rgba(0,229,255,0.5)" },
-  { lang: "Java", pct: 8, color: "#8892B0" },
+  { lang: "Python", pct: 65, color: "#2596be" },
+  { lang: "JavaScript", pct: 15, color: "rgba(37,150,190,0.7)" },
+  { lang: "Bash", pct: 12, color: "rgba(37,150,190,0.5)" },
+  { lang: "Java", pct: 8, color: "rgba(255,255,255,0.65)" },
 ];
 
 export default function GitHubSection() {
@@ -29,7 +29,7 @@ export default function GitHubSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#112240",
+        backgroundColor: "#020810",
       }}
     >
       <div
@@ -63,7 +63,7 @@ export default function GitHubSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#00E5FF",
+              color: "#2596be",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -82,13 +82,13 @@ export default function GitHubSection() {
             fontWeight: 800,
             lineHeight: 1.15,
             marginBottom: "60px",
-            color: "#CCD6F6",
+            color: "#FFFFFF",
           }}
         >
           Open Source{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
+              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -127,10 +127,10 @@ export default function GitHubSection() {
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                   style={{
-                    background: "rgba(17,34,64,0.7)",
+                    background: "rgba(2,8,16,0.7)",
                     backdropFilter: "blur(16px)",
                     WebkitBackdropFilter: "blur(16px)",
-                    border: "1px solid rgba(0,229,255,0.12)",
+                    border: "1px solid rgba(37,150,190,0.12)",
                     borderRadius: "12px",
                     padding: "20px",
                     textAlign: "center",
@@ -141,8 +141,8 @@ export default function GitHubSection() {
                       width: "40px",
                       height: "40px",
                       borderRadius: "10px",
-                      background: `rgba(0,229,255,0.1)`,
-                      border: `1px solid rgba(0,229,255,0.2)`,
+                      background: `rgba(37,150,190,0.1)`,
+                      border: `1px solid rgba(37,150,190,0.2)`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -165,7 +165,7 @@ export default function GitHubSection() {
                   <div
                     style={{
                       fontSize: "11px",
-                      color: "#8892B0",
+                      color: "rgba(255,255,255,0.65)",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -180,23 +180,23 @@ export default function GitHubSection() {
               style={{
                 padding: "16px 20px",
                 borderRadius: "10px",
-                background: "rgba(0,229,255,0.04)",
-                border: "1px solid rgba(0,229,255,0.1)",
+                background: "rgba(37,150,190,0.04)",
+                border: "1px solid rgba(37,150,190,0.1)",
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
               }}
             >
-              <GitBranch size={16} color="#00E5FF" />
+              <GitBranch size={16} color="#2596be" />
               <span
                 style={{
                   fontSize: "13px",
-                  color: "#8892B0",
+                  color: "rgba(255,255,255,0.65)",
                   fontFamily: "var(--font-geist-mono), monospace",
                 }}
               >
                 github.com/
-                <span style={{ color: "#00E5FF" }}>aniqa-ayub</span>
+                <span style={{ color: "#2596be" }}>aniqa-ayub</span>
               </span>
             </div>
           </motion.div>
@@ -207,10 +207,10 @@ export default function GitHubSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{
-              background: "rgba(17,34,64,0.7)",
+              background: "rgba(2,8,16,0.7)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(0,229,255,0.12)",
+              border: "1px solid rgba(37,150,190,0.12)",
               borderRadius: "14px",
               padding: "28px",
             }}
@@ -219,7 +219,7 @@ export default function GitHubSection() {
               style={{
                 fontSize: "13px",
                 fontWeight: 600,
-                color: "#00E5FF",
+                color: "#2596be",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-geist-mono), monospace",
@@ -266,7 +266,7 @@ export default function GitHubSection() {
                         style={{
                           fontSize: "13px",
                           fontWeight: 500,
-                          color: "#CCD6F6",
+                          color: "#FFFFFF",
                           fontFamily: "var(--font-geist-mono), monospace",
                         }}
                       >
@@ -287,7 +287,7 @@ export default function GitHubSection() {
                   <div
                     style={{
                       height: "6px",
-                      backgroundColor: "rgba(0,229,255,0.06)",
+                      backgroundColor: "rgba(37,150,190,0.06)",
                       borderRadius: "100px",
                       overflow: "hidden",
                     }}
@@ -316,7 +316,7 @@ export default function GitHubSection() {
               style={{
                 marginTop: "28px",
                 paddingTop: "20px",
-                borderTop: "1px solid rgba(0,229,255,0.08)",
+                borderTop: "1px solid rgba(37,150,190,0.08)",
               }}
             >
               <div
@@ -366,25 +366,25 @@ export default function GitHubSection() {
               gap: "8px",
               padding: "12px 28px",
               borderRadius: "8px",
-              border: "1px solid rgba(0,229,255,0.3)",
-              color: "#00E5FF",
+              border: "1px solid rgba(37,150,190,0.3)",
+              color: "#2596be",
               fontWeight: 600,
               fontSize: "14px",
               textDecoration: "none",
               transition: "all 0.2s",
-              backgroundColor: "rgba(0,229,255,0.06)",
+              backgroundColor: "rgba(37,150,190,0.06)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                "rgba(0,229,255,0.12)";
+                "rgba(37,150,190,0.12)";
               (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "#00E5FF";
+                "#2596be";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                "rgba(0,229,255,0.06)";
+                "rgba(37,150,190,0.06)";
               (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                "rgba(0,229,255,0.3)";
+                "rgba(37,150,190,0.3)";
             }}
           >
             View GitHub Profile
