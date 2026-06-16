@@ -43,6 +43,7 @@ export default function HeroSection() {
         paddingLeft: isDesktop ? "48px" : "24px",
         paddingRight: isDesktop ? "48px" : "24px",
         display: "flex", alignItems: "center",
+        backgroundColor: "#020810",
       }}
     >
       <div ref={glowRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1, transition: "background 0.1s" }} />
@@ -177,21 +178,32 @@ export default function HeroSection() {
           transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
+          {/* Iframe container — scaled up slightly so the branding chrome gets clipped */}
           <div style={{
             width: "100%",
             aspectRatio: "751 / 637",
             borderRadius: "12px",
             overflow: "hidden",
-            border: "1px solid rgba(0,229,255,0.1)",
+            border: "1px solid rgba(0,229,255,0.08)",
             boxShadow: "0 0 60px rgba(0,229,255,0.06)",
+            position: "relative",
           }}>
-            <iframe
-              src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-              frameBorder={0}
-              style={{ width: "100%", height: "100%", display: "block" }}
-              title="Kaspersky Cyberthreat Live Map"
-              allowFullScreen
-            />
+            {/* Scale the iframe so top/bottom/right chrome scrolls out of view */}
+            <div style={{
+              position: "absolute",
+              top: "-48px",
+              left: "0",
+              right: "-52px",
+              bottom: "-54px",
+            }}>
+              <iframe
+                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
+                frameBorder={0}
+                style={{ width: "100%", height: "100%", display: "block" }}
+                title="Kaspersky Live Map"
+                allowFullScreen
+              />
+            </div>
           </div>
         </motion.div>
       </div>
