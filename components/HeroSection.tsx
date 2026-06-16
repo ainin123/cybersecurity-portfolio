@@ -195,7 +195,12 @@ function ThreatGlobe() {
       ctx.clearRect(0, 0, W, H);
       time++;
 
-      // 1. Starfield
+      // 1. Stars only OUTSIDE the globe (evenodd clip excludes the circle area)
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, W, H);
+      ctx.arc(cx, cy, R, 0, Math.PI * 2, true); // counter-clockwise = exclude globe
+      ctx.clip("evenodd");
       STARS.forEach((s) => {
         const twinkle = s.a * (0.7 + 0.3 * Math.sin(time * 0.02 + s.x));
         ctx.beginPath();
@@ -203,12 +208,8 @@ function ThreatGlobe() {
         ctx.fillStyle = `rgba(200,220,255,${twinkle})`;
         ctx.fill();
       });
-
-      // 2. Globe ocean — exact site background so the circle is invisible
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.fillStyle = "#0A192F";
-      ctx.fill();
+      ctx.restore();
+      // No ocean fill — canvas is transparent inside globe, page background shows through
 
       // 4. Continent silhouettes (clipped to globe)
       ctx.save();
