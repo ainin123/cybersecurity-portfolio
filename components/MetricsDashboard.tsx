@@ -25,7 +25,7 @@ function useBreakpoint() {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const SKILLS = [
-  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#2596be", desc: "Wazuh, Splunk, ELK" },
+  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#38a532", desc: "Wazuh, Splunk, ELK" },
   { label: "Threat Intelligence",    pct: 88, years: "2+ yrs", color: "#A855F7", desc: "MISP, YARA, IOCs" },
   { label: "AI Security",            pct: 94, years: "2+ yrs", color: "#EC4899", desc: "BERT, RoBERTa, XAI" },
   { label: "Digital Forensics",      pct: 78, years: "2+ yrs", color: "#F59E0B", desc: "Memory, Disk Analysis" },
@@ -36,7 +36,7 @@ const SKILLS = [
 ];
 
 const IMPACT_STATS = [
-  { label: "Research Papers",  value: 3,   suffix: "+", color: "#2596be" },
+  { label: "Research Papers",  value: 3,   suffix: "+", color: "#38a532" },
   { label: "CVEs Analyzed",    value: 100, suffix: "+", color: "#A855F7" },
   { label: "Detection Rules",  value: 50,  suffix: "+", color: "#EC4899" },
   { label: "ML Models Built",  value: 8,   suffix: "+", color: "#10B981" },
@@ -191,7 +191,7 @@ export default function MetricsDashboard() {
       }} />
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 40% 40% at 80% 60%, rgba(37,150,190,0.04), transparent)",
+        background: "radial-gradient(ellipse 40% 40% at 80% 60%, rgba(56,165,50,0.04), transparent)",
       }} />
 
       <div style={{
@@ -215,7 +215,7 @@ export default function MetricsDashboard() {
         }}>
           SECURITY INTELLIGENCE{" "}
           <span style={{
-            background: "linear-gradient(to right, #A855F7, #EC4899, #2596be)",
+            background: "linear-gradient(to right, #A855F7, #EC4899, #38a532)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
           }}>
             DASHBOARD

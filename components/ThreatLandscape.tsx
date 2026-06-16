@@ -190,8 +190,8 @@ const DATA: Record<string, ThreatItem[]> = {
 
 const SEVERITY_STYLE: Record<Severity, { color: string; bg: string; border: string }> = {
   CRITICAL: { color: "#FF4444", bg: "rgba(255,68,68,0.12)", border: "rgba(255,68,68,0.3)" },
-  HIGH: { color: "#2596be", bg: "rgba(37,150,190,0.1)", border: "rgba(37,150,190,0.25)" },
-  MEDIUM: { color: "rgba(37,150,190,0.6)", bg: "rgba(37,150,190,0.06)", border: "rgba(37,150,190,0.15)" },
+  HIGH: { color: "#38a532", bg: "rgba(56,165,50,0.1)", border: "rgba(56,165,50,0.25)" },
+  MEDIUM: { color: "rgba(56,165,50,0.6)", bg: "rgba(56,165,50,0.06)", border: "rgba(56,165,50,0.15)" },
 };
 
 export default function ThreatLandscape() {
@@ -227,7 +227,7 @@ export default function ThreatLandscape() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#2596be",
+              color: "#38a532",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -247,7 +247,7 @@ export default function ThreatLandscape() {
           Intelligence{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -278,7 +278,7 @@ export default function ThreatLandscape() {
             padding: "4px",
             background: "rgba(2,8,16,0.5)",
             borderRadius: "10px",
-            border: "1px solid rgba(37,150,190,0.1)",
+            border: "1px solid rgba(56,165,50,0.1)",
             width: "fit-content",
           }}
         >
@@ -296,9 +296,9 @@ export default function ThreatLandscape() {
                 fontFamily: "var(--font-geist-mono), monospace",
                 letterSpacing: "0.04em",
                 transition: "all 0.2s",
-                backgroundColor: activeTab === tab ? "rgba(37,150,190,0.15)" : "transparent",
-                color: activeTab === tab ? "#2596be" : "rgba(255,255,255,0.65)",
-                borderBottom: activeTab === tab ? "1px solid rgba(37,150,190,0.4)" : "1px solid transparent",
+                backgroundColor: activeTab === tab ? "rgba(56,165,50,0.15)" : "transparent",
+                color: activeTab === tab ? "#38a532" : "rgba(255,255,255,0.65)",
+                borderBottom: activeTab === tab ? "1px solid rgba(56,165,50,0.4)" : "1px solid transparent",
               }}
             >
               {tab}
@@ -323,7 +323,7 @@ export default function ThreatLandscape() {
                   background: "rgba(2,8,16,0.7)",
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(37,150,190,0.12)",
+                  border: "1px solid rgba(56,165,50,0.12)",
                   borderRadius: "12px",
                   padding: "24px",
                   display: "flex",
@@ -396,8 +396,8 @@ export default function ThreatLandscape() {
                         fontSize: "10px",
                         fontWeight: 500,
                         color: "rgba(255,255,255,0.65)",
-                        backgroundColor: "rgba(37,150,190,0.06)",
-                        border: "1px solid rgba(37,150,190,0.1)",
+                        backgroundColor: "rgba(56,165,50,0.06)",
+                        border: "1px solid rgba(56,165,50,0.1)",
                         fontFamily: "var(--font-geist-mono), monospace",
                       }}
                     >
@@ -412,7 +412,7 @@ export default function ThreatLandscape() {
                     fontSize: "11px",
                     color: "rgba(255,255,255,0.65)",
                     fontFamily: "var(--font-geist-mono), monospace",
-                    borderTop: "1px solid rgba(37,150,190,0.08)",
+                    borderTop: "1px solid rgba(56,165,50,0.08)",
                     paddingTop: "10px",
                   }}
                 >

@@ -12,7 +12,7 @@ interface Particle {
   colorIndex: number;
 }
 
-const COLORS = ["#2596be", "rgba(37,150,190,0.6)", "rgba(37,150,190,0.3)"];
+const COLORS = ["#38a532", "rgba(56,165,50,0.6)", "rgba(56,165,50,0.3)"];
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -58,7 +58,7 @@ export default function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37,150,190,${p.opacity})`;
+        ctx.fillStyle = `rgba(56,165,50,${p.opacity})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -71,7 +71,7 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(37,150,190,${alpha * 0.8})`;
+            ctx.strokeStyle = `rgba(56,165,50,${alpha * 0.8})`;
             ctx.lineWidth = 0.4;
             ctx.stroke();
           }

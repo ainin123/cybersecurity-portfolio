@@ -36,8 +36,8 @@ export default function FloatingTerminalNav({ onReturn }: { onReturn: () => void
         background: "rgba(2,8,16,0.9)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        border: "1px solid rgba(37,150,190,0.3)",
-        color: "#2596be",
+        border: "1px solid rgba(56,165,50,0.3)",
+        color: "#38a532",
         fontFamily: "var(--font-geist-mono), monospace",
         fontSize: "11px",
         padding: "10px 16px",
@@ -47,7 +47,7 @@ export default function FloatingTerminalNav({ onReturn }: { onReturn: () => void
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
         transition: "opacity 0.3s, transform 0.3s",
-        boxShadow: "0 0 20px rgba(37,150,190,0.1)",
+        boxShadow: "0 0 20px rgba(56,165,50,0.1)",
         pointerEvents: visible ? "auto" : "none",
       }}
     >

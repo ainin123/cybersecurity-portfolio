@@ -81,7 +81,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
         background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(37,150,190,0.12)",
+        border: "1px solid rgba(56,165,50,0.12)",
         borderRadius: "16px",
         padding: "28px",
         transition: "box-shadow 0.3s ease",
@@ -102,15 +102,15 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
             width: "44px",
             height: "44px",
             borderRadius: "10px",
-            background: "rgba(37,150,190,0.1)",
-            border: "1px solid rgba(37,150,190,0.2)",
+            background: "rgba(56,165,50,0.1)",
+            border: "1px solid rgba(56,165,50,0.2)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
           }}
         >
-          <category.icon size={22} color="#2596be" />
+          <category.icon size={22} color="#38a532" />
         </div>
         <h3
           style={{
@@ -154,7 +154,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
                 style={{
                   fontSize: "11px",
                   fontWeight: 700,
-                  color: "#2596be",
+                  color: "#38a532",
                   fontFamily: "var(--font-geist-mono), monospace",
                 }}
               >
@@ -164,7 +164,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
             <div
               style={{
                 height: "4px",
-                backgroundColor: "rgba(37,150,190,0.08)",
+                backgroundColor: "rgba(56,165,50,0.08)",
                 borderRadius: "100px",
                 overflow: "hidden",
               }}
@@ -173,7 +173,7 @@ function SkillCard({ category, index, inView }: SkillCardProps) {
                 style={{
                   height: "100%",
                   borderRadius: "100px",
-                  background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.5))",
+                  background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.5))",
                   width: inView ? `${skill.pct}%` : "0%",
                   transition: `width 1s ease-out ${0.3 + index * 0.1 + i * 0.06}s`,
                 }}
@@ -231,7 +231,7 @@ export default function SkillsSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#2596be",
+              color: "#38a532",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -256,7 +256,7 @@ export default function SkillsSection() {
           Technical{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

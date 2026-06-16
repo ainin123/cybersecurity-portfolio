@@ -1,10 +1,10 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   --color-bg: #020810;
   --color-surface: #020810;
   --color-surface2: #020810;
-  --color-accent: #2596be;
+  --color-accent: #38a532;
   --color-text: #FFFFFF;
   --color-muted: rgba(255,255,255,0.65);
   --color-danger: #FF4444;
@@ -31,7 +31,7 @@
   }
 
   ::selection {
-    background-color: rgba(37, 150, 190, 0.3);
+    background-color: rgba(56,165,50, 0.3);
     color: #FFFFFF;
   }
 
@@ -44,12 +44,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(37, 150, 190, 0.4);
+    background: rgba(56,165,50, 0.4);
     border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(37, 150, 190, 0.7);
+    background: rgba(56,165,50, 0.7);
   }
 }
 
@@ -140,7 +140,7 @@
   background: rgba(2,8,16,0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(37,150,190,0.12);
+  border: 1px solid rgba(56,165,50,0.12);
   border-radius: 12px;
 }
 
@@ -151,7 +151,7 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(to right, #2596be, rgba(37,150,190,0.6));
+  background: linear-gradient(to right, #38a532, rgba(56,165,50,0.6));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -162,7 +162,7 @@
 }
 
 @utility grid-overlay {
-  background-image: linear-gradient(rgba(37,150,190,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,150,190,0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(56,165,50,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56,165,50,0.03) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -183,8 +183,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(37,150,190,0.2); }
-  50% { box-shadow: 0 0 24px rgba(37,150,190,0.5); }
+  0%, 100% { box-shadow: 0 0 8px rgba(56,165,50,0.2); }
+  50% { box-shadow: 0 0 24px rgba(56,165,50,0.5); }
 }
 
 @keyframes donut-fill {

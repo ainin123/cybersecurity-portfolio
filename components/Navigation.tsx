@@ -58,7 +58,7 @@ export default function Navigation() {
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
           borderBottom: scrolled
-            ? "1px solid rgba(37,150,190,0.12)"
+            ? "1px solid rgba(56,165,50,0.12)"
             : "1px solid transparent",
         }}
       >
@@ -91,7 +91,7 @@ export default function Navigation() {
                 width: "30px",
                 height: "30px",
                 borderRadius: "7px",
-                background: "linear-gradient(135deg, #2596be 0%, rgba(37,150,190,0.5) 100%)",
+                background: "linear-gradient(135deg, #38a532 0%, rgba(56,165,50,0.5) 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -113,7 +113,7 @@ export default function Navigation() {
               ANIQA{" "}
               <span
                 style={{
-                  background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+                  background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -144,7 +144,7 @@ export default function Navigation() {
                     onClick={() => handleNav(link.href)}
                     style={{
                       background: isActive
-                        ? "rgba(37,150,190,0.1)"
+                        ? "rgba(56,165,50,0.1)"
                         : "transparent",
                       border: "none",
                       cursor: "pointer",
@@ -153,7 +153,7 @@ export default function Navigation() {
                       fontSize: "13px",
                       fontWeight: 500,
                       letterSpacing: "0.03em",
-                      color: isActive ? "#2596be" : "rgba(255,255,255,0.65)",
+                      color: isActive ? "#38a532" : "rgba(255,255,255,0.65)",
                       transition: "all 0.2s ease",
                     }}
                     onMouseEnter={(e) => {
@@ -162,7 +162,7 @@ export default function Navigation() {
                           "#FFFFFF";
                         (
                           e.currentTarget as HTMLButtonElement
-                        ).style.backgroundColor = "rgba(37,150,190,0.06)";
+                        ).style.backgroundColor = "rgba(56,165,50,0.06)";
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -208,7 +208,7 @@ export default function Navigation() {
             style={{
               background: "rgba(2,8,16,0.98)",
               backdropFilter: "blur(20px)",
-              borderTop: "1px solid rgba(37,150,190,0.12)",
+              borderTop: "1px solid rgba(56,165,50,0.12)",
               padding: "12px 24px 20px",
             }}
           >
@@ -233,7 +233,7 @@ export default function Navigation() {
                         width: "100%",
                         textAlign: "left",
                         background: isActive
-                          ? "rgba(37,150,190,0.1)"
+                          ? "rgba(56,165,50,0.1)"
                           : "transparent",
                         border: "none",
                         cursor: "pointer",
@@ -241,7 +241,7 @@ export default function Navigation() {
                         borderRadius: "8px",
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: isActive ? "#2596be" : "rgba(255,255,255,0.65)",
+                        color: isActive ? "#38a532" : "rgba(255,255,255,0.65)",
                       }}
                     >
                       {link.label}

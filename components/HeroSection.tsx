@@ -30,7 +30,7 @@ export default function HeroSection() {
     if (!glowRef.current || !sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
     glowRef.current.style.background =
-      `radial-gradient(400px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(37,150,190,0.06), transparent 70%)`;
+      `radial-gradient(400px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(56,165,50,0.06), transparent 70%)`;
   };
 
   return (
@@ -105,17 +105,17 @@ export default function HeroSection() {
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
             padding: "6px 14px", borderRadius: "4px",
-            border: "1px solid rgba(37,150,190,0.25)",
-            backgroundColor: "rgba(37,150,190,0.06)",
+            border: "1px solid rgba(56,165,50,0.25)",
+            backgroundColor: "rgba(56,165,50,0.06)",
             marginBottom: "28px",
             fontFamily: "var(--font-geist-mono), monospace",
           }}>
             <span style={{
               width: "6px", height: "6px", borderRadius: "50%",
-              backgroundColor: "#2596be",
+              backgroundColor: "#38a532",
               animation: "pulse-dot 2s ease-in-out infinite", flexShrink: 0,
             }} />
-            <span style={{ fontSize: "11px", fontWeight: 600, color: "#2596be", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "11px", fontWeight: 600, color: "#38a532", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               [ THREAT INTELLIGENCE PLATFORM ]
             </span>
           </div>
@@ -129,7 +129,7 @@ export default function HeroSection() {
             <span style={{ display: "block", color: "#FFFFFF", fontSize: "clamp(52px, 8vw, 88px)" }}>ANIQA</span>
             <span style={{
               display: "block", fontSize: "clamp(52px, 8vw, 88px)",
-              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
             }}>AYUB</span>
           </h1>
@@ -139,8 +139,8 @@ export default function HeroSection() {
             {["Cybersecurity Researcher", "SIEM Engineer", "AI Security Engineer"].map((r) => (
               <span key={r} style={{
                 padding: "4px 12px", borderRadius: "100px",
-                border: "1px solid rgba(37,150,190,0.2)",
-                backgroundColor: "rgba(37,150,190,0.06)",
+                border: "1px solid rgba(56,165,50,0.2)",
+                backgroundColor: "rgba(56,165,50,0.06)",
                 fontSize: "12px", fontWeight: 500, color: "rgba(255,255,255,0.65)",
                 fontFamily: "var(--font-geist-mono), monospace", letterSpacing: "0.04em",
               }}>{r}</span>
@@ -156,18 +156,18 @@ export default function HeroSection() {
           <div style={{
             display: "flex", alignItems: "center", gap: "10px", marginBottom: "36px",
             padding: "8px 14px", borderRadius: "6px",
-            backgroundColor: "rgba(37,150,190,0.04)",
-            border: "1px solid rgba(37,150,190,0.12)",
+            backgroundColor: "rgba(56,165,50,0.04)",
+            border: "1px solid rgba(56,165,50,0.12)",
             width: "fit-content",
           }}>
             <span style={{
               width: "7px", height: "7px", borderRadius: "50%",
-              backgroundColor: "#2596be",
+              backgroundColor: "#38a532",
               animation: "pulse-dot 1.5s ease-in-out infinite", flexShrink: 0,
             }} />
             <span style={{
               fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "11px", fontWeight: 600, color: "#2596be", letterSpacing: "0.1em",
+              fontSize: "11px", fontWeight: 600, color: "#38a532", letterSpacing: "0.1em",
             }}>
               STATUS: MONITORING GLOBAL THREAT LANDSCAPE
             </span>
@@ -180,9 +180,9 @@ export default function HeroSection() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
                 padding: "11px 22px", borderRadius: "8px",
-                background: "linear-gradient(135deg, #2596be, rgba(37,150,190,0.7))",
+                background: "linear-gradient(135deg, #38a532, rgba(56,165,50,0.7))",
                 color: "#020810", fontWeight: 700, fontSize: "14px",
-                textDecoration: "none", boxShadow: "0 0 24px rgba(37,150,190,0.25)",
+                textDecoration: "none", boxShadow: "0 0 24px rgba(56,165,50,0.25)",
               }}>
               <Download size={15} />
               Download Resume
@@ -193,7 +193,7 @@ export default function HeroSection() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
                 padding: "11px 22px", borderRadius: "8px",
-                border: "1px solid rgba(37,150,190,0.4)", color: "#2596be",
+                border: "1px solid rgba(56,165,50,0.4)", color: "#38a532",
                 fontWeight: 600, fontSize: "14px", background: "transparent",
                 cursor: "pointer", transition: "all 0.2s",
               }}>

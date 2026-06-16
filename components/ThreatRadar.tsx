@@ -15,11 +15,11 @@ function polarToXY(angleDeg: number, r: number) {
 
 const THREATS = [
   { name: "Malware", angle: 30, r: 160, severity: "CRITICAL", count: "2,847", delay: "0s", color: "#FF4444" },
-  { name: "Phishing", angle: 80, r: 100, severity: "HIGH", count: "1,203", delay: "0.3s", color: "#2596be" },
-  { name: "Botnets", angle: 140, r: 200, severity: "HIGH", count: "892", delay: "0.6s", color: "#2596be" },
+  { name: "Phishing", angle: 80, r: 100, severity: "HIGH", count: "1,203", delay: "0.3s", color: "#38a532" },
+  { name: "Botnets", angle: 140, r: 200, severity: "HIGH", count: "892", delay: "0.6s", color: "#38a532" },
   { name: "Ransomware", angle: 200, r: 130, severity: "CRITICAL", count: "456", delay: "0.9s", color: "#FF4444" },
   { name: "APT Groups", angle: 280, r: 180, severity: "CRITICAL", count: "127", delay: "1.2s", color: "#FF4444" },
-  { name: "Insider Threats", angle: 330, r: 80, severity: "MEDIUM", count: "78", delay: "1.5s", color: "rgba(37,150,190,0.6)" },
+  { name: "Insider Threats", angle: 330, r: 80, severity: "MEDIUM", count: "78", delay: "1.5s", color: "rgba(56,165,50,0.6)" },
 ];
 
 interface TooltipState {
@@ -63,7 +63,7 @@ export default function ThreatRadar() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#2596be",
+              color: "#38a532",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -83,7 +83,7 @@ export default function ThreatRadar() {
           Active{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -133,16 +133,16 @@ export default function ThreatRadar() {
                   cy={CY}
                   r={r}
                   fill="none"
-                  stroke="rgba(37,150,190,0.1)"
+                  stroke="rgba(56,165,50,0.1)"
                   strokeWidth="1"
                 />
               ))}
 
               {/* Crosshairs */}
-              <line x1={CX} y1={CY - 245} x2={CX} y2={CY + 245} stroke="rgba(37,150,190,0.15)" strokeWidth="1" />
-              <line x1={CX - 245} y1={CY} x2={CX + 245} y2={CY} stroke="rgba(37,150,190,0.15)" strokeWidth="1" />
-              <line x1={CX - 173} y1={CY - 173} x2={CX + 173} y2={CY + 173} stroke="rgba(37,150,190,0.07)" strokeWidth="1" />
-              <line x1={CX + 173} y1={CY - 173} x2={CX - 173} y2={CY + 173} stroke="rgba(37,150,190,0.07)" strokeWidth="1" />
+              <line x1={CX} y1={CY - 245} x2={CX} y2={CY + 245} stroke="rgba(56,165,50,0.15)" strokeWidth="1" />
+              <line x1={CX - 245} y1={CY} x2={CX + 245} y2={CY} stroke="rgba(56,165,50,0.15)" strokeWidth="1" />
+              <line x1={CX - 173} y1={CY - 173} x2={CX + 173} y2={CY + 173} stroke="rgba(56,165,50,0.07)" strokeWidth="1" />
+              <line x1={CX + 173} y1={CY - 173} x2={CX - 173} y2={CY + 173} stroke="rgba(56,165,50,0.07)" strokeWidth="1" />
 
               {/* Radar sweep — rotating group */}
               <g
@@ -157,7 +157,7 @@ export default function ThreatRadar() {
                   y1={CY}
                   x2={CX}
                   y2={CY - 240}
-                  stroke="rgba(37,150,190,0.8)"
+                  stroke="rgba(56,165,50,0.8)"
                   strokeWidth="1.5"
                 />
                 {/* Sweep arc fill */}
@@ -172,8 +172,8 @@ export default function ThreatRadar() {
               <defs>
                 <radialGradient id="sweepGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
                   gradientTransform={`translate(${CX} ${CY}) scale(240)`}>
-                  <stop offset="0%" stopColor="rgba(37,150,190,0.4)" />
-                  <stop offset="100%" stopColor="rgba(37,150,190,0)" />
+                  <stop offset="0%" stopColor="rgba(56,165,50,0.4)" />
+                  <stop offset="100%" stopColor="rgba(56,165,50,0)" />
                 </radialGradient>
               </defs>
 
@@ -226,17 +226,17 @@ export default function ThreatRadar() {
               })}
 
               {/* Center crosshair */}
-              <circle cx={CX} cy={CY} r={8} fill="none" stroke="rgba(37,150,190,0.5)" strokeWidth="1" />
-              <circle cx={CX} cy={CY} r={3} fill="#2596be" />
-              <line x1={CX - 14} y1={CY} x2={CX + 14} y2={CY} stroke="rgba(37,150,190,0.6)" strokeWidth="1" />
-              <line x1={CX} y1={CY - 14} x2={CX} y2={CY + 14} stroke="rgba(37,150,190,0.6)" strokeWidth="1" />
+              <circle cx={CX} cy={CY} r={8} fill="none" stroke="rgba(56,165,50,0.5)" strokeWidth="1" />
+              <circle cx={CX} cy={CY} r={3} fill="#38a532" />
+              <line x1={CX - 14} y1={CY} x2={CX + 14} y2={CY} stroke="rgba(56,165,50,0.6)" strokeWidth="1" />
+              <line x1={CX} y1={CY - 14} x2={CX} y2={CY + 14} stroke="rgba(56,165,50,0.6)" strokeWidth="1" />
 
               {/* SCANNING text */}
               <text
                 x={CX}
                 y={CY + 26}
                 textAnchor="middle"
-                fill="#2596be"
+                fill="#38a532"
                 fontSize="8"
                 fontFamily="monospace"
                 letterSpacing="2"
@@ -255,7 +255,7 @@ export default function ThreatRadar() {
                     height={52}
                     rx="6"
                     fill="rgba(2,8,16,0.95)"
-                    stroke="rgba(37,150,190,0.3)"
+                    stroke="rgba(56,165,50,0.3)"
                     strokeWidth="1"
                   />
                   <text
@@ -271,7 +271,7 @@ export default function ThreatRadar() {
                   <text
                     x={Math.min(hovered.x - 10, 390) + 8}
                     y={hovered.y - 26}
-                    fill={hovered.severity === "CRITICAL" ? "#FF4444" : hovered.severity === "HIGH" ? "#2596be" : "rgba(37,150,190,0.5)"}
+                    fill={hovered.severity === "CRITICAL" ? "#FF4444" : hovered.severity === "HIGH" ? "#38a532" : "rgba(56,165,50,0.5)"}
                     fontSize="8"
                     fontFamily="monospace"
                   >
@@ -310,7 +310,7 @@ export default function ThreatRadar() {
                   padding: "6px 14px",
                   borderRadius: "6px",
                   backgroundColor: "rgba(2,8,16,0.7)",
-                  border: "1px solid rgba(37,150,190,0.1)",
+                  border: "1px solid rgba(56,165,50,0.1)",
                 }}
               >
                 <span
@@ -334,7 +334,7 @@ export default function ThreatRadar() {
                 <span
                   style={{
                     fontSize: "10px",
-                    color: threat.severity === "CRITICAL" ? "#FF4444" : threat.severity === "HIGH" ? "#2596be" : "rgba(37,150,190,0.5)",
+                    color: threat.severity === "CRITICAL" ? "#FF4444" : threat.severity === "HIGH" ? "#38a532" : "rgba(56,165,50,0.5)",
                     fontFamily: "var(--font-geist-mono), monospace",
                     marginLeft: "2px",
                   }}

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(37,150,190,0.1)",
+        borderTop: "1px solid rgba(56,165,50,0.1)",
         backgroundColor: "#020810",
         padding: "48px 0 32px",
       }}
@@ -41,7 +41,7 @@ export default function Footer() {
                 width: "28px",
                 height: "28px",
                 borderRadius: "6px",
-                background: "linear-gradient(135deg, #2596be, rgba(37,150,190,0.5))",
+                background: "linear-gradient(135deg, #38a532, rgba(56,165,50,0.5))",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -62,7 +62,7 @@ export default function Footer() {
                 ANIQA{" "}
                 <span
                   style={{
-                    background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+                    background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -108,7 +108,7 @@ export default function Footer() {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#38a532")
               }
               onMouseLeave={(e) =>
                 ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
@@ -132,7 +132,7 @@ export default function Footer() {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#38a532")
               }
               onMouseLeave={(e) =>
                 ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
@@ -155,7 +155,7 @@ export default function Footer() {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "#2596be")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "#38a532")
               }
               onMouseLeave={(e) =>
                 ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.65)")
@@ -171,7 +171,7 @@ export default function Footer() {
         <div
           style={{
             paddingTop: "24px",
-            borderTop: "1px solid rgba(37,150,190,0.06)",
+            borderTop: "1px solid rgba(56,165,50,0.06)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",

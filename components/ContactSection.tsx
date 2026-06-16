@@ -10,28 +10,28 @@ const CONTACT_METHODS = [
     label: "LinkedIn",
     value: "linkedin.com/in/aniqa-ayub",
     href: "https://linkedin.com/in/aniqa-ayub",
-    color: "#2596be",
+    color: "#38a532",
   },
   {
     icon: GitBranch,
     label: "GitHub",
     value: "github.com/aniqa-ayub",
     href: "https://github.com/aniqa-ayub",
-    color: "rgba(37,150,190,0.7)",
+    color: "rgba(56,165,50,0.7)",
   },
   {
     icon: Mail,
     label: "Email",
     value: "aniqa.ayub@email.com",
     href: "mailto:aniqa.ayub@email.com",
-    color: "rgba(37,150,190,0.5)",
+    color: "rgba(56,165,50,0.5)",
   },
   {
     icon: Download,
     label: "Resume",
     value: "Download PDF Resume",
     href: "/resume.pdf",
-    color: "#2596be",
+    color: "#38a532",
     download: true,
   },
 ];
@@ -97,7 +97,7 @@ export default function ContactSection() {
           inset: 0,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(37,150,190,0.04) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(56,165,50,0.04) 0%, transparent 60%)",
         }}
       />
 
@@ -122,7 +122,7 @@ export default function ContactSection() {
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "12px",
               fontWeight: 600,
-              color: "#2596be",
+              color: "#38a532",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
@@ -147,7 +147,7 @@ export default function ContactSection() {
           Let&apos;s{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #2596be, rgba(37,150,190,0.6))",
+              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -211,7 +211,7 @@ export default function ContactSection() {
                   borderRadius: "12px",
                   background: "rgba(2,8,16,0.7)",
                   backdropFilter: "blur(16px)",
-                  border: "1px solid rgba(37,150,190,0.12)",
+                  border: "1px solid rgba(56,165,50,0.12)",
                   textDecoration: "none",
                   transition: "border-color 0.2s, box-shadow 0.2s",
                   cursor: "pointer",
@@ -229,8 +229,8 @@ export default function ContactSection() {
                       width: "38px",
                       height: "38px",
                       borderRadius: "9px",
-                      background: `rgba(37,150,190,0.1)`,
-                      border: `1px solid rgba(37,150,190,0.2)`,
+                      background: `rgba(56,165,50,0.1)`,
+                      border: `1px solid rgba(56,165,50,0.2)`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -276,7 +276,7 @@ export default function ContactSection() {
               background: "rgba(2,8,16,0.7)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(37,150,190,0.12)",
+              border: "1px solid rgba(56,165,50,0.12)",
               borderRadius: "16px",
               padding: "32px",
             }}
@@ -299,14 +299,14 @@ export default function ContactSection() {
                     width: "64px",
                     height: "64px",
                     borderRadius: "50%",
-                    background: "rgba(37,150,190,0.1)",
-                    border: "1px solid rgba(37,150,190,0.3)",
+                    background: "rgba(56,165,50,0.1)",
+                    border: "1px solid rgba(56,165,50,0.3)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <CircleCheck size={32} color="#2596be" />
+                  <CircleCheck size={32} color="#38a532" />
                 </div>
                 <h3
                   style={{
@@ -351,7 +351,7 @@ export default function ContactSection() {
                       padding: "11px 14px",
                       borderRadius: "8px",
                       background: "rgba(2,8,16,0.8)",
-                      border: "1px solid rgba(37,150,190,0.15)",
+                      border: "1px solid rgba(56,165,50,0.15)",
                       color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
@@ -387,7 +387,7 @@ export default function ContactSection() {
                       padding: "11px 14px",
                       borderRadius: "8px",
                       background: "rgba(2,8,16,0.8)",
-                      border: "1px solid rgba(37,150,190,0.15)",
+                      border: "1px solid rgba(56,165,50,0.15)",
                       color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
@@ -420,7 +420,7 @@ export default function ContactSection() {
                       padding: "11px 14px",
                       borderRadius: "8px",
                       background: "rgba(2,8,16,0.8)",
-                      border: "1px solid rgba(37,150,190,0.15)",
+                      border: "1px solid rgba(56,165,50,0.15)",
                       color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
@@ -463,7 +463,7 @@ export default function ContactSection() {
                       padding: "11px 14px",
                       borderRadius: "8px",
                       background: "rgba(2,8,16,0.8)",
-                      border: "1px solid rgba(37,150,190,0.15)",
+                      border: "1px solid rgba(56,165,50,0.15)",
                       color: "#FFFFFF",
                       fontSize: "14px",
                       outline: "none",
@@ -487,14 +487,14 @@ export default function ContactSection() {
                     padding: "13px 24px",
                     borderRadius: "8px",
                     background: loading
-                      ? "rgba(37,150,190,0.4)"
-                      : "linear-gradient(135deg, #2596be, rgba(37,150,190,0.7))",
+                      ? "rgba(56,165,50,0.4)"
+                      : "linear-gradient(135deg, #38a532, rgba(56,165,50,0.7))",
                     border: "none",
                     color: "#020810",
                     fontWeight: 700,
                     fontSize: "15px",
                     cursor: loading ? "not-allowed" : "pointer",
-                    boxShadow: "0 0 24px rgba(37,150,190,0.2)",
+                    boxShadow: "0 0 24px rgba(56,165,50,0.2)",
                     transition: "opacity 0.2s",
                   }}
                 >
@@ -534,8 +534,8 @@ export default function ContactSection() {
           color: #475569;
         }
         input:focus, textarea:focus, select:focus {
-          border-color: rgba(37,150,190,0.4) !important;
-          box-shadow: 0 0 0 3px rgba(37,150,190,0.06);
+          border-color: rgba(56,165,50,0.4) !important;
+          box-shadow: 0 0 0 3px rgba(56,165,50,0.06);
         }
       `}</style>
     </section>
