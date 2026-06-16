@@ -163,7 +163,7 @@ function ThreatGlobe() {
     resize();
     window.addEventListener("resize", resize);
 
-    const getR = () => Math.min(canvas.offsetWidth, canvas.offsetHeight) * 0.42;
+    const getR = () => Math.min(canvas.offsetWidth, canvas.offsetHeight) * 0.48;
     const getCx = () => canvas.offsetWidth / 2;
     const getCy = () => canvas.offsetHeight / 2;
 
@@ -204,20 +204,11 @@ function ThreatGlobe() {
         ctx.fill();
       });
 
-      // 2. Atmosphere glow (outer ring)
-      const atmGrad = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.18);
-      atmGrad.addColorStop(0, "rgba(0,180,120,0.12)");
-      atmGrad.addColorStop(1, "transparent");
-      ctx.fillStyle = atmGrad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, R * 1.18, 0, Math.PI * 2);
-      ctx.fill();
-
-      // 3. Globe ocean
-      const oceanGrad = ctx.createRadialGradient(cx - R * 0.2, cy - R * 0.15, 0, cx, cy, R);
-      oceanGrad.addColorStop(0, "rgba(10,50,55,0.95)");
-      oceanGrad.addColorStop(0.6, "rgba(5,25,35,0.97)");
-      oceanGrad.addColorStop(1, "rgba(2,10,18,1)");
+      // 2. Globe ocean — match site background navy #0A192F
+      const oceanGrad = ctx.createRadialGradient(cx - R * 0.15, cy - R * 0.1, 0, cx, cy, R);
+      oceanGrad.addColorStop(0, "rgba(13,33,65,0.92)");
+      oceanGrad.addColorStop(0.7, "rgba(10,25,47,0.97)");
+      oceanGrad.addColorStop(1, "rgba(8,18,38,1)");
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fillStyle = oceanGrad;
@@ -242,9 +233,9 @@ function ThreatGlobe() {
           }
         });
         ctx.closePath();
-        ctx.fillStyle = "rgba(35,65,45,0.85)";
+        ctx.fillStyle = "rgba(22,52,98,0.9)";
         ctx.fill();
-        ctx.strokeStyle = "rgba(55,100,70,0.4)";
+        ctx.strokeStyle = "rgba(0,229,255,0.2)";
         ctx.lineWidth = 0.6;
         ctx.stroke();
       });
@@ -254,14 +245,14 @@ function ThreatGlobe() {
       // 5. Globe rim
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(0,200,130,0.3)";
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = "rgba(0,229,255,0.18)";
+      ctx.lineWidth = 1.2;
       ctx.stroke();
 
       // Highlight arc (top-left sheen)
       ctx.beginPath();
       ctx.arc(cx, cy, R, Math.PI * 1.15, Math.PI * 1.65);
-      ctx.strokeStyle = "rgba(100,220,180,0.15)";
+      ctx.strokeStyle = "rgba(0,229,255,0.1)";
       ctx.lineWidth = 4;
       ctx.stroke();
 
@@ -348,66 +339,11 @@ function ThreatGlobe() {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      {/* Header */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "7px 14px",
-        background: "rgba(5,15,25,0.9)",
-        border: "1px solid rgba(0,200,130,0.2)",
-        borderRadius: "8px",
-        fontFamily: "var(--font-geist-mono), monospace",
-      }}>
-        <span style={{ fontSize: "11px", color: "#00C882", letterSpacing: "0.12em", fontWeight: 700 }}>
-          REALTIME THREAT MONITOR
-        </span>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <span style={{
-            width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#FF3333",
-            animation: "pulse-dot 1s ease-in-out infinite", display: "inline-block",
-          }} />
-          <span style={{ fontSize: "10px", color: "#FF3333", letterSpacing: "0.1em", fontWeight: 700 }}>
-            LIVE
-          </span>
-        </div>
-      </div>
-
-      {/* Globe */}
-      <div style={{
-        position: "relative", width: "100%", aspectRatio: "1 / 1",
-        borderRadius: "12px", overflow: "hidden",
-        background: "#020810",
-        border: "1px solid rgba(0,200,130,0.08)",
-        boxShadow: "0 0 80px rgba(0,180,100,0.06)",
-      }}>
-        <canvas
-          ref={canvasRef}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }}
-        />
-      </div>
-
-      {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px" }}>
-        {[
-          { label: "ATTACKS/DAY",  value: "178M+" },
-          { label: "IOCs TRACKED", value: "1,247"  },
-          { label: "FEEDS ONLINE", value: "47"      },
-        ].map((s) => (
-          <div key={s.label} style={{
-            background: "rgba(5,15,25,0.9)",
-            border: "1px solid rgba(0,200,130,0.12)",
-            borderRadius: "8px", padding: "10px 8px", textAlign: "center",
-            fontFamily: "var(--font-geist-mono), monospace",
-          }}>
-            <div style={{ fontSize: "15px", fontWeight: 800, color: "#00C882", lineHeight: 1 }}>
-              {s.value}
-            </div>
-            <div style={{ fontSize: "9px", color: "#475569", letterSpacing: "0.08em", marginTop: "4px" }}>
-              {s.label}
-            </div>
-          </div>
-        ))}
-      </div>
+    <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
+      <canvas
+        ref={canvasRef}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }}
+      />
     </div>
   );
 }
