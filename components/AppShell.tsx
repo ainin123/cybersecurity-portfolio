@@ -7,8 +7,6 @@ import FloatingTerminalNav from "./FloatingTerminalNav";
 import ParticleBackground from "./ParticleBackground";
 import Navigation from "./Navigation";
 import HeroSection from "./HeroSection";
-import ThreatRadar from "./ThreatRadar";
-import AttackMap from "./AttackMap";
 import MetricsDashboard from "./MetricsDashboard";
 import AboutSection from "./AboutSection";
 import SkillsSection from "./SkillsSection";
@@ -58,8 +56,6 @@ export default function AppShell() {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <ThreatRadar />
-      <AttackMap />
       <MetricsDashboard />
       <AboutSection />
       <SkillsSection />
