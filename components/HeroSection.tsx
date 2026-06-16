@@ -38,36 +38,68 @@ export default function HeroSection() {
       id="hero" ref={sectionRef} onMouseMove={handleMouseMove}
       style={{
         position: "relative", minHeight: "100vh", overflow: "hidden",
-        paddingTop: isDesktop ? "120px" : "100px",
-        paddingBottom: isDesktop ? "80px" : "60px",
-        paddingLeft: isDesktop ? "48px" : "24px",
-        paddingRight: isDesktop ? "48px" : "24px",
         display: "flex", alignItems: "center",
         backgroundColor: "#020810",
       }}
     >
-      <div ref={glowRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1, transition: "background 0.1s" }} />
-      <div className="grid-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
+      {/* ── Full-screen globe — behind all content ── */}
       <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-        background: "radial-gradient(ellipse 80% 60% at 30% 50%, rgba(0,229,255,0.05) 0%, transparent 65%)",
+        position: "absolute",
+        top: 0, right: 0,
+        width: "100vw", height: "100vh",
+        zIndex: 1,
+        overflow: "hidden",
+      }}>
+        {/* Negative offsets clip away the Kaspersky title bar, logo, and zoom controls */}
+        <div style={{
+          position: "absolute",
+          top: "-48px",
+          left: 0,
+          right: "-52px",
+          bottom: "-54px",
+        }}>
+          <iframe
+            src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
+            frameBorder={0}
+            style={{ width: "100%", height: "100%", display: "block" }}
+            title="Kaspersky Live Map"
+            allowFullScreen
+          />
+        </div>
+      </div>
+
+      {/* ── Left-side gradient so text stays readable over the globe ── */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0,
+        width: isDesktop ? "58%" : "100%",
+        height: "100%",
+        background: isDesktop
+          ? "linear-gradient(to right, #020810 55%, transparent)"
+          : "linear-gradient(to bottom, rgba(2,8,16,0.92) 0%, rgba(2,8,16,0.85) 100%)",
+        zIndex: 2,
+        pointerEvents: "none",
       }} />
 
+      <div ref={glowRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3, transition: "background 0.1s" }} />
+      <div className="grid-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
+
+      {/* ── Content — left column only, globe shows on the right ── */}
       <div style={{
-        position: "relative", zIndex: 2,
+        position: "relative", zIndex: 4,
         maxWidth: "1280px",
         margin: "0 auto",
         width: "100%",
-        display: "grid",
-        gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
-        gap: "48px",
-        alignItems: "center",
+        paddingTop: isDesktop ? "120px" : "100px",
+        paddingBottom: isDesktop ? "80px" : "60px",
+        paddingLeft: isDesktop ? "48px" : "24px",
+        paddingRight: isDesktop ? "48px" : "24px",
       }}>
-        {/* ── LEFT COLUMN ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ maxWidth: isDesktop ? "520px" : "100%" }}
         >
           {/* Platform badge */}
           <div style={{
@@ -116,7 +148,7 @@ export default function HeroSection() {
           </div>
 
           {/* Bio */}
-          <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#8892B0", maxWidth: "520px", marginBottom: "28px" }}>
+          <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#8892B0", maxWidth: "480px", marginBottom: "28px" }}>
             Building enterprise-grade security systems that detect what traditional tools miss.
           </p>
 
@@ -170,42 +202,6 @@ export default function HeroSection() {
             </motion.button>
           </div>
         </motion.div>
-
-        {/* ── RIGHT COLUMN: Kaspersky Live Globe ── */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          {/* Iframe container — scaled up slightly so the branding chrome gets clipped */}
-          <div style={{
-            width: "100%",
-            aspectRatio: "751 / 637",
-            borderRadius: "12px",
-            overflow: "hidden",
-            border: "1px solid rgba(0,229,255,0.08)",
-            boxShadow: "0 0 60px rgba(0,229,255,0.06)",
-            position: "relative",
-          }}>
-            {/* Scale the iframe so top/bottom/right chrome scrolls out of view */}
-            <div style={{
-              position: "absolute",
-              top: "-48px",
-              left: "0",
-              right: "-52px",
-              bottom: "-54px",
-            }}>
-              <iframe
-                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-                frameBorder={0}
-                style={{ width: "100%", height: "100%", display: "block" }}
-                title="Kaspersky Live Map"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Scroll hint */}
@@ -214,7 +210,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
           style={{
             position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", zIndex: 3,
+            display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", zIndex: 5,
           }}>
           <span style={{
             fontSize: "11px", fontFamily: "var(--font-geist-mono), monospace",
