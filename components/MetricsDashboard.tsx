@@ -25,38 +25,29 @@ function useBreakpoint() {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const SKILLS = [
-  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#00E5FF",              desc: "Wazuh, Splunk, ELK" },
-  { label: "Threat Intelligence",    pct: 88, years: "2+ yrs", color: "rgba(0,229,255,0.75)", desc: "MISP, YARA, IOCs" },
-  { label: "AI Security",            pct: 94, years: "2+ yrs", color: "#00E5FF",              desc: "BERT, RoBERTa, XAI" },
-  { label: "Digital Forensics",      pct: 78, years: "2+ yrs", color: "rgba(0,229,255,0.7)",  desc: "Memory, Disk Analysis" },
-  { label: "Malware Analysis",       pct: 82, years: "2+ yrs", color: "#00E5FF",              desc: "Static & Dynamic" },
-  { label: "Cloud Security",         pct: 75, years: "1+ yrs", color: "rgba(0,229,255,0.65)", desc: "AWS, IAM, CSPM" },
-  { label: "Research & Publication", pct: 85, years: "3+ yrs", color: "#00E5FF",              desc: "3 Papers, In Progress" },
-  { label: "Machine Learning",       pct: 90, years: "2+ yrs", color: "rgba(0,229,255,0.8)",  desc: "TF, Scikit-learn, NLP" },
+  { label: "SIEM Engineering",       pct: 92, years: "3+ yrs", color: "#00E5FF", desc: "Wazuh, Splunk, ELK" },
+  { label: "Threat Intelligence",    pct: 88, years: "2+ yrs", color: "#A855F7", desc: "MISP, YARA, IOCs" },
+  { label: "AI Security",            pct: 94, years: "2+ yrs", color: "#EC4899", desc: "BERT, RoBERTa, XAI" },
+  { label: "Digital Forensics",      pct: 78, years: "2+ yrs", color: "#F59E0B", desc: "Memory, Disk Analysis" },
+  { label: "Malware Analysis",       pct: 82, years: "2+ yrs", color: "#10B981", desc: "Static & Dynamic" },
+  { label: "Cloud Security",         pct: 75, years: "1+ yrs", color: "#F97316", desc: "AWS, IAM, CSPM" },
+  { label: "Research & Publication", pct: 85, years: "3+ yrs", color: "#6366F1", desc: "3 Papers, In Progress" },
+  { label: "Machine Learning",       pct: 90, years: "2+ yrs", color: "#14B8A6", desc: "TF, Scikit-learn, NLP" },
 ];
 
 const IMPACT_STATS = [
-  { label: "Research Papers",    value: 3,   suffix: "+" },
-  { label: "CVEs Analyzed",      value: 100, suffix: "+" },
-  { label: "Detection Rules",    value: 50,  suffix: "+" },
-  { label: "ML Models Built",    value: 8,   suffix: "+" },
+  { label: "Research Papers",  value: 3,   suffix: "+", color: "#00E5FF" },
+  { label: "CVEs Analyzed",    value: 100, suffix: "+", color: "#A855F7" },
+  { label: "Detection Rules",  value: 50,  suffix: "+", color: "#EC4899" },
+  { label: "ML Models Built",  value: 8,   suffix: "+", color: "#10B981" },
 ];
 
 const CIRCUMFERENCE = 2 * Math.PI * 54;
 
 // ─── Count-up helper ─────────────────────────────────────────────────────────
 
-function CountUp({
-  target,
-  suffix,
-  triggered,
-}: {
-  target: number;
-  suffix: string;
-  triggered: boolean;
-}) {
+function CountUp({ target, suffix, triggered }: { target: number; suffix: string; triggered: boolean }) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (!triggered) return;
     const steps = 60;
@@ -64,46 +55,26 @@ function CountUp({
     const increment = target / steps;
     const timer = setInterval(() => {
       current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
+      if (current >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(current));
     }, 40);
     return () => clearInterval(timer);
   }, [triggered, target]);
-
-  return (
-    <>
-      {count}
-      {suffix}
-    </>
-  );
+  return <>{count}{suffix}</>;
 }
 
 // ─── Single donut card ───────────────────────────────────────────────────────
 
-function DonutCard({
-  skill,
-  index,
-  animated,
-}: {
-  skill: (typeof SKILLS)[number];
-  index: number;
-  animated: boolean;
-}) {
-  const offset = animated
-    ? CIRCUMFERENCE * (1 - skill.pct / 100)
-    : CIRCUMFERENCE;
+function DonutCard({ skill, index, animated }: { skill: (typeof SKILLS)[number]; index: number; animated: boolean }) {
+  const offset = animated ? CIRCUMFERENCE * (1 - skill.pct / 100) : CIRCUMFERENCE;
 
   return (
     <div
       style={{
-        background: "rgba(17,34,64,0.7)",
+        background: "rgba(26,10,55,0.85)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(0,229,255,0.12)",
+        border: `1px solid ${skill.color}28`,
         borderRadius: "16px",
         padding: "24px",
         display: "flex",
@@ -116,94 +87,69 @@ function DonutCard({
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 40px rgba(0,229,255,0.12)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 12px 40px ${skill.color}25`;
+        (e.currentTarget as HTMLDivElement).style.borderColor = `${skill.color}55`;
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
         (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+        (e.currentTarget as HTMLDivElement).style.borderColor = `${skill.color}28`;
       }}
     >
       <svg width="120" height="120" viewBox="0 0 120 120">
+        {/* Glow filter */}
+        <defs>
+          <filter id={`glow-${index}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
         {/* Track */}
-        <circle
-          cx="60"
-          cy="60"
-          r="54"
-          fill="none"
-          stroke="rgba(0,229,255,0.08)"
-          strokeWidth="12"
-        />
+        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="10" />
         {/* Progress arc */}
         <circle
-          cx="60"
-          cy="60"
-          r="54"
+          cx="60" cy="60" r="54"
           fill="none"
           stroke={skill.color}
-          strokeWidth="12"
+          strokeWidth="10"
           strokeLinecap="round"
           strokeDasharray={CIRCUMFERENCE}
           strokeDashoffset={offset}
           transform="rotate(-90 60 60)"
-          style={{
-            transition: `stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1) ${index * 0.15}s`,
-          }}
+          filter={`url(#glow-${index})`}
+          style={{ transition: `stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1) ${index * 0.15}s` }}
         />
         {/* Center percentage */}
-        <text
-          x="60"
-          y="56"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="20"
-          fontWeight="700"
-          fontFamily="var(--font-geist-mono), monospace"
-          fill="#CCD6F6"
-        >
+        <text x="60" y="56" textAnchor="middle" dominantBaseline="middle"
+          fontSize="20" fontWeight="700" fontFamily="var(--font-geist-mono), monospace" fill="#E2E8F0">
           {skill.pct}
         </text>
-        <text
-          x="60"
-          y="72"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="11"
-          fontFamily="var(--font-geist-mono), monospace"
-          fill="#8892B0"
-        >
+        <text x="60" y="72" textAnchor="middle" dominantBaseline="middle"
+          fontSize="11" fontFamily="var(--font-geist-mono), monospace" fill="#94A3B8">
           %
         </text>
       </svg>
 
-      <div
-        style={{
-          fontSize: "12px",
-          fontWeight: 700,
-          color: "#CCD6F6",
-          fontFamily: "var(--font-geist-mono), monospace",
-          letterSpacing: "0.06em",
-          lineHeight: 1.3,
-        }}
-      >
+      <div style={{
+        fontSize: "12px", fontWeight: 700, color: "#E2E8F0",
+        fontFamily: "var(--font-geist-mono), monospace",
+        letterSpacing: "0.06em", lineHeight: 1.3,
+      }}>
         {skill.label}
       </div>
 
-      <span
-        style={{
-          padding: "2px 10px",
-          borderRadius: "100px",
-          border: "1px solid rgba(0,229,255,0.2)",
-          backgroundColor: "rgba(0,229,255,0.06)",
-          fontSize: "10px",
-          color: "#00E5FF",
-          fontFamily: "var(--font-geist-mono), monospace",
-          letterSpacing: "0.04em",
-        }}
-      >
+      <span style={{
+        padding: "2px 10px", borderRadius: "100px",
+        border: `1px solid ${skill.color}40`,
+        backgroundColor: `${skill.color}12`,
+        fontSize: "10px", color: skill.color,
+        fontFamily: "var(--font-geist-mono), monospace",
+        letterSpacing: "0.04em",
+      }}>
         {skill.years}
       </span>
 
-      <div style={{ fontSize: "11px", color: "#8892B0", letterSpacing: "0.03em" }}>
+      <div style={{ fontSize: "11px", color: "#94A3B8", letterSpacing: "0.03em" }}>
         {skill.desc}
       </div>
     </div>
@@ -229,91 +175,67 @@ export default function MetricsDashboard() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#0D2137",
+        backgroundColor: "#12082A",
       }}
     >
       {/* Subtle grid overlay */}
       <div
         className="grid-overlay"
-        style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}
-      />
-      {/* Radial glow */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,229,255,0.04), transparent)",
-        }}
+        style={{ position: "absolute", inset: 0, opacity: 0.2, pointerEvents: "none" }}
       />
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 24px",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
+      {/* Purple radial glow */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(168,85,247,0.08), transparent)",
+      }} />
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 40% 40% at 80% 60%, rgba(0,229,255,0.04), transparent)",
+      }} />
+
+      <div style={{
+        maxWidth: "1280px", margin: "0 auto",
+        padding: "0 24px", position: "relative", zIndex: 1,
+      }}>
         {/* Section heading */}
-        <div style={{ marginBottom: "12px" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "#00E5FF",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-            }}
-          >
+        <div style={{ marginBottom: "8px" }}>
+          <span style={{
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: "12px", fontWeight: 600,
+            color: "#A855F7", letterSpacing: "0.18em", textTransform: "uppercase",
+          }}>
             EXECUTIVE DASHBOARD
           </span>
         </div>
 
-        <h2
-          style={{
-            fontSize: "clamp(28px, 4vw, 44px)",
-            fontWeight: 800,
-            color: "#CCD6F6",
-            marginBottom: "8px",
-          }}
-        >
+        <h2 style={{
+          fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800,
+          color: "#E2E8F0", marginBottom: "8px",
+        }}>
           SECURITY INTELLIGENCE{" "}
-          <span
-            style={{
-              background: "linear-gradient(to right, #00E5FF, rgba(0,229,255,0.6))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
+          <span style={{
+            background: "linear-gradient(to right, #A855F7, #EC4899, #00E5FF)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+          }}>
             DASHBOARD
           </span>
         </h2>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "#8892B0",
-            fontFamily: "var(--font-geist-mono), monospace",
-            marginBottom: "56px",
-            letterSpacing: "0.04em",
-          }}
-        >
+
+        <p style={{
+          fontSize: "14px", color: "#94A3B8",
+          fontFamily: "var(--font-geist-mono), monospace",
+          marginBottom: "56px", letterSpacing: "0.04em",
+        }}>
           Capability Assessment &amp; Research Impact Metrics
         </p>
 
         {/* Donut grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${skillsCols}, 1fr)`,
-            gap: "20px",
-            marginBottom: "60px",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${skillsCols}, 1fr)`,
+          gap: "20px", marginBottom: "60px",
+        }}>
           {SKILLS.map((skill, i) => (
             <DonutCard key={skill.label} skill={skill} index={i} animated={animated} />
           ))}
@@ -321,60 +243,50 @@ export default function MetricsDashboard() {
 
         {/* Research Impact */}
         <div style={{ marginBottom: "16px" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "#00E5FF",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-            }}
-          >
+          <span style={{
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: "12px", fontWeight: 600,
+            color: "#A855F7", letterSpacing: "0.18em", textTransform: "uppercase",
+          }}>
             RESEARCH IMPACT
           </span>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${impactCols}, 1fr)`,
-            gap: "16px",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${impactCols}, 1fr)`,
+          gap: "16px",
+        }}>
           {IMPACT_STATS.map((stat) => (
             <div
               key={stat.label}
               style={{
-                background: "rgba(17,34,64,0.7)",
+                background: "rgba(26,10,55,0.85)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,229,255,0.12)",
+                border: `1px solid ${stat.color}28`,
                 borderRadius: "14px",
                 padding: "28px 20px",
                 textAlign: "center",
+                transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 30px ${stat.color}20`;
+                (e.currentTarget as HTMLDivElement).style.borderColor = `${stat.color}55`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLDivElement).style.borderColor = `${stat.color}28`;
               }}
             >
-              <div
-                style={{
-                  fontSize: "clamp(36px, 5vw, 52px)",
-                  fontWeight: 800,
-                  fontFamily: "var(--font-geist-mono), monospace",
-                  color: "#00E5FF",
-                  lineHeight: 1,
-                  marginBottom: "8px",
-                }}
-              >
+              <div style={{
+                fontSize: "clamp(36px, 5vw, 52px)", fontWeight: 800,
+                fontFamily: "var(--font-geist-mono), monospace",
+                color: stat.color, lineHeight: 1, marginBottom: "8px",
+              }}>
                 <CountUp target={stat.value} suffix={stat.suffix} triggered={animated} />
               </div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  color: "#8892B0",
-                  letterSpacing: "0.06em",
-                  lineHeight: 1.4,
-                }}
-              >
+              <div style={{ fontSize: "12px", color: "#94A3B8", letterSpacing: "0.06em", lineHeight: 1.4 }}>
                 {stat.label}
               </div>
             </div>
