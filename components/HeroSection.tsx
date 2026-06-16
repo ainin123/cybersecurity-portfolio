@@ -171,32 +171,29 @@ export default function HeroSection() {
         </motion.div>
 
         {/* ── RIGHT COLUMN: Kaspersky Live Globe ── */}
-        {isDesktop && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <div style={{
-              width: "100%",
-              maxWidth: "751px",
-              aspectRatio: "751 / 637",
-              borderRadius: "12px",
-              overflow: "hidden",
-              border: "1px solid rgba(0,229,255,0.1)",
-              boxShadow: "0 0 60px rgba(0,229,255,0.06)",
-            }}>
-              <iframe
-                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-                frameBorder={0}
-                style={{ width: "100%", height: "100%", display: "block" }}
-                title="Kaspersky Cyberthreat Live Map"
-                allowFullScreen
-              />
-            </div>
-          </motion.div>
-        )}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <div style={{
+            width: "100%",
+            aspectRatio: "751 / 637",
+            borderRadius: "12px",
+            overflow: "hidden",
+            border: "1px solid rgba(0,229,255,0.1)",
+            boxShadow: "0 0 60px rgba(0,229,255,0.06)",
+          }}>
+            <iframe
+              src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
+              frameBorder={0}
+              style={{ width: "100%", height: "100%", display: "block" }}
+              title="Kaspersky Cyberthreat Live Map"
+              allowFullScreen
+            />
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll hint */}
