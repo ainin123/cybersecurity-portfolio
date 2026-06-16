@@ -163,7 +163,7 @@ function ThreatGlobe() {
     resize();
     window.addEventListener("resize", resize);
 
-    const getR = () => Math.min(canvas.offsetWidth, canvas.offsetHeight) * 0.48;
+    const getR = () => Math.min(canvas.offsetWidth, canvas.offsetHeight) * 0.495;
     const getCx = () => canvas.offsetWidth / 2;
     const getCy = () => canvas.offsetHeight / 2;
 
@@ -204,14 +204,10 @@ function ThreatGlobe() {
         ctx.fill();
       });
 
-      // 2. Globe ocean — match site background navy #0A192F
-      const oceanGrad = ctx.createRadialGradient(cx - R * 0.15, cy - R * 0.1, 0, cx, cy, R);
-      oceanGrad.addColorStop(0, "rgba(13,33,65,0.92)");
-      oceanGrad.addColorStop(0.7, "rgba(10,25,47,0.97)");
-      oceanGrad.addColorStop(1, "rgba(8,18,38,1)");
+      // 2. Globe ocean — exact site background so the circle is invisible
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.fillStyle = oceanGrad;
+      ctx.fillStyle = "#0A192F";
       ctx.fill();
 
       // 4. Continent silhouettes (clipped to globe)
@@ -242,19 +238,7 @@ function ThreatGlobe() {
 
       ctx.restore();
 
-      // 5. Globe rim
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(0,229,255,0.18)";
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-
-      // Highlight arc (top-left sheen)
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, Math.PI * 1.15, Math.PI * 1.65);
-      ctx.strokeStyle = "rgba(0,229,255,0.1)";
-      ctx.lineWidth = 4;
-      ctx.stroke();
+      // no rim stroke — keeps the globe borderless / blended into background
 
       // 6. Attack arcs
       attacks.forEach((atk) => {
@@ -339,7 +323,7 @@ function ThreatGlobe() {
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1" }}>
+    <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", minHeight: "420px" }}>
       <canvas
         ref={canvasRef}
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }}
