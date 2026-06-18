@@ -39,7 +39,8 @@ export default function HeroSection() {
       style={{
         position: "relative", minHeight: "100vh", overflow: "hidden",
         display: "flex", alignItems: "center",
-        backgroundColor: "#020810",
+        background: "#020810",
+        backgroundAttachment: "fixed",
       }}
     >
       {/* ── Full-screen globe — behind all content ── */}
