@@ -198,7 +198,6 @@ export default function SkillsSection() {
         position: "relative",
         padding: "100px 0",
         backgroundColor: "#020810",
-        overflow: "hidden",
       }}
     >
       {/* Image background */}
@@ -208,9 +207,10 @@ export default function SkillsSection() {
         backgroundImage: "url('/2.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundAttachment: "fixed",
         filter: "blur(12px)",
         opacity: 0.55,
-        transform: "scale(1.06)",
+        clipPath: "inset(0)",
         zIndex: 0,
         pointerEvents: "none",
       }} />
