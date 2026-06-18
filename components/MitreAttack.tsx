@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const TACTICS = [
   {
@@ -128,7 +128,12 @@ export default function MitreAttack() {
         }}
       >
         {/* Section label */}
-        <div style={{ marginBottom: "16px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{ marginBottom: "16px" }}
+        >
           <span
             style={{
               fontFamily: "var(--font-geist-mono), monospace",
@@ -141,9 +146,12 @@ export default function MitreAttack() {
           >
             MITRE ATT&amp;CK COVERAGE
           </span>
-        </div>
+        </motion.div>
 
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.55, delay: 0.08, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 800,
@@ -162,9 +170,12 @@ export default function MitreAttack() {
           >
             Framework Coverage
           </span>
-        </h2>
+        </motion.h2>
 
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.14, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "15px",
             color: "rgba(255,255,255,0.65)",
@@ -172,9 +183,14 @@ export default function MitreAttack() {
           }}
         >
           Mapped techniques across the attack lifecycle
-        </p>
+        </motion.p>
 
         {/* Kill chain flow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+        >
         <div
           style={{
             overflowX: "auto",
@@ -255,9 +271,10 @@ export default function MitreAttack() {
             ))}
           </div>
         </div>
+        </motion.div>
 
         {/* Tactic Cards Grid */}
-        <div
+        <motion.div
           style={{
             display: "grid",
             gap: "16px",
@@ -269,10 +286,13 @@ export default function MitreAttack() {
             const isScanning = scanIndex === i;
             const highlight = isScanning || isHovered;
             return (
-              <div
+              <motion.div
                 key={tactic.id}
                 onMouseEnter={() => setHoveredId(tactic.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+                animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.06, ease: [0.25, 0.4, 0.25, 1] }}
                 style={{
                   background: isScanning
                     ? "rgba(56,165,50,0.08)"
@@ -395,10 +415,10 @@ export default function MitreAttack() {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

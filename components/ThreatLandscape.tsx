@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const TABS = ["CVEs", "Malware Campaigns", "Threat Actors", "Advisories", "Emerging Vulns"];
 
@@ -194,11 +195,16 @@ const SEVERITY_STYLE: Record<Severity, { color: string; bg: string; border: stri
   MEDIUM: { color: "rgba(56,165,50,0.6)", bg: "rgba(56,165,50,0.06)", border: "rgba(56,165,50,0.15)" },
 };
 
+const BLUR_FADE_EASE = [0.25, 0.4, 0.25, 1] as const;
+
 export default function ThreatLandscape() {
   const [activeTab, setActiveTab] = useState("CVEs");
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
+      ref={ref}
       id="threat-landscape"
       style={{
         position: "relative",
@@ -221,7 +227,12 @@ export default function ThreatLandscape() {
         }}
       >
         {/* Section label */}
-        <div style={{ marginBottom: "16px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, delay: 0, ease: BLUR_FADE_EASE }}
+          style={{ marginBottom: "16px" }}
+        >
           <span
             style={{
               fontFamily: "var(--font-geist-mono), monospace",
@@ -234,9 +245,12 @@ export default function ThreatLandscape() {
           >
             CURRENT THREAT LANDSCAPE
           </span>
-        </div>
+        </motion.div>
 
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, delay: 0.08, ease: BLUR_FADE_EASE }}
           style={{
             fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 800,
@@ -255,9 +269,12 @@ export default function ThreatLandscape() {
           >
             Feed
           </span>
-        </h2>
+        </motion.h2>
 
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, delay: 0.14, ease: BLUR_FADE_EASE }}
           style={{
             fontSize: "14px",
             color: "rgba(255,255,255,0.65)",
@@ -266,10 +283,13 @@ export default function ThreatLandscape() {
           }}
         >
           Intelligence Feed — Updated Continuously
-        </p>
+        </motion.p>
 
         {/* Tabs */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, delay: 0.2, ease: BLUR_FADE_EASE }}
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -304,21 +324,36 @@ export default function ThreatLandscape() {
               {tab}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Cards grid */}
-        <div
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25 }}
           style={{
             display: "grid",
             gap: "20px",
             gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
           }}
         >
-          {DATA[activeTab]?.map((item) => {
+          {DATA[activeTab]?.map((item, index) => {
             const sv = SEVERITY_STYLE[item.severity];
             return (
-              <div
+              <motion.div
                 key={item.id}
+                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.05 + index * 0.07,
+                  ease: BLUR_FADE_EASE,
+                }}
+                whileHover={{
+                  y: -4,
+                  boxShadow: "0 12px 32px rgba(56,165,50,0.12)",
+                }}
                 style={{
                   background: "rgba(2,8,16,0.7)",
                   backdropFilter: "blur(16px)",
@@ -418,10 +453,10 @@ export default function ThreatLandscape() {
                 >
                   {item.date}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

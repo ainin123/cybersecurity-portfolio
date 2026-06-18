@@ -1,10 +1,18 @@
-﻿"use client";
+"use client";
 
+import { useRef } from "react";
 import { Lock, GitBranch, AtSign, Download } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+
+const BLUR_FADE_EASE = [0.25, 0.4, 0.25, 1] as const;
 
 export default function Footer() {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
     <footer
+      ref={ref}
       style={{
         borderTop: "1px solid rgba(56,165,50,0.1)",
         backgroundColor: "#020810",
@@ -29,7 +37,10 @@ export default function Footer() {
           }}
         >
           {/* Logo */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -20, filter: "blur(6px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.5, ease: BLUR_FADE_EASE }}
             style={{
               display: "flex",
               alignItems: "center",
@@ -82,10 +93,13 @@ export default function Footer() {
                 Cybersecurity Researcher &amp; AI Security Engineer
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Links */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: 20, filter: "blur(6px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.5, delay: 0.1, ease: BLUR_FADE_EASE }}
             style={{
               display: "flex",
               alignItems: "center",
@@ -93,10 +107,11 @@ export default function Footer() {
               flexWrap: "wrap",
             }}
           >
-            <a
+            <motion.a
               href="https://github.com/aniqa-ayub"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ y: -2, color: "#38a532" }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -116,11 +131,12 @@ export default function Footer() {
             >
               <GitBranch size={14} />
               GitHub
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://linkedin.com/in/aniqa-ayub"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ y: -2, color: "#38a532" }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -140,10 +156,11 @@ export default function Footer() {
             >
               <AtSign size={14} />
               LinkedIn
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="/resume.pdf"
               download
+              whileHover={{ y: -2, color: "#38a532" }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -163,12 +180,15 @@ export default function Footer() {
             >
               <Download size={14} />
               Resume
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
 
         {/* Bottom */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2, ease: BLUR_FADE_EASE }}
           style={{
             paddingTop: "24px",
             borderTop: "1px solid rgba(56,165,50,0.06)",
@@ -197,7 +217,7 @@ export default function Footer() {
           >
             Built with Next.js &bull; Tailwind CSS &bull; Framer Motion
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

@@ -81,9 +81,9 @@ export default function TimelineSection() {
       >
         {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
           <span
@@ -102,9 +102,9 @@ export default function TimelineSection() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             fontWeight: 800,
@@ -170,9 +170,9 @@ export default function TimelineSection() {
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.1 + i * 0.12 }}
+                  initial={{ opacity: 0, x: isLeft ? -40 : 40, filter: "blur(8px)" }}
+                  animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+                  transition={{ duration: 0.6, delay: 0.1 + i * 0.12, ease: [0.25, 0.4, 0.25, 1] }}
                   style={{
                     position: "relative",
                     paddingLeft: "48px",

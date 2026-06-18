@@ -74,9 +74,9 @@ interface SkillCardProps {
 function SkillCard({ category, index, inView }: SkillCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
+      initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+      animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.6, delay: 0.15 + index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
       style={{
         background: "rgba(2,8,16,0.7)",
         backdropFilter: "blur(16px)",
@@ -221,9 +221,9 @@ export default function SkillsSection() {
       >
         {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
           <span
@@ -242,9 +242,9 @@ export default function SkillsSection() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             fontWeight: 800,

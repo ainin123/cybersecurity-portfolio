@@ -112,9 +112,9 @@ export default function ContactSection() {
       >
         {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
           <span
@@ -133,9 +133,9 @@ export default function ContactSection() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             fontWeight: 800,
@@ -158,9 +158,9 @@ export default function ContactSection() {
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "16px",
             color: "rgba(255,255,255,0.65)",
@@ -183,9 +183,9 @@ export default function ContactSection() {
         >
           {/* LEFT: Contact methods */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -199,9 +199,9 @@ export default function ContactSection() {
                 target={method.download ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 download={method.download}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.25 + i * 0.08 }}
+                initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
+                animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+                transition={{ duration: 0.4, delay: 0.25 + i * 0.08, ease: [0.25, 0.4, 0.25, 1] }}
                 whileHover={{ borderColor: method.color, x: 4 }}
                 style={{
                   display: "flex",
@@ -269,9 +269,9 @@ export default function ContactSection() {
 
           {/* RIGHT: Contact form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
             style={{
               background: "rgba(2,8,16,0.7)",
               backdropFilter: "blur(16px)",

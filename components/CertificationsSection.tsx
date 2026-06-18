@@ -102,9 +102,9 @@ export default function CertificationsSection() {
       >
         {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
           <span
@@ -123,9 +123,9 @@ export default function CertificationsSection() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             fontWeight: 800,
@@ -158,9 +158,9 @@ export default function CertificationsSection() {
           {CERTS.map((cert, i) => (
             <motion.div
               key={cert.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
               whileHover={{ y: -5, boxShadow: "0 8px 32px rgba(56,165,50,0.08)" }}
               style={{
                 background: "rgba(2,8,16,0.7)",

@@ -48,9 +48,9 @@ export default function AboutSection() {
       >
         {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
           <span
@@ -69,9 +69,9 @@ export default function AboutSection() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
             fontWeight: 800,
@@ -103,9 +103,9 @@ export default function AboutSection() {
         >
           {/* LEFT: Text */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
           >
             <p
               style={{
@@ -149,9 +149,9 @@ export default function AboutSection() {
               {FOCUS_AREAS.map((area, i) => (
                 <motion.div
                   key={area.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+                  animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
                   style={{
                     padding: "18px 14px",
                     background: "rgba(2,8,16,0.7)",
@@ -201,9 +201,9 @@ export default function AboutSection() {
 
           {/* RIGHT: Glass card with facts */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
+            initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
             onMouseEnter={() => setProfileHovered(true)}
             onMouseLeave={() => setProfileHovered(false)}
             style={{
