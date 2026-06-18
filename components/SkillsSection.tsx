@@ -198,8 +198,40 @@ export default function SkillsSection() {
         position: "relative",
         padding: "100px 0",
         backgroundColor: "#020810",
+        overflow: "hidden",
       }}
     >
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: "blur(14px)",
+          opacity: 0.28,
+          transform: "scale(1.06)",
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <source src="/bg.webm" type="video/webm" />
+      </video>
+
+      {/* Dark overlay */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundColor: "rgba(2,8,16,0.78)",
+        zIndex: 0,
+        pointerEvents: "none",
+      }} />
+
       <div
         className="grid-overlay"
         style={{
@@ -207,6 +239,7 @@ export default function SkillsSection() {
           inset: 0,
           opacity: 0.3,
           pointerEvents: "none",
+          zIndex: 0,
         }}
       />
 
@@ -216,7 +249,7 @@ export default function SkillsSection() {
           margin: "0 auto",
           padding: "0 24px",
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
         {/* Section label */}
