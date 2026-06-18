@@ -81,7 +81,7 @@ export default function MitreAttack() {
   const [scanIndex, setScanIndex] = useState<number>(-1);
   const [scanDone, setScanDone] = useState(false);
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
   const scanStarted = useRef(false);
 
   // Sequential scan animation when section enters view
@@ -423,3 +423,4 @@ export default function MitreAttack() {
     </section>
   );
 }
+

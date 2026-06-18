@@ -160,7 +160,7 @@ function DonutCard({ skill, index, animated }: { skill: (typeof SKILLS)[number];
 
 export default function MetricsDashboard() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
   const [animated, setAnimated] = useState(false);
   const { skills: skillsCols, impact: impactCols } = useBreakpoint();
 
@@ -296,3 +296,4 @@ export default function MetricsDashboard() {
     </section>
   );
 }
+

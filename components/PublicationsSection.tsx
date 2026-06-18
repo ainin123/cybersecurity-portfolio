@@ -24,7 +24,7 @@ const typeConfig: Record<string, { icon: typeof BookOpen; label: string }> = {
 
 export default function PublicationsSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section id="publications" ref={ref} className="relative py-28 overflow-hidden">
@@ -131,3 +131,4 @@ export default function PublicationsSection() {
     </section>
   );
 }
+

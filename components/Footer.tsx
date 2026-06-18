@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { Lock, GitBranch, AtSign, Download } from "lucide-react";
@@ -8,7 +8,7 @@ const BLUR_FADE_EASE = [0.25, 0.4, 0.25, 1] as const;
 
 export default function Footer() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: false, margin: "-50px" });
 
   return (
     <footer
@@ -222,3 +222,4 @@ export default function Footer() {
     </footer>
   );
 }
+

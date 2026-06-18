@@ -53,7 +53,7 @@ interface FormState {
 
 export default function ContactSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -541,3 +541,4 @@ export default function ContactSection() {
     </section>
   );
 }
+

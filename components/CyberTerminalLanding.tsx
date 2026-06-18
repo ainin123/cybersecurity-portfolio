@@ -621,3 +621,4 @@ export default function CyberTerminalLanding({ onNavigate }: Props) {
     </div>
   );
 }
+

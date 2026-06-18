@@ -241,7 +241,7 @@ function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: bo
 
 export default function ResearchSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section
@@ -345,3 +345,4 @@ export default function ResearchSection() {
     </section>
   );
 }
+

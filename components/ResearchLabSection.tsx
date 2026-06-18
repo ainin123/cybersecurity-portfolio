@@ -73,7 +73,7 @@ function AnimatedCounter({ target, inView }: { target: number; inView: boolean }
 
 export default function ResearchLabSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section id="research" ref={ref} className="relative py-28 overflow-hidden">
@@ -217,3 +217,4 @@ export default function ResearchLabSection() {
     </section>
   );
 }
+

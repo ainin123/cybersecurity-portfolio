@@ -69,7 +69,7 @@ const CURRENT_WORK = [
 
 export default function CurrentWorkSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section
@@ -326,3 +326,4 @@ export default function CurrentWorkSection() {
     </section>
   );
 }
+

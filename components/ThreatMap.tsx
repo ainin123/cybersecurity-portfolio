@@ -34,7 +34,7 @@ const liveEvents = [
 
 export default function ThreatMap() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -148,3 +148,4 @@ export default function ThreatMap() {
     </div>
   );
 }
+

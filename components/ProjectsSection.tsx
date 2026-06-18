@@ -614,7 +614,7 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
 
 export default function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section
@@ -712,3 +712,4 @@ export default function ProjectsSection() {
     </section>
   );
 }
+

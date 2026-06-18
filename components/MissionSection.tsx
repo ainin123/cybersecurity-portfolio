@@ -29,7 +29,7 @@ const pillars = [
 
 export default function MissionSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
     <section id="mission" ref={ref} className="relative py-28 overflow-hidden">
@@ -116,3 +116,4 @@ export default function MissionSection() {
     </section>
   );
 }
+

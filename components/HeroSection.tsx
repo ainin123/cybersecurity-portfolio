@@ -37,9 +37,9 @@ export default function HeroSection() {
     <section
       id="hero" ref={sectionRef} onMouseMove={handleMouseMove}
       style={{
-        position: "relative", minHeight: "100vh", overflow: "hidden",
+        position: "relative", minHeight: "100vh",
         display: "flex", alignItems: "center",
-        background: "#020810",
+        background: "linear-gradient(135deg, #020810 0%, #030c18 50%, #020810 100%)",
         backgroundAttachment: "fixed",
       }}
     >
@@ -50,6 +50,7 @@ export default function HeroSection() {
         width: "100vw", height: "100vh",
         zIndex: 1,
         overflow: "hidden",
+        clipPath: "inset(0)",
       }}>
         {/* Negative offsets clip away the Kaspersky title bar, logo, and zoom controls */}
         <div style={{
@@ -227,3 +228,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

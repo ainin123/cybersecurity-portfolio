@@ -14,7 +14,7 @@ const CORE_VALUES = ["Precision", "Innovation", "Impact", "Transparency"];
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
   const [profileHovered, setProfileHovered] = useState(false);
 
   return (
@@ -367,3 +367,4 @@ export default function AboutSection() {
     </section>
   );
 }
+

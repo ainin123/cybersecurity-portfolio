@@ -193,3 +193,4 @@ export default function TerminalWidget() {
     </section>
   );
 }
+

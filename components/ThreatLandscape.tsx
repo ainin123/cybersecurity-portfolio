@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
@@ -200,7 +200,7 @@ const BLUR_FADE_EASE = [0.25, 0.4, 0.25, 1] as const;
 export default function ThreatLandscape() {
   const [activeTab, setActiveTab] = useState("CVEs");
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section
@@ -282,7 +282,7 @@ export default function ThreatLandscape() {
             fontFamily: "var(--font-geist-mono), monospace",
           }}
         >
-          Intelligence Feed — Updated Continuously
+          Intelligence Feed â€” Updated Continuously
         </motion.p>
 
         {/* Tabs */}
@@ -461,3 +461,4 @@ export default function ThreatLandscape() {
     </section>
   );
 }
+
