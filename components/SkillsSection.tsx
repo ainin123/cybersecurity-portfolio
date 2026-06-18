@@ -201,27 +201,19 @@ export default function SkillsSection() {
         overflow: "hidden",
       }}
     >
-      {/* Video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          filter: "blur(12px)",
-          opacity: 0.55,
-          transform: "scale(1.06)",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      >
-        <source src="/bg.webm" type="video/webm" />
-      </video>
+      {/* Image background */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: "url('/2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "blur(12px)",
+        opacity: 0.55,
+        transform: "scale(1.06)",
+        zIndex: 0,
+        pointerEvents: "none",
+      }} />
 
       {/* Dark overlay */}
       <div style={{
