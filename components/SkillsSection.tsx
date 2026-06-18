@@ -213,8 +213,8 @@ export default function SkillsSection() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          filter: "blur(14px)",
-          opacity: 0.28,
+          filter: "blur(12px)",
+          opacity: 0.55,
           transform: "scale(1.06)",
           zIndex: 0,
           pointerEvents: "none",
@@ -227,7 +227,7 @@ export default function SkillsSection() {
       <div style={{
         position: "absolute",
         inset: 0,
-        backgroundColor: "rgba(2,8,16,0.78)",
+        backgroundColor: "rgba(2,8,16,0.60)",
         zIndex: 0,
         pointerEvents: "none",
       }} />
