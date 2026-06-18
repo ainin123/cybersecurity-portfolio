@@ -7,7 +7,6 @@ import FloatingTerminalNav from "./FloatingTerminalNav";
 import ParticleBackground from "./ParticleBackground";
 import Navigation from "./Navigation";
 import HeroSection from "./HeroSection";
-import MetricsDashboard from "./MetricsDashboard";
 import AboutSection from "./AboutSection";
 import SkillsSection from "./SkillsSection";
 import MitreAttack from "./MitreAttack";
@@ -56,7 +55,6 @@ export default function AppShell() {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <MetricsDashboard />
       <AboutSection />
       <SkillsSection />
       <MitreAttack />
