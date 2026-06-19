@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, Server, Eye, CircleCheck } from "lucide-react";
 
@@ -66,6 +66,114 @@ const RESEARCH = [
 ];
 
 type ResearchItem = typeof RESEARCH[0];
+
+// ─── Plexus Canvas Background ─────────────────────────────────────────────────
+function PlexusCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let W = canvas.offsetWidth;
+    let H = canvas.offsetHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    const COUNT = 90;
+    const MAX_DIST = 160;
+
+    type P = { x: number; y: number; vx: number; vy: number; r: number };
+    const particles: P[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      r: Math.random() * 1.8 + 0.8,
+    }));
+
+    let animId: number;
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      }
+
+      // Lines between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            const alpha = (1 - dist / MAX_DIST) * 0.45;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(56,165,50,${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Dots with glow
+      for (const p of particles) {
+        // Outer glow
+        const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        grd.addColorStop(0, "rgba(56,165,50,0.35)");
+        grd.addColorStop(1, "rgba(56,165,50,0)");
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(56,200,50,0.9)";
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    const onResize = () => {
+      W = canvas.offsetWidth;
+      H = canvas.offsetHeight;
+      canvas.width = W;
+      canvas.height = H;
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+  );
+}
 
 function ResearchCard({ r, i, inView }: { r: ResearchItem; i: number; inView: boolean }) {
   const [cardHovered, setCardHovered] = useState(false);
@@ -253,13 +361,17 @@ export default function ResearchSection() {
         backgroundColor: "#020810",
       }}
     >
+      {/* Plexus particle network background */}
+      <PlexusCanvas />
+
       <div
         className="grid-overlay"
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.3,
+          opacity: 0.2,
           pointerEvents: "none",
+          zIndex: 1,
         }}
       />
       <div
@@ -267,8 +379,9 @@ export default function ResearchSection() {
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
+          zIndex: 1,
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(56,165,50,0.03) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(2,8,16,0.5) 0%, transparent 70%)",
         }}
       />
 
@@ -278,7 +391,7 @@ export default function ResearchSection() {
           margin: "0 auto",
           padding: "0 24px",
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
         {/* Section label */}
