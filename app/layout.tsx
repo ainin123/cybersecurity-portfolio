@@ -13,20 +13,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aniqa Ayub | Cybersecurity Researcher & AI Security Engineer",
+  title: "Aniqa Ayub | Network Security Analyst & SIEM Engineer | NCCS NASTP",
   description:
-    "AI-driven cybersecurity, SIEM engineering, threat intelligence, NLP security. Building intelligent security systems that detect what traditional tools miss.",
+    "Aniqa Ayub — Research Associate at the National Centre for Cyber Security (NCCS), NASTP, Islamabad. Expert in Wazuh SIEM deployment, penetration testing, SOC analysis, threat intelligence, and network defense automation.",
   keywords: [
-    "cybersecurity",
-    "AI security",
+    "Aniqa Ayub",
+    "network security analyst",
     "SIEM engineer",
+    "Wazuh SIEM",
+    "penetration testing",
+    "SOC analyst",
+    "cybersecurity researcher",
+    "NCCS NASTP",
     "threat intelligence",
-    "NLP security",
-    "DLP",
-    "Wazuh",
-    "machine learning security",
-    "explainable AI",
+    "vulnerability assessment",
+    "ethical hacking",
+    "network defense",
+    "SOC analysis",
+    "incident response",
+    "Islamabad cybersecurity",
+    "Pakistan cybersecurity",
+    "MISP",
+    "Wireshark",
+    "Nessus",
+    "OpenVAS",
   ],
+  authors: [{ name: "Aniqa Ayub" }],
+  openGraph: {
+    title: "Aniqa Ayub | Network Security Analyst & SIEM Engineer",
+    description:
+      "Research Associate at NCCS, NASTP. Specializing in enterprise SIEM solutions, penetration testing, threat intelligence, and network defense — based in Islamabad, Pakistan.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

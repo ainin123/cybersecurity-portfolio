@@ -2,65 +2,65 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Shield, Target, Cloud, Code, Brain } from "lucide-react";
+import { Shield, Target, Network, Code, Search } from "lucide-react";
 
 const SKILL_CATEGORIES = [
   {
     icon: Shield,
-    title: "Defensive Security",
+    title: "SIEM & Network Defense",
     skills: [
-      { name: "Wazuh SIEM", pct: 92 },
-      { name: "Threat Hunting", pct: 88 },
-      { name: "Detection Engineering", pct: 90 },
-      { name: "Incident Response", pct: 85 },
-      { name: "Log Analysis", pct: 93 },
-      { name: "SIGMA Rules", pct: 87 },
+      { name: "Wazuh SIEM", pct: 95 },
+      { name: "ElasticStack (ELK)", pct: 88 },
+      { name: "Snort IDS/IPS", pct: 82 },
+      { name: "Packetbeat", pct: 80 },
+      { name: "Sysmon", pct: 85 },
+      { name: "SOAR Integration", pct: 82 },
     ],
   },
   {
     icon: Target,
-    title: "Offensive Security",
+    title: "Penetration Testing",
     skills: [
-      { name: "Nmap", pct: 85 },
-      { name: "Burp Suite", pct: 80 },
-      { name: "Metasploit", pct: 75 },
-      { name: "Web Security Testing", pct: 82 },
-      { name: "Vulnerability Assessment", pct: 88 },
-      { name: "OSINT", pct: 86 },
+      { name: "NMAP", pct: 90 },
+      { name: "Burp Suite", pct: 85 },
+      { name: "Burp Intruder", pct: 80 },
+      { name: "Nikto", pct: 82 },
+      { name: "Acunetix", pct: 78 },
+      { name: "Hydra", pct: 75 },
     ],
   },
   {
-    icon: Cloud,
-    title: "Cloud Security",
+    icon: Search,
+    title: "Threat Intelligence",
     skills: [
-      { name: "AWS Security", pct: 78 },
-      { name: "IAM Policies", pct: 82 },
-      { name: "Cloud Monitoring", pct: 80 },
-      { name: "Security Architecture", pct: 85 },
-      { name: "Container Security", pct: 76 },
+      { name: "Wireshark / tShark", pct: 92 },
+      { name: "MISP", pct: 85 },
+      { name: "Maltego", pct: 80 },
+      { name: "Shodan", pct: 82 },
+      { name: "Yeti", pct: 75 },
+    ],
+  },
+  {
+    icon: Network,
+    title: "Vulnerability Assessment",
+    skills: [
+      { name: "Nessus", pct: 85 },
+      { name: "OpenVAS", pct: 82 },
+      { name: "Cuckoo Sandbox", pct: 78 },
+      { name: "Static Analysis", pct: 80 },
+      { name: "Dynamic Analysis", pct: 78 },
+      { name: "CVE Research", pct: 86 },
     ],
   },
   {
     icon: Code,
-    title: "Programming & Automation",
+    title: "SOC & Security Operations",
     skills: [
-      { name: "Python", pct: 95 },
-      { name: "JavaScript", pct: 80 },
-      { name: "TypeScript", pct: 75 },
-      { name: "Bash", pct: 88 },
-      { name: "SQL", pct: 82 },
-      { name: "API Development", pct: 84 },
-    ],
-  },
-  {
-    icon: Brain,
-    title: "AI & ML Security",
-    skills: [
-      { name: "BERT/RoBERTa", pct: 92 },
-      { name: "TensorFlow", pct: 85 },
-      { name: "Scikit-learn", pct: 90 },
-      { name: "XAI (SHAP/LIME)", pct: 88 },
-      { name: "NLP Pipelines", pct: 91 },
+      { name: "SOC Analysis", pct: 90 },
+      { name: "Incident Response", pct: 85 },
+      { name: "Security Policy Dev.", pct: 82 },
+      { name: "Network Forensics", pct: 80 },
+      { name: "Scripting & Automation", pct: 88 },
     ],
   },
 ];

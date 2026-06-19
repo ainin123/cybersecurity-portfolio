@@ -5,12 +5,12 @@ import { motion, useInView } from "framer-motion";
 import { Shield, Server, Target, MapPin, BookOpen, Briefcase, CircleCheck } from "lucide-react";
 
 const FOCUS_AREAS = [
-  { icon: Shield, label: "AI for Security", desc: "Transformer models for threat detection" },
-  { icon: Server, label: "SIEM Engineering", desc: "Wazuh, Suricata, custom integrations" },
-  { icon: Target, label: "Threat Intelligence", desc: "IOC pipelines, YARA, Sigma rules" },
+  { icon: Server, label: "SIEM Engineering", desc: "Wazuh, ElasticStack, SOAR integration" },
+  { icon: Target, label: "Penetration Testing", desc: "VAPT, web app, network recon" },
+  { icon: Shield, label: "Network Defense", desc: "SOC analysis, IDS/IPS, incident response" },
 ];
 
-const CORE_VALUES = ["Precision", "Innovation", "Impact", "Transparency"];
+const CORE_VALUES = ["Precision", "Leadership", "Innovation", "Integrity"];
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
@@ -80,7 +80,7 @@ export default function AboutSection() {
             color: "#FFFFFF",
           }}
         >
-          Engineering the Future of{" "}
+          Defending Networks with{" "}
           <span
             style={{
               background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
@@ -89,7 +89,7 @@ export default function AboutSection() {
               backgroundClip: "text",
             }}
           >
-            Cybersecurity Intelligence
+            Precision & Intelligence
           </span>
         </motion.h2>
 
@@ -115,12 +115,12 @@ export default function AboutSection() {
                 marginBottom: "24px",
               }}
             >
-              I am a cybersecurity researcher and engineer specializing in
-              AI-driven security systems. My work centers on building intelligent
-              SIEM platforms that leverage NLP and machine learning to detect
-              threats that traditional rule-based tools miss. My experience spans
-              threat intelligence, data loss prevention, and explainable AI for
-              security decision transparency.
+              Accomplished Research Associate at the National Centre for Cyber
+              Security (NCCS), NASTP, with expertise in developing and deploying
+              enterprise SIEM solutions for network defence. Proficient in
+              integrating threat intelligence, enhancing operational efficiency
+              through automation, and facilitating seamless SOAR and SIEM
+              integration for critical infrastructure protection.
             </p>
 
             <p
@@ -131,11 +131,11 @@ export default function AboutSection() {
                 marginBottom: "40px",
               }}
             >
-              Currently focused on applying transformer models (BERT, RoBERTa)
-              to DLP problems, developing AI-enhanced Wazuh/SIEM integrations,
-              and researching explainable AI for security decision transparency
-              — making ML-based threat detection interpretable for security
-              analysts.
+              Skilled in SOC analysis, vulnerability management, penetration
+              testing, and security incident response. Experienced in executing
+              end-to-end penetration tests — from reconnaissance and vulnerability
+              assessment to professional reporting — with a strong foundation in
+              tools such as Wazuh, NMAP, Wireshark, Burp Suite, and Snort.
             </p>
 
             {/* Focus areas */}
@@ -252,28 +252,28 @@ export default function AboutSection() {
                 {
                   icon: BookOpen,
                   label: "Education",
-                  value: "BS Computer Science — Cybersecurity Focus",
+                  value: "MS Cyber Security — Air University (2022–2025)",
                 },
                 {
                   icon: Target,
                   label: "Focus Areas",
-                  value: "AI Security, SIEM Engineering, NLP, DLP, XAI",
+                  value: "SIEM, SOC Analysis, Penetration Testing, Network Defense",
                 },
                 {
                   icon: CircleCheck,
-                  label: "Current Status",
-                  value: "Open to Opportunities",
+                  label: "Current Role",
+                  value: "Research Associate @ NCCS, NASTP",
                   highlight: true,
                 },
                 {
                   icon: MapPin,
                   label: "Location",
-                  value: "Remote / Global",
+                  value: "Islamabad, Pakistan",
                 },
                 {
                   icon: Briefcase,
                   label: "Experience",
-                  value: "Research & Engineering — AI Security Systems",
+                  value: "SIEM Deployment, VAPT, Threat Intelligence, Automation",
                 },
               ].map((item) => (
                 <div

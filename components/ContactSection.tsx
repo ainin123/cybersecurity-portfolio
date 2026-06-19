@@ -22,8 +22,8 @@ const CONTACT_METHODS = [
   {
     icon: Mail,
     label: "Email",
-    value: "aniqa.ayub@email.com",
-    href: "mailto:aniqa.ayub@email.com",
+    value: "aniqaayub4@gmail.com",
+    href: "mailto:aniqaayub4@gmail.com",
     color: "rgba(56,165,50,0.5)",
   },
   {
@@ -169,8 +169,8 @@ export default function ContactSection() {
             lineHeight: 1.6,
           }}
         >
-          Open to cybersecurity research collaborations, SIEM engineering roles,
-          AI security projects, and consulting engagements.
+          Open to SIEM engineering roles, penetration testing engagements,
+          SOC analyst positions, cybersecurity research collaborations, and consulting opportunities.
         </motion.p>
 
         <div

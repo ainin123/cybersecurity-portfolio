@@ -5,43 +5,43 @@ import { motion, useInView } from "framer-motion";
 
 const TIMELINE = [
   {
-    period: "2024 — Present",
-    title: "AI-Powered DLP Research",
+    period: "02/2024 — Present",
+    title: "Research Associate — NCCS, NASTP",
     description:
-      "Began deep research into transformer-based DLP frameworks using BERT and RoBERTa models. Achieved 98% classification accuracy on sensitive document categorization, outperforming traditional regex-based approaches.",
-    tech: ["BERT", "RoBERTa", "TensorFlow", "DLP", "NLP"],
+      "Developing and deploying enterprise-grade SIEM solutions for network defence at the National Centre for Cyber Security. Enhancing SIEM capabilities through threat intelligence integration, cloud environment deployments, and automating critical data protection workflows. Facilitating seamless SOAR and SIEM integration for national-level infrastructure.",
+    tech: ["Wazuh", "ElasticStack", "SOAR", "Threat Intel", "Automation"],
     color: "#38a532",
   },
   {
-    period: "2024",
-    title: "Threat Intelligence Integration",
+    period: "08/2023 — Present",
+    title: "Independent Penetration Testing Projects",
     description:
-      "Built automated threat intel pipelines integrating MISP, VirusTotal, and custom YARA rules. Developed enrichment workflows that correlate IOCs across multiple feed sources for comprehensive threat coverage.",
-    tech: ["MISP", "VirusTotal", "YARA", "Python", "Redis"],
+      "Sourced real-world penetration testing opportunities within professional networks. Executed end-to-end penetration tests — from reconnaissance and vulnerability assessment to detailed reporting. Produced screen-recorded walkthroughs mirroring professional pentest deliverables. Strengthened expertise in ethical hacking, vulnerability analysis, and secure system design.",
+    tech: ["NMAP", "Burp Suite", "Wireshark", "OSINT", "Report Writing"],
     color: "rgba(56,165,50,0.7)",
   },
   {
-    period: "2023 — 2024",
-    title: "AI-Enhanced SIEM Development",
+    period: "2022 — 2025",
+    title: "MS Cyber Security — Air University, Islamabad",
     description:
-      "Deployed Wazuh with ML-powered alert scoring and anomaly detection, reducing false positives significantly. Developed custom decoders, rules, and a behavioral baseline system for user entity analytics.",
-    tech: ["Wazuh", "Suricata", "SIGMA", "ML", "ELK"],
+      "Pursuing a Master's in Cyber Security with AI as a major specialization. Coursework covers Network Security (labs & theory), Data Security, Software Security, Blockchain Security, Vulnerability Assessment & Reverse Engineering, Web Application Security, Network Forensics, and Cyber Security Using AI.",
+    tech: ["Network Security", "AI in CyberSec", "Web App Security", "Forensics", "Blockchain"],
     color: "rgba(56,165,50,0.5)",
   },
   {
-    period: "2023",
-    title: "Cloud Security Research",
+    period: "2015 — 2019",
+    title: "BS Computer Science — Arid Agriculture University, Rawalpindi",
     description:
-      "Explored cloud-native security architectures, container security with Docker, and SOAR automation workflows. Investigated zero-trust network models and their application to hybrid cloud environments.",
-    tech: ["Docker", "Cloud Security", "SOAR", "Zero Trust", "CI/CD"],
+      "Completed a Bachelor's in Computer Science, building a strong foundation in programming, systems, networks, and database management. This academic background directly supports current expertise in scripting, automation, and security tool development.",
+    tech: ["Computer Science", "Networking", "Programming", "Databases", "Linux"],
     color: "#38a532",
   },
   {
-    period: "2022 — Present",
-    title: "Advanced AI Security Research",
+    period: "Ongoing",
+    title: "Certifications & Continuous Learning",
     description:
-      "Pursuing explainable AI for cybersecurity, UEBA (User Entity Behavior Analytics) research, and advanced ML security models. Focus on making AI-driven security decisions interpretable and trustworthy for analysts.",
-    tech: ["XAI", "SHAP", "LIME", "UEBA", "Security ML"],
+      "Actively pursuing ISC2 Certified in Cybersecurity (CC). Completed NAVTTC Cyber Security Certification (A+) covering VAPT, ethical hacking, and malware analysis, and the Ethical Hacking Essential (EHE) certification via Coursera focused on network and web application attack countermeasures.",
+    tech: ["ISC2 CC", "NAVTTC", "EHE Coursera", "VAPT", "Ethical Hacking"],
     color: "rgba(56,165,50,0.7)",
   },
 ];

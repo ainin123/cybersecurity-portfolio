@@ -138,7 +138,7 @@ export default function HeroSection() {
 
           {/* Role pills */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "24px" }}>
-            {["Cybersecurity Researcher", "SIEM Engineer", "AI Security Engineer"].map((r) => (
+            {["Network Security Analyst", "SIEM Engineer", "Penetration Tester"].map((r) => (
               <span key={r} style={{
                 padding: "4px 12px", borderRadius: "100px",
                 border: "1px solid rgba(56,165,50,0.2)",
@@ -151,7 +151,7 @@ export default function HeroSection() {
 
           {/* Bio */}
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px", marginBottom: "28px" }}>
-            Building enterprise-grade security systems that detect what traditional tools miss.
+            Research Associate at NCCS, NASTP — deploying enterprise SIEM solutions, executing real-world penetration tests, and advancing network defense through threat intelligence and automation.
           </p>
 
           {/* Live status */}
