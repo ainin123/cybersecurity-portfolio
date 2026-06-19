@@ -89,8 +89,8 @@ function PlexusCanvas() {
     const particles: P[] = Array.from({ length: COUNT }, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
+      vx: (Math.random() - 0.5) * 1.1,
+      vy: (Math.random() - 0.5) * 1.1,
       r: Math.random() * 1.8 + 0.8,
     }));
 
@@ -117,8 +117,8 @@ function PlexusCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(56,165,50,${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = `rgba(56,165,50,${alpha * 0.55})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -128,7 +128,7 @@ function PlexusCanvas() {
       for (const p of particles) {
         // Outer glow
         const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-        grd.addColorStop(0, "rgba(56,165,50,0.35)");
+        grd.addColorStop(0, "rgba(56,165,50,0.12)");
         grd.addColorStop(1, "rgba(56,165,50,0)");
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
@@ -138,7 +138,7 @@ function PlexusCanvas() {
         // Core dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(56,200,50,0.9)";
+        ctx.fillStyle = "rgba(56,165,50,0.45)";
         ctx.fill();
       }
 
