@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -15,6 +15,102 @@ function useIsDesktop() {
     return () => mq.removeEventListener("change", handler);
   }, []);
   return isDesktop;
+}
+
+// ─── Matrix Binary Rain ───────────────────────────────────────────────────────
+function MatrixRain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let W = canvas.offsetWidth;
+    let H = canvas.offsetHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    const FS = 13;
+    const CHARS = "01";
+    let COLS = Math.floor(W / FS);
+
+    // Each column: current drop y position (in rows)
+    let drops: number[] = Array.from({ length: COLS }, () => Math.random() * -80);
+    // Each column: speed multiplier
+    let speeds: number[] = Array.from({ length: COLS }, () => 0.3 + Math.random() * 0.5);
+
+    let animId: number;
+    let lastTime = 0;
+    const INTERVAL = 1000 / 28; // ~28 fps
+
+    const draw = (now: number) => {
+      animId = requestAnimationFrame(draw);
+      if (now - lastTime < INTERVAL) return;
+      lastTime = now;
+
+      // Fade trail
+      ctx.fillStyle = "rgba(2,8,16,0.055)";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.font = `${FS}px 'Courier New', monospace`;
+
+      for (let i = 0; i < COLS; i++) {
+        const y = drops[i] * FS;
+        const x = i * FS;
+        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+
+        // Bright head
+        ctx.fillStyle = "rgba(120,230,120,0.9)";
+        ctx.fillText(char, x, y);
+
+        // Sub-head (one step behind, dimmer)
+        if (drops[i] > 1) {
+          ctx.fillStyle = "rgba(56,165,50,0.55)";
+          ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FS);
+        }
+
+        // Reset column when it exits the screen
+        if (y > H && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i] += speeds[i];
+      }
+    };
+
+    animId = requestAnimationFrame(draw);
+
+    const onResize = () => {
+      W = canvas.offsetWidth;
+      H = canvas.offsetHeight;
+      canvas.width = W;
+      canvas.height = H;
+      COLS = Math.floor(W / FS);
+      drops = Array.from({ length: COLS }, () => Math.random() * -80);
+      speeds = Array.from({ length: COLS }, () => 0.3 + Math.random() * 0.5);
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
+  );
 }
 
 // ─── Main HeroSection ────────────────────────────────────────────────────────
@@ -39,56 +135,80 @@ export default function HeroSection() {
       style={{
         position: "relative", minHeight: "100vh",
         display: "flex", alignItems: "center",
-        background: "linear-gradient(135deg, #020810 0%, #030c18 50%, #020810 100%)",
-        backgroundAttachment: "fixed",
+        backgroundColor: "#020810",
+        overflow: "hidden",
       }}
     >
-      {/* ── Full-screen globe — behind all content ── */}
-      <div style={{
-        position: "absolute",
-        top: 0, right: 0,
-        width: "100vw", height: "100vh",
-        zIndex: 1,
-        overflow: "hidden",
-        clipPath: "inset(0)",
-      }}>
-        {/* Negative offsets clip away the Kaspersky title bar, logo, and zoom controls */}
+      {/* ── Falling binary rain — full section background ── */}
+      <MatrixRain />
+
+      <div className="grid-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1, opacity: 0.12 }} />
+
+      {/* ── Hacker image — right side (desktop only) ── */}
+      {mounted && isDesktop && (
         <div style={{
           position: "absolute",
-          top: "-48px",
-          left: 0,
-          right: "-52px",
-          bottom: "-100px",
+          top: 0, right: 0,
+          width: "52%",
+          height: "100%",
+          zIndex: 2,
+          overflow: "hidden",
         }}>
-          <iframe
-            src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-            frameBorder={0}
-            style={{ width: "100%", height: "100%", display: "block" }}
-            title="Kaspersky Live Map"
-            allowFullScreen
+          <img
+            src="/hacker.webp"
+            alt=""
+            aria-hidden="true"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center center",
+              opacity: 0.50,
+              filter: "saturate(0.75) brightness(0.65) hue-rotate(10deg)",
+            }}
           />
+          {/* Left-edge blend into background */}
+          <div style={{
+            position: "absolute", top: 0, left: 0,
+            width: "55%", height: "100%",
+            background: "linear-gradient(to right, #020810 20%, transparent)",
+            pointerEvents: "none",
+          }} />
+          {/* Top fade */}
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0,
+            height: "25%",
+            background: "linear-gradient(to bottom, #020810, transparent)",
+            pointerEvents: "none",
+          }} />
+          {/* Bottom fade */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0,
+            height: "25%",
+            background: "linear-gradient(to top, #020810, transparent)",
+            pointerEvents: "none",
+          }} />
         </div>
-      </div>
+      )}
 
-      {/* ── Left-side gradient so text stays readable over the globe ── */}
+      {/* ── Left-side gradient so text stays readable ── */}
       <div style={{
         position: "absolute",
         top: 0, left: 0,
-        width: isDesktop ? "58%" : "100%",
+        width: isDesktop ? "62%" : "100%",
         height: "100%",
         background: isDesktop
-          ? "linear-gradient(to right, #020810 55%, transparent)"
-          : "linear-gradient(to bottom, rgba(2,8,16,0.92) 0%, rgba(2,8,16,0.85) 100%)",
-        zIndex: 2,
+          ? "linear-gradient(to right, #020810 58%, transparent)"
+          : "rgba(2,8,16,0.82)",
+        zIndex: 3,
         pointerEvents: "none",
       }} />
 
-      <div ref={glowRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3, transition: "background 0.1s" }} />
-      <div className="grid-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
+      <div ref={glowRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 4, transition: "background 0.1s" }} />
 
-      {/* ── Content — left column only, globe shows on the right ── */}
+      {/* ── Content ── */}
       <div style={{
-        position: "relative", zIndex: 4,
+        position: "relative", zIndex: 5,
         maxWidth: "1280px",
         margin: "0 auto",
         width: "100%",
@@ -212,7 +332,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
           style={{
             position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", zIndex: 5,
+            display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", zIndex: 6,
           }}>
           <span style={{
             fontSize: "11px", fontFamily: "var(--font-geist-mono), monospace",
@@ -228,4 +348,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
