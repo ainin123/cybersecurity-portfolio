@@ -200,20 +200,29 @@ export default function SkillsSection() {
         backgroundColor: "#020810",
       }}
     >
-      {/* Image background */}
+      {/* Fixed video background — clipPath clips the fixed video to section bounds */}
       <div style={{
         position: "absolute",
         inset: 0,
-        backgroundImage: "url('/2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-        filter: "blur(12px)",
-        opacity: 0.55,
         clipPath: "inset(0)",
         zIndex: 0,
         pointerEvents: "none",
-      }} />
+      }}>
+        <video
+          autoPlay loop muted playsInline
+          style={{
+            position: "fixed",
+            top: 0, left: 0,
+            width: "100vw", height: "100vh",
+            objectFit: "cover",
+            filter: "blur(12px)",
+            opacity: 0.55,
+            transform: "scale(1.06)",
+          }}
+        >
+          <source src="/bg.webm" type="video/webm" />
+        </video>
+      </div>
 
       {/* Dark overlay */}
       <div style={{
