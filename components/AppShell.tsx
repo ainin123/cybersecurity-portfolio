@@ -55,11 +55,11 @@ export default function AppShell() {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <TimelineSection />
       <SkillsSection />
       <MitreAttack />
       <ProjectsSection />
       <ThreatLandscape />
-      <TimelineSection />
       <CertificationsSection />
       <CurrentWorkSection />
       <GitHubSection />
