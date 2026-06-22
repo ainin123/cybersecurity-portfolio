@@ -1,8 +1,8 @@
 ﻿"use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { ExternalLink, ArrowRight, ShieldCheck, Server, Target, Network, Database, Eye } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ExternalLink, ArrowRight, ShieldCheck, Server, Target, Network, Database, Eye, ChevronDown, ChevronUp } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -615,6 +615,9 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
 export default function ProjectsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: false, margin: "-80px" });
+  const [showAll, setShowAll] = useState(false);
+
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0, 2);
 
   return (
     <section
@@ -692,10 +695,7 @@ export default function ProjectsSection() {
           </span>
         </motion.h2>
 
-        {/* Featured project */}
-        <FeaturedProject project={PROJECTS[0]} inView={inView} />
-
-        {/* 2-col grid for remaining */}
+        {/* 2-column grid — 2 visible initially */}
         <div
           style={{
             display: "grid",
@@ -704,10 +704,43 @@ export default function ProjectsSection() {
           }}
           className="sm:grid-cols-2"
         >
-          {PROJECTS.slice(1).map((project, i) => (
-            <ProjectCard key={project.num} project={project} index={i} inView={inView} />
-          ))}
+          <AnimatePresence initial={false}>
+            {visible.map((project, i) => (
+              <ProjectCard key={project.num} project={project} index={i} inView={inView} />
+            ))}
+          </AnimatePresence>
         </div>
+
+        {/* Show More / Show Less button */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}
+        >
+          <motion.button
+            onClick={() => setShowAll((v) => !v)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "12px 28px", borderRadius: "8px",
+              border: "1px solid rgba(56,165,50,0.35)",
+              backgroundColor: "rgba(56,165,50,0.06)",
+              color: "#38a532", fontWeight: 700, fontSize: "14px",
+              cursor: "pointer",
+              fontFamily: "var(--font-geist-mono), monospace",
+              letterSpacing: "0.06em",
+              transition: "background-color 0.2s, border-color 0.2s",
+            }}
+          >
+            {showAll ? (
+              <><ChevronUp size={16} /> SHOW LESS</>
+            ) : (
+              <><ChevronDown size={16} /> SHOW MORE — {PROJECTS.length - 2} MORE CASE STUDIES</>
+            )}
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
