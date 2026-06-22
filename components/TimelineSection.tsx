@@ -229,7 +229,7 @@ export default function TimelineSection() {
             transition={{ duration: 0.9, ease: [0.25, 0.4, 0.25, 1] }}
             style={{
               flexShrink: 0,
-              width: "260px",
+              width: "340px",
               margin: "0 auto 40px",
             }}
             className="lg:mb-0"
@@ -263,8 +263,8 @@ export default function TimelineSection() {
 
               {/* Photo */}
               <div style={{
-                width: "260px",
-                height: "320px",
+                width: "340px",
+                height: "420px",
                 borderRadius: "12px",
                 overflow: "hidden",
                 boxShadow: "0 0 60px rgba(56,165,50,0.12), 0 20px 60px rgba(0,0,0,0.5)",
