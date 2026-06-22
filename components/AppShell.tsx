@@ -59,8 +59,8 @@ export default function AppShell() {
       <SkillsSection />
       <CertificationsSection />
       <ResearchSection />
-      <MitreAttack />
       <ProjectsSection />
+      <MitreAttack />
       <ThreatLandscape />
       <CurrentWorkSection />
       <ContactSection />
