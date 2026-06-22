@@ -10,7 +10,6 @@ import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
 import SkillsSection from "./SkillsSection";
 import MitreAttack from "./MitreAttack";
-import ResearchSection from "./ResearchSection";
 import ProjectsSection from "./ProjectsSection";
 import ThreatLandscape from "./ThreatLandscape";
 import TimelineSection from "./TimelineSection";
@@ -58,7 +57,6 @@ export default function AppShell() {
       <AboutSection />
       <SkillsSection />
       <MitreAttack />
-      <ResearchSection />
       <ProjectsSection />
       <ThreatLandscape />
       <TimelineSection />

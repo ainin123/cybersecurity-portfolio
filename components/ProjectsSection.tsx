@@ -700,9 +700,8 @@ export default function ProjectsSection() {
           style={{
             display: "grid",
             gap: "20px",
-            gridTemplateColumns: "1fr",
+            gridTemplateColumns: "repeat(2, 1fr)",
           }}
-          className="sm:grid-cols-2"
         >
           <AnimatePresence initial={false}>
             {visible.map((project, i) => (
