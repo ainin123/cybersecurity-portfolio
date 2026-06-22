@@ -60,9 +60,9 @@ export default function AppShell() {
       <CertificationsSection />
       <ResearchSection />
       <ProjectsSection />
+      <CurrentWorkSection />
       <MitreAttack />
       <ThreatLandscape />
-      <CurrentWorkSection />
       <ContactSection />
       <Footer />
       <FloatingTerminalNav onReturn={handleReturnToTerminal} />
