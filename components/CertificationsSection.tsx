@@ -1,47 +1,199 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Award, ShieldCheck, BookOpen } from "lucide-react";
+import { Award, ShieldCheck, BookOpen, Shield, Monitor, Globe, BarChart2 } from "lucide-react";
 
-const CERTS = [
+const COMPLETED = [
   {
     icon: Award,
     name: "PM Kamyaab Jawan Program — NAVTTC",
     issuer: "National Vocational & Technical Training Commission",
-    status: "Grade A+",
-    statusColor: "#38a532",
-    statusBg: "rgba(56,165,50,0.1)",
-    statusBorder: "rgba(56,165,50,0.2)",
-    iconColor: "#38a532",
-    iconBg: "rgba(56,165,50,0.1)",
-    desc: "Comprehensive cybersecurity certification covering VAPT, Google Hacking, Ethical Hacking, Code Analysis, and Dynamic & Static Malware Analysis.",
-  },
-  {
-    icon: ShieldCheck,
-    name: "ISC2 Certified in Cybersecurity — CC",
-    issuer: "ISC2",
-    status: "In Progress",
-    statusColor: "#f59e0b",
-    statusBg: "rgba(245,158,11,0.1)",
-    statusBorder: "rgba(245,158,11,0.2)",
-    iconColor: "#38a532",
-    iconBg: "rgba(56,165,50,0.08)",
-    desc: "Globally recognized certification covering Security Principles, Access Control Concepts, Network Security, and Security Operations.",
+    grade: "Grade A+",
+    desc: "Government-backed cybersecurity programme covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic & Static Malware Analysis.",
   },
   {
     icon: BookOpen,
     name: "Ethical Hacking Essential — EHE",
-    issuer: "Coursera",
-    status: "Certified",
-    statusColor: "#38a532",
-    statusBg: "rgba(56,165,50,0.1)",
-    statusBorder: "rgba(56,165,50,0.2)",
-    iconColor: "#38a532",
-    iconBg: "rgba(56,165,50,0.08)",
+    issuer: "EC-Council / Coursera",
+    grade: "Certified",
     desc: "Hands-on certification focused on Network Attacks, Web Application Attacks & Countermeasures, and ethical hacking methodologies.",
   },
 ];
+
+const IN_PROGRESS = [
+  {
+    icon: ShieldCheck,
+    name: "ISC2 Certified in Cybersecurity — CC",
+    issuer: "ISC2",
+    desc: "Globally recognized certification covering Security Principles, Access Control Concepts, Network Security, and Security Operations.",
+  },
+  {
+    icon: Shield,
+    name: "Certified Ethical Hacker — CEH",
+    issuer: "EC-Council",
+    desc: "Advanced ethical hacking certification covering attack phases, threat vectors, and countermeasures aligned with real-world penetration testing.",
+  },
+  {
+    icon: Monitor,
+    name: "CompTIA Security+",
+    issuer: "CompTIA",
+    desc: "Industry-standard certification covering threats, vulnerabilities, architecture, implementation, operations, and compliance.",
+  },
+  {
+    icon: Globe,
+    name: "Google Cybersecurity Professional Certificate",
+    issuer: "Google / Coursera",
+    desc: "Professional programme covering network security, Python automation, Linux, SIEM tools, and incident response workflows.",
+  },
+  {
+    icon: BarChart2,
+    name: "CompTIA CySA+ — Cybersecurity Analyst",
+    issuer: "CompTIA",
+    desc: "Advanced analyst certification covering threat and vulnerability management, security operations, and incident response.",
+  },
+];
+
+function CompletedCard({ cert, index, inView }: { cert: typeof COMPLETED[0]; index: number; inView: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+      animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.55, delay: 0.2 + index * 0.12, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={{ y: -4, boxShadow: "0 10px 32px rgba(56,165,50,0.12)" }}
+      style={{
+        background: "rgba(2,8,16,0.75)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: "1px solid rgba(56,165,50,0.2)",
+        borderRadius: "14px",
+        padding: "26px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        transition: "box-shadow 0.3s ease",
+        cursor: "default",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Left accent bar */}
+      <div style={{
+        position: "absolute", left: 0, top: "16px", bottom: "16px",
+        width: "3px", borderRadius: "0 3px 3px 0",
+        background: "linear-gradient(to bottom, #38a532, rgba(56,165,50,0.3))",
+      }} />
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div style={{
+          width: "46px", height: "46px", borderRadius: "11px",
+          background: "rgba(56,165,50,0.1)",
+          border: "1px solid rgba(56,165,50,0.22)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <cert.icon size={21} color="#38a532" />
+        </div>
+        <span style={{
+          fontSize: "11px", fontWeight: 700,
+          color: "#38a532",
+          backgroundColor: "rgba(56,165,50,0.1)",
+          border: "1px solid rgba(56,165,50,0.25)",
+          padding: "4px 11px", borderRadius: "100px",
+          letterSpacing: "0.05em",
+        }}>
+          {cert.grade}
+        </span>
+      </div>
+
+      <div>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#FFFFFF", marginBottom: "4px", lineHeight: 1.35 }}>
+          {cert.name}
+        </h3>
+        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.03em" }}>
+          {cert.issuer}
+        </p>
+      </div>
+
+      <p style={{ fontSize: "12px", lineHeight: 1.65, color: "rgba(255,255,255,0.6)" }}>
+        {cert.desc}
+      </p>
+    </motion.div>
+  );
+}
+
+function InProgressCard({ cert, index, inView }: { cert: typeof IN_PROGRESS[0]; index: number; inView: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+      animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.55, delay: 0.35 + index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={{ y: -4, boxShadow: "0 10px 32px rgba(245,158,11,0.08)" }}
+      style={{
+        background: "rgba(2,8,16,0.75)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: "1px solid rgba(245,158,11,0.15)",
+        borderRadius: "14px",
+        padding: "26px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        transition: "box-shadow 0.3s ease",
+        cursor: "default",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Left accent bar */}
+      <div style={{
+        position: "absolute", left: 0, top: "16px", bottom: "16px",
+        width: "3px", borderRadius: "0 3px 3px 0",
+        background: "linear-gradient(to bottom, #f59e0b, rgba(245,158,11,0.2))",
+      }} />
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div style={{
+          width: "46px", height: "46px", borderRadius: "11px",
+          background: "rgba(245,158,11,0.08)",
+          border: "1px solid rgba(245,158,11,0.2)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <cert.icon size={21} color="#f59e0b" />
+        </div>
+        <span style={{
+          fontSize: "11px", fontWeight: 700,
+          color: "#f59e0b",
+          backgroundColor: "rgba(245,158,11,0.1)",
+          border: "1px solid rgba(245,158,11,0.25)",
+          padding: "4px 11px", borderRadius: "100px",
+          letterSpacing: "0.05em",
+          display: "flex", alignItems: "center", gap: "5px",
+        }}>
+          <span style={{
+            width: "6px", height: "6px", borderRadius: "50%",
+            background: "#f59e0b",
+            animation: "pulse-dot 1.8s ease-in-out infinite",
+            display: "inline-block",
+          }} />
+          In Progress
+        </span>
+      </div>
+
+      <div>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#FFFFFF", marginBottom: "4px", lineHeight: 1.35 }}>
+          {cert.name}
+        </h3>
+        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.03em" }}>
+          {cert.issuer}
+        </p>
+      </div>
+
+      <p style={{ fontSize: "12px", lineHeight: 1.65, color: "rgba(255,255,255,0.6)" }}>
+        {cert.desc}
+      </p>
+    </motion.div>
+  );
+}
 
 export default function CertificationsSection() {
   const ref = useRef<HTMLElement>(null);
@@ -59,23 +211,22 @@ export default function CertificationsSection() {
     >
       <div
         className="grid-overlay"
-        style={{
-          position: "absolute",
-          inset: 0,
-          opacity: 0.3,
-          pointerEvents: "none",
-        }}
+        style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}
       />
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 24px",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
+      {/* Subtle glow */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(56,165,50,0.04), transparent)",
+      }} />
+
+      <div style={{
+        maxWidth: "1280px",
+        margin: "0 auto",
+        padding: "0 24px",
+        position: "relative",
+        zIndex: 1,
+      }}>
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
@@ -83,17 +234,12 @@ export default function CertificationsSection() {
           transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           style={{ marginBottom: "16px" }}
         >
-          <span
-            style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "#38a532",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-            }}
-          >
-            06 // CERTIFICATIONS
+          <span style={{
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: "12px", fontWeight: 600,
+            color: "#38a532", letterSpacing: "0.15em", textTransform: "uppercase",
+          }}>
+            04 // CERTIFICATIONS
           </span>
         </motion.div>
 
@@ -104,130 +250,96 @@ export default function CertificationsSection() {
           transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             fontSize: "clamp(32px, 5vw, 52px)",
-            fontWeight: 800,
-            lineHeight: 1.15,
-            marginBottom: "60px",
-            color: "#FFFFFF",
+            fontWeight: 800, lineHeight: 1.15,
+            marginBottom: "60px", color: "#FFFFFF",
           }}
         >
           Certifications &amp;{" "}
-          <span
-            style={{
-              background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
+          <span style={{
+            background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+          }}>
             Standards
           </span>
         </motion.h2>
 
-        <div
-          style={{
-            display: "grid",
-            gap: "20px",
-            gridTemplateColumns: "1fr",
-          }}
-          className="sm:grid-cols-2 lg:grid-cols-3"
+        {/* ── Completed ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.45, delay: 0.15, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{ marginBottom: "36px" }}
         >
-          {CERTS.map((cert, i) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
-              whileHover={{ y: -5, boxShadow: "0 8px 32px rgba(56,165,50,0.08)" }}
-              style={{
-                background: "rgba(2,8,16,0.7)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                border: "1px solid rgba(56,165,50,0.12)",
-                borderRadius: "14px",
-                padding: "28px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-                transition: "box-shadow 0.3s ease, transform 0.2s ease",
-                cursor: "default",
-              }}
-            >
-              {/* Header */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                }}
-              >
-                <div
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    background: cert.iconBg,
-                    border: `1px solid rgba(56,165,50,0.2)`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <cert.icon size={22} color={cert.iconColor} />
-                </div>
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 600,
-                    color: cert.statusColor,
-                    backgroundColor: cert.statusBg,
-                    border: `1px solid ${cert.statusBorder}`,
-                    padding: "4px 10px",
-                    borderRadius: "100px",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {cert.status}
-                </span>
-              </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+            <span style={{
+              fontFamily: "var(--font-geist-mono), monospace",
+              fontSize: "11px", fontWeight: 700,
+              color: "#38a532", letterSpacing: "0.12em", textTransform: "uppercase",
+            }}>
+              Completed
+            </span>
+            <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(56,165,50,0.4), transparent)" }} />
+            <span style={{
+              fontSize: "10px", fontWeight: 600,
+              color: "#38a532",
+              backgroundColor: "rgba(56,165,50,0.08)",
+              border: "1px solid rgba(56,165,50,0.2)",
+              padding: "2px 8px", borderRadius: "100px",
+              fontFamily: "var(--font-geist-mono), monospace",
+            }}>
+              {COMPLETED.length} Certified
+            </span>
+          </div>
 
-              {/* Name */}
-              <div>
-                <h3
-                  style={{
-                    fontSize: "17px",
-                    fontWeight: 700,
-                    color: "#FFFFFF",
-                    marginBottom: "4px",
-                  }}
-                >
-                  {cert.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    color: "rgba(255,255,255,0.65)",
-                    letterSpacing: "0.03em",
-                  }}
-                >
-                  {cert.issuer}
-                </p>
-              </div>
+          <div style={{
+            display: "grid",
+            gap: "18px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          }}>
+            {COMPLETED.map((cert, i) => (
+              <CompletedCard key={cert.name} cert={cert} index={i} inView={inView} />
+            ))}
+          </div>
+        </motion.div>
 
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "13px",
-                  lineHeight: 1.6,
-                  color: "rgba(255,255,255,0.65)",
-                }}
-              >
-                {cert.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        {/* ── In Progress ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.45, delay: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+            <span style={{
+              fontFamily: "var(--font-geist-mono), monospace",
+              fontSize: "11px", fontWeight: 700,
+              color: "#f59e0b", letterSpacing: "0.12em", textTransform: "uppercase",
+            }}>
+              In Progress
+            </span>
+            <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(245,158,11,0.4), transparent)" }} />
+            <span style={{
+              fontSize: "10px", fontWeight: 600,
+              color: "#f59e0b",
+              backgroundColor: "rgba(245,158,11,0.08)",
+              border: "1px solid rgba(245,158,11,0.2)",
+              padding: "2px 8px", borderRadius: "100px",
+              fontFamily: "var(--font-geist-mono), monospace",
+            }}>
+              {IN_PROGRESS.length} Pursuing
+            </span>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gap: "18px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          }}>
+            {IN_PROGRESS.map((cert, i) => (
+              <InProgressCard key={cert.name} cert={cert} index={i} inView={inView} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

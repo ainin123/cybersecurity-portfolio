@@ -57,10 +57,10 @@ export default function AppShell() {
       <AboutSection />
       <TimelineSection />
       <SkillsSection />
+      <CertificationsSection />
       <MitreAttack />
       <ProjectsSection />
       <ThreatLandscape />
-      <CertificationsSection />
       <CurrentWorkSection />
       <GitHubSection />
       <ContactSection />
