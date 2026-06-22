@@ -1,86 +1,7 @@
 ﻿"use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-// ─── Matrix Binary Rain ───────────────────────────────────────────────────────
-function MatrixRain() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let W = canvas.offsetWidth;
-    let H = canvas.offsetHeight;
-    canvas.width = W;
-    canvas.height = H;
-
-    const FS = 13;
-    const CHARS = "01";
-    let COLS = Math.floor(W / FS);
-    let drops: number[] = Array.from({ length: COLS }, () => Math.random() * -80);
-    let speeds: number[] = Array.from({ length: COLS }, () => 0.3 + Math.random() * 0.5);
-
-    let animId: number;
-    let lastTime = 0;
-    const INTERVAL = 1000 / 28;
-
-    const draw = (now: number) => {
-      animId = requestAnimationFrame(draw);
-      if (now - lastTime < INTERVAL) return;
-      lastTime = now;
-
-      ctx.fillStyle = "rgba(2,8,16,0.055)";
-      ctx.fillRect(0, 0, W, H);
-      ctx.font = `${FS}px 'Courier New', monospace`;
-
-      for (let i = 0; i < COLS; i++) {
-        const y = drops[i] * FS;
-        const x = i * FS;
-        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-
-        ctx.fillStyle = "rgba(120,230,120,0.9)";
-        ctx.fillText(char, x, y);
-
-        if (drops[i] > 1) {
-          ctx.fillStyle = "rgba(56,165,50,0.55)";
-          ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FS);
-        }
-
-        if (y > H && Math.random() > 0.975) drops[i] = 0;
-        drops[i] += speeds[i];
-      }
-    };
-
-    animId = requestAnimationFrame(draw);
-
-    const onResize = () => {
-      W = canvas.offsetWidth;
-      H = canvas.offsetHeight;
-      canvas.width = W;
-      canvas.height = H;
-      COLS = Math.floor(W / FS);
-      drops = Array.from({ length: COLS }, () => Math.random() * -80);
-      speeds = Array.from({ length: COLS }, () => 0.3 + Math.random() * 0.5);
-    };
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }}
-    />
-  );
-}
 import { Shield, Target, Network, Code, Search } from "lucide-react";
 
 const SKILL_CATEGORIES = [
@@ -279,9 +200,6 @@ export default function SkillsSection() {
         backgroundColor: "#020810",
       }}
     >
-      {/* Matrix binary rain background */}
-      <MatrixRain />
-
       {/* Hacker image — right side */}
       <div style={{
         position: "absolute",
