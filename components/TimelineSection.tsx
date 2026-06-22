@@ -157,7 +157,7 @@ export default function TimelineSection() {
       style={{
         position: "relative",
         padding: "100px 0",
-        backgroundColor: "#020810",
+        backgroundColor: "#070709",
         overflow: "hidden",
       }}
     >
