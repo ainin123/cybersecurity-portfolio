@@ -16,7 +16,6 @@ import ThreatLandscape from "./ThreatLandscape";
 import TimelineSection from "./TimelineSection";
 import CertificationsSection from "./CertificationsSection";
 import CurrentWorkSection from "./CurrentWorkSection";
-import GitHubSection from "./GitHubSection";
 import ContactSection from "./ContactSection";
 import Footer from "./Footer";
 
@@ -64,7 +63,6 @@ export default function AppShell() {
       <ProjectsSection />
       <ThreatLandscape />
       <CurrentWorkSection />
-      <GitHubSection />
       <ContactSection />
       <Footer />
       <FloatingTerminalNav onReturn={handleReturnToTerminal} />
