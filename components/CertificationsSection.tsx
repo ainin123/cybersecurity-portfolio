@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Award, ShieldCheck, BookOpen, Shield, Monitor, Globe, BarChart2 } from "lucide-react";
 
 const COMPLETED = [
@@ -198,6 +198,9 @@ function InProgressCard({ cert, index, inView }: { cert: typeof IN_PROGRESS[0]; 
 export default function CertificationsSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: false, margin: "-80px" });
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleInProgress = showAll ? IN_PROGRESS : IN_PROGRESS.slice(0, 4);
 
   return (
     <section
@@ -294,8 +297,10 @@ export default function CertificationsSection() {
           <div style={{
             display: "grid",
             gap: "18px",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          }}>
+            gridTemplateColumns: "repeat(4, 1fr)",
+          }}
+            className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {COMPLETED.map((cert, i) => (
               <CompletedCard key={cert.name} cert={cert} index={i} inView={inView} />
             ))}
@@ -332,12 +337,75 @@ export default function CertificationsSection() {
           <div style={{
             display: "grid",
             gap: "18px",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          }}>
-            {IN_PROGRESS.map((cert, i) => (
-              <InProgressCard key={cert.name} cert={cert} index={i} inView={inView} />
-            ))}
+            gridTemplateColumns: "repeat(4, 1fr)",
+          }}
+            className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            <AnimatePresence initial={false}>
+              {visibleInProgress.map((cert, i) => (
+                <InProgressCard key={cert.name} cert={cert} index={i} inView={inView} />
+              ))}
+            </AnimatePresence>
           </div>
+
+          {/* Animated arrow — show more / show less */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "28px", gap: "6px" }}
+          >
+            <span style={{
+              fontSize: "11px",
+              fontFamily: "var(--font-geist-mono), monospace",
+              color: "rgba(255,255,255,0.4)",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}>
+              {showAll ? "Show Less" : `${IN_PROGRESS.length - 4} More`}
+            </span>
+
+            <motion.button
+              onClick={() => setShowAll((v) => !v)}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.92 }}
+              style={{
+                background: "none",
+                border: "1px solid rgba(245,158,11,0.3)",
+                borderRadius: "50%",
+                width: "40px", height: "40px",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer",
+                color: "#f59e0b",
+                backgroundColor: "rgba(245,158,11,0.06)",
+              }}
+            >
+              <motion.svg
+                width="18" height="18" viewBox="0 0 18 18" fill="none"
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+              >
+                <path d="M4 6.5L9 11.5L14 6.5" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </motion.svg>
+            </motion.button>
+
+            {/* Bouncing dots when collapsed */}
+            {!showAll && (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px", marginTop: "2px" }}>
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ opacity: [0.2, 0.7, 0.2], y: [0, 3, 0] }}
+                    transition={{ duration: 1.2, delay: i * 0.18, repeat: Infinity, ease: "easeInOut" }}
+                    style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      backgroundColor: "#f59e0b",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </motion.div>
         </motion.div>
       </div>
     </section>
