@@ -665,7 +665,7 @@ export default function ProjectsSection() {
               textTransform: "uppercase",
             }}
           >
-            04 // PROJECTS
+            PROJECTS
           </span>
         </motion.div>
 

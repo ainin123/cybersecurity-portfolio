@@ -159,7 +159,7 @@ export default function TimelineSection() {
               fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600,
               color: "#38a532", letterSpacing: "0.15em", textTransform: "uppercase",
             }}>
-              02 // JOURNEY
+              JOURNEY
             </span>
           </motion.div>
 

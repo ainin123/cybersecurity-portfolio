@@ -516,7 +516,7 @@ export default function CurrentWorkSection() {
             fontSize: "12px", fontWeight: 600,
             color: "#38a532", letterSpacing: "0.15em", textTransform: "uppercase",
           }}>
-            07 // CURRENT WORK
+            CURRENT WORK
           </span>
         </motion.div>
 

@@ -63,7 +63,7 @@ export default function AboutSection() {
               textTransform: "uppercase",
             }}
           >
-            01 // ABOUT
+            ABOUT
           </span>
         </motion.div>
 

@@ -242,7 +242,7 @@ export default function CertificationsSection() {
             fontSize: "12px", fontWeight: 600,
             color: "#38a532", letterSpacing: "0.15em", textTransform: "uppercase",
           }}>
-            04 // CERTIFICATIONS
+            CERTIFICATIONS
           </span>
         </motion.div>
 

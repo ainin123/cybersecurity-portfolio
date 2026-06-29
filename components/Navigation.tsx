@@ -6,6 +6,7 @@ import ScrollProgress from "./ScrollProgress";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Expertise", href: "#expertise" },
   { label: "Skills", href: "#skills" },
   { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },

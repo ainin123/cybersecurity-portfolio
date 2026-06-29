@@ -127,7 +127,7 @@ export default function ContactSection() {
               textTransform: "uppercase",
             }}
           >
-            09 // CONTACT
+            CONTACT
           </span>
         </motion.div>
 
