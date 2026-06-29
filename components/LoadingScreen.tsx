@@ -53,7 +53,7 @@ export default function LoadingScreen({ onComplete }: Props) {
           position: "fixed",
           inset: 0,
           zIndex: 200,
-          backgroundImage: "url('/loading.png')",
+          backgroundImage: "url('/mypic.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           overflow: "hidden",

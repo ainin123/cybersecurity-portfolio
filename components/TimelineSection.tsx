@@ -141,7 +141,7 @@ export default function TimelineSection() {
             background: "linear-gradient(135deg, rgba(2,8,16,0.72) 0%, rgba(4,22,10,0.68) 35%, rgba(3,15,8,0.70) 65%, rgba(2,8,16,0.72) 100%)",
             backdropFilter: "blur(28px)",
             WebkitBackdropFilter: "blur(28px)",
-            border: "1px solid rgba(56,165,50,0.18)",
+            border: "none",
             borderRadius: "24px",
             padding: "48px",
             boxShadow: "0 8px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(56,165,50,0.1), inset 0 0 80px rgba(56,165,50,0.03)",
