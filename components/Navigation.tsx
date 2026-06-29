@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
   { label: "Timeline", href: "#timeline" },
-  { label: "Intel", href: "#threat-landscape" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
