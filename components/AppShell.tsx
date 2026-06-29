@@ -1,8 +1,7 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from "react";
-import CyberTerminalLanding from "./CyberTerminalLanding";
-import FloatingTerminalNav from "./FloatingTerminalNav";
+import { useState } from "react";
+import LoadingScreen from "./LoadingScreen";
 
 import ParticleBackground from "./ParticleBackground";
 import Navigation from "./Navigation";
@@ -20,53 +19,29 @@ import ContactSection from "./ContactSection";
 import Footer from "./Footer";
 
 export default function AppShell() {
-  const [showTerminal, setShowTerminal] = useState(true);
-  const [targetSection, setTargetSection] = useState<string | null>(null);
-
-  const handleNavigate = (sectionId: string) => {
-    setShowTerminal(false);
-    setTargetSection(sectionId);
-  };
-
-  const handleReturnToTerminal = () => {
-    setShowTerminal(true);
-    setTargetSection(null);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    if (!showTerminal && targetSection) {
-      const timer = setTimeout(() => {
-        const el = document.getElementById(targetSection);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-        setTargetSection(null);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [showTerminal, targetSection]);
-
-  if (showTerminal) {
-    return <CyberTerminalLanding onNavigate={handleNavigate} />;
-  }
+  const [loading, setLoading] = useState(true);
 
   return (
-    <main style={{ position: "relative" }}>
-      <ParticleBackground />
-      <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <TimelineSection />
-      <SkillsSection />
-      <CertificationsSection />
-      <ResearchSection />
-      <ProjectsSection />
-      <CurrentWorkSection />
-      <MitreAttack />
-      <ThreatLandscape />
-      <ContactSection />
-      <Footer />
-      <FloatingTerminalNav onReturn={handleReturnToTerminal} />
-    </main>
+    <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+
+      {/* Render main content below the loading overlay so it's ready when revealed */}
+      <main style={{ position: "relative", visibility: loading ? "hidden" : "visible" }}>
+        <ParticleBackground />
+        <Navigation />
+        <HeroSection />
+        <AboutSection />
+        <TimelineSection />
+        <SkillsSection />
+        <CertificationsSection />
+        <ResearchSection />
+        <ProjectsSection />
+        <CurrentWorkSection />
+        <MitreAttack />
+        <ThreatLandscape />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   );
 }
-
