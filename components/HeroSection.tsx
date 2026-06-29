@@ -151,7 +151,7 @@ export default function HeroSection() {
 
           {/* Bio */}
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: "480px", marginBottom: "28px" }}>
-            Security researcher and engineer specialising in enterprise threat detection, behavioural analytics, cloud security, and AI-driven defence — designing detection systems, automating incident response, and advancing security operations through applied research and client engagement.
+            Security researcher and engineer specialising in enterprise threat detection, behavioural analytics, cloud security, and AI-driven defence, designing detection systems, automating incident response, and advancing security operations through applied research and client engagement.
           </p>
 
           {/* Live status */}

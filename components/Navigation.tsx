@@ -26,8 +26,11 @@ export default function Navigation() {
       let current = "";
       for (const id of sections) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          current = id;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            current = id;
+          }
         }
       }
       setActive(current);

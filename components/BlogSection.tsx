@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
+import { Clock, Tag, ArrowRight, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 
 // ─── Blog Data ────────────────────────────────────────────────────────────────
 type Category = "SIEM & AI" | "Threat Intelligence" | "AI & Research" | "Tutorials";
@@ -302,10 +302,12 @@ export default function BlogSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: false, margin: "-80px" });
   const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
+  const [showAll, setShowAll] = useState(false);
 
   const featured = POSTS.find((p) => p.featured)!;
   const rest = POSTS.filter((p) => !p.featured);
   const filtered = activeCategory === "All" ? rest : rest.filter((p) => p.category === activeCategory);
+  const visible = showAll ? filtered : filtered.slice(0, 3);
   const showFeatured = activeCategory === "All" || activeCategory === featured.category;
 
   return (
@@ -441,9 +443,10 @@ export default function BlogSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3 }}
-            style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: "20px" }}
           >
-            {filtered.map((post, i) => (
+            {visible.map((post, i) => (
               <PostCard key={post.id} post={post} index={i} />
             ))}
           </motion.div>
@@ -457,6 +460,34 @@ export default function BlogSection() {
           }}>
             No posts in this category yet.
           </div>
+        )}
+
+        {/* Show More / Show Less */}
+        {filtered.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4, ease: EASE }}
+            style={{ display: "flex", justifyContent: "center", marginTop: "36px" }}
+          >
+            <motion.button
+              onClick={() => setShowAll((v) => !v)}
+              whileHover={{ scale: 1.04, boxShadow: "0 8px 28px rgba(56,165,50,0.18)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.25 }}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                padding: "12px 28px", borderRadius: "10px",
+                border: "1px solid rgba(56,165,50,0.35)",
+                background: "rgba(56,165,50,0.08)",
+                backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+                color: "#38a532", fontSize: "13px", fontWeight: 600, cursor: "pointer",
+                fontFamily: "var(--font-geist-mono), monospace", letterSpacing: "0.06em",
+              }}
+            >
+              {showAll ? <>Show Less <ChevronUp size={15} /></> : <>Show More <ChevronDown size={15} /></>}
+            </motion.button>
+          </motion.div>
         )}
 
       </div>

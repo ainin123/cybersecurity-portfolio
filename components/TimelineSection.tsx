@@ -8,21 +8,21 @@ const TIMELINE = [
     year: "2024",
     title: "Research Associate — NCCS, NASTP",
     description:
-      "Designing and deploying enterprise security monitoring solutions for national network defence. Leading behavioural analytics, multi-tenant access governance, cloud security deployment, and automated incident response — delivering product demonstrations and technical briefings to client stakeholders.",
+      "Designing and deploying enterprise security monitoring solutions for national network defence. Leading behavioural analytics, multi-tenant access governance, cloud security deployment, and automated incident response, while delivering product demonstrations and technical briefings to client stakeholders.",
     tech: ["Behavioural Analytics", "Cloud Security", "Automated IR", "Threat Intel", "SOAR", "Deployment Automation"],
   },
   {
     year: "2023",
     title: "Independent Penetration Testing",
     description:
-      "Executed real-world end-to-end penetration tests — from reconnaissance and vulnerability assessment through to professional reporting and screen-recorded walkthroughs.",
+      "Executed real-world end-to-end penetration tests, from reconnaissance and vulnerability assessment through to professional reporting and screen-recorded walkthroughs.",
     tech: ["NMAP", "Burp Suite", "Nessus", "OSINT"],
   },
   {
     year: "2022",
     title: "MS Cyber Security — Air University",
     description:
-      "Pursuing a Master's specialising in AI-driven cybersecurity. Coursework covers Network Security, Web App Security, Network Forensics, Blockchain Security, and AI in Cyber Security.",
+      "Completed a Master's specialising in AI-driven cybersecurity. Coursework covered Network Security, Web App Security, Network Forensics, Blockchain Security, and AI in Cyber Security.",
     tech: ["AI Security", "Network Forensics", "Blockchain", "Web App Security"],
   },
   {
@@ -36,7 +36,7 @@ const TIMELINE = [
     year: "2015",
     title: "BS Computer Science — Arid Agriculture University",
     description:
-      "Built a strong foundation in programming, systems, networking, and database management — the bedrock for current expertise in security tool development and scripting automation.",
+      "Built a strong foundation in programming, systems, networking, and database management, forming the bedrock for current expertise in security tool development and scripting automation.",
     tech: ["Computer Science", "Networking", "Programming", "Linux"],
   },
 ];
@@ -189,7 +189,7 @@ export default function TimelineSection() {
               initial={{ opacity: 0, x: -120, filter: "blur(16px)" }}
               animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.9, ease: [0.25, 0.4, 0.25, 1] }}
-              style={{ flexShrink: 0, width: "340px", margin: "0 auto 40px" }}
+              style={{ flexShrink: 0, width: "340px", maxWidth: "100%", margin: "0 auto 40px" }}
               className="lg:mb-0"
             >
               <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
@@ -208,7 +208,7 @@ export default function TimelineSection() {
                   whileHover={{ boxShadow: "0 0 80px rgba(56,165,50,0.22), 0 20px 60px rgba(0,0,0,0.65)" }}
                   transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
                   style={{
-                    width: "340px", height: "420px", borderRadius: "12px", overflow: "hidden",
+                    width: "100%", height: "420px", borderRadius: "12px", overflow: "hidden",
                     boxShadow: "0 0 60px rgba(56,165,50,0.12), 0 20px 60px rgba(0,0,0,0.5)",
                     border: "1px solid rgba(56,165,50,0.2)", position: "relative",
                   }}

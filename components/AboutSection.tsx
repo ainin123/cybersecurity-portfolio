@@ -134,19 +134,16 @@ export default function AboutSection() {
             >
               Skilled in SOC analysis, vulnerability management, penetration
               testing, and automated incident response. Experienced in
-              end-to-end security engagements — from detection engineering and
+              end-to-end security engagements, from detection engineering and
               external intelligence integration to product demonstrations and
-              executive-level client presentations — translating technical
+              executive-level client presentations, translating technical
               findings into clear, actionable security outcomes.
             </p>
 
             {/* Focus areas */}
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "16px",
-              }}
+              className="grid grid-cols-1 sm:grid-cols-3"
+              style={{ gap: "16px" }}
             >
               {FOCUS_AREAS.map((area, i) => (
                 <motion.div
