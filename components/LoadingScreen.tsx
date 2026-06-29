@@ -33,22 +33,21 @@ export default function LoadingScreen({ onComplete }: Props) {
     <>
       <style>{`
         @keyframes ls-scan {
-          0%   { transform: translateY(-2px); opacity: 0; }
-          5%   { opacity: 1; }
-          95%  { opacity: 1; }
-          100% { transform: translateY(100vh); opacity: 0; }
+          0%   { top: -2px; opacity: 0; }
+          4%   { opacity: 1; }
+          96%  { opacity: 1; }
+          100% { top: 100%; opacity: 0; }
         }
         @keyframes ls-fade-up {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes ls-glow-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(56,165,50,0.6); opacity: 1; }
-          50%       { box-shadow: 0 0 0 8px rgba(56,165,50,0); opacity: 0.6; }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(56,165,50,0.7); }
+          50%       { box-shadow: 0 0 0 9px rgba(56,165,50,0); }
         }
       `}</style>
 
-      {/* Root */}
       <div
         style={{
           position: "fixed",
@@ -63,30 +62,33 @@ export default function LoadingScreen({ onComplete }: Props) {
           pointerEvents: phase === "exit" ? "none" : "auto",
         }}
       >
-        {/* Overlay: top & bottom dark bands, lighter center so image shows */}
+        {/* Single light tint — image stays clearly visible */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(2,8,16,0.90) 0%, rgba(2,8,16,0.42) 30%, rgba(2,8,16,0.42) 68%, rgba(2,8,16,0.94) 100%)",
+          background: "rgba(2,8,16,0.28)",
         }} />
-        {/* Radial edge vignette */}
+
+        {/* Bottom gradient — gives progress bar section contrast */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 75% 65% at 50% 48%, transparent 25%, rgba(2,8,16,0.60) 100%)",
+          background: "linear-gradient(to top, rgba(2,8,16,0.90) 0%, rgba(2,8,16,0.30) 38%, transparent 62%)",
         }} />
-        {/* Subtle green bloom */}
+
+        {/* Subtle green bloom at center */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 50% 40% at 50% 48%, rgba(56,165,50,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 55% 45% at 50% 46%, rgba(56,165,50,0.06) 0%, transparent 70%)",
         }} />
 
         {/* Scan line */}
         <div style={{
-          position: "absolute", left: 0, right: 0, height: "1px", zIndex: 2,
-          background: "linear-gradient(90deg, transparent 0%, rgba(56,165,50,0.3) 20%, rgba(56,165,50,0.65) 50%, rgba(56,165,50,0.3) 80%, transparent 100%)",
+          position: "absolute", left: 0, right: 0, height: "1px",
+          zIndex: 2,
+          background: "linear-gradient(90deg, transparent 0%, rgba(56,165,50,0.28) 20%, rgba(56,165,50,0.6) 50%, rgba(56,165,50,0.28) 80%, transparent 100%)",
           animation: "ls-scan 3.5s linear infinite",
         }} />
 
-        {/* Screen-corner brackets — HUD / targeting frame */}
+        {/* HUD corner brackets */}
         {(["tl","tr","bl","br"] as const).map((c) => (
           <div key={c} style={{
             position: "absolute",
@@ -107,18 +109,17 @@ export default function LoadingScreen({ onComplete }: Props) {
           }} />
         ))}
 
-        {/* ── CENTRE CONTENT ── */}
+        {/* Centre content */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 3,
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
           textAlign: "center",
           padding: "0 32px",
-          animation: "ls-fade-up 0.7s cubic-bezier(0.25,0.4,0.25,1) both",
+          animation: "ls-fade-up 0.75s cubic-bezier(0.25,0.4,0.25,1) both",
         }}>
-
-          {/* Status dot + label */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "32px" }}>
+          {/* Status */}
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
             <span style={{
               width: "8px", height: "8px", borderRadius: "50%",
               backgroundColor: "#38a532", display: "inline-block", flexShrink: 0,
@@ -127,7 +128,7 @@ export default function LoadingScreen({ onComplete }: Props) {
             <span style={{
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "11px", letterSpacing: "0.24em",
-              color: "rgba(56,165,50,0.85)", textTransform: "uppercase",
+              color: "rgba(56,165,50,0.9)", textTransform: "uppercase",
             }}>
               Secure Portal
             </span>
@@ -137,28 +138,22 @@ export default function LoadingScreen({ onComplete }: Props) {
           <h1 style={{
             margin: 0,
             fontFamily: "var(--font-geist-mono), monospace",
-            fontSize: "clamp(36px, 7vw, 72px)",
+            fontSize: "clamp(38px, 7.5vw, 78px)",
             fontWeight: 800, letterSpacing: "0.22em",
             color: "#FFFFFF", lineHeight: 1.05,
-            textShadow: "0 0 60px rgba(56,165,50,0.25), 0 4px 32px rgba(0,0,0,0.8)",
+            textShadow: "0 2px 40px rgba(0,0,0,0.9), 0 0 80px rgba(56,165,50,0.2)",
           }}>
             ANIQA AYUB
           </h1>
 
-          {/* Decorated rule */}
+          {/* Rule */}
           <div style={{
             display: "flex", alignItems: "center", gap: "12px",
-            margin: "20px 0 22px", width: "100%", maxWidth: "420px",
+            margin: "20px 0 22px", width: "100%", maxWidth: "460px",
           }}>
-            <div style={{
-              flex: 1, height: "1px",
-              background: "linear-gradient(to right, transparent, rgba(56,165,50,0.5))",
-            }} />
+            <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, transparent, rgba(56,165,50,0.5))" }} />
             <span style={{ fontSize: "7px", color: "rgba(56,165,50,0.55)", letterSpacing: "3px" }}>◆ ◆</span>
-            <div style={{
-              flex: 1, height: "1px",
-              background: "linear-gradient(to left, transparent, rgba(56,165,50,0.5))",
-            }} />
+            <div style={{ flex: 1, height: "1px", background: "linear-gradient(to left, transparent, rgba(56,165,50,0.5))" }} />
           </div>
 
           {/* Role chips */}
@@ -166,27 +161,25 @@ export default function LoadingScreen({ onComplete }: Props) {
             {["Cybersecurity Researcher", "SIEM Engineer", "AI Security"].map((role) => (
               <span key={role} style={{
                 fontFamily: "var(--font-geist-mono), monospace",
-                fontSize: "11px", letterSpacing: "0.06em",
-                color: "rgba(56,165,50,0.9)",
-                background: "rgba(2,8,16,0.45)",
-                border: "1px solid rgba(56,165,50,0.28)",
-                padding: "5px 13px", borderRadius: "5px",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
+                fontSize: "11px", letterSpacing: "0.05em",
+                color: "rgba(56,165,50,0.95)",
+                background: "rgba(2,8,16,0.55)",
+                border: "1px solid rgba(56,165,50,0.30)",
+                padding: "5px 14px", borderRadius: "5px",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
               }}>
                 {role}
               </span>
             ))}
           </div>
-
         </div>
 
-        {/* ── BOTTOM: progress bar ── */}
+        {/* Bottom progress bar */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 4,
           padding: "0 48px 40px",
         }}>
-          {/* Label row */}
           <div style={{
             display: "flex", justifyContent: "space-between", alignItems: "baseline",
             marginBottom: "10px",
@@ -194,7 +187,7 @@ export default function LoadingScreen({ onComplete }: Props) {
             <span style={{
               fontFamily: "var(--font-geist-mono), monospace",
               fontSize: "9px", letterSpacing: "0.18em",
-              color: "rgba(255,255,255,0.35)", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)", textTransform: "uppercase",
             }}>
               {progress < 100 ? "Initialising" : "Ready"}
             </span>
@@ -206,26 +199,24 @@ export default function LoadingScreen({ onComplete }: Props) {
             </span>
           </div>
 
-          {/* Bar */}
           <div style={{
             height: "2px", borderRadius: "100px",
-            background: "rgba(56,165,50,0.12)", overflow: "hidden",
+            background: "rgba(255,255,255,0.10)", overflow: "hidden",
           }}>
             <div style={{
               height: "100%", width: `${progress}%`,
               borderRadius: "100px",
-              background: "linear-gradient(to right, rgba(56,165,50,0.45), #38a532)",
-              boxShadow: "0 0 12px rgba(56,165,50,0.6)",
+              background: "linear-gradient(to right, rgba(56,165,50,0.5), #38a532)",
+              boxShadow: "0 0 12px rgba(56,165,50,0.7)",
               transition: "width 0.06s linear",
             }} />
           </div>
 
-          {/* Tick markers */}
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "6px" }}>
             {[0, 25, 50, 75, 100].map((t) => (
               <span key={t} style={{
                 fontFamily: "var(--font-geist-mono), monospace", fontSize: "8px",
-                color: progress >= t ? "rgba(56,165,50,0.55)" : "rgba(255,255,255,0.15)",
+                color: progress >= t ? "rgba(56,165,50,0.6)" : "rgba(255,255,255,0.2)",
                 transition: "color 0.3s",
               }}>
                 {t}
@@ -233,26 +224,24 @@ export default function LoadingScreen({ onComplete }: Props) {
             ))}
           </div>
 
-          {/* Footer */}
           <div style={{
-            display: "flex", justifyContent: "space-between", alignItems: "center",
+            display: "flex", justifyContent: "space-between",
             marginTop: "14px",
           }}>
             <span style={{
               fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "9px", color: "rgba(255,255,255,0.22)", letterSpacing: "0.08em",
+              fontSize: "9px", color: "rgba(255,255,255,0.28)", letterSpacing: "0.08em",
             }}>
               NCCS · NASTP · ISLAMABAD
             </span>
             <span style={{
               fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "9px", color: "rgba(56,165,50,0.4)", letterSpacing: "0.06em",
+              fontSize: "9px", color: "rgba(56,165,50,0.45)", letterSpacing: "0.06em",
             }}>
               v2.4.1
             </span>
           </div>
         </div>
-
       </div>
     </>
   );
