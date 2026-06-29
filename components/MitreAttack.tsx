@@ -142,7 +142,7 @@ export default function MitreAttack() {
         }} />
 
         {/* Inner content wrapper — centred, with padding */}
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "48px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "clamp(20px, 5vw, 48px)" }}>
 
         {/* Section label */}
         <motion.div

@@ -143,7 +143,7 @@ export default function TimelineSection() {
             WebkitBackdropFilter: "blur(28px)",
             border: "none",
             borderRadius: "24px",
-            padding: "48px",
+            padding: "clamp(20px, 5vw, 48px)",
             boxShadow: "0 8px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(56,165,50,0.1), inset 0 0 80px rgba(56,165,50,0.03)",
             willChange: "transform, box-shadow",
           }}

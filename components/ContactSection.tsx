@@ -174,12 +174,8 @@ export default function ContactSection() {
         </motion.p>
 
         <div
-          style={{
-            display: "grid",
-            gap: "40px",
-            gridTemplateColumns: "1fr",
-          }}
-          className="lg:grid-cols-2"
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: "40px" }}
         >
           {/* LEFT: Contact methods */}
           <motion.div

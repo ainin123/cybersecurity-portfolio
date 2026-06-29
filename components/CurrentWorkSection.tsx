@@ -570,12 +570,9 @@ export default function CurrentWorkSection() {
         </motion.div>
 
         {/* ── Cards grid ── */}
-        <div style={{
-          display: "grid",
-          gap: "24px",
-          gridTemplateColumns: "repeat(3, 1fr)",
-        }}
-          className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: "24px" }}
         >
           {visibleProjects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} inView={inView} />

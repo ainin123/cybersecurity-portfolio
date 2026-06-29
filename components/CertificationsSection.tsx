@@ -294,12 +294,9 @@ export default function CertificationsSection() {
             </span>
           </div>
 
-          <div style={{
-            display: "grid",
-            gap: "18px",
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-            className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2"
+            style={{ gap: "18px" }}
           >
             {COMPLETED.map((cert, i) => (
               <CompletedCard key={cert.name} cert={cert} index={i} inView={inView} />
@@ -334,12 +331,9 @@ export default function CertificationsSection() {
             </span>
           </div>
 
-          <div style={{
-            display: "grid",
-            gap: "18px",
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-            className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            style={{ gap: "18px" }}
           >
             <AnimatePresence initial={false}>
               {visibleInProgress.map((cert, i) => (

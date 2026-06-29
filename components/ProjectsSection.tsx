@@ -695,13 +695,10 @@ export default function ProjectsSection() {
           </span>
         </motion.h2>
 
-        {/* 2-column grid — 2 visible initially */}
+        {/* Responsive grid — 2 visible initially */}
         <div
-          style={{
-            display: "grid",
-            gap: "20px",
-            gridTemplateColumns: "repeat(2, 1fr)",
-          }}
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ gap: "20px" }}
         >
           <AnimatePresence initial={false}>
             {visible.map((project, i) => (

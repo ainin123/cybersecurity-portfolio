@@ -9,6 +9,15 @@ interface Props {
 export default function LoadingScreen({ onComplete }: Props) {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const start = performance.now();
@@ -61,11 +70,11 @@ export default function LoadingScreen({ onComplete }: Props) {
           pointerEvents: phase === "exit" ? "none" : "auto",
         }}
       >
-        {/* Photo — right half, contained to show full portrait */}
+        {/* Photo — right half on desktop, full-screen bg on mobile */}
         <div style={{
           position: "absolute",
           top: 0, right: 0,
-          width: "52%",
+          width: isMobile ? "100%" : "52%",
           height: "100%",
           backgroundImage: "url('/mypic.png')",
           backgroundSize: "cover",
@@ -73,10 +82,12 @@ export default function LoadingScreen({ onComplete }: Props) {
           backgroundRepeat: "no-repeat",
         }} />
 
-        {/* Left-to-right gradient: solid dark → transparent (reveals photo) */}
+        {/* Overlay: heavier on mobile so text stays readable */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(to right, #020810 0%, #020810 36%, rgba(2,8,16,0.93) 46%, rgba(2,8,16,0.60) 58%, rgba(2,8,16,0.18) 75%, transparent 100%)",
+          background: isMobile
+            ? "rgba(2,8,16,0.82)"
+            : "linear-gradient(to right, #020810 0%, #020810 36%, rgba(2,8,16,0.93) 46%, rgba(2,8,16,0.60) 58%, rgba(2,8,16,0.18) 75%, transparent 100%)",
         }} />
 
         {/* Top & bottom vignette over the photo area */}
@@ -121,12 +132,14 @@ export default function LoadingScreen({ onComplete }: Props) {
         <div style={{
           position: "absolute",
           top: 0, left: 0, bottom: "120px",
-          width: "50%",
+          width: isMobile ? "100%" : "50%",
           zIndex: 3,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "0 0 0 clamp(32px, 7vw, 96px)",
+          alignItems: isMobile ? "center" : "flex-start",
+          textAlign: isMobile ? "center" : "left",
+          padding: isMobile ? "0 clamp(24px, 8vw, 48px)" : "0 0 0 clamp(32px, 7vw, 96px)",
           animation: "ls-fade-up 0.75s cubic-bezier(0.25,0.4,0.25,1) both",
         }}>
 
@@ -161,7 +174,7 @@ export default function LoadingScreen({ onComplete }: Props) {
           {/* Rule */}
           <div style={{
             display: "flex", alignItems: "center", gap: "10px",
-            margin: "20px 0 20px", maxWidth: "340px",
+            margin: "20px 0 20px", maxWidth: isMobile ? "260px" : "340px",
           }}>
             <div style={{ width: "32px", height: "1px", background: "rgba(56,165,50,0.5)", flexShrink: 0 }} />
             <span style={{ fontSize: "7px", color: "rgba(56,165,50,0.5)", letterSpacing: "3px" }}>◆ ◆</span>
@@ -169,13 +182,13 @@ export default function LoadingScreen({ onComplete }: Props) {
           </div>
 
           {/* Role chips */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "7px", alignItems: isMobile ? "center" : "flex-start" }}>
             {["Cybersecurity Researcher", "SIEM Engineer", "AI Security"].map((role) => (
               <span key={role} style={{
                 fontFamily: "var(--font-geist-mono), monospace",
                 fontSize: "11px", letterSpacing: "0.05em",
                 color: "rgba(56,165,50,0.95)",
-                display: "inline-block", alignSelf: "flex-start",
+                display: "inline-block", alignSelf: isMobile ? "center" : "flex-start",
                 background: "rgba(56,165,50,0.07)",
                 border: "1px solid rgba(56,165,50,0.20)",
                 padding: "4px 12px", borderRadius: "4px",
