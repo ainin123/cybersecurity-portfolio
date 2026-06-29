@@ -16,6 +16,7 @@ import TimelineSection from "./TimelineSection";
 import CertificationsSection from "./CertificationsSection";
 import CurrentWorkSection from "./CurrentWorkSection";
 import ContactSection from "./ContactSection";
+import BlogSection from "./BlogSection";
 import Footer from "./Footer";
 
 export default function AppShell() {
@@ -39,6 +40,7 @@ export default function AppShell() {
         <CurrentWorkSection />
         <MitreAttack />
         <ThreatLandscape />
+        <BlogSection />
         <ContactSection />
         <Footer />
       </main>
