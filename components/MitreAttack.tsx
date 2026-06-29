@@ -117,6 +117,11 @@ export default function MitreAttack() {
         className="grid-overlay"
         style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}
       />
+      {/* Radial green accent */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(56,165,50,0.05), transparent)",
+      }} />
 
       <div
         style={{
@@ -127,6 +132,50 @@ export default function MitreAttack() {
           zIndex: 1,
         }}
       >
+        {/* ── Crystal glass container ── */}
+        <motion.div
+          whileHover={{
+            y: -4,
+            boxShadow: [
+              "0 32px 100px rgba(0,0,0,0.55)",
+              "0 0 0 1px rgba(56,165,50,0.10)",
+              "inset 0 1.5px 0 rgba(255,255,255,0.08)",
+              "inset 0 0 80px rgba(56,165,50,0.04)",
+            ].join(", "),
+          }}
+          transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{
+            background: "linear-gradient(145deg, rgba(2,8,16,0.58) 0%, rgba(5,22,11,0.50) 30%, rgba(8,28,14,0.46) 55%, rgba(4,18,10,0.52) 80%, rgba(2,8,16,0.58) 100%)",
+            backdropFilter: "blur(36px) saturate(1.6)",
+            WebkitBackdropFilter: "blur(36px) saturate(1.6)",
+            border: "1px solid rgba(56,165,50,0.22)",
+            borderRadius: "24px",
+            padding: "48px",
+            position: "relative",
+            overflow: "hidden",
+            willChange: "transform, box-shadow",
+            boxShadow: [
+              "0 16px 60px rgba(0,0,0,0.45)",
+              "0 0 0 1px rgba(56,165,50,0.04)",
+              "inset 0 1.5px 0 rgba(255,255,255,0.07)",
+              "inset 0 -1px 0 rgba(0,0,0,0.2)",
+              "inset 0 0 60px rgba(56,165,50,0.02)",
+            ].join(", "),
+          }}
+        >
+          {/* Crystal top-edge refraction */}
+          <div style={{
+            position: "absolute", top: 0, left: "15%", right: "15%", height: "1px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.14) 35%, rgba(56,165,50,0.32) 65%, transparent)",
+            pointerEvents: "none",
+          }} />
+          {/* Ambient green inner glow */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "120px",
+            background: "linear-gradient(to top, rgba(56,165,50,0.04), transparent)",
+            pointerEvents: "none",
+          }} />
+
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
@@ -213,7 +262,7 @@ export default function MitreAttack() {
                   style={{
                     padding: "8px 14px",
                     borderRadius: "6px",
-                    backgroundColor: hoveredId === tactic.id ? "rgba(56,165,50,0.15)" : "rgba(2,8,16,0.8)",
+                    backgroundColor: hoveredId === tactic.id ? "rgba(56,165,50,0.15)" : "rgba(2,8,16,0.5)",
                     border: "1px solid rgba(56,165,50,0.2)",
                     cursor: "pointer",
                     transition: "all 0.2s",
@@ -418,6 +467,9 @@ export default function MitreAttack() {
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* close crystal glass container */}
         </motion.div>
       </div>
     </section>
