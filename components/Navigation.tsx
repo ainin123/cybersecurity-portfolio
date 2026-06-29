@@ -6,10 +6,10 @@ import ScrollProgress from "./ScrollProgress";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Timeline", href: "#timeline" },
   { label: "Skills", href: "#skills" },
   { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
-  { label: "Timeline", href: "#timeline" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
@@ -146,35 +146,29 @@ export default function Navigation() {
                   <button
                     onClick={() => handleNav(link.href)}
                     style={{
-                      background: isActive
-                        ? "rgba(56,165,50,0.1)"
-                        : "transparent",
+                      background: isActive ? "rgba(56,165,50,0.10)" : "transparent",
                       border: "none",
+                      borderBottom: isActive ? "2px solid #38a532" : "2px solid transparent",
                       cursor: "pointer",
                       padding: "6px 14px",
                       borderRadius: "6px",
                       fontSize: "13px",
-                      fontWeight: 500,
-                      letterSpacing: "0.03em",
-                      color: isActive ? "#38a532" : "rgba(255,255,255,0.65)",
+                      fontWeight: 600,
+                      letterSpacing: "0.04em",
+                      color: isActive ? "#38a532" : "rgba(255,255,255,0.60)",
                       transition: "all 0.2s ease",
+                      fontFamily: "var(--font-geist-mono), monospace",
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
-                        (e.currentTarget as HTMLButtonElement).style.color =
-                          "#FFFFFF";
-                        (
-                          e.currentTarget as HTMLButtonElement
-                        ).style.backgroundColor = "rgba(56,165,50,0.06)";
+                        (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
+                        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(56,165,50,0.06)";
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
-                        (e.currentTarget as HTMLButtonElement).style.color =
-                          "rgba(255,255,255,0.65)";
-                        (
-                          e.currentTarget as HTMLButtonElement
-                        ).style.backgroundColor = "transparent";
+                        (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.60)";
+                        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
                       }
                     }}
                   >
@@ -235,16 +229,30 @@ export default function Navigation() {
                       style={{
                         width: "100%",
                         textAlign: "left",
-                        background: isActive
-                          ? "rgba(56,165,50,0.1)"
-                          : "transparent",
+                        background: isActive ? "rgba(56,165,50,0.10)" : "transparent",
                         border: "none",
+                        borderLeft: isActive ? "2px solid #38a532" : "2px solid transparent",
                         cursor: "pointer",
                         padding: "10px 14px",
-                        borderRadius: "8px",
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        color: isActive ? "#38a532" : "rgba(255,255,255,0.65)",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        letterSpacing: "0.04em",
+                        color: isActive ? "#38a532" : "rgba(255,255,255,0.60)",
+                        fontFamily: "var(--font-geist-mono), monospace",
+                        transition: "all 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
+                          (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(56,165,50,0.06)";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.60)";
+                          (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+                        }
                       }}
                     >
                       {link.label}

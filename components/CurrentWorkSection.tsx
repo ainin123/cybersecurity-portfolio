@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck, Eye, Cloud, Target, Activity, CheckCircle2, Circle } from "lucide-react";
+import { ShieldCheck, Cloud, Target, Activity, CheckCircle2, Circle } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -28,32 +28,6 @@ const PROJECTS = [
       { label: "Fine-tuning", done: true },
       { label: "Validation", done: true },
       { label: "Production", done: false },
-    ],
-    accentColor: "#38a532",
-  },
-  {
-    icon: Eye,
-    status: "ACTIVE",
-    statusColor: "#38a532",
-    statusBg: "rgba(56,165,50,0.1)",
-    statusBorder: "rgba(56,165,50,0.3)",
-    title: "Explainable AI Security",
-    subtitle: "SHAP-driven transparency for ML threat models",
-    description:
-      "Embedding SHAP & LIME explainability layers into SIEM alert scoring pipelines so analysts receive interpretable decision rationale per alert — reducing triage time and alert fatigue.",
-    tech: ["SHAP", "LIME", "Python", "Wazuh", "Scikit-learn", "Kibana"],
-    metrics: [
-      { label: "Features Explained", value: "340+" },
-      { label: "Analyst Trust ↑", value: "64%" },
-      { label: "Models Integrated", value: "3" },
-    ],
-    progress: 60,
-    progressLabel: "Dashboard Integration",
-    milestones: [
-      { label: "Research", done: true },
-      { label: "SHAP Layer", done: true },
-      { label: "Dashboard", done: false },
-      { label: "Deployment", done: false },
     ],
     accentColor: "#38a532",
   },
