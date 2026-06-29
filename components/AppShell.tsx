@@ -16,7 +16,6 @@ import CertificationsSection from "./CertificationsSection";
 import CurrentWorkSection from "./CurrentWorkSection";
 import ContactSection from "./ContactSection";
 import BlogSection from "./BlogSection";
-import ExpertiseSection from "./ExpertiseSection";
 import Footer from "./Footer";
 
 export default function AppShell() {
@@ -32,7 +31,6 @@ export default function AppShell() {
         <Navigation />
         <HeroSection />
         <AboutSection />
-        <ExpertiseSection />
         <TimelineSection />
         <SkillsSection />
         <CertificationsSection />
