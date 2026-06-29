@@ -5,9 +5,9 @@ import { motion, useInView } from "framer-motion";
 import { Shield, Server, Target, MapPin, BookOpen, Briefcase, CircleCheck } from "lucide-react";
 
 const FOCUS_AREAS = [
-  { icon: Server, label: "SIEM Engineering", desc: "Wazuh, ElasticStack, SOAR integration" },
-  { icon: Target, label: "Penetration Testing", desc: "VAPT, web app, network recon" },
-  { icon: Shield, label: "Network Defense", desc: "SOC analysis, IDS/IPS, incident response" },
+  { icon: Server, label: "SIEM Engineering", desc: "Detection engineering, SOAR integration, log management" },
+  { icon: Target, label: "Penetration Testing", desc: "VAPT, web application, network reconnaissance" },
+  { icon: Shield, label: "Network Defense", desc: "SOC operations, behavioural analytics, incident response" },
 ];
 
 const CORE_VALUES = ["Precision", "Leadership", "Innovation", "Integrity"];
@@ -115,12 +115,13 @@ export default function AboutSection() {
                 marginBottom: "24px",
               }}
             >
-              Accomplished Research Associate at the National Centre for Cyber
-              Security (NCCS), NASTP, with expertise in developing and deploying
-              enterprise SIEM solutions for network defence. Proficient in
-              integrating threat intelligence, enhancing operational efficiency
-              through automation, and facilitating seamless SOAR and SIEM
-              integration for critical infrastructure protection.
+              Security researcher and engineer with expertise in designing and
+              deploying enterprise security monitoring solutions for critical
+              national infrastructure. Proficient in behavioural analytics,
+              threat intelligence integration, and cloud security deployment —
+              building detection systems, automating critical workflows, and
+              enforcing multi-tenant access governance across complex
+              environments.
             </p>
 
             <p
@@ -132,10 +133,11 @@ export default function AboutSection() {
               }}
             >
               Skilled in SOC analysis, vulnerability management, penetration
-              testing, and security incident response. Experienced in executing
-              end-to-end penetration tests — from reconnaissance and vulnerability
-              assessment to professional reporting — with a strong foundation in
-              tools such as Wazuh, NMAP, Wireshark, Burp Suite, and Snort.
+              testing, and automated incident response. Experienced in
+              end-to-end security engagements — from detection engineering and
+              external intelligence integration to product demonstrations and
+              executive-level client presentations — translating technical
+              findings into clear, actionable security outcomes.
             </p>
 
             {/* Focus areas */}
@@ -273,7 +275,7 @@ export default function AboutSection() {
                 {
                   icon: Briefcase,
                   label: "Experience",
-                  value: "SIEM Deployment, VAPT, Threat Intelligence, Automation",
+                  value: "Security Engineering, Cloud Security, AI Detection, Deployment Automation",
                 },
               ].map((item) => (
                 <div

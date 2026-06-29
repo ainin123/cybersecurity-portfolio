@@ -8,8 +8,8 @@ const TIMELINE = [
     year: "2024",
     title: "Research Associate — NCCS, NASTP",
     description:
-      "Developing and deploying enterprise SIEM solutions for national network defence. Integrating threat intelligence, automating critical data protection workflows, and facilitating seamless SOAR integration.",
-    tech: ["Wazuh", "ElasticStack", "SOAR", "Threat Intel"],
+      "Designing and deploying enterprise security monitoring solutions for national network defence. Leading behavioural analytics, multi-tenant access governance, cloud security deployment, and automated incident response — delivering product demonstrations and technical briefings to client stakeholders.",
+    tech: ["Behavioural Analytics", "Cloud Security", "Automated IR", "Threat Intel", "SOAR", "Deployment Automation"],
   },
   {
     year: "2023",
