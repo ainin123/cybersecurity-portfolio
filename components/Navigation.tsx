@@ -130,7 +130,6 @@ export default function Navigation() {
           {/* Desktop Links */}
           <ul
             style={{
-              display: "flex",
               gap: "2px",
               listStyle: "none",
               margin: 0,
@@ -189,8 +188,6 @@ export default function Navigation() {
               cursor: "pointer",
               color: "#FFFFFF",
               padding: "6px",
-              display: "flex",
-              alignItems: "center",
             }}
             aria-label="Toggle menu"
           >

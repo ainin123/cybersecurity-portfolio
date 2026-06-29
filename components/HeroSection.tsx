@@ -206,8 +206,8 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll hint */}
-      {mounted && (
+      {/* Scroll hint — desktop only to avoid overlapping content on mobile */}
+      {mounted && isDesktop && (
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
           style={{
