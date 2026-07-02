@@ -61,7 +61,7 @@ const STATIC_FALLBACK: NewsItem[] = [
     author: "Vulnerability Report",
   },
   {
-    title: "HTTP/2 Rapid Reset — Record DDoS Amplification",
+    title: "HTTP/2 Rapid Reset: Record DDoS Amplification",
     link: "#",
     excerpt: "A protocol-level vulnerability in HTTP/2 stream cancellation allows attackers to sustain record-breaking DDoS floods against web infrastructure.",
     pubDate: "Oct 2023",
@@ -447,7 +447,7 @@ export default function ThreatLandscape() {
               fontSize: "12px", color: "rgba(255,255,255,0.55)",
               fontFamily: "var(--font-geist-mono), monospace",
             }}>
-              Live feed unavailable — showing curated threat intelligence
+              Live feed unavailable, showing curated threat intelligence
             </span>
           </div>
         )}

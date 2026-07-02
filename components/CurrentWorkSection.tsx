@@ -66,7 +66,7 @@ const PROJECTS = [
     title: "Threat Intelligence Automation",
     subtitle: "Automated IOC enrichment & correlation pipeline",
     description:
-      "Building an automated pipeline integrating MISP & VirusTotal for IOC enrichment, cross-feed deduplication, and priority scoring — cutting analyst response time from hours to minutes.",
+      "Building an automated pipeline integrating MISP and VirusTotal for IOC enrichment, cross-feed deduplication, and priority scoring, cutting analyst response time from hours to minutes.",
     tech: ["MISP", "Python", "VirusTotal API", "Redis", "PostgreSQL", "Celery"],
     metrics: [
       { label: "IOCs Processed", value: "10K+" },
@@ -92,7 +92,7 @@ const PROJECTS = [
     title: "UEBA Insider Threat Detection",
     subtitle: "Temporal behavioral baseline profiling",
     description:
-      "Researching User Entity Behavior Analytics models that construct temporal behavioral baselines to surface insider threat indicators invisible to signature-based systems — targeting 91% detection accuracy.",
+      "Researching User Entity Behavior Analytics models that construct temporal behavioral baselines to surface insider threat indicators invisible to signature-based systems, targeting 91% detection accuracy.",
     tech: ["Python", "Temporal ML", "Behavioral Analytics", "UEBA", "Pandas", "PyTorch"],
     metrics: [
       { label: "Test Scenarios", value: "15" },
@@ -220,21 +220,14 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         {/* Status badge */}
         <div style={{
           display: "flex", alignItems: "center", gap: "5px",
-          padding: "5px 12px", borderRadius: "100px",
+          padding: "5px 10px",
+          borderRadius: "3px",
           backgroundColor: project.statusBg,
           border: `1px solid ${project.statusBorder}`,
+          borderLeft: `3px solid ${project.statusColor}`,
         }}>
-          <motion.span
-            animate={isActive ? { opacity: [1, 0.3, 1] } : {}}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            style={{
-              width: "5px", height: "5px", borderRadius: "50%",
-              backgroundColor: project.statusColor, flexShrink: 0,
-              boxShadow: isActive ? `0 0 6px ${project.statusColor}` : "none",
-            }}
-          />
           <span style={{
-            fontSize: "9px", fontWeight: 700,
+            fontSize: "10px", fontWeight: 700,
             fontFamily: "var(--font-geist-mono), monospace",
             color: project.statusColor, letterSpacing: "0.1em",
           }}>
@@ -546,9 +539,9 @@ export default function CurrentWorkSection() {
           ].map((stat) => (
             <div key={stat.label} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <span style={{
-                width: "7px", height: "7px", borderRadius: "50%",
+                width: "8px", height: "8px",
+                borderRadius: "2px",
                 backgroundColor: stat.color,
-                boxShadow: `0 0 6px ${stat.color}`,
                 flexShrink: 0,
               }} />
               <span style={{

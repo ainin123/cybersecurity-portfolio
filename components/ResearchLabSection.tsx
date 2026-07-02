@@ -8,7 +8,7 @@ import ThreatMap from "./ThreatMap";
 const investigations = [
   {
     id: "INV-2024-087",
-    title: "LAZARUS GROUP — CRYPTO EXCHANGE CAMPAIGN",
+    title: "LAZARUS GROUP: CRYPTO EXCHANGE CAMPAIGN",
     status: "ACTIVE",
     priority: "P0",
     critical: true,
@@ -18,7 +18,7 @@ const investigations = [
   },
   {
     id: "INV-2024-083",
-    title: "VOLT TYPHOON — CRITICAL INFRASTRUCTURE RECON",
+    title: "VOLT TYPHOON: CRITICAL INFRASTRUCTURE RECON",
     status: "MONITORING",
     priority: "P1",
     critical: false,
@@ -28,7 +28,7 @@ const investigations = [
   },
   {
     id: "INV-2024-079",
-    title: "NEW RANSOMWARE FAMILY — ZERO-DAY EXPLOITATION",
+    title: "NEW RANSOMWARE FAMILY: ZERO-DAY EXPLOITATION",
     status: "ACTIVE",
     priority: "P0",
     critical: true,
@@ -38,7 +38,7 @@ const investigations = [
   },
   {
     id: "INV-2024-071",
-    title: "APT28 — NATO PHISHING INFRASTRUCTURE",
+    title: "APT28: NATO PHISHING INFRASTRUCTURE",
     status: "CLOSED",
     priority: "P2",
     critical: false,

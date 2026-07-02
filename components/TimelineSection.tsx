@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 const TIMELINE = [
   {
     year: "2024",
-    title: "Research Associate — NCCS, NASTP",
+    title: "Research Associate, National Centre for Cyber Security (NCCS), National Aerospace, Science and Technology Park (NASTP)",
     description:
       "Designing and deploying enterprise security monitoring solutions for national network defence. Leading behavioural analytics, multi-tenant access governance, cloud security deployment, and automated incident response, while delivering product demonstrations and technical briefings to client stakeholders.",
     tech: ["Behavioural Analytics", "Cloud Security", "Automated IR", "Threat Intel", "SOAR", "Deployment Automation"],
@@ -17,27 +17,6 @@ const TIMELINE = [
     description:
       "Executed real-world end-to-end penetration tests, from reconnaissance and vulnerability assessment through to professional reporting and screen-recorded walkthroughs.",
     tech: ["NMAP", "Burp Suite", "Nessus", "OSINT"],
-  },
-  {
-    year: "2022",
-    title: "MS Cyber Security — Air University",
-    description:
-      "Completed a Master's specialising in AI-driven cybersecurity. Coursework covered Network Security, Web App Security, Network Forensics, Blockchain Security, and AI in Cyber Security.",
-    tech: ["AI Security", "Network Forensics", "Blockchain", "Web App Security"],
-  },
-  {
-    year: "2019",
-    title: "NAVTTC Cyber Security Certification — A+",
-    description:
-      "Completed government-backed cybersecurity programme covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic & Static Malware Analysis with a Grade A+.",
-    tech: ["VAPT", "Ethical Hacking", "Static Analysis", "Dynamic Analysis"],
-  },
-  {
-    year: "2015",
-    title: "BS Computer Science — Arid Agriculture University",
-    description:
-      "Built a strong foundation in programming, systems, networking, and database management, forming the bedrock for current expertise in security tool development and scripting automation.",
-    tech: ["Computer Science", "Networking", "Programming", "Linux"],
   },
 ];
 

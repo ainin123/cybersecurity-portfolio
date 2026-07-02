@@ -7,30 +7,30 @@ import { Award, ShieldCheck, BookOpen, Shield, Monitor, Globe, BarChart2 } from 
 const COMPLETED = [
   {
     icon: Award,
-    name: "PM Kamyaab Jawan Program — NAVTTC",
-    issuer: "National Vocational & Technical Training Commission",
+    name: "NAVTTC Cyber Security Certification (Grade A+)",
+    issuer: "National Vocational and Technical Training Commission (NAVTTC)",
     grade: "Grade A+",
-    desc: "Government-backed cybersecurity programme covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic & Static Malware Analysis.",
+    desc: "Government-backed cybersecurity programme under the PM Kamyaab Jawan initiative, covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic and Static Malware Analysis.",
   },
   {
     icon: BookOpen,
-    name: "Ethical Hacking Essential — EHE",
+    name: "Ethical Hacking Essential (EHE)",
     issuer: "EC-Council / Coursera",
     grade: "Certified",
-    desc: "Hands-on certification focused on Network Attacks, Web Application Attacks & Countermeasures, and ethical hacking methodologies.",
+    desc: "Hands-on certification focused on Network Attacks, Web Application Attacks and Countermeasures, and ethical hacking methodologies.",
   },
 ];
 
 const IN_PROGRESS = [
   {
     icon: ShieldCheck,
-    name: "ISC2 Certified in Cybersecurity — CC",
+    name: "ISC2 Certified in Cybersecurity (CC)",
     issuer: "ISC2",
     desc: "Globally recognized certification covering Security Principles, Access Control Concepts, Network Security, and Security Operations.",
   },
   {
     icon: Shield,
-    name: "Certified Ethical Hacker — CEH",
+    name: "Certified Ethical Hacker (CEH)",
     issuer: "EC-Council",
     desc: "Advanced ethical hacking certification covering attack phases, threat vectors, and countermeasures aligned with real-world penetration testing.",
   },
@@ -48,7 +48,7 @@ const IN_PROGRESS = [
   },
   {
     icon: BarChart2,
-    name: "CompTIA CySA+ — Cybersecurity Analyst",
+    name: "CompTIA CySA+ Cybersecurity Analyst",
     issuer: "CompTIA",
     desc: "Advanced analyst certification covering threat and vulnerability management, security operations, and incident response.",
   },
@@ -97,9 +97,11 @@ function CompletedCard({ cert, index, inView }: { cert: typeof COMPLETED[0]; ind
           fontSize: "11px", fontWeight: 700,
           color: "#38a532",
           backgroundColor: "rgba(56,165,50,0.1)",
-          border: "1px solid rgba(56,165,50,0.25)",
-          padding: "4px 11px", borderRadius: "100px",
+          border: "1px solid rgba(56,165,50,0.2)",
+          borderLeft: "3px solid rgba(56,165,50,0.6)",
+          padding: "4px 10px", borderRadius: "3px",
           letterSpacing: "0.05em",
+          fontFamily: "var(--font-geist-mono), monospace",
         }}>
           {cert.grade}
         </span>
@@ -163,18 +165,13 @@ function InProgressCard({ cert, index, inView }: { cert: typeof IN_PROGRESS[0]; 
         <span style={{
           fontSize: "11px", fontWeight: 700,
           color: "#f59e0b",
-          backgroundColor: "rgba(245,158,11,0.1)",
-          border: "1px solid rgba(245,158,11,0.25)",
-          padding: "4px 11px", borderRadius: "100px",
+          backgroundColor: "rgba(245,158,11,0.08)",
+          border: "1px solid rgba(245,158,11,0.2)",
+          borderLeft: "3px solid rgba(245,158,11,0.6)",
+          padding: "4px 10px", borderRadius: "3px",
           letterSpacing: "0.05em",
-          display: "flex", alignItems: "center", gap: "5px",
+          fontFamily: "var(--font-geist-mono), monospace",
         }}>
-          <span style={{
-            width: "6px", height: "6px", borderRadius: "50%",
-            background: "#f59e0b",
-            animation: "pulse-dot 1.8s ease-in-out infinite",
-            display: "inline-block",
-          }} />
           In Progress
         </span>
       </div>
@@ -286,8 +283,9 @@ export default function CertificationsSection() {
               fontSize: "10px", fontWeight: 600,
               color: "#38a532",
               backgroundColor: "rgba(56,165,50,0.08)",
-              border: "1px solid rgba(56,165,50,0.2)",
-              padding: "2px 8px", borderRadius: "100px",
+              border: "1px solid rgba(56,165,50,0.15)",
+              borderLeft: "2px solid rgba(56,165,50,0.5)",
+              padding: "2px 8px", borderRadius: "3px",
               fontFamily: "var(--font-geist-mono), monospace",
             }}>
               {COMPLETED.length} Certified
@@ -322,9 +320,10 @@ export default function CertificationsSection() {
             <span style={{
               fontSize: "10px", fontWeight: 600,
               color: "#f59e0b",
-              backgroundColor: "rgba(245,158,11,0.08)",
-              border: "1px solid rgba(245,158,11,0.2)",
-              padding: "2px 8px", borderRadius: "100px",
+              backgroundColor: "rgba(245,158,11,0.06)",
+              border: "1px solid rgba(245,158,11,0.15)",
+              borderLeft: "2px solid rgba(245,158,11,0.5)",
+              padding: "2px 8px", borderRadius: "3px",
               fontFamily: "var(--font-geist-mono), monospace",
             }}>
               {IN_PROGRESS.length} Pursuing

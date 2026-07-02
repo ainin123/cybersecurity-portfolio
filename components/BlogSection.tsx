@@ -34,7 +34,7 @@ const POSTS: Post[] = [
     featured: true,
     title: "Transformer Ensembles for Real-Time PII Masking in SOC Log Streams",
     excerpt:
-      "A deep dive into how fine-tuned transformer architectures — combined via ensemble fusion — can detect and mask Personally Identifiable Information within high-throughput SIEM log pipelines. We cover model selection, cross-format generalisation across syslog, CEF, and JSON, and the latency trade-offs of deploying NLP inference inside a live SOC.",
+      "A deep dive into how fine-tuned transformer architectures, combined via ensemble fusion, can detect and mask Personally Identifiable Information within high-throughput SIEM log pipelines. We cover model selection, cross-format generalisation across syslog, CEF, and JSON, and the latency trade-offs of deploying NLP inference inside a live SOC.",
     date: "Jun 2025",
     readTime: "9 min read",
     tags: ["Transformers", "SIEM", "PII", "NLP", "SOC"],
@@ -45,7 +45,7 @@ const POSTS: Post[] = [
     category: "Threat Intelligence",
     title: "MITRE ATT&CK in the Real World: Mapping Coverage Gaps in a National SOC",
     excerpt:
-      "Moving beyond the framework poster — how ATT&CK Navigator surfaces detection blind spots, guides SIEM rule prioritisation, and turns abstract tactics into measurable engineering goals inside a production SOC environment.",
+      "Moving beyond the framework poster: how ATT&CK Navigator surfaces detection blind spots, guides SIEM rule prioritisation, and turns abstract tactics into measurable engineering goals inside a production SOC environment.",
     date: "May 2025",
     readTime: "6 min read",
     tags: ["MITRE", "ATT&CK", "SOC", "Detection Engineering"],
@@ -56,7 +56,7 @@ const POSTS: Post[] = [
     category: "SIEM & AI",
     title: "AI-Driven Alert Correlation: Eliminating Alert Fatigue at the Source",
     excerpt:
-      "Rule-based correlation in traditional SIEMs floods analysts with thousands of daily alerts, the vast majority false positives. This post explores how ML-driven cross-source event correlation identifies genuine attack chains that static rules miss — and cuts false-positive rates by an order of magnitude.",
+      "Rule-based correlation in traditional SIEMs floods analysts with thousands of daily alerts, the vast majority false positives. This post explores how ML-driven cross-source event correlation identifies genuine attack chains that static rules miss, cutting false-positive rates by an order of magnitude.",
     date: "Apr 2025",
     readTime: "7 min read",
     tags: ["Alert Fatigue", "ML", "SIEM", "Correlation"],
@@ -67,7 +67,7 @@ const POSTS: Post[] = [
     category: "AI & Research",
     title: "Why Explainability Matters in AI Security: SHAP-Based Hate Speech Detection",
     excerpt:
-      "When we built our anti-religion hate speech detection system, high F1-scores were not enough — content moderators and auditors needed to understand exactly why the model flagged a post. A practical look at integrating SHAP explanations into a production NLP pipeline to support compliance and human-in-the-loop review.",
+      "When we built our anti-religion hate speech detection system, high F1-scores were not enough. Content moderators and auditors needed to understand exactly why the model flagged a post. A practical look at integrating SHAP explanations into a production NLP pipeline to support compliance and human-in-the-loop review.",
     date: "Mar 2025",
     readTime: "5 min read",
     tags: ["XAI", "SHAP", "NLP", "Content Moderation"],
@@ -78,7 +78,7 @@ const POSTS: Post[] = [
     category: "Tutorials",
     title: "Wazuh SIEM: Enterprise Deployment from Architecture to SOAR Integration",
     excerpt:
-      "An end-to-end field guide to deploying Wazuh at enterprise scale — covering architecture planning, agent rollout across heterogeneous endpoints, custom rule authoring, Elastic Stack integration for long-term retention, and wiring Wazuh alerts into a SOAR playbook.",
+      "An end-to-end field guide to deploying Wazuh at enterprise scale, covering architecture planning, agent rollout across heterogeneous endpoints, custom rule authoring, Elastic Stack integration for long-term retention, and wiring Wazuh alerts into a SOAR playbook.",
     date: "Feb 2025",
     readTime: "12 min read",
     tags: ["Wazuh", "SIEM", "SOAR", "Elastic Stack"],
@@ -89,7 +89,7 @@ const POSTS: Post[] = [
     category: "Tutorials",
     title: "Network Forensics for Incident Responders: A Practitioner's Field Guide",
     excerpt:
-      "From packet capture to timeline reconstruction — the tools, methodologies, and cognitive frameworks that matter most when you are under pressure to triage a live incident. Covers Wireshark, Zeek, flow analysis, and evidence preservation best practices.",
+      "From packet capture to timeline reconstruction: the tools, methodologies, and cognitive frameworks that matter most when you are under pressure to triage a live incident. Covers Wireshark, Zeek, flow analysis, and evidence preservation best practices.",
     date: "Jan 2025",
     readTime: "8 min read",
     tags: ["Forensics", "Incident Response", "Wireshark", "Zeek"],

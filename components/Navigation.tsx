@@ -7,9 +7,10 @@ import ScrollProgress from "./ScrollProgress";
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Timeline", href: "#timeline" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
-  { label: "Research", href: "#research" },
   { label: "Projects", href: "#projects" },
+  { label: "Research", href: "#research" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];

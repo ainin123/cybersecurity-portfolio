@@ -228,10 +228,11 @@ export default function MitreAttack() {
               <div key={tactic.id} style={{ display: "flex", alignItems: "center" }}>
                 <div
                   style={{
-                    padding: "8px 14px",
-                    borderRadius: "6px",
+                    padding: "9px 16px",
+                    borderRadius: "4px",
                     backgroundColor: hoveredId === tactic.id ? "rgba(56,165,50,0.15)" : "rgba(2,8,16,0.5)",
                     border: "1px solid rgba(56,165,50,0.2)",
+                    borderBottom: hoveredId === tactic.id ? "2px solid rgba(56,165,50,0.6)" : "1px solid rgba(56,165,50,0.2)",
                     cursor: "pointer",
                     transition: "all 0.2s",
                   }}
@@ -240,18 +241,18 @@ export default function MitreAttack() {
                 >
                   <div
                     style={{
-                      fontSize: "9px",
+                      fontSize: "11px",
                       color: "#38a532",
                       fontFamily: "var(--font-geist-mono), monospace",
                       letterSpacing: "0.08em",
-                      marginBottom: "2px",
+                      marginBottom: "3px",
                     }}
                   >
                     {tactic.id}
                   </div>
                   <div
                     style={{
-                      fontSize: "10px",
+                      fontSize: "12px",
                       fontWeight: 600,
                       color: "#FFFFFF",
                       whiteSpace: "nowrap",
@@ -337,7 +338,7 @@ export default function MitreAttack() {
                   <span
                     style={{
                       fontFamily: "var(--font-geist-mono), monospace",
-                      fontSize: "11px",
+                      fontSize: "13px",
                       fontWeight: 700,
                       color: "#38a532",
                       letterSpacing: "0.08em",
@@ -348,10 +349,11 @@ export default function MitreAttack() {
                   <span
                     style={{
                       padding: "2px 8px",
-                      borderRadius: "100px",
-                      backgroundColor: "rgba(56,165,50,0.1)",
-                      border: "1px solid rgba(56,165,50,0.2)",
-                      fontSize: "10px",
+                      borderRadius: "3px",
+                      backgroundColor: "rgba(56,165,50,0.08)",
+                      border: "1px solid rgba(56,165,50,0.15)",
+                      borderLeft: "2px solid rgba(56,165,50,0.5)",
+                      fontSize: "11px",
                       fontWeight: 700,
                       color: "#38a532",
                       fontFamily: "var(--font-geist-mono), monospace",
@@ -363,7 +365,7 @@ export default function MitreAttack() {
 
                 <h3
                   style={{
-                    fontSize: "14px",
+                    fontSize: "15px",
                     fontWeight: 700,
                     color: "#FFFFFF",
                     marginBottom: "12px",
@@ -373,12 +375,12 @@ export default function MitreAttack() {
                 </h3>
 
                 {/* Techniques */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "14px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "5px", marginBottom: "14px" }}>
                   {(isHovered ? tactic.techniques : tactic.techniques.slice(0, 3)).map((tech) => (
                     <div
                       key={tech}
                       style={{
-                        fontSize: "10px",
+                        fontSize: "12px",
                         color: "rgba(255,255,255,0.65)",
                         fontFamily: "var(--font-geist-mono), monospace",
                         display: "flex",
@@ -386,12 +388,12 @@ export default function MitreAttack() {
                         gap: "6px",
                       }}
                     >
-                      <span style={{ color: "rgba(56,165,50,0.5)", flexShrink: 0 }}>▸</span>
+                      <span style={{ color: "rgba(56,165,50,0.5)", flexShrink: 0 }}>&#x25B8;</span>
                       {tech}
                     </div>
                   ))}
                   {!isHovered && tactic.techniques.length > 3 && (
-                    <span style={{ fontSize: "10px", color: "rgba(56,165,50,0.5)", fontFamily: "monospace" }}>
+                    <span style={{ fontSize: "11px", color: "rgba(56,165,50,0.5)", fontFamily: "monospace" }}>
                       +{tactic.techniques.length - 3} more...
                     </span>
                   )}
@@ -406,10 +408,10 @@ export default function MitreAttack() {
                       marginBottom: "5px",
                     }}
                   >
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.65)", fontFamily: "monospace" }}>
+                    <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.65)", fontFamily: "monospace" }}>
                       Proficiency
                     </span>
-                    <span style={{ fontSize: "10px", color: "#38a532", fontFamily: "monospace", fontWeight: 700 }}>
+                    <span style={{ fontSize: "11px", color: "#38a532", fontFamily: "monospace", fontWeight: 700 }}>
                       {tactic.proficiency}%
                     </span>
                   </div>

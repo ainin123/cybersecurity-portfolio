@@ -10,10 +10,10 @@ const PROJECTS = [
     icon: Server,
     iconColor: "#38a532",
     domain: "SIEM & NETWORK DEFENSE",
-    title: "Wazuh SIEM Solutions — NCCS, NASTP",
+    title: "Wazuh SIEM Solutions, National Centre for Cyber Security (NCCS), National Aerospace, Science and Technology Park (NASTP)",
     problem: "Enterprise networks lack automated, comprehensive real-time security monitoring and response",
     solution:
-      "Deployed a full-scale Wazuh SIEM solution at the National Centre for Cyber Security covering threat hunting, malware detection, IDS event correlation, network traffic analysis, asset discovery, and role-based access control — significantly improving the network defence posture.",
+      "Deployed a full-scale Wazuh SIEM solution at the National Centre for Cyber Security (NCCS) covering threat hunting, malware detection, IDS event correlation, network traffic analysis, asset discovery, and role-based access control, significantly improving the network defence posture.",
     methodology: [
       "Implemented blocking of unauthorized applications and known malicious actors",
       "Configured IDS event detection and malicious domain hunting workflows",
@@ -36,7 +36,7 @@ const PROJECTS = [
     title: "End-to-End VAPT Engagements",
     problem: "Organizations lack visibility into exploitable vulnerabilities in their network and web assets",
     solution:
-      "Executed comprehensive penetration tests across client networks — from reconnaissance using NMAP and Shodan through exploitation and professional deliverable reporting with screen-recorded walkthroughs.",
+      "Executed comprehensive penetration tests across client networks, from reconnaissance using NMAP and Shodan through exploitation and professional deliverable reporting with screen-recorded walkthroughs.",
     methodology: [
       "Reconnaissance via NMAP, Maltego, Shodan, and OSINT techniques",
       "Vulnerability assessment using Nessus, OpenVAS, Nikto, and Acunetix",
@@ -58,7 +58,7 @@ const PROJECTS = [
     title: "Threat Intelligence Pipeline",
     problem: "Manual IOC collection and correlation across multiple feeds is slow and error-prone",
     solution:
-      "Automated threat intelligence workflows integrating MISP, Yeti, and VirusTotal for IOC enrichment and correlation — dramatically reducing threat response time and improving coverage.",
+      "Automated threat intelligence workflows integrating MISP, Yeti, and VirusTotal for IOC enrichment and correlation, dramatically reducing threat response time and improving coverage.",
     methodology: [
       "Integrated MISP and Yeti for structured IOC management and sharing",
       "Automated VirusTotal lookups and cross-feed IOC correlation",
@@ -104,7 +104,7 @@ const PROJECTS = [
     solution:
       "Established a malware analysis environment using Cuckoo Sandbox for dynamic analysis alongside static analysis tooling to classify and understand malware behaviour, supporting incident response investigations.",
     methodology: [
-      "Dynamic analysis via Cuckoo Sandbox — behaviour, network calls, registry changes",
+      "Dynamic analysis via Cuckoo Sandbox: behaviour, network calls, registry changes",
       "Static analysis of PE headers, strings, and import tables",
       "Cross-referenced findings with MISP threat intelligence for attribution",
     ],
@@ -196,25 +196,16 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           >
             <span
               style={{
-                fontFamily: "var(--font-geist-mono), monospace",
                 fontSize: "11px",
-                fontWeight: 700,
-                color: "#38a532",
-                letterSpacing: "0.15em",
-              }}
-            >
-              {project.num}
-            </span>
-            <span
-              style={{
-                fontSize: "10px",
                 fontWeight: 600,
                 color: "#38a532",
-                backgroundColor: "rgba(56,165,50,0.12)",
-                border: "1px solid rgba(56,165,50,0.25)",
+                backgroundColor: "rgba(56,165,50,0.08)",
+                border: "1px solid rgba(56,165,50,0.2)",
+                borderLeft: "3px solid rgba(56,165,50,0.55)",
                 padding: "3px 10px",
-                borderRadius: "100px",
+                borderRadius: "3px",
                 letterSpacing: "0.08em",
+                fontFamily: "var(--font-geist-mono), monospace",
               }}
             >
               FEATURED PROJECT
@@ -222,28 +213,29 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           </div>
           <h3
             style={{
-              fontSize: "24px",
+              fontSize: "26px",
               fontWeight: 800,
               color: "#FFFFFF",
               marginBottom: "10px",
+              lineHeight: 1.3,
             }}
           >
             {project.title}
           </h3>
           <p
             style={{
-              fontSize: "13px",
-              color: "rgba(255,255,255,0.65)",
+              fontSize: "14px",
+              color: "rgba(255,255,255,0.6)",
               marginBottom: "12px",
               fontStyle: "italic",
             }}
           >
-            Problem: {project.problem}
+            {project.problem}
           </p>
           <p
             style={{
               fontSize: "15px",
-              lineHeight: 1.7,
+              lineHeight: 1.75,
               color: "rgba(255,255,255,0.65)",
               marginBottom: "20px",
             }}
@@ -282,8 +274,8 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
                 key={t}
                 style={{
                   padding: "4px 10px",
-                  borderRadius: "6px",
-                  fontSize: "11px",
+                  borderRadius: "3px",
+                  fontSize: "12px",
                   fontWeight: 500,
                   fontFamily: "var(--font-geist-mono), monospace",
                   color: "#38a532",
@@ -302,7 +294,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           <div>
             <h4
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.1em",
@@ -315,8 +307,8 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
               {project.methodology?.map((m) => (
-                <li key={m} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,0.65)" }}>
-                  <span style={{ color: "#38a532", flexShrink: 0, marginTop: "2px" }}>→</span>
+                <li key={m} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "14px", color: "rgba(255,255,255,0.65)" }}>
+                  <span style={{ color: "#38a532", flexShrink: 0, marginTop: "2px" }}>&#x2192;</span>
                   {m}
                 </li>
               ))}
@@ -326,7 +318,7 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
           <div>
             <h4
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.65)",
                 letterSpacing: "0.1em",
@@ -335,12 +327,12 @@ function FeaturedProject({ project, inView }: { project: typeof PROJECTS[0]; inV
                 marginBottom: "10px",
               }}
             >
-              Key Findings
+              Outcomes
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
               {project.findings?.map((f) => (
-                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "rgba(255,255,255,0.65)" }}>
-                  <span style={{ color: "rgba(56,165,50,0.6)", flexShrink: 0, marginTop: "2px" }}>✓</span>
+                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "14px", color: "rgba(255,255,255,0.65)" }}>
+                  <span style={{ color: "rgba(56,165,50,0.6)", flexShrink: 0, marginTop: "2px" }}>&#x25B8;</span>
                   {f}
                 </li>
               ))}
@@ -447,45 +439,28 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
       >
         <div
           style={{
+            width: "38px",
+            height: "38px",
+            borderRadius: "8px",
+            background: "rgba(56,165,50,0.1)",
+            border: "1px solid rgba(56,165,50,0.2)",
             display: "flex",
             alignItems: "center",
-            gap: "10px",
+            justifyContent: "center",
+            flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "8px",
-              background: "rgba(56,165,50,0.1)",
-              border: "1px solid rgba(56,165,50,0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
-            <project.icon size={18} color="#38a532" />
-          </div>
-          <span
-            style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "11px",
-              fontWeight: 700,
-              color: "rgba(255,255,255,0.65)",
-            }}
-          >
-            {project.num}
-          </span>
+          <project.icon size={20} color="#38a532" />
         </div>
         <ExternalLink size={15} color="rgba(255,255,255,0.4)" />
       </div>
 
       <h3
         style={{
-          fontSize: "16px",
+          fontSize: "17px",
           fontWeight: 700,
           color: "#FFFFFF",
+          lineHeight: 1.35,
         }}
       >
         {project.title}
@@ -493,8 +468,8 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
 
       <p
         style={{
-          fontSize: "12px",
-          color: "rgba(255,255,255,0.65)",
+          fontSize: "13px",
+          color: "rgba(255,255,255,0.6)",
           fontStyle: "italic",
         }}
       >
@@ -503,46 +478,14 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
 
       <p
         style={{
-          fontSize: "13px",
-          lineHeight: 1.6,
+          fontSize: "14px",
+          lineHeight: 1.65,
           color: "rgba(255,255,255,0.65)",
           flex: 1,
         }}
       >
         {project.solution}
       </p>
-
-      {/* Methodology (compact) */}
-      <div>
-        <div
-          style={{
-            fontSize: "10px",
-            color: "rgba(255,255,255,0.65)",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            fontFamily: "var(--font-geist-mono), monospace",
-            marginBottom: "6px",
-          }}
-        >
-          Key Findings
-        </div>
-        {project.findings?.slice(0, 2).map((f) => (
-          <div
-            key={f}
-            style={{
-              fontSize: "11px",
-              color: "rgba(255,255,255,0.65)",
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "6px",
-              marginBottom: "3px",
-            }}
-          >
-            <span style={{ color: "rgba(56,165,50,0.5)", flexShrink: 0 }}>✓</span>
-            {f}
-          </div>
-        ))}
-      </div>
 
       {/* Impact metric */}
       <div
@@ -567,20 +510,20 @@ function ProjectCard({ project, index, inView }: { project: typeof PROJECTS[0]; 
         </span>
       </div>
 
-      {/* Tech pills */}
+      {/* Tech tags */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
         {project.tech.map((t) => (
           <span
             key={t}
             style={{
-              padding: "3px 8px",
-              borderRadius: "5px",
-              fontSize: "10px",
+              padding: "3px 9px",
+              borderRadius: "3px",
+              fontSize: "11px",
               fontWeight: 500,
               fontFamily: "var(--font-geist-mono), monospace",
               color: "rgba(255,255,255,0.65)",
               backgroundColor: "rgba(56,165,50,0.06)",
-              border: "1px solid rgba(56,165,50,0.1)",
+              border: "1px solid rgba(56,165,50,0.12)",
             }}
           >
             {t}
@@ -733,7 +676,7 @@ export default function ProjectsSection() {
             {showAll ? (
               <><ChevronUp size={16} /> SHOW LESS</>
             ) : (
-              <><ChevronDown size={16} /> SHOW MORE — {PROJECTS.length - 2} MORE CASE STUDIES</>
+              <><ChevronDown size={16} /> SHOW MORE ({PROJECTS.length - 2} MORE CASE STUDIES)</>
             )}
           </motion.button>
         </motion.div>

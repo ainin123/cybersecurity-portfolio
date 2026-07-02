@@ -129,7 +129,7 @@ export default function AttackMap() {
             fontFamily: "var(--font-geist-mono), monospace",
           }}
         >
-          Simulated threat activity — real-time visualization
+          Simulated threat activity, real-time visualization
         </p>
 
         {/* Map container */}

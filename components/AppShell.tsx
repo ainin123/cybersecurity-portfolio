@@ -12,6 +12,7 @@ import MitreAttack from "./MitreAttack";
 import ResearchSection from "./ResearchSection";
 import ProjectsSection from "./ProjectsSection";
 import TimelineSection from "./TimelineSection";
+import EducationSection from "./EducationSection";
 import CertificationsSection from "./CertificationsSection";
 import CurrentWorkSection from "./CurrentWorkSection";
 import ContactSection from "./ContactSection";
@@ -32,6 +33,7 @@ export default function AppShell() {
         <HeroSection />
         <AboutSection />
         <TimelineSection />
+        <EducationSection />
         <SkillsSection />
         <CertificationsSection />
         <ResearchSection />

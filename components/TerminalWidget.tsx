@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const TERMINAL_LINES = [
   { type: "cmd", text: "$ whoami" },
-  { type: "out", text: "  aniqa-ayub — Cybersecurity Researcher & AI Security Engineer" },
+  { type: "out", text: "  aniqa-ayub | Cybersecurity Researcher & AI Security Engineer" },
   { type: "blank", text: "" },
   { type: "cmd", text: "$ cat current_focus.txt" },
   { type: "out", text: "  → AI-Powered Data Loss Prevention (DLP)" },

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Shield, Server, Target, MapPin, BookOpen, Briefcase, CircleCheck } from "lucide-react";
+import { Shield, Server, Target, BookOpen, Briefcase, CircleCheck } from "lucide-react";
 
 const FOCUS_AREAS = [
   { icon: Server, label: "SIEM Engineering", desc: "Detection engineering, SOAR integration, log management" },
@@ -118,7 +118,7 @@ export default function AboutSection() {
               Security researcher and engineer with expertise in designing and
               deploying enterprise security monitoring solutions for critical
               national infrastructure. Proficient in behavioural analytics,
-              threat intelligence integration, and cloud security deployment —
+              threat intelligence integration, and cloud security deployment,
               building detection systems, automating critical workflows, and
               enforcing multi-tenant access governance across complex
               environments.
@@ -251,7 +251,7 @@ export default function AboutSection() {
                 {
                   icon: BookOpen,
                   label: "Education",
-                  value: "MS Cyber Security — Air University (2022–2025)",
+                  value: "MS Cyber Security, Air University (2022–2025)",
                 },
                 {
                   icon: Target,
@@ -261,13 +261,8 @@ export default function AboutSection() {
                 {
                   icon: CircleCheck,
                   label: "Current Role",
-                  value: "Research Associate @ NCCS, NASTP",
+                  value: "Research Associate, National Centre for Cyber Security (NCCS), National Aerospace, Science and Technology Park (NASTP)",
                   highlight: true,
-                },
-                {
-                  icon: MapPin,
-                  label: "Location",
-                  value: "Islamabad, Pakistan",
                 },
                 {
                   icon: Briefcase,
@@ -348,11 +343,14 @@ export default function AboutSection() {
                     key={v}
                     style={{
                       padding: "5px 12px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(56,165,50,0.2)",
-                      color: "rgba(255,255,255,0.65)",
+                      borderRadius: "3px",
+                      border: "1px solid rgba(56,165,50,0.15)",
+                      borderLeft: "3px solid rgba(56,165,50,0.45)",
+                      color: "rgba(255,255,255,0.7)",
                       fontSize: "12px",
                       fontWeight: 500,
+                      fontFamily: "var(--font-geist-mono), monospace",
+                      letterSpacing: "0.04em",
                     }}
                   >
                     {v}

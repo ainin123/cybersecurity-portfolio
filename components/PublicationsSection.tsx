@@ -8,11 +8,11 @@ const publications = [
   { type: "paper", title: "Dissecting LAZARUS GROUP's BlindingCan RAT: C2 Protocol Analysis and Detection Opportunities", venue: "BlackHat USA 2024", date: "2024-08", tags: ["Malware Analysis", "C2", "DPRK"] },
   { type: "talk", title: "From Zero to Shell: Modern Techniques in Initial Access Broker Operations", venue: "DEF CON 32", date: "2024-07", tags: ["Initial Access", "IAB", "Threat Intel"] },
   { type: "paper", title: "VOLT TYPHOON TTPs: Living-off-the-Land in Critical Infrastructure Networks", venue: "USENIX Security 2024", date: "2024-06", tags: ["APT", "LOTL", "ICS/OT"] },
-  { type: "advisory", title: "CVE-2024-1337: Critical RCE in Fortinet SSL-VPN Gateway — Exploitation Analysis", venue: "Zero-Day Initiative", date: "2024-03", tags: ["CVE", "RCE", "Fortinet"] },
+  { type: "advisory", title: "CVE-2024-1337: Critical RCE in Fortinet SSL-VPN Gateway, Exploitation Analysis", venue: "Zero-Day Initiative", date: "2024-03", tags: ["CVE", "RCE", "Fortinet"] },
   { type: "blog", title: "Uncovering the TTPs Behind SCATTERED SPIDER's Social Engineering Playbook", venue: "ARES Intelligence Blog", date: "2024-02", tags: ["Social Engineering", "SIM Swapping", "BEC"] },
   { type: "talk", title: "Building a Threat Intelligence Platform on a Shoestring: OSS Stack for Enterprise-Grade Intel", venue: "RSA Conference 2024", date: "2024-05", tags: ["Threat Intel", "OSINT", "Platform Engineering"] },
   { type: "paper", title: "ShadowPad: Comprehensive Analysis of the Modular Backdoor Ecosystem", venue: "VirusBulletin VB2023", date: "2023-10", tags: ["ShadowPad", "Supply Chain", "China-Nexus"] },
-  { type: "advisory", title: "CVE-2023-4911: Looney Tunables glibc Local Privilege Escalation — Weaponization Research", venue: "Qualys Security Advisory", date: "2023-10", tags: ["CVE", "LPE", "Linux"] },
+  { type: "advisory", title: "CVE-2023-4911: Looney Tunables glibc Local Privilege Escalation, Weaponization Research", venue: "Qualys Security Advisory", date: "2023-10", tags: ["CVE", "LPE", "Linux"] },
 ];
 
 const typeConfig: Record<string, { icon: typeof BookOpen; label: string }> = {

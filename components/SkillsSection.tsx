@@ -148,30 +148,30 @@ export default function SkillsSection() {
       ref={ref}
       style={{ position: "relative", padding: "100px 0", backgroundColor: "#020810" }}
     >
-      {/* Hacker image — right side */}
+      {/* Cybersecurity analyst image — right side */}
       <div style={{
         position: "absolute", top: 0, right: 0, width: "50%", height: "100%",
         zIndex: 1, overflow: "hidden", pointerEvents: "none",
       }}>
         <img
-          src="/hacker.webp"
+          src="/cybersecurityanalyst.png"
           alt=""
           aria-hidden="true"
           style={{
-            width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center",
-            opacity: 0.40, filter: "saturate(0.7) brightness(0.6) hue-rotate(10deg)",
+            width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top",
+            opacity: 0.35, filter: "saturate(0.5) brightness(0.55) hue-rotate(90deg)",
           }}
         />
         <div style={{
-          position: "absolute", top: 0, left: 0, width: "60%", height: "100%",
-          background: "linear-gradient(to right, #020810 15%, transparent)", pointerEvents: "none",
+          position: "absolute", top: 0, left: 0, width: "65%", height: "100%",
+          background: "linear-gradient(to right, #020810 20%, transparent)", pointerEvents: "none",
         }} />
         <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: "20%",
+          position: "absolute", top: 0, left: 0, right: 0, height: "25%",
           background: "linear-gradient(to bottom, #020810, transparent)", pointerEvents: "none",
         }} />
         <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "20%",
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "25%",
           background: "linear-gradient(to top, #020810, transparent)", pointerEvents: "none",
         }} />
       </div>
