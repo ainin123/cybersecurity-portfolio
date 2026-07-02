@@ -12,10 +12,10 @@ const PROJECTS = [
     statusBg: "rgba(56,165,50,0.1)",
     statusBorder: "rgba(56,165,50,0.3)",
     title: "AI-Powered Data Loss Prevention",
-    subtitle: "Transformer-based sensitive data classification engine",
+    subtitle: "NLP-based sensitive data classification engine",
     description:
-      "Finalizing BERT & RoBERTa fine-tuning on domain-specific security corpora for production-ready DLP with context-aware sensitivity detection across 12+ document types.",
-    tech: ["BERT", "RoBERTa", "spaCy", "TensorFlow", "Python", "NLP"],
+      "Finalizing a production-ready DLP system using fine-tuned language models trained on domain-specific security corpora, delivering context-aware sensitivity detection across 12+ document types.",
+    tech: ["Natural Language Processing", "Deep Learning", "Python", "Security Corpora", "DLP", "Classification"],
     metrics: [
       { label: "Accuracy", value: "98%" },
       { label: "False Negatives ↓", value: "71%" },
@@ -40,8 +40,8 @@ const PROJECTS = [
     title: "Cloud-Native SIEM Infrastructure",
     subtitle: "Auto-scaling containerized threat detection",
     description:
-      "Architecting cloud-native SIEM with Docker & Kubernetes for containerized Wazuh deployment featuring auto-scaling threat detection, high availability, and infrastructure-as-code provisioning.",
-    tech: ["Docker", "Kubernetes", "Wazuh", "ElasticStack", "Terraform", "AWS"],
+      "Architecting a cloud-native SIEM deployment with containerised orchestration, auto-scaling threat detection, high availability, and infrastructure-as-code provisioning for enterprise-grade monitoring.",
+    tech: ["Containerisation", "Cloud Orchestration", "SIEM", "Infrastructure-as-Code", "Auto-scaling", "Cloud Security"],
     metrics: [
       { label: "Nodes", value: "12" },
       { label: "Throughput", value: "50K/s" },
@@ -59,29 +59,29 @@ const PROJECTS = [
   },
   {
     icon: Target,
-    status: "IN PROGRESS",
-    statusColor: "#f59e0b",
-    statusBg: "rgba(245,158,11,0.08)",
-    statusBorder: "rgba(245,158,11,0.3)",
-    title: "Threat Intelligence Automation",
-    subtitle: "Automated IOC enrichment & correlation pipeline",
+    status: "DEPLOYED",
+    statusColor: "#38a532",
+    statusBg: "rgba(56,165,50,0.08)",
+    statusBorder: "rgba(56,165,50,0.3)",
+    title: "Threat Intelligence Platform",
+    subtitle: "Automated IOC enrichment and correlation pipeline",
     description:
-      "Building an automated pipeline integrating MISP and VirusTotal for IOC enrichment, cross-feed deduplication, and priority scoring, cutting analyst response time from hours to minutes.",
-    tech: ["MISP", "Python", "VirusTotal API", "Redis", "PostgreSQL", "Celery"],
+      "Integrated and deployed a threat intelligence platform enabling automated IOC enrichment, cross-feed deduplication, and priority scoring, reducing analyst response time from hours to minutes.",
+    tech: ["Threat Intelligence", "IOC Management", "Python", "Automation", "SIEM Integration", "Data Correlation"],
     metrics: [
       { label: "IOCs Processed", value: "10K+" },
       { label: "Correlation ↑", value: "83%" },
       { label: "Intel Feeds", value: "8" },
     ],
-    progress: 50,
-    progressLabel: "Priority Scoring",
+    progress: 100,
+    progressLabel: "Live & Integrated",
     milestones: [
       { label: "Pipeline", done: true },
-      { label: "Deduplication", done: true },
-      { label: "Scoring", done: false },
-      { label: "SIEM Link", done: false },
+      { label: "Enrichment", done: true },
+      { label: "Scoring", done: true },
+      { label: "SIEM Link", done: true },
     ],
-    accentColor: "#f59e0b",
+    accentColor: "#38a532",
   },
   {
     icon: Activity,
@@ -533,8 +533,8 @@ export default function CurrentWorkSection() {
           }}
         >
           {[
-            { label: "Active Projects", val: "2", color: "#38a532" },
-            { label: "In Progress", val: "2", color: "#f59e0b" },
+            { label: "Active / Deployed", val: "3", color: "#38a532" },
+            { label: "In Progress", val: "1", color: "#f59e0b" },
             { label: "Research Phase", val: "1", color: "#818cf8" },
           ].map((stat) => (
             <div key={stat.label} style={{ display: "flex", alignItems: "center", gap: "8px" }}>

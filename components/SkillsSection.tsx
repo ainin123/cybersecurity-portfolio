@@ -148,31 +148,32 @@ export default function SkillsSection() {
       ref={ref}
       style={{ position: "relative", padding: "100px 0", backgroundColor: "#020810" }}
     >
-      {/* Cybersecurity analyst image — right side */}
+      {/* Cybersecurity analyst image — right side, fixed parallax */}
       <div style={{
         position: "absolute", top: 0, right: 0, width: "50%", height: "100%",
         zIndex: 1, overflow: "hidden", pointerEvents: "none",
       }}>
-        <img
-          src="/cybersecurityanalyst.png"
-          alt=""
-          aria-hidden="true"
-          style={{
-            width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top",
-            opacity: 0.35, filter: "saturate(0.5) brightness(0.55) hue-rotate(90deg)",
-          }}
-        />
+        {/* Fixed background — stays in place while content scrolls */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('/cybersecurityanalyst.png')",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "75% center",
+          opacity: 0.35,
+          filter: "saturate(0.5) brightness(0.55) hue-rotate(90deg)",
+        }} />
         <div style={{
           position: "absolute", top: 0, left: 0, width: "65%", height: "100%",
-          background: "linear-gradient(to right, #020810 20%, transparent)", pointerEvents: "none",
+          background: "linear-gradient(to right, #020810 20%, transparent)",
         }} />
         <div style={{
           position: "absolute", top: 0, left: 0, right: 0, height: "25%",
-          background: "linear-gradient(to bottom, #020810, transparent)", pointerEvents: "none",
+          background: "linear-gradient(to bottom, #020810, transparent)",
         }} />
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: "25%",
-          background: "linear-gradient(to top, #020810, transparent)", pointerEvents: "none",
+          background: "linear-gradient(to top, #020810, transparent)",
         }} />
       </div>
 

@@ -131,8 +131,10 @@ export default function HeroSection() {
           }}>
             <span style={{
               display: "block", fontSize: "clamp(36px, 7vw, 80px)", whiteSpace: "nowrap",
+              letterSpacing: "-0.03em",
             }}>
-              <span style={{ color: "#FFFFFF" }}>ANIQA </span>
+              <span style={{ color: "#FFFFFF" }}>ANIQA</span>
+              <span style={{ display: "inline-block", width: "0.18em" }} />
               <span style={{
                 background: "linear-gradient(to right, #38a532, rgba(56,165,50,0.6))",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
@@ -196,8 +198,8 @@ export default function HeroSection() {
               <Download size={15} />
               Download Resume
             </motion.a>
-            <motion.button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            <motion.a
+              href="mailto:aniqaayub4@gmail.com?subject=Portfolio%20Enquiry"
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
@@ -205,10 +207,11 @@ export default function HeroSection() {
                 border: "1px solid rgba(56,165,50,0.4)", color: "#38a532",
                 fontWeight: 600, fontSize: "14px", background: "transparent",
                 cursor: "pointer", transition: "all 0.2s",
+                textDecoration: "none",
               }}>
               <AtSign size={15} />
               Contact Me
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </div>

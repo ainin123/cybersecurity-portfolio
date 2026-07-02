@@ -6,7 +6,7 @@ import { GraduationCap, BookOpen, Award } from "lucide-react";
 
 const EDUCATION = [
   {
-    year: "2022",
+    year: "2025",
     icon: GraduationCap,
     title: "MS Cyber Security",
     institution: "Air University, Islamabad",
@@ -16,17 +16,17 @@ const EDUCATION = [
     accentColor: "#38a532",
   },
   {
-    year: "2019",
+    year: "2022",
     icon: Award,
-    title: "NAVTTC Cyber Security Certification (Grade A+)",
-    institution: "National Vocational and Technical Training Commission (NAVTTC)",
+    title: "Cyber Security Certification (Grade A+)",
+    institution: "National University of Modern Languages (NUML), Islamabad",
     description:
-      "Completed government-backed cybersecurity programme under the PM Kamyaab Jawan initiative, covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic and Static Malware Analysis.",
+      "Completed a government-backed cybersecurity programme covering VAPT, Ethical Hacking, Google Hacking, Code Analysis, and Dynamic and Static Malware Analysis.",
     tech: ["VAPT", "Ethical Hacking", "Static Analysis", "Dynamic Analysis"],
     accentColor: "#38a532",
   },
   {
-    year: "2015",
+    year: "2019",
     icon: BookOpen,
     title: "BS Computer Science",
     institution: "PMAS Arid Agriculture University, Rawalpindi",

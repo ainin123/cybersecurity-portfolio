@@ -251,7 +251,7 @@ export default function AboutSection() {
                 {
                   icon: BookOpen,
                   label: "Education",
-                  value: "MS Cyber Security, Air University (2022–2025)",
+                  value: "MS Cyber Security, Air University (2025)",
                 },
                 {
                   icon: Target,
@@ -267,7 +267,7 @@ export default function AboutSection() {
                 {
                   icon: Briefcase,
                   label: "Experience",
-                  value: "Security Engineering, Cloud Security, AI Detection, Deployment Automation",
+                  value: "Security Engineering, SOC Operations, SIEM-as-a-Service, Threat Intelligence, AI/ML Security Integration, Data Loss Prevention (DLP), User & Entity Behavior Analytics (UEBA), Security Automation & Scripting",
                 },
               ].map((item) => (
                 <div
