@@ -101,13 +101,46 @@ export default function TimelineSection() {
       ref={ref}
       style={{ position: "relative", padding: "80px 0", backgroundColor: "#070709", overflow: "hidden" }}
     >
-      <div className="grid-overlay" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }} />
+      {/* Parallax background image — right side, fixed while content scrolls */}
       <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
+        position: "absolute", top: 0, right: 0, width: "55%", height: "100%",
+        zIndex: 0, overflow: "hidden", pointerEvents: "none",
+      }}>
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('/professiontimeline.png')",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "65% center",
+          opacity: 0.3,
+          filter: "saturate(0.4) brightness(0.5) hue-rotate(90deg)",
+        }} />
+        <div style={{
+          position: "absolute", top: 0, left: 0, width: "70%", height: "100%",
+          background: "linear-gradient(to right, #070709 20%, transparent)",
+        }} />
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0, height: "25%",
+          background: "linear-gradient(to bottom, #070709, transparent)",
+        }} />
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "25%",
+          background: "linear-gradient(to top, #070709, transparent)",
+        }} />
+      </div>
+
+      {/* Dark overlay */}
+      <div style={{
+        position: "absolute", inset: 0, backgroundColor: "rgba(7,7,9,0.5)", zIndex: 0, pointerEvents: "none",
+      }} />
+
+      <div className="grid-overlay" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none", zIndex: 1 }} />
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
         background: "radial-gradient(ellipse 40% 60% at 0% 50%, rgba(56,165,50,0.06), transparent)",
       }} />
 
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 2 }}>
 
         {/* ── Glassmorphism container ── */}
         <motion.div
