@@ -63,28 +63,21 @@ export default function ContactSection() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Failed to send message.");
-      }
-      setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-    } finally {
+
+    const subject = encodeURIComponent(`[Portfolio] ${form.subject}: ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `mailto:aniqaayub4@gmail.com?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
       setLoading(false);
-    }
+      setSubmitted(true);
+    }, 800);
   };
 
   return (
@@ -483,21 +476,6 @@ export default function ContactSection() {
                     }}
                   />
                 </div>
-
-                {/* Error message */}
-                {error && (
-                  <div style={{
-                    padding: "10px 14px",
-                    borderRadius: "6px",
-                    background: "rgba(220,38,38,0.08)",
-                    border: "1px solid rgba(220,38,38,0.25)",
-                    borderLeft: "3px solid rgba(220,38,38,0.6)",
-                    color: "rgba(255,120,120,0.9)",
-                    fontSize: "13px",
-                  }}>
-                    {error}
-                  </div>
-                )}
 
                 {/* Submit */}
                 <motion.button
