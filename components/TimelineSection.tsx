@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const TIMELINE = [
@@ -21,25 +21,26 @@ const TIMELINE = [
 ];
 
 const SKILLS = [
-  { label: "SIEM Engineering",      pct: 92 },
-  { label: "Threat Intelligence",   pct: 85 },
-  { label: "Cloud Security",        pct: 80 },
-  { label: "Behavioural Analytics", pct: 78 },
-  { label: "Penetration Testing",   pct: 70 },
-  { label: "AI Security",           pct: 65 },
+  { short: "SIEM Eng",     pct: 92 },
+  { short: "Threat Intel", pct: 85 },
+  { short: "Cloud Sec",    pct: 80 },
+  { short: "Behav Anal",   pct: 78 },
+  { short: "Pen Testing",  pct: 70 },
+  { short: "AI Security",  pct: 65 },
 ];
 
-const PROFILE_ROWS = [
-  { k: "CLEARANCE", v: "RESEARCH",       highlight: false },
-  { k: "STATION",   v: "NCCS · NASTP",   highlight: false },
-  { k: "LOCATION",  v: "ISLAMABAD, PK",  highlight: false },
-  { k: "STATUS",    v: "ACTIVE",         highlight: true  },
+const WHOAMI_ROWS = [
+  { k: "Name",     v: "Aniqa Ayub",        hi: false },
+  { k: "Role",     v: "Research Associate", hi: false },
+  { k: "Org",      v: "NCCS · NASTP",       hi: false },
+  { k: "Location", v: "Islamabad, PK",      hi: false },
+  { k: "Status",   v: "ACTIVE",             hi: true  },
 ];
 
 // ── Precomputed hex grid (pointy-top, r = 32, 13 cols × 19 rows) ──────────
 const HEX_R  = 32;
-const HEX_CW = Math.sqrt(3) * HEX_R; // col width ≈ 55.4
-const HEX_RH = 1.5 * HEX_R;          // row step  = 48
+const HEX_CW = Math.sqrt(3) * HEX_R;
+const HEX_RH = 1.5 * HEX_R;
 
 const HEX_GRID: string[] = Array.from({ length: 13 * 19 }, (_, idx) => {
   const row = Math.floor(idx / 13);
@@ -52,207 +53,237 @@ const HEX_GRID: string[] = Array.from({ length: 13 * 19 }, (_, idx) => {
   }).join(" ");
 });
 
-// ── Sub-components ─────────────────────────────────────────────────────────
-
-function SkillBar({
-  label, pct, animate, delay,
-}: { label: string; pct: number; animate: boolean; delay: number }) {
-  return (
-    <div style={{ marginBottom: "11px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-        <span style={{
-          fontFamily: "var(--font-geist-mono), monospace",
-          fontSize: "9px", letterSpacing: "0.10em", textTransform: "uppercase",
-          color: "rgba(255,255,255,0.50)",
-        }}>
-          {label}
-        </span>
-        <span style={{
-          fontFamily: "var(--font-geist-mono), monospace",
-          fontSize: "9px", color: "rgba(56,165,50,0.80)",
-        }}>
-          {pct}%
-        </span>
-      </div>
-      <div style={{
-        height: "3px", background: "rgba(255,255,255,0.06)", borderRadius: "100px", overflow: "hidden",
-      }}>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: animate ? `${pct}%` : 0 }}
-          transition={{ duration: 1.3, delay, ease: [0.25, 0.4, 0.25, 1] }}
-          style={{
-            height: "100%", borderRadius: "100px",
-            background: "linear-gradient(to right, rgba(56,165,50,0.45), #38a532)",
-            boxShadow: "0 0 8px rgba(56,165,50,0.55)",
-          }}
-        />
-      </div>
-    </div>
-  );
+function makeBar(pct: number, width = 16): string {
+  const n = Math.round((pct / 100) * width);
+  return "█".repeat(n) + "░".repeat(width - n);
 }
 
-function OperatorCard({ inView }: { inView: boolean }) {
+// ── Terminal card ──────────────────────────────────────────────────────────
+
+function TerminalCard({ inView }: { inView: boolean }) {
+  const [cmd1, setCmd1]               = useState("");
+  const [showOutput1, setShowOutput1] = useState(false);
+  const [showPrompt2, setShowPrompt2] = useState(false);
+  const [cmd2, setCmd2]               = useState("");
+  const [shownSkills, setShownSkills] = useState(0);
+  const [showFinalPrompt, setShowFinalPrompt] = useState(false);
+  const [cursorOn, setCursorOn]       = useState(true);
+
+  // blinking cursor
+  useEffect(() => {
+    const id = setInterval(() => setCursorOn((c) => !c), 530);
+    return () => clearInterval(id);
+  }, []);
+
+  // typing animation sequence
+  useEffect(() => {
+    if (!inView) {
+      setCmd1(""); setShowOutput1(false); setShowPrompt2(false);
+      setCmd2(""); setShownSkills(0); setShowFinalPrompt(false);
+      return;
+    }
+
+    const ids: ReturnType<typeof setTimeout>[] = [];
+    const q = (fn: () => void, ms: number) => { ids.push(setTimeout(fn, ms)); };
+
+    const C1 = "whoami";
+    const C2 = "./skills.sh";
+    let t = 450;
+
+    for (let i = 1; i <= C1.length; i++) {
+      const s = C1.slice(0, i);
+      q(() => setCmd1(s), t);
+      t += 65;
+    }
+    t += 380;
+    q(() => setShowOutput1(true), t);
+    t += 900;
+    q(() => setShowPrompt2(true), t);
+    t += 220;
+    for (let i = 1; i <= C2.length; i++) {
+      const s = C2.slice(0, i);
+      q(() => setCmd2(s), t);
+      t += 60;
+    }
+    t += 380;
+    for (let i = 1; i <= SKILLS.length; i++) {
+      const n = i;
+      q(() => setShownSkills(n), t);
+      t += 210;
+    }
+    t += 340;
+    q(() => setShowFinalPrompt(true), t);
+
+    return () => ids.forEach(clearTimeout);
+  }, [inView]);
+
+  const Prompt = () => (
+    <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px" }}>
+      <span style={{ color: "rgba(56,165,50,0.80)" }}>aniqa</span>
+      <span style={{ color: "rgba(255,255,255,0.30)" }}>@</span>
+      <span style={{ color: "rgba(56,165,50,0.65)" }}>nccs</span>
+      <span style={{ color: "rgba(255,255,255,0.30)" }}>:~$</span>
+      <span style={{ color: "rgba(255,255,255,0.20)" }}>{" "}</span>
+    </span>
+  );
+
+  const Cursor = () => (
+    <span style={{ color: "#38a532", opacity: cursorOn ? 1 : 0, fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px" }}>█</span>
+  );
+
+  const SEP = "─".repeat(34);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100, filter: "blur(16px)" }}
       animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
       transition={{ duration: 0.9, ease: [0.25, 0.4, 0.25, 1] }}
-      style={{ flexShrink: 0, width: "300px", maxWidth: "100%", margin: "0 auto 40px" }}
+      style={{ flexShrink: 0, width: "340px", maxWidth: "100%", margin: "0 auto 40px" }}
     >
-      <div style={{ position: "relative" }}>
-        {/* HUD corner accents */}
-        {(["tl", "br"] as const).map((c) => (
-          <div key={c} style={{
-            position: "absolute",
-            top:    c === "tl" ? "-10px" : undefined,
-            bottom: c === "br" ? "-10px" : undefined,
-            left:   c === "tl" ? "-10px" : undefined,
-            right:  c === "br" ? "-10px" : undefined,
-            width: "22px", height: "22px",
-            borderTop:    c === "tl" ? "2px solid rgba(56,165,50,0.7)" : undefined,
-            borderLeft:   c === "tl" ? "2px solid rgba(56,165,50,0.7)" : undefined,
-            borderBottom: c === "br" ? "2px solid rgba(56,165,50,0.7)" : undefined,
-            borderRight:  c === "br" ? "2px solid rgba(56,165,50,0.7)" : undefined,
-            borderRadius: c === "tl" ? "2px 0 0 0" : "0 0 2px 0",
-            zIndex: 2,
-          }} />
-        ))}
-
-        {/* Card body */}
+      {/* Window chrome */}
+      <div style={{
+        background: "#080e08",
+        border: "1px solid rgba(56,165,50,0.18)",
+        borderRadius: "12px",
+        overflow: "hidden",
+        boxShadow: "0 0 60px rgba(56,165,50,0.07), 0 24px 64px rgba(0,0,0,0.65)",
+      }}>
+        {/* Title bar */}
         <div style={{
-          background: "rgba(2,8,16,0.88)",
-          border: "1px solid rgba(56,165,50,0.14)",
-          borderRadius: "14px",
-          padding: "26px 22px",
-          boxShadow: "0 0 60px rgba(56,165,50,0.07), 0 24px 64px rgba(0,0,0,0.55)",
+          display: "flex", alignItems: "center", gap: "7px",
+          padding: "11px 14px",
+          background: "rgba(56,165,50,0.04)",
+          borderBottom: "1px solid rgba(56,165,50,0.10)",
+        }}>
+          {["#FF5F56", "#FFBD2E", "#27C93F"].map((c, i) => (
+            <div key={i} style={{
+              width: "11px", height: "11px", borderRadius: "50%",
+              backgroundColor: c, opacity: 0.75,
+            }} />
+          ))}
+          <span style={{
+            flex: 1, textAlign: "center",
+            fontFamily: "var(--font-geist-mono), monospace",
+            fontSize: "10px", color: "rgba(255,255,255,0.26)", letterSpacing: "0.08em",
+          }}>
+            bash — aniqa@nccs:~
+          </span>
+        </div>
+
+        {/* Body */}
+        <div style={{
+          padding: "18px 16px 22px",
+          minHeight: "390px",
+          fontFamily: "var(--font-geist-mono), monospace",
+          fontSize: "12px",
+          lineHeight: 1.75,
         }}>
 
-          {/* ── Avatar ── */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "22px" }}>
-            <div style={{ position: "relative", width: "76px", height: "76px", marginBottom: "14px" }}>
-              {/* Outer pulse ring */}
-              <motion.div
-                animate={{ scale: [1, 1.30, 1], opacity: [0.35, 0, 0.35] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  position: "absolute", inset: "-18px", borderRadius: "50%",
-                  border: "1px solid rgba(56,165,50,0.28)",
-                }}
-              />
-              {/* Inner pulse ring */}
-              <motion.div
-                animate={{ scale: [1, 1.18, 1], opacity: [0.55, 0.08, 0.55] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.55 }}
-                style={{
-                  position: "absolute", inset: "-9px", borderRadius: "50%",
-                  border: "1px solid rgba(56,165,50,0.42)",
-                }}
-              />
-              {/* Avatar circle */}
-              <div style={{
-                width: "76px", height: "76px", borderRadius: "50%",
-                background: "radial-gradient(circle at 38% 32%, rgba(56,165,50,0.18), rgba(2,8,16,0.96))",
-                border: "1.5px solid rgba(56,165,50,0.50)",
-                boxShadow: "0 0 28px rgba(56,165,50,0.18), inset 0 0 20px rgba(56,165,50,0.06)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <span style={{
-                  fontFamily: "var(--font-geist-mono), monospace",
-                  fontSize: "24px", fontWeight: 800, color: "#38a532", letterSpacing: "0.04em",
-                }}>
-                  AA
-                </span>
-              </div>
-            </div>
-
-            <div style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "12px", fontWeight: 700, color: "#38a532",
-              letterSpacing: "0.16em", textTransform: "uppercase", textAlign: "center",
-            }}>
-              Aniqa Ayub
-            </div>
-            <div style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "9px", color: "rgba(255,255,255,0.42)",
-              letterSpacing: "0.08em", textAlign: "center", marginTop: "4px",
-            }}>
-              Cybersecurity Researcher
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(56,165,50,0.10)", marginBottom: "18px" }} />
-
-          {/* ── Profile metadata ── */}
-          <div style={{ marginBottom: "20px" }}>
-            <div style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "8px", letterSpacing: "0.20em", color: "rgba(56,165,50,0.55)",
-              textTransform: "uppercase", marginBottom: "12px",
-            }}>
-              Operator Profile
-            </div>
-            {PROFILE_ROWS.map(({ k, v, highlight }) => (
-              <div key={k} style={{
-                display: "flex", justifyContent: "space-between",
-                alignItems: "center", marginBottom: "7px",
-              }}>
-                <span style={{
-                  fontFamily: "var(--font-geist-mono), monospace",
-                  fontSize: "9px", color: "rgba(255,255,255,0.32)", letterSpacing: "0.08em",
-                }}>
-                  {k}
-                </span>
-                <span style={{
-                  fontFamily: "var(--font-geist-mono), monospace",
-                  fontSize: "9px", letterSpacing: "0.06em",
-                  color: highlight ? "#38a532" : "rgba(255,255,255,0.68)",
-                  fontWeight: highlight ? 700 : 500,
-                }}>
-                  {highlight && (
-                    <span style={{
-                      display: "inline-block", width: "6px", height: "6px", borderRadius: "50%",
-                      backgroundColor: "#38a532",
-                      boxShadow: "0 0 6px rgba(56,165,50,0.9)",
-                      marginRight: "6px", verticalAlign: "middle",
-                    }} />
-                  )}
-                  {v}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(56,165,50,0.10)", marginBottom: "18px" }} />
-
-          {/* ── Competency skill bars ── */}
+          {/* ── Command 1: whoami ── */}
           <div>
-            <div style={{
-              fontFamily: "var(--font-geist-mono), monospace",
-              fontSize: "8px", letterSpacing: "0.20em", color: "rgba(56,165,50,0.55)",
-              textTransform: "uppercase", marginBottom: "14px",
-            }}>
-              Competency Index
-            </div>
-            {SKILLS.map((s, i) => (
-              <SkillBar
-                key={s.label}
-                label={s.label}
-                pct={s.pct}
-                animate={inView}
-                delay={0.55 + i * 0.11}
-              />
-            ))}
+            <Prompt />
+            <span style={{ color: "#e8e8e8" }}>{cmd1}</span>
+            {!showOutput1 && <Cursor />}
           </div>
+
+          {showOutput1 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div style={{ marginTop: "4px", marginBottom: "12px", paddingLeft: "1px" }}>
+                <div style={{ color: "rgba(56,165,50,0.28)", marginBottom: "5px", letterSpacing: "0" }}>{SEP}</div>
+                {WHOAMI_ROWS.map(({ k, v, hi }) => (
+                  <div key={k} style={{ display: "flex", gap: "6px", lineHeight: 1.7 }}>
+                    <span style={{ color: "rgba(255,255,255,0.32)", minWidth: "62px" }}>{k}</span>
+                    <span style={{ color: "rgba(56,165,50,0.35)" }}>›</span>
+                    <span style={{
+                      color: hi ? "#38a532" : "rgba(255,255,255,0.75)",
+                      fontWeight: hi ? 700 : 400,
+                      display: "flex", alignItems: "center", gap: "5px",
+                    }}>
+                      {hi && (
+                        <span style={{
+                          display: "inline-block", width: "6px", height: "6px", borderRadius: "50%",
+                          backgroundColor: "#38a532", boxShadow: "0 0 7px rgba(56,165,50,0.9)",
+                          flexShrink: 0,
+                        }} />
+                      )}
+                      {v}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* ── Command 2: ./skills.sh ── */}
+              {showPrompt2 && (
+                <>
+                  <div>
+                    <Prompt />
+                    <span style={{ color: "#e8e8e8" }}>{cmd2}</span>
+                    {shownSkills === 0 && <Cursor />}
+                  </div>
+
+                  {shownSkills > 0 && (
+                    <div style={{ marginTop: "4px", paddingLeft: "1px" }}>
+                      <div style={{ color: "rgba(56,165,50,0.28)", marginBottom: "5px" }}>{SEP}</div>
+                      {SKILLS.slice(0, shownSkills).map((s) => (
+                        <motion.div
+                          key={s.short}
+                          initial={{ opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.25 }}
+                          style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "4px" }}
+                        >
+                          <span style={{
+                            color: "rgba(255,255,255,0.42)", fontSize: "11px",
+                            minWidth: "82px", letterSpacing: "0.01em",
+                          }}>
+                            {s.short}
+                          </span>
+                          <span style={{
+                            color: "#38a532", fontSize: "11px",
+                            letterSpacing: "1.5px",
+                            textShadow: "0 0 8px rgba(56,165,50,0.6)",
+                          }}>
+                            {makeBar(s.pct)}
+                          </span>
+                          <span style={{ color: "rgba(56,165,50,0.60)", fontSize: "10px" }}>
+                            {s.pct}%
+                          </span>
+                        </motion.div>
+                      ))}
+
+                      {showFinalPrompt && (
+                        <div style={{ marginTop: "10px" }}>
+                          <Prompt />
+                          <Cursor />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+            </motion.div>
+          )}
 
         </div>
+      </div>
+
+      <div style={{ marginTop: "12px", textAlign: "center" }}>
+        <span style={{
+          fontFamily: "var(--font-geist-mono), monospace",
+          fontSize: "9px", color: "rgba(56,165,50,0.38)", letterSpacing: "0.16em", textTransform: "uppercase",
+        }}>
+          terminal · nccs secure session
+        </span>
       </div>
     </motion.div>
   );
 }
+
+// ── Timeline item ──────────────────────────────────────────────────────────
 
 function TimelineItem({
   item, index, inView,
@@ -264,7 +295,6 @@ function TimelineItem({
       transition={{ duration: 0.6, delay: 0.3 + index * 0.18, ease: [0.25, 0.4, 0.25, 1] }}
       style={{ display: "flex", alignItems: "flex-start", gap: "0" }}
     >
-      {/* Connector + year badge */}
       <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
         <div style={{
           width: "32px", height: "1px",
@@ -286,7 +316,6 @@ function TimelineItem({
         <div style={{ width: "20px", height: "1px", background: "rgba(56,165,50,0.35)" }} />
       </div>
 
-      {/* Card */}
       <motion.div
         whileHover={{ y: -2, boxShadow: "0 10px 28px rgba(56,165,50,0.1)" }}
         transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
@@ -331,7 +360,7 @@ export default function TimelineSection() {
       ref={ref}
       style={{ position: "relative", padding: "80px 0", backgroundColor: "#070709", overflow: "hidden" }}
     >
-      {/* ── Hex grid background (right side) ── */}
+      {/* ── Hex grid background ── */}
       <div style={{
         position: "absolute", top: 0, right: 0, width: "62%", height: "100%",
         zIndex: 0, overflow: "hidden", pointerEvents: "none",
@@ -343,15 +372,8 @@ export default function TimelineSection() {
           style={{ display: "block" }}
         >
           {HEX_GRID.map((pts, i) => (
-            <polygon
-              key={i}
-              points={pts}
-              fill="none"
-              stroke="rgba(56,165,50,0.09)"
-              strokeWidth="0.8"
-            />
+            <polygon key={i} points={pts} fill="none" stroke="rgba(56,165,50,0.09)" strokeWidth="0.8" />
           ))}
-          {/* Radial glow overlay within SVG */}
           <defs>
             <radialGradient id="hex-glow" cx="65%" cy="42%" r="55%">
               <stop offset="0%"   stopColor="rgba(56,165,50,0.07)" />
@@ -360,13 +382,10 @@ export default function TimelineSection() {
           </defs>
           <rect width="740" height="920" fill="url(#hex-glow)" />
         </svg>
-
-        {/* Fade into left panel */}
         <div style={{
           position: "absolute", top: 0, left: 0, width: "55%", height: "100%",
           background: "linear-gradient(to right, #070709 15%, transparent)",
         }} />
-        {/* Top/bottom fades */}
         <div style={{
           position: "absolute", top: 0, left: 0, right: 0, height: "22%",
           background: "linear-gradient(to bottom, #070709, transparent)",
@@ -377,11 +396,7 @@ export default function TimelineSection() {
         }} />
       </div>
 
-      {/* Dark overlay */}
-      <div style={{
-        position: "absolute", inset: 0, backgroundColor: "rgba(7,7,9,0.45)", zIndex: 0, pointerEvents: "none",
-      }} />
-
+      <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(7,7,9,0.45)", zIndex: 0, pointerEvents: "none" }} />
       <div className="grid-overlay" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none", zIndex: 1 }} />
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
@@ -390,7 +405,6 @@ export default function TimelineSection() {
 
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 2 }}>
 
-        {/* ── Glassmorphism container ── */}
         <motion.div
           whileHover={{
             y: -4,
@@ -399,15 +413,13 @@ export default function TimelineSection() {
           transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
           style={{
             background: "linear-gradient(135deg, rgba(2,8,16,0.72) 0%, rgba(4,22,10,0.68) 35%, rgba(3,15,8,0.70) 65%, rgba(2,8,16,0.72) 100%)",
-            backdropFilter: "blur(28px)",
-            WebkitBackdropFilter: "blur(28px)",
+            backdropFilter: "blur(28px)", WebkitBackdropFilter: "blur(28px)",
             borderRadius: "24px",
             padding: "clamp(20px, 5vw, 48px)",
             boxShadow: "0 8px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(56,165,50,0.1), inset 0 0 80px rgba(56,165,50,0.03)",
             willChange: "transform, box-shadow",
           }}
         >
-          {/* Section label */}
           <motion.div
             initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
             animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
@@ -440,13 +452,12 @@ export default function TimelineSection() {
             </span>
           </motion.h2>
 
-          {/* ── Main layout ── */}
           <div style={{ display: "flex", alignItems: "center", gap: "48px", flexWrap: "wrap" }}>
 
-            {/* ── LEFT: Operator Profile Card ── */}
-            <OperatorCard inView={inView} />
+            {/* ── LEFT: Animated terminal ── */}
+            <TerminalCard inView={inView} />
 
-            {/* ── RIGHT: Timeline items ── */}
+            {/* ── RIGHT: Timeline entries ── */}
             <div style={{ flex: 1, minWidth: "280px", display: "flex", flexDirection: "column", gap: "22px" }}>
               {TIMELINE.map((item, i) => (
                 <TimelineItem key={item.year} item={item} index={i} inView={inView} />
