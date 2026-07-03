@@ -6,6 +6,44 @@ interface Props {
   onComplete: () => void;
 }
 
+const NET_NODES: { id: number; x: number; y: number; label?: string; central?: boolean }[] = [
+  { id: 0,  x: 300, y: 440, central: true },
+  { id: 1,  x: 185, y: 275, label: "FIREWALL" },
+  { id: 2,  x: 415, y: 275, label: "IDS/IPS"  },
+  { id: 3,  x: 145, y: 450, label: "ENDPOINT" },
+  { id: 4,  x: 455, y: 450, label: "SIEM"     },
+  { id: 5,  x: 215, y: 625, label: "SOC"      },
+  { id: 6,  x: 385, y: 625, label: "CLOUD"    },
+  { id: 7,  x: 90,  y: 185 },
+  { id: 8,  x: 510, y: 185 },
+  { id: 9,  x: 65,  y: 555 },
+  { id: 10, x: 535, y: 555 },
+  { id: 11, x: 155, y: 775 },
+  { id: 12, x: 445, y: 775 },
+  { id: 13, x: 300, y: 155 },
+  { id: 14, x: 300, y: 745 },
+];
+
+const NET_EDGES: [number, number][] = [
+  [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6],
+  [1, 7], [1, 2], [1, 3],
+  [2, 8], [2, 4],
+  [3, 7], [3, 9], [3, 5],
+  [4, 8], [4, 10], [4, 6],
+  [5, 9], [5, 11], [5, 6],
+  [6, 10], [6, 12],
+  [7, 13], [8, 13],
+  [9, 11], [10, 12],
+  [11, 14], [12, 14],
+];
+
+const BINARY_ROWS = [
+  { text: "01001000 01000101 01001100", x: 22,  y: 80  },
+  { text: "10110011 11001010 01110001", x: 55,  y: 830 },
+  { text: "11001010 01110001 10101010", x: 340, y: 112 },
+  { text: "01010101 10101010 11110000", x: 310, y: 812 },
+];
+
 export default function LoadingScreen({ onComplete }: Props) {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
@@ -70,17 +108,193 @@ export default function LoadingScreen({ onComplete }: Props) {
           pointerEvents: phase === "exit" ? "none" : "auto",
         }}
       >
-        {/* Photo — right half on desktop, full-screen bg on mobile */}
+        {/* ── Network topology visualization — right panel ── */}
         <div style={{
           position: "absolute",
           top: 0, right: 0,
           width: isMobile ? "100%" : "52%",
           height: "100%",
-          backgroundImage: "url('/mypic.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-        }} />
+          overflow: "hidden",
+        }}>
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 600 900"
+            preserveAspectRatio="xMidYMid slice"
+            style={{ display: "block" }}
+          >
+            <defs>
+              <radialGradient id="ls-net-bg" cx="50%" cy="50%" r="70%">
+                <stop offset="0%" stopColor="#0d1f0d" />
+                <stop offset="100%" stopColor="#020810" />
+              </radialGradient>
+              <filter id="ls-node-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="ls-center-glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* Background */}
+            <rect width="600" height="900" fill="url(#ls-net-bg)" />
+
+            {/* Grid dots */}
+            {Array.from({ length: 150 }, (_, i) => {
+              const row = Math.floor(i / 10);
+              const col = i % 10;
+              return (
+                <circle
+                  key={`g-${i}`}
+                  cx={col * 60 + 30}
+                  cy={row * 60 + 30}
+                  r="1.2"
+                  fill="rgba(56,165,50,0.10)"
+                />
+              );
+            })}
+
+            {/* Edges */}
+            {NET_EDGES.map(([a, b], i) => {
+              const na = NET_NODES[a], nb = NET_NODES[b];
+              return (
+                <line
+                  key={i}
+                  x1={na.x} y1={na.y}
+                  x2={nb.x} y2={nb.y}
+                  stroke="rgba(56,165,50,0.20)"
+                  strokeWidth="1"
+                  strokeDasharray={i % 4 === 0 ? "4 7" : undefined}
+                />
+              );
+            })}
+
+            {/* Animated data packets */}
+            {NET_EDGES.slice(0, 12).map(([a, b], i) => {
+              const na = NET_NODES[a], nb = NET_NODES[b];
+              return (
+                <circle key={i} r="2.5" fill="#38a532" filter="url(#ls-node-glow)">
+                  <animateMotion
+                    dur={`${2.4 + i * 0.62}s`}
+                    repeatCount="indefinite"
+                    begin={`${i * 0.42}s`}
+                    path={`M ${na.x} ${na.y} L ${nb.x} ${nb.y}`}
+                  />
+                </circle>
+              );
+            })}
+
+            {/* Nodes */}
+            {NET_NODES.map((n) => (
+              <g key={n.id}>
+                {n.central ? (
+                  <>
+                    {/* Outer pulse ring */}
+                    <circle cx={n.x} cy={n.y} r="42" fill="none" stroke="rgba(56,165,50,0.08)" strokeWidth="1">
+                      <animate attributeName="r"       values="42;62;42" dur="3.6s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.5;0;0.5" dur="3.6s" repeatCount="indefinite" />
+                    </circle>
+                    {/* Inner pulse ring */}
+                    <circle cx={n.x} cy={n.y} r="30" fill="none" stroke="rgba(56,165,50,0.20)" strokeWidth="1">
+                      <animate attributeName="r"       values="30;42;30" dur="3.6s" repeatCount="indefinite" begin="0.65s" />
+                      <animate attributeName="opacity" values="0.7;0.1;0.7" dur="3.6s" repeatCount="indefinite" begin="0.65s" />
+                    </circle>
+                    {/* Core */}
+                    <circle
+                      cx={n.x} cy={n.y} r="18"
+                      fill="rgba(56,165,50,0.12)"
+                      stroke="rgba(56,165,50,0.60)"
+                      strokeWidth="1.5"
+                      filter="url(#ls-center-glow)"
+                    />
+                    {/* Shield body */}
+                    <path
+                      d={`M ${n.x} ${n.y-11} L ${n.x+8} ${n.y-7} L ${n.x+8} ${n.y+1} Q ${n.x+8} ${n.y+10} ${n.x} ${n.y+13} Q ${n.x-8} ${n.y+10} ${n.x-8} ${n.y+1} L ${n.x-8} ${n.y-7} Z`}
+                      fill="rgba(56,165,50,0.75)"
+                      stroke="rgba(56,165,50,0.95)"
+                      strokeWidth="1"
+                      filter="url(#ls-center-glow)"
+                    />
+                    {/* Checkmark */}
+                    <path
+                      d={`M ${n.x-3.5} ${n.y+2} L ${n.x-0.5} ${n.y+5} L ${n.x+4.5} ${n.y-3}`}
+                      fill="none"
+                      stroke="#020810"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    {/* Label */}
+                    <text
+                      x={n.x} y={n.y + 30}
+                      textAnchor="middle"
+                      fontFamily="monospace"
+                      fontSize="7"
+                      fill="rgba(56,165,50,0.60)"
+                      letterSpacing="3"
+                    >
+                      SECURE CORE
+                    </text>
+                  </>
+                ) : (
+                  <>
+                    <circle
+                      cx={n.x} cy={n.y} r="7"
+                      fill="rgba(56,165,50,0.07)"
+                      stroke="rgba(56,165,50,0.35)"
+                      strokeWidth="1"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.5;1;0.5"
+                        dur={`${2.2 + (n.id % 4) * 0.4}s`}
+                        repeatCount="indefinite"
+                        begin={`${n.id * 0.28}s`}
+                      />
+                    </circle>
+                    <circle cx={n.x} cy={n.y} r="2.5" fill="rgba(56,165,50,0.85)" />
+                    {n.label && (
+                      <text
+                        x={n.x} y={n.y - 14}
+                        textAnchor="middle"
+                        fontFamily="monospace"
+                        fontSize="7"
+                        fill="rgba(56,165,50,0.48)"
+                        letterSpacing="1"
+                      >
+                        {n.label}
+                      </text>
+                    )}
+                  </>
+                )}
+              </g>
+            ))}
+
+            {/* Floating binary strings */}
+            {BINARY_ROWS.map((row, i) => (
+              <text
+                key={i}
+                x={row.x}
+                y={row.y}
+                fontFamily="monospace"
+                fontSize="8"
+                fill="rgba(56,165,50,0.15)"
+                letterSpacing="2"
+              >
+                {row.text}
+                <animate attributeName="opacity" values="0.08;0.22;0.08" dur={`${4.5 + i * 1.1}s`} repeatCount="indefinite" />
+              </text>
+            ))}
+          </svg>
+        </div>
 
         {/* Overlay: heavier on mobile so text stays readable */}
         <div style={{
@@ -90,7 +304,7 @@ export default function LoadingScreen({ onComplete }: Props) {
             : "linear-gradient(to right, #020810 0%, #020810 36%, rgba(2,8,16,0.93) 46%, rgba(2,8,16,0.60) 58%, rgba(2,8,16,0.18) 75%, transparent 100%)",
         }} />
 
-        {/* Top & bottom vignette over the photo area */}
+        {/* Top & bottom vignette */}
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(180deg, rgba(2,8,16,0.65) 0%, transparent 18%, transparent 78%, rgba(2,8,16,0.80) 100%)",
