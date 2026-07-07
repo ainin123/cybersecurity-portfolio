@@ -22,8 +22,8 @@ const CONTACT_METHODS = [
   {
     icon: Mail,
     label: "Email",
-    value: "contact@aniqaayub.com",
-    href: "mailto:contact@aniqaayub.com",
+    value: "aniqaayub0fficial@gmail.com",
+    href: "mailto:aniqaayub0fficial@gmail.com",
     color: "rgba(56,165,50,0.5)",
   },
   {

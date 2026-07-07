@@ -199,7 +199,7 @@ export default function HeroSection() {
               Download Resume
             </motion.a>
             <motion.a
-              href="mailto:aniqaayub4@gmail.com?subject=Portfolio%20Enquiry"
+              href="mailto:aniqaayub0fficial@gmail.com?subject=Portfolio%20Enquiry"
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
